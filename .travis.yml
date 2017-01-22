@@ -12,8 +12,19 @@ cache:
   directories:
   - node_modules
 before_install:
+- openssl aes-256-cbc -K $encrypted_1a78e6cde133_key -iv $encrypted_1a78e6cde133_iv
+  -in id_rsa_github.enc -out ~\/.ssh/id_rsa_github -d
+- chmod 600 ~/.ssh/id_rsa
+- eval $(ssh-agent)
+- ssh-add ~/.ssh/id_rsa
+- cp ssh_config ~/.ssh/config
+- git config --global user.name "strongant"
+- git config --global user.email "877798942@qq.com"
+install:
+- npm install hexo-cli -g
 - npm install
 script:
+- hexo -version
 - hexo clean
 - hexo g
 - hexo d

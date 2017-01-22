@@ -1,0 +1,19 @@
+sudo: false
+language: node_js
+node_js:
+- 7.1.0
+branches:
+  only:
+  - hexo
+cache:
+  directories:
+  - node_modules
+before_install:
+- npm install
+script:
+- hexo clean
+- hexo g
+- hexo d
+  on:
+    repo: strongant/strongant.github.io
+    tags: false

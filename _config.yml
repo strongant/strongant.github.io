@@ -98,6 +98,9 @@ limit: 20
 
 sitemap:
     path: sitemap.xml
+
+baidusitemap:
+  path: baidusitemap.xml
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:

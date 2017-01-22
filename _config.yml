@@ -95,6 +95,8 @@ type: atom
 path: atom.xml
 limit: 20
 
+sitemap:
+    path: sitemap.xml
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:

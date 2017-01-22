@@ -4,6 +4,9 @@ node_js:
 branches:
   only:
   - hexo
+cache:
+  directories:
+  - node_modules
 before_script:
 - git config --global user.name 'strongant'
 - git config --global user.email '877798942@qq.com'

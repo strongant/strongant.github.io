@@ -1,5 +1,3 @@
-sudo: false
-dist: trusty
 language: node_js
 node_js:
 - 7.1.0
@@ -8,7 +6,7 @@ branches:
   - hexo
 before_install:
 - openssl aes-256-cbc -K $encrypted_1a78e6cde133_key -iv $encrypted_1a78e6cde133_iv
-  -in id_rsa_github.enc -out ~\/.ssh/id_rsa_github -d
+  -in id_rsa_github.enc -out ~/.ssh/id_rsa_github -d
 - chmod 600 ~/.ssh/id_rsa_github
 - eval $(ssh-agent)
 - ssh-add ~/.ssh/id_rsa_github

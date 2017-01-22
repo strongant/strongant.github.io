@@ -3,22 +3,18 @@ dist: trusty
 language: node_js
 node_js:
 - 7.1.0
-env:
-  global:
-  - APP_ENV="production"
-  - secure: QpiRtmnx9/q0OxhpUWY+jymftBxiy7K4O5N+bc8/MZJh1+MbyJeX5Oijtee9cgr59qsrqA1LrrYdJvT7LwuIVPuYu6HjhLjNCHBjXpiOaesCQjVBV4+N29WdoWNbRM++m19+ROEASVzgVjdurm4kcDlZ7TQjCKbm5RUrPiQbzAbKDV10fYtv57rv1c6Npne2VPy6HL/vR2QkX1lyrnZw1J9nfkYzkiPQgIWhuq9cXv9qWB/3nNIqbNeVilFokwvlRvY1rbc5T5vg6fguVlOotjqGxoCzjGywGjWUkvuYn1XvVGS+Aj4pyHmx9LK2Wiku1UUVwBb0McKkLsK1uhDTGcloGfiOcTcGGyc6+t077bIKMK87q+Yw/F5vtJn0Vz1R6AizcXUy8K2YnycnzqwZ5qSUjy5CrWB18Q/Sgk4otmbC7YZoXn2xTf3n4RPY6ezThNECoBiahdHzSMkUzEP/kwhwU1PLuiUcqFE6NpPeSWlaH4MvPhEXZ/YVMQ2kaOhH2xXj0/kmrWuDgRyh/JpqhMyd3WSxx9e29R9991e9L1oK1mWU+sNtZNsLc2Ts4RmEHk0QB1enXhybegIq3AhtLsXxPm9BqRyb6sorO9jnR/DgvgSApo4nXFINt7ohVXl55OxmHb/+/xgUc/ZLRBk9t+586mdTcbMHBNOWY4hA/Hc=
 branches:
   only:
   - hexo
 before_install:
-# - openssl aes-256-cbc -K $encrypted_1a78e6cde133_key -iv $encrypted_1a78e6cde133_iv
-#   -in id_rsa_github.enc -out ~\/.ssh/id_rsa_github -d
-# - chmod 600 ~/.ssh/id_rsa_github
-# - eval $(ssh-agent)
-# - ssh-add ~/.ssh/id_rsa_github
-# - cp ssh_config ~/.ssh/config
-# - git config --global user.name "strongant"
-# - git config --global user.email "877798942@qq.com"
+- openssl aes-256-cbc -K $encrypted_1a78e6cde133_key -iv $encrypted_1a78e6cde133_iv
+  -in id_rsa_github.enc -out ~\/.ssh/id_rsa_github -d
+- chmod 600 ~/.ssh/id_rsa_github
+- eval $(ssh-agent)
+- ssh-add ~/.ssh/id_rsa_github
+- cp ssh_config ~/.ssh/config
+- git config --global user.name "strongant"
+- git config --global user.email "877798942@qq.com"
 install:
 - npm install hexo-cli -g
 - npm install

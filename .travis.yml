@@ -14,6 +14,3 @@ script:
 - hexo clean
 - hexo g
 - hexo d
-  on:
-    repo: strongant/strongant.github.io
-    tags: false

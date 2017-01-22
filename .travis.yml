@@ -17,10 +17,10 @@ script:
 after_success:
 - mkdir .deploy
 - cd .deploy
-- git clone --depth 1 --branch hexo --single-branch $DEPLOY_REPO . || (git init && git remote add -t hexo origin $DEPLOY_REPO)
+- git clone --depth 1 --branch master --single-branch $DEPLOY_REPO . || (git init && git remote add -t master origin $DEPLOY_REPO)
 - rm -rf ./*
 - cp -r ../public/* .
 - git add -A .
 - git commit -m 'Site updated'
-- git branch -m hexo
-- git push -q -u origin hexo
+- git branch -m master
+- git push -q -u origin master

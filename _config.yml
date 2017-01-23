@@ -12,11 +12,11 @@ timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://baiwenhui.com
+url: http://baiwenhui.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
-enforce_ssl: baiwenhui.com
+#enforce_ssl: baiwenhui.com
 
 # Directory
 source_dir: source

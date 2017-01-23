@@ -39,6 +39,11 @@
       background: <%= theme.style && theme.style.slider ? theme.style.slider : defaultCtnBg %>;
     }
   </style>
+  <script type="text/javascript">
+       var host = "baiwenhui.com";
+       if ((host == window.location.host) && (window.location.protocol != "https:"))
+           window.location.protocol = "https";
+  </script>
   <%- partial('google-analytics') %>
   <%- partial('baidu-analytics') %>
 </head>

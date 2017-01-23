@@ -16,7 +16,7 @@ url: https://baiwenhui.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
-enforce_ssl: www.baiwenhui.com
+enforce_ssl: baiwenhui.com
 
 # Directory
 source_dir: source

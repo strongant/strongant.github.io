@@ -1,4 +1,3 @@
-sudo: false
 language: node_js
 node_js:
 - 7.1.0
@@ -8,9 +7,23 @@ branches:
 cache:
   directories:
   - node_modules
-before_install:
+before_script:
+- git config --global user.name 'strongant'
+- git config --global user.email '877798942@qq.com'
+install:
+- npm install hexo-cli -g
 - npm install
 script:
+- hexo -version
 - hexo clean
 - hexo g
-- hexo d
+after_success:
+- mkdir .deploy
+- cd .deploy
+- git clone --depth 1 --branch master --single-branch $DEPLOY_REPO . || (git init && git remote add -t master origin $DEPLOY_REPO)
+- rm -rf ./*
+- cp -r ../public/* .
+- git add -A .
+- git commit -m 'Site updated'
+- git branch -m master
+- git push -q -u origin master

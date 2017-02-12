@@ -11,7 +11,6 @@
  - 工作年限：2年半
  - 技术博客：strongant.github.io
  - Github：https://github.com/strongant
-
  - 期望职位：Java程序员
  - 期望薪资：税后月薪14k~18k
  - 期望城市：上海

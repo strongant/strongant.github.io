@@ -1,11 +1,12 @@
 ---
-title: 《放弃F5，拥抱browser-sync》公众号文章错误说明
+title: 修正browser-sync公众号文章的错误
 date: 2017-01-21 22:30:29
 tags:
 ---
-
 首先说说声对不起，在上一篇的公众号文章：《放弃F5，拥抱browser-sync》中存在几个错误点。链接地址:
-<http://mp.weixin.qq.com/s?__biz=MzAxMDgyOTgwOQ==&tempkey=4s4RIGPKLlSI%2B%2B8VH3wx8KIrdHvnQSOEPLJ0k8joKaEA72cqJ41X6s0s0IzuDdKlkgLNIIrz1xkrL7lYcnIjCxGh6G%2BTC55MKR%2FWqW%2FbglQTt0aCB0A%2FFg4qN5SA%2B175n%2BIZz9ly%2BsRC5o4zHaD2Og%3D%3D&chksm=1b4b2ba22c3ca2b41c5ffa577f24f378a13bd46665cd09a844d0b88bf733666a1900900694a8#rd>，
+
+<https://mp.weixin.qq.com/s?__biz=MzAxMDgyOTgwOQ==&mid=2247483709&idx=1&sn=9939c3029c12ef1f716111cd0c9e9ffc&chksm=9b4b2ba3ac3ca2b5dea5496d6f9d87d7a0218ed85e4f807d4da2374957dd1b64cea234d5074c&mpshare=1&scene=1&srcid=0228DCwqHbO5bJNRzdNcoQaJ&key=1ffbac7579ea006ba638f1c527ceb6fccc5cd60675bb72cb4ac4e1669f8844ac48f5c811613c0700f5b5a5d0758631cddccd09a62852836bbe7ea0a2f3b6519205a05d50a53e595fa3c414a39a8f507f&ascene=0&uin=MTkwMTU1MzgyMw%3D%3D&devicetype=iMac+Macmini7%2C1+OSX+OSX+10.12.3+build(16D32)&version=12020010&nettype=WIFI&fontScale=100&pass_ticket=iTAw5XKKAiEh5rRG8zKg5HPSatL3GYf2%2FVDBxyBOTnbVmCeOf%2FgW%2FmhS5DctS64z>
+
 几个错误点修改如下：
 1. 文章中的：
 *......更重要的是 Browsersync可以同时在PC、平板、手机等设备下进项调试...*
@@ -75,8 +76,11 @@ gulp.task('serve', ['sass','js'], function() {
 });
 gulp.task('default', ['serve']);
 ```
+
 参照对比原文地址：
-http://mp.weixin.qq.com/s?__biz=MzAxMDgyOTgwOQ==&tempkey=4s4RIGPKLlSI%2B%2B8VH3wx8KIrdHvnQSOEPLJ0k8joKaEA72cqJ41X6s0s0IzuDdKlkgLNIIrz1xkrL7lYcnIjCxGh6G%2BTC55MKR%2FWqW%2FbglQTt0aCB0A%2FFg4qN5SA%2B175n%2BIZz9ly%2BsRC5o4zHaD2Og%3D%3D&chksm=1b4b2ba22c3ca2b41c5ffa577f24f378a13bd46665cd09a844d0b88bf733666a1900900694a8#rd
+
+<https://mp.weixin.qq.com/s?__biz=MzAxMDgyOTgwOQ==&mid=2247483709&idx=1&sn=9939c3029c12ef1f716111cd0c9e9ffc&chksm=9b4b2ba3ac3ca2b5dea5496d6f9d87d7a0218ed85e4f807d4da2374957dd1b64cea234d5074c&mpshare=1&scene=1&srcid=0228DCwqHbO5bJNRzdNcoQaJ&key=1ffbac7579ea006ba638f1c527ceb6fccc5cd60675bb72cb4ac4e1669f8844ac48f5c811613c0700f5b5a5d0758631cddccd09a62852836bbe7ea0a2f3b6519205a05d50a53e595fa3c414a39a8f507f&ascene=0&uin=MTkwMTU1MzgyMw%3D%3D&devicetype=iMac+Macmini7%2C1+OSX+OSX+10.12.3+build(16D32)&version=12020010&nettype=WIFI&fontScale=100&pass_ticket=iTAw5XKKAiEh5rRG8zKg5HPSatL3GYf2%2FVDBxyBOTnbVmCeOf%2FgW%2FmhS5DctS64z>
 
 目前内容已经修改！欢迎反馈，欢迎交流：
-![个人公众号](http://mmbiz.qpic.cn/mmbiz_png/bLPd4tHRLu6MfYBKkZ6Rkk5E2H92YaZN1JO92ub5SEVFEPxCHY8PCRHTLUHXiaghl4p7hRnxT8yySSdl7ZV7epA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1)
+
+![strongant公众号二维码](http://mmbiz.qpic.cn/mmbiz_png/bLPd4tHRLu6MfYBKkZ6Rkk5E2H92YaZN1JO92ub5SEVFEPxCHY8PCRHTLUHXiaghl4p7hRnxT8yySSdl7ZV7epA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1)

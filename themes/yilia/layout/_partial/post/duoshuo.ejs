@@ -1,4 +1,4 @@
-(function () {
+(function() {
     var appid = 'cysHzQGmj';  //你的appid
     var conf = 'c80d06598fb5083e77cfe47e7adcfdcf'; //你的CONF
     var width = window.innerWidth || document.documentElement.clientWidth;
@@ -17,7 +17,7 @@ document.documentElement;
             b.setAttribute("src", d);
             if (typeof a === "function") {
                 if (window.attachEvent) {
-                    b.onreadystatechange = function () {
+                    b.onreadystatechange = function() {
                         var e = b.readyState;
                         if (e === "loaded" || e === "complete") {
                             b.onreadystatechange = null;
@@ -30,7 +30,7 @@ document.documentElement;
             }
             c.appendChild(b)
         };
-        loadJs("http://changyan.sohu.com/upload/changyan.js", function () {
+        loadJs("http://changyan.sohu.com/upload/changyan.js", function() {
             window.changyan.api.config({appid: appid, conf: conf})
         });
     }

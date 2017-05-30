@@ -2,6 +2,7 @@ title: hexo将多说替换为畅言
 date: 2017-05-30 10:46:11
 tags: [Tools]
 categories: [Tools]
+reward:true
 ---
 
 ** 由于多说团队在2017年6月1号停止了对多说的运营，因此需要将博客中使用的多说替换为畅言。 **

@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+    
+    <entry>
+      <title><![CDATA[IDEA Mac下快捷键奇淫技巧]]></title>
+      <url>http://baiwenhui.com/2017/07/22/IDEA-Mac%E4%B8%8B%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%A5%87%E6%B7%AB%E6%8A%80%E5%B7%A7/</url>
+      <content type="html"><![CDATA[<ul>
+<li>为你的ide设置背景图片；<br>只需要双击enter键，然后输入<em>set back</em>， 找到<em>Set Background Image</em> 选择你想要添加的背景图片即可。如果不需要设置图片，再次打开单击<em>clear</em>按钮即可清除。</li>
+<li>若果你想展示自己点击的按钮快捷键，可以安装<em>Presentation Assistant</em>即可，安装完之后需要重启。</li>
+<li>如果你想快速跳到某一个类的某一行，那么你可以使用<em>Command+O</em>,然后键入你想要跳转的类名称，然后输入冒号加行号；</li>
+<li>如果你想看到你进入这个类中总共有哪些方法，你可以使用<em>Command+7</em>，此时便可以显示这个类中的所有方法；</li>
+<li>如果你想找到某个类中的某个字段，你可以使用<em>Command+Option+O</em>,然后通过”/id”的方式，就可以找到所有包含id属性的类；</li>
+<li>如果你想查看某个类中的变量或者方法在哪儿使用，直接使用<em>Command+B</em>即可；</li>
+<li>如果你想查看某个变量的引用定义详情，则可以选中这个变量，然后使用<em>Command+Y</em>；</li>
+<li>如果你想扩展左边项目结构窗口的大小，则可以使用<em>Command+Shift+&gt;(右方向键)</em>；</li>
+<li>如果你想对编辑器某些窗口进行显示和隐藏，则可以双击Shift键，然后输入”#editor “,则可以对当前编辑器进行一些快速设置；</li>
+<li>如果你想在idea中快速测试rest服务，则可以双击<em>Shift</em>然后输入<em>test rest</em>，找到最后一项打开<em>rest test client</em>便可以对服务进行测试调用；</li>
+<li>如果你想双击<em>Shift</em>后，键入<em>ws</em>便可以打开<em>test restful client tool</em>，可以在keymap设置中输入<em>test rest</em>，找到<em>Tools–Test Restful Webservice</em>，然后选中右键选择<em>Abbreviation</em>设置<em>ws</em>，点击确定，然后双击<em>Shift</em>，输入<em>ws</em>，这时候第一项就是这个工具，此时便可以快速进入<em>test restful client tool</em>工具窗口；</li>
+<li>如果你想对某个类进行全屏编辑，则可以使用<em>Command+Shift+F12</em>；</li>
+<li>如果想快速打开项目结构视图，则可以使用<em>Command+1</em>；</li>
+<li>如果你想对代码给别人展示或者review代码的时候，想放大某个类，则可以在<em>view</em>视图下选择：<em>Enter Presenttion Mode</em>即可，当然你也可以设置快捷键进行绑定，这个功能特别有用,比如我设置的是<em>Command+Shift+S</em>，这样当需要对某个文件进行展示时，直接按快捷键即可，在<em>Presenttion Mode</em>窗口中，我们可以使用<em>Command+E</em>显示最近浏览的文件，可以快速切换展示；</li>
+<li>编辑器垂直分割和水平分割可以在菜单来<em>Window</em>下的<em>edit tab</em>中找到并绑定对应的快捷键；</li>
+<li>当选择一行或者某个列时，使用<em>option</em>+上下方向键，不要使用鼠标勾选的方式；</li>
+<li>如果你使用了两次以上剪贴操作，你想查看前几次的剪贴内容，则可以使用<em>Commad+Shift+V</em>,此时便可以找到前几次的剪贴记录；</li>
+<li>如果你选择了某一行，想向上下选取，则使用<em>option</em>+上下方向键后，可以再使用<em>shift+option</em>+上下方向键；</li>
+<li>当你需要对代码样式进行一些改变时，则可以选中代码片段 然后使用<em>option+Enter</em>；</li>
+<li>如果你想在某个包下面建立一个类，你可以使用<em>Command+上方向键</em>激活导航bar，然后选择相应的目录，然后使用<em>Command+N</em>,新建你需要新建的类型即可，不要使用鼠标选择File新建，这样会影响效率；</li>
+<li>如果不想在view中显示navbar，则可以设置navbar隐藏，方法：双击<em>shift</em>，输入<em>nav</em>，找到<em>view navigation bar</em> 选择off，然后使用<em>Command</em>+向上方向键便可以激活navbar；</li>
+<li>如果你想使用BufferReader读取一个文件，此时你键入<code>BufferReader bf = new</code>的时候可以使用<em>shift+option+space</em>智能导入其派生类，由于 <em>shift+option+space</em>快键键可能会和输入法切换会有冲突，我设置成了<em>shift+option+command+space</em>；</li>
+<li>如果你想在idea中引入包或者包裹异常，则可以使用<em>option+Enter</em>；</li>
+<li>如果你想要对某个变量进行NPE验证，那么只需要使用这个变量名打”.”然后输入<em>not</em>，这时候选择相应的代码模板即可；</li>
+<li>如果你想在代码的末尾添加分号，不要移动光标添加，直接使用<em>shift+command+回车</em>即可；</li>
+<li>如果你想手写一个简单的JSON，可能需要使用转义字符进行转义双引号，此时你可以在字符串中使用<em>option</em>+回车选择<em>Inject language reference</em>选择JSON，然后再次使用<em>option+回车键</em>，选择<em>Edit Json Fragement</em>即可，此时你便可以在JSON 窗口中按照正常的方式编写JSON字符串了，IDE会自动帮你添加转义字符；同样的方式我们可以选择<em>Regex</em>，对正则进行编写，并且可以帮我们进行对正则校验，使用方法和JSON 输入的方式类似；</li>
+<li>如果需要多行选中，则可以使用<em>option+shift+鼠标点击</em> 即可，或者可以使用<em>control+G</em>,然后继续选择你需要多行同时编辑的行，如果选择的行数多了，可以使用<em>control+shift+g</em>进行减少选中；</li>
+<li>如果需要对选中的变量或者代码片段进行重构，则可以使用<em>control+T</em>；</li>
+<li>对bool参数值进行转换，则可以对定义的bool变量选中然后使用<em>control+T</em>，输入<em>invert</em>，找到<em>invert boolean</em>，便可以对变量的值进行反转；</li>
+<li>如果想对项目进行版本控制管理，使用<em>Command+K</em>或者使用<em>Ctrl+V</em>；</li>
+<li>使用<em>control+tab</em>可以进行对不同的文件进行选择显示打开；</li>
+<li>如果你想查看你目前使用快捷键的情况，则可以在idea的<em>help</em>菜单找到<em>Poductivity Guide</em>查看；<br><strong>注意：以上快捷键主要是Mac系统下的操作，如果你使用的是非Mac系统，那么你只需要安装Presentation Assistant便可以显示Linux和Windows上的快捷键</strong></li>
+</ul>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> IDEA,Mac快捷键 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[使用springdata操作es出错org.elasticsearch.client.transport.NoNodeAvailableException]]></title>
+      <url>http://baiwenhui.com/2017/07/21/%E4%BD%BF%E7%94%A8springdata%E6%93%8D%E4%BD%9Ces%E5%87%BA%E9%94%99org-elasticsearch-client-transport-NoNodeAvailableException/</url>
+      <content type="html"><![CDATA[<p>  之前的项目中使用的是http-client操作es，比较轻量级。目前为了学习下springdata，使用Java API 的方式来操作ES，但是在引入SpringData的es模块依赖后，操作es并未成功，出现以下错误：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">org.elasticsearch.client.transport.NoNodeAvailableException: None of the configured nodes are available: [&#123;#transport#-1&#125;&#123;127.0.0.1&#125;&#123;127.0.0.1:9300&#125;]</div></pre></td></tr></table></figure></p>
+<p><strong>注意：</strong>如果你下载elasticsearch的压缩包安装的话，可能不会出现该问题！因为es默认的配置文件cluster.name是elasticsearch。但是奇葩的是使用brew安装es之后，默认的elasticsearch.yml的配置项成了这样：cluster.name: elasticsearch_bwh，就是这个原因导致了这个问题的产生，项目启动后控制台一直抛这个错：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">transport#-1&#125;&#123;127.0.0.1&#125;&#123;127.0.0.1:9300&#125; not part of the cluster Cluster [Assassin], ignoring...</div></pre></td></tr></table></figure></p>
+<p>当执行添加操作时，提示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">org.elasticsearch.client.transport.NoNodeAvailableException: None of the configured nodes are available: [&#123;#transport#-1&#125;&#123;127.0.0.1&#125;&#123;127.0.0.1:9300&#125;]</div></pre></td></tr></table></figure></p>
+<p>最后需要注意的是，如果你修改了es默认的集群名称，则需要在src/main/resources/application.properties配置文件中进行指定：</p>
+<p>spring.data.elasticsearch.clusterName=elasticsearch_bwh<br>通过源码org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchProperties可以看到，默认的<br>clusterName为elasticsearch。</p>
+<p>希望可以帮助遇到此类问题的同学。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> SpringData </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> SpringData </tag>
+            
+            <tag> Elasticsearch </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[hexo将多说替换为畅言]]></title>
+      <url>http://baiwenhui.com/2017/05/30/hexo%E5%B0%86%E5%A4%9A%E8%AF%B4%E6%9B%BF%E6%8D%A2%E4%B8%BA%E7%95%85%E8%A8%80/</url>
+      <content type="html"><![CDATA[<p><strong> 由于多说团队在2017年6月1号停止了对多说的运营，因此需要将博客中使用的多说替换为畅言。 </strong></p>
+<h3 id="具体替换办法如下："><a href="#具体替换办法如下：" class="headerlink" title="具体替换办法如下："></a>具体替换办法如下：</h3><ol>
+<li>如果你没有畅言的账号，则首先去畅言的官网进行注册账号：<br>畅言网址: <a href="http://changyan.kuaizhan.com/" target="_blank" rel="external">http://changyan.kuaizhan.com/</a></li>
+</ol>
+<p><img src="/images/reg_changyan.png" alt=""></p>
+<ol>
+<li>如果你已经注册过畅言的账号了，那么请直接登录即可；</li>
+<li>注册登录成功之后，点击进入后台，如图,可以看到已经有APP ID和APP KEY，这两个字符串，等会在配置的时候需要：</li>
+</ol>
+<p><img src="/images/login-changyan.png" alt=""></p>
+<ol>
+<li>由于我使用的是hexo的Yilia主题，这里以Yilia主题为主，进行下面的配置，其他主题类似。<br>在畅言后台找到<strong> 安装畅言 </strong> 点击展开之后，点击 <strong> 通用代码安装 </strong>，然后点击右边的复制代码，如图：</li>
+</ol>
+<p><img src="/images/copy-config.png" alt=""></p>
+<ol>
+<li><p>然后编辑你hexo目录下的themes/yilia/layout/_partial/post/duoshuo.ejs文件，将duoshuo.ejs中原来的内容全部删除，使用刚才拷贝的代码替换，替换后的样例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 畅言评论框 start --&gt;</div><div class="line">&lt;div id=&quot;SOHUCS&quot; sid=&quot;&lt;%=title %&gt;&quot; style=&quot;padding: 0px 30px 0px 46px;&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;!-- 畅言评论框 end --&gt;</div><div class="line">&lt;script type=&quot;text/javascript&quot;&gt; </div><div class="line">(function()&#123; </div><div class="line">var appid = &apos;你的appid&apos;; </div><div class="line">var conf = &apos;你的app key&apos;; </div><div class="line">var width = window.innerWidth || document.documentElement.clientWidth; </div><div class="line">if (width &lt; 960) &#123; </div><div class="line">window.document.write(&apos;&lt;script id=&quot;changyan_mobile_js&quot; charset=&quot;utf-8&quot; type=&quot;text/javascript&quot; src=&quot;https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=&apos; + appid + &apos;&amp;conf=&apos; + conf + &apos;&quot;&gt;&lt;\/script&gt;&apos;); &#125; else &#123; var loadJs=function(d,a)&#123;var c=document.getElementsByTagName(&quot;head&quot;)[0]||document.head||document.documentElement;var b=document.createElement(&quot;script&quot;);b.setAttribute(&quot;type&quot;,&quot;text/javascript&quot;);b.setAttribute(&quot;charset&quot;,&quot;UTF-8&quot;);b.setAttribute(&quot;src&quot;,d);if(typeof a===&quot;function&quot;)&#123;if(window.attachEvent)&#123;b.onreadystatechange=function()&#123;var e=b.readyState;if(e===&quot;loaded&quot;||e===&quot;complete&quot;)&#123;b.onreadystatechange=null;a()&#125;&#125;&#125;else&#123;b.onload=a&#125;&#125;c.appendChild(b)&#125;;loadJs(&quot;https://changyan.sohu.com/upload/changyan.js&quot;,function()&#123;window.changyan.api.config(&#123;appid:appid,conf:conf&#125;)&#125;); &#125; &#125;)(); &lt;/script&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>然后就可以使用畅言了</p>
+</li>
+<li>由于我的域名已经备案，没有遇到网上说的不能正常加载畅言的方式，如果你的域名没有备案，具体Hacker方法，请参考：<a href="http://ev1l.cn/2017/05/13/changyancrack/" target="_blank" rel="external">http://ev1l.cn/2017/05/13/changyancrack/</a></li>
+</ol>
+<p><strong> 注意： </strong> 如果你在配置中还有其他问题，欢迎打赏提问，我收到之后会快速帮你解决！</p>
+]]></content>
+      
+        <categories>
+            
+            <category> Tools </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Tools </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[递归的执行原理浅析]]></title>
+      <url>http://baiwenhui.com/2017/05/29/%E9%80%92%E5%BD%92%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/</url>
+      <content type="html"><![CDATA[<ol>
+<li>首先使用递归输出经典的阶乘，描述如下：</li>
+</ol>
+<ul>
+<li>1! =1</li>
+<li>2! = 2</li>
+<li>3! = 6<br>…</li>
+</ul>
+<p>接下来使用常规的递归方式实现（Java），则可以得到以下程序：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">     * Java普通递归实现阶乘</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> n 传递的大于0的正整数</div><div class="line">     * <span class="doctag">@return</span> 该数字的阶乘    如：传递3 则计算 1 * 2 * 3 =  6</div><div class="line">     * 递归的核心思想自我理解： 先入栈计算直到递归终止   然后初栈 对每个栈中的值进行计算  最后得到结果</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">factorial</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (n == <span class="number">1</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">return</span> n * factorial(n - <span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p><center><img src="/images/Java递归调用示意图.png" alt=""></center></p>
+<p><center>递归调用示意图</center><br>此递归的计算原理主要是先申请栈幁1到栈幁n，直到找到递归终止的条件，然后开始汇总结果，最后出栈，返回结果，这种递归算法方式有一个弊端，就是在计算的过程中当n很大的情况下会出现栈溢出的错误（java.lang.StackOverflowError），可以使用尾递归的方式进行优化，比如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">    * 使用尾递归进行计算阶乘</div><div class="line">    *</div><div class="line">    * <span class="doctag">@param</span> n      需要计算的n的阶乘</div><div class="line">    * <span class="doctag">@param</span> result 返回n的阶乘结果  如： 传递3  则计算 1 * 2 *3 = 6</div><div class="line">    *               计算过程如下： tailFactorial(3,1)</div><div class="line">    *               = tailFactorial(2,3*1)</div><div class="line">    *               = tailFactorial(1,2*3*1)</div><div class="line">    *               = tailFactorial(1,6)</div><div class="line">    *               = 6</div><div class="line">    *               揭秘：只使用一个栈幁就可以搞定计算</div><div class="line">    * <span class="doctag">@return</span> 返回n的阶乘</div><div class="line">    */</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">tailFactorial</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> result)</span> </span>&#123;</div><div class="line">       <span class="keyword">if</span> (n == <span class="number">1</span>) &#123;</div><div class="line">           <span class="keyword">return</span> result;</div><div class="line">       &#125; <span class="keyword">else</span> &#123;</div><div class="line">           <span class="keyword">return</span> tailFactorial(n - <span class="number">1</span>, n * result);</div><div class="line">       &#125;</div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
+<ol>
+<li>计算a,b（a,b为非负整数）的最大公约数？<br>此题目可以使用欧几里得算法进行解答，实现代码如下：<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">     * 欧几里得算法计算两个数的最大公约数</div><div class="line">     * <span class="doctag">@param</span> p 需要计算的数a</div><div class="line">     * <span class="doctag">@param</span> q 需要计算的数b</div><div class="line">     * <span class="doctag">@return</span> 返回a，b的最大公约数  a,b 是大于0 的正整数</div><div class="line">     * 算法描述： 计算两个非负整数的最大公约数： 若q是0，则最大公约数为p。否则，将p除以q得到余数r，p和q的最大公约数则为q和r的最大公约数</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">greatestCommonDivisors</span><span class="params">(<span class="keyword">int</span> p , <span class="keyword">int</span> q)</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(q==<span class="number">0</span>)&#123;</div><div class="line">            <span class="keyword">return</span> p;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">int</span> r = p % q;</div><div class="line">        <span class="keyword">return</span> greatestCommonDivisors(q,r);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>最后我们开始使用递归遍历某个目录下的所有子目录和文件进行加深理解和运用：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printDirectoriesAndFilesByPath</span><span class="params">(String path)</span> </span>&#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            File file = <span class="keyword">new</span> File(path);</div><div class="line">            <span class="keyword">if</span> (file.exists()) &#123;</div><div class="line">                File[] files = file.listFiles();</div><div class="line">                <span class="keyword">for</span> (File f :</div><div class="line">                        files) &#123;</div><div class="line">                    <span class="keyword">if</span> (f.isDirectory() &amp;&amp; f.listFiles().length &gt;= <span class="number">0</span>) &#123;</div><div class="line">                        <span class="keyword">if</span> (f.isDirectory()) &#123;</div><div class="line">                            String directory = f.getAbsolutePath();</div><div class="line">                            System.out.println(<span class="string">"-------目录名称:"</span> + f.getAbsolutePath());</div><div class="line">                            printDirectoriesAndFilesByPath(directory);</div><div class="line">                        &#125;</div><div class="line">                    &#125; <span class="keyword">else</span> &#123;</div><div class="line">                        System.out.println(<span class="string">"-------目录名称:"</span>+f.getParent()+<span class="string">"---&gt;文件名称："</span> + f.getAbsolutePath());</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                System.out.println(<span class="string">"对不起，文件路径不存在"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+]]></content>
+      
+        <categories>
+            
+            <category> DataStructureAndAlgorithm </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> DataStructureAndAlgorithm </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[SpringBoot学习一]]></title>
+      <url>http://baiwenhui.com/2017/03/12/SpringBoot%E5%AD%A6%E4%B9%A0%E4%B8%80/</url>
+      <content type="html"><![CDATA[<h2 id="SpringBoot"><a href="#SpringBoot" class="headerlink" title="SpringBoot"></a>SpringBoot</h2><blockquote>
+<p>Takes an opinionated view of building production-ready Spring applications. Spring Boot favors convention over configuration and is designed to get you up and running as quickly as possible.</p>
+</blockquote>
+<p><strong>遵循建立生产就绪Spring应用程序的观点。SpringBoot支持约定优于配置的惯例，旨在让您尽快启动和运行。</strong></p>
+<blockquote>
+<p>Spring Boot makes it easy to create stand-alone, production-grade Spring based Applications that you can “just run”. We take an opinionated view of the Spring platform and third-party libraries so you can get started with minimum fuss. Most Spring Boot applications need very little Spring configuration.</p>
+</blockquote>
+<p><strong>SpringBoot可以轻松的创建单独的，生产级的基于Spring的应用，您可以“直接运行”。我们为Spring平台和第三方库提供了开箱即用的设置，这样你就可以有条不斋的开始。大多数的SpringBoot程序只需要很少的Spring配置。 </strong></p>
+<h3 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h3><ul>
+<li>Create stand-alone Spring applications</li>
+<li>Embed Tomcat, Jetty or Undertow directly (no need to deploy WAR files)</li>
+<li>Provide opinionated ‘starter’ POMs to simplify your Maven configuration</li>
+<li>Automatically configure Spring whenever possible</li>
+<li>Provide production-ready features such as metrics, health checks and externalized configuration</li>
+<li>Absolutely no code generation and no requirement for XML configuration</li>
+</ul>
+<h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><ul>
+<li>创建标准独立的Spring应用程序</li>
+<li>直接嵌入Tomcat、Jetty或者Undertow（不需要部署WAR文件）</li>
+<li>提供建议的‘starter’POM模板以简化您的Maven配置</li>
+<li>每当可能时自动配置Spring</li>
+<li>提供生产就绪的功能，如指标，运行状况检查和外部化配置</li>
+<li>绝对没有代码生成和不需要XML配置</li>
+</ul>
+<p>The reference guide includes detailed descriptions of all the features, plus an extensive howto for common use cases.<br>该<a href="https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle" target="_blank" rel="external">参考指南</a>包含所有功能的详细说明，以及广泛的<a href="https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#howto" target="_blank" rel="external">如何使用</a>共同使用情况。</p>
+<h3 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h3><p>If you are Java developer you can use start.spring.io to generate a basic project, follow the “Quick Start” example below, or read the reference documentation getting started guide.</p>
+<h3 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h3><p>如果你是一名Java程序员，你可以通过<a href="https://start.spring.io/" target="_blank" rel="external">start.spring.io</a>生成基本项目，按照下面的“快速开始”示例或者阅读参考文档的<a href="https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#getting-started" target="_blank" rel="external">入门指南</a>。</p>
+<p>The recommended way to get started using spring-boot in your project is with a dependency management system – the snippet below can be copied and pasted into your build. Need help? See our getting started guides on building with Maven and Gradle.</p>
+<p>spring-boot在项目中开始使用的推荐方法是使用依赖关系管理系统 - 下面的代码段可以复制并粘贴到您的构建中。需要帮忙？请参阅我们使用<a href="https://spring.io/guides/gs/maven/" target="_blank" rel="external">Maven</a>和 <a href="https://spring.io/guides/gs/gradle/" target="_blank" rel="external">Gradle</a>构建的入门指南。</p>
+<p>Maven<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;parent&gt;</div><div class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</div><div class="line">    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;</div><div class="line">    &lt;version&gt;1.5.1.RELEASE&lt;/version&gt;</div><div class="line">&lt;/parent&gt;</div><div class="line">&lt;dependencies&gt;</div><div class="line">    &lt;dependency&gt;</div><div class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</div><div class="line">        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line">&lt;/dependencies&gt;</div></pre></td></tr></table></figure></p>
+<p>Gradle<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">    compile(&quot;org.springframework.boot:spring-boot-starter-web:1.5.1.RELEASE&quot;)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hello/SampleController.java</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">package hello;</div><div class="line"></div><div class="line">import org.springframework.boot.*;</div><div class="line">import org.springframework.boot.autoconfigure.*;</div><div class="line">import org.springframework.stereotype.*;</div><div class="line">import org.springframework.web.bind.annotation.*;</div><div class="line"></div><div class="line">@Controller</div><div class="line">@EnableAutoConfiguration</div><div class="line">public class SampleController &#123;</div><div class="line"></div><div class="line">    @RequestMapping(&quot;/&quot;)</div><div class="line">    @ResponseBody</div><div class="line">    String home() &#123;</div><div class="line">        return &quot;Hello World!&quot;;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void main(String[] args) throws Exception &#123;</div><div class="line">        SpringApplication.run(SampleController.class, args);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Spring-Boot-CLI"><a href="#Spring-Boot-CLI" class="headerlink" title="Spring Boot CLI"></a>Spring Boot CLI</h3><p>Spring Boot ships with a command line tool that can be used if you want to quickly prototype with Spring. It allows you to run Groovy scripts, which means that you have a familiar Java-like syntax, without so much boilerplate code. Follow the instructions in our main documentation if you want to install the Spring Boot CLI.</p>
+<h3 id="Spring-Boot-命令行工具"><a href="#Spring-Boot-命令行工具" class="headerlink" title="Spring Boot 命令行工具"></a>Spring Boot 命令行工具</h3><p>Spring Boot附带一个命令行工具，如果你想快速使用Spring原型，可以使用它。它允许你运行Groovy脚本，这意味着你有一个熟悉的类似Java的语法，没有那么多的样板代码。如果要<a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#getting-started-installing-the-cli" target="_blank" rel="external">安装Spring Boot CLI</a>，请按照我们的主要文档中的说明进行<a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#getting-started-installing-the-cli" target="_blank" rel="external">操作</a>。</p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> SpringBoot </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Java面试(一)]]></title>
+      <url>http://baiwenhui.com/2017/03/05/Java%E9%9D%A2%E8%AF%95-%E4%B8%80/</url>
+      <content type="html"><![CDATA[<h2 id="Java基础"><a href="#Java基础" class="headerlink" title="Java基础"></a>Java基础</h2><h3 id="抽象类和接口的区别？"><a href="#抽象类和接口的区别？" class="headerlink" title="抽象类和接口的区别？"></a>抽象类和接口的区别？</h3><ol>
+<li>抽象类中可以包含抽象方法和非抽象方法，接口只能包含公开的抽象方法；</li>
+<li>抽象类中的变量是各种类型的，而接口只能包含public abstract final 类型；</li>
+<li>接口中不能含有静态代码块和静态方法，而抽象类中可以包含；</li>
+<li>一个类只能继承一个抽象类，但是可以实现多个接口；</li>
+<li>抽象类可以有构造方法，接口不能有；</li>
+</ol>
+<h3 id="HashMap和HashTable的区别？"><a href="#HashMap和HashTable的区别？" class="headerlink" title="HashMap和HashTable的区别？"></a>HashMap和HashTable的区别？</h3><ul>
+<li>HashTable是基于陈旧的Dictionary的Map接口的实现，而HashMap是基于哈希表的Map接口的实现</li>
+<li>从方法上看，HashMap去掉了HashTable的contains方法</li>
+<li>HashTable是同步的（线程安全），而HashMap是线程不安全的，效率上HashMap更快</li>
+<li><p>HashMap允许空键值，HashTable不允许，可以查看HashTable的实现源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">public synchronized V put(K key, V value) &#123;</div><div class="line">    // Make sure the value is not null</div><div class="line">    if (value == null) &#123;</div><div class="line">        throw new NullPointerException();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // Makes sure the key is not already in the hashtable.</div><div class="line">    Entry&lt;?,?&gt; tab[] = table;</div><div class="line">    int hash = key.hashCode();</div><div class="line">    int index = (hash &amp; 0x7FFFFFFF) % tab.length;</div><div class="line">    @SuppressWarnings(&quot;unchecked&quot;)</div><div class="line">    Entry&lt;K,V&gt; entry = (Entry&lt;K,V&gt;)tab[index];</div><div class="line">    for(; entry != null ; entry = entry.next) &#123;</div><div class="line">        if ((entry.hash == hash) &amp;&amp; entry.key.equals(key)) &#123;</div><div class="line">            V old = entry.value;</div><div class="line">            entry.value = value;</div><div class="line">            return old;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    addEntry(hash, key, value, index);</div><div class="line">    return null;</div><div class="line">&#125;</div><div class="line">...</div></pre></td></tr></table></figure>
+</li>
+<li><p>HashMap的iterator迭代器执行快速失败机制，也就是说在迭代过程中修改集合结构，除非调用迭代器自身的remove方法，否则以其他任何方式的修改都将抛出并发修改异常。而Hashtable返回的Enumeration不是快速失败的。</p>
+</li>
+</ul>
+<h3 id="Java中如何创建一个新线程？"><a href="#Java中如何创建一个新线程？" class="headerlink" title="Java中如何创建一个新线程？"></a>Java中如何创建一个新线程？</h3><ol>
+<li>实现runable接口并重写run方法；</li>
+<li>继承Thread类重写run方法；</li>
+<li>实现Callable接口，重写call()方法；使用FutureTask类包装Callable对象，该FutureTask对象封装了该Callable对象的call()方法的返回值；<br>使用FutureTask对象作为Thread对象的target创建并启动线程，调用FutureTask对象的get()方法获得子线程执行结束后的返回值；</li>
+</ol>
+<h3 id="什么是AIDL？"><a href="#什么是AIDL？" class="headerlink" title="什么是AIDL？"></a>什么是AIDL？</h3><ul>
+<li>AIDL全称Android Interface Definition Language（AndRoid接口描述语言）是一种借口描述语言;</li>
+<li>编译器可以通过aidl文件生成一段代码，通过预先定义的接口达到两个进程内部通信进程跨界对象访问的目的.AIDL的IPC的机制和COM或CORBA类似, 是基于接口的，但它是轻量级的。</li>
+<li>AIDL支持的数据类型有Stirng，list，map，All native java datatype</li>
+</ul>
+<h3 id="求计算1-2-3-4-5-6…的方法，n很大，考虑性能？"><a href="#求计算1-2-3-4-5-6…的方法，n很大，考虑性能？" class="headerlink" title="求计算1-2+3-4+5-6…的方法，n很大，考虑性能？"></a>求计算1-2+3-4+5-6…的方法，n很大，考虑性能？</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">public static  long fn(long n)</div><div class="line">    &#123;</div><div class="line">        if(n&lt;=0)</div><div class="line">        &#123;</div><div class="line">            //1-2+3-4+5-6   当n为负数时，结果肯定为负数,使用加法结合律得出当n为偶数时,结果为(1-2)+(3-4)...(-1)+(-1),规律</div><div class="line">            //当n为2时，结果为一个-1和，当n为4时，结果为2个-1的和,由此得出此结果的规律为(-1)*(n/2)</div><div class="line"></div><div class="line">            //当n为奇数的时候，当n为1时，结果为1，当n为3时候,结果为2,当n为5时候,结果为3...</div><div class="line">            //由此得出规律应该为：(-1)*(n/2)+n =-n/2+n   或者 (n+1)/2</div><div class="line">            //&gt;&gt;(右移)</div><div class="line">            //操作数每右移一位，相当于该数除以2</div><div class="line"></div><div class="line">            System.out.println(&quot;error&quot;);</div><div class="line">            return 0;</div><div class="line">        &#125;</div><div class="line">        if(0==n%2)</div><div class="line">            return (n&gt;&gt;1)*(-1);</div><div class="line">        else&#123;</div><div class="line">            System.out.println(&quot;aaa&quot;);</div><div class="line">            return (n&gt;&gt;1)*(-1)+n;   //或者可以替换为(n+1)&gt;&gt;1;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h3 id="char类型的取值范围："><a href="#char类型的取值范围：" class="headerlink" title="char类型的取值范围："></a>char类型的取值范围：</h3><p>0-2<sup>16</sup>-1</p>
+<h3 id="Java中如何在线程中返回一个值？"><a href="#Java中如何在线程中返回一个值？" class="headerlink" title="Java中如何在线程中返回一个值？"></a>Java中如何在线程中返回一个值？</h3><p>答案：可以让这个类去实现Callable接口，然后定义私有变量进行传递即可：如，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">package com.pff;</div><div class="line"></div><div class="line">import java.util.concurrent.Callable;</div><div class="line"></div><div class="line">/**</div><div class="line"> * Created by strongant on 16-6-16.</div><div class="line"> */</div><div class="line">public class MutiThread implements Callable&lt;String&gt; &#123;</div><div class="line">    private String str;</div><div class="line">    private int count = 1;</div><div class="line"></div><div class="line">    public MutiThread(String str) &#123;</div><div class="line">        this.str = str;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    //需要实现的CallAble的Call方法</div><div class="line">    public String call() throws Exception &#123;</div><div class="line">        for (int i = 0; i &lt; this.count; i++) &#123;</div><div class="line">            System.out.println(&quot;Callable的call()方法打印:&quot; + this.str + &quot; &quot; + i);</div><div class="line">        &#125;</div><div class="line">        return this.str;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>测试调用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">package com.pff;</div><div class="line"></div><div class="line">import java.util.ArrayList;</div><div class="line">import java.util.concurrent.ExecutorService;</div><div class="line">import java.util.concurrent.Executors;</div><div class="line">import java.util.concurrent.Future;</div><div class="line"></div><div class="line">/**</div><div class="line"> * Created by strongant on 16-6-16.</div><div class="line"> */</div><div class="line">public class CallableTest &#123;</div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        //创建一个线程池</div><div class="line">        ExecutorService exs = Executors.newCachedThreadPool();</div><div class="line">        ArrayList&lt;Future&lt;String&gt;&gt; al = new ArrayList&lt;&gt;();</div><div class="line">        al.add(exs.submit(new MutiThread(&quot;String0&quot;)));</div><div class="line">        for (Future&lt;String&gt; fs : al) &#123;</div><div class="line">            try &#123;</div><div class="line">                System.out.println(fs.get());</div><div class="line">            &#125; catch (Exception e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        exs.shutdown();</div><div class="line">        /*第二种方式，使用FutureTask来接收线程的返回值</div><div class="line">        MutiThread task = new MutiThread(&quot;test&quot;);</div><div class="line">        FutureTask&lt;String&gt; futureTask = new FutureTask&lt;&gt;(task);</div><div class="line">        Thread thread = new Thread(futureTask);</div><div class="line">        thread.start();</div><div class="line">        */</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>具体流程就是实现Callable<object>  泛型接口，然后线程类定义私有变量，重写call()方法，并且返回Callable接口声明的泛型类型值即可；</object></p>
+<p>获取的时候使用Future<object>泛型类去使用Future类的get()方法就可以获取到；</object></p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> Java面试 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[2017开工快乐]]></title>
+      <url>http://baiwenhui.com/2017/02/05/2017%E5%BC%80%E5%B7%A5%E5%BF%AB%E4%B9%90/</url>
+      <content type="html"><![CDATA[<center><img src="http://i1.piimg.com/4851/ce0a3e1ef63844b1.jpg" alt="2017开工快乐"></center>
+
+<p>春节已经结束了，祝愿大家在新的一年多挣钱！在这里给大家分享一份简历模板：<br><a href="http://resume.f-tm.net/" target="_blank" rel="external">http://resume.f-tm.net/</a></p>
+<p>简历开源地址:<br><a href="https://github.com/googlerobot/resume" target="_blank" rel="external">https://github.com/googlerobot/resume</a></p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> 随笔 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[春节回家]]></title>
+      <url>http://baiwenhui.com/2017/01/23/%E6%98%A5%E8%8A%82%E5%9B%9E%E5%AE%B6/</url>
+      <content type="html"><![CDATA[<center><img src="http://i1.piimg.com/4851/b70e6f5b8f4e2ba5.jpg" alt="plane"></center>
+
+
+<p><strong>对于刚过去不远的2016年，有欢乐，有辛酸，有失望，有快乐！还记得自己2016年年初的时候计划通过自己的努力买一台MakBook Pro（非正式工资的钱买），可到头来并没有完成我的这个愿望！</strong></p>
+<p><strong>远在他乡的我，随着年龄的增长，感到些许压抑、彷徨和不安，在新的2017年我决定奋力冲刺，早日实现自己的梦想！</strong></p>
+<p><strong>远在他乡，来到陌生的城市，看着天天上涨的房价，买房这件事情也只能想想。自己长大了，父母却老了，他们需要我们的照顾，在一线城市上几年班，攒个首付去二三线城市买一套房子然后打拼事业，这也是我的打算！乘着二三线城市的房价还没有大幅上涨，还是早下手为强！</strong></p>
+<p><strong>在一线城市上班，别人听起来工资很高，经常听到隔壁阿姨说：谁谁家的儿子在哪哪呢，一个月挣1W多呢，可是花销完，房租缴完，也剩不下多少钱了。要想拿到更多的薪水，就得从自身开始做起。我已经为自己制定好了2017年的计划，你呢？</strong></p>
+<p><strong>在这里，提前祝大家新年快乐！以上是我的一点生活感触，博客地址：<a href="http://baiwenhui.com">http://baiwenhui.com</a>，欢迎交流、分享：</strong></p>
+<center> <img src="http://i1.piimg.com/4851/71f2c239602d5025.jpg" alt="qrcode"></center>]]></content>
+      
+        
+        <tags>
+            
+            <tag> 生活感悟 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[rxjs翻译-rxjs介绍]]></title>
+      <url>http://baiwenhui.com/2017/01/22/rxjs%E7%BF%BB%E8%AF%91-rxjs%E4%BB%8B%E7%BB%8D/</url>
+      <content type="html"><![CDATA[<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>RxJS是一个基于可观察对象(Observable)序列，用于异步或者事件编程的库。它提供一个核心类型，<a href="&#39;./overview.html#observable&#39;">Observable</a> ，几个卫星类型（Observer, Schedulers, Subjects）以及一些由<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/New_in_JavaScript/1.6" target="_blank" rel="external">Array#extras</a> (map, filter, reduce, every等)激发的，让异步事件可以以集合的方式被处理的运算子(Operators)。</p>
+<p><span class="informal">可以将RxJS想象成是用于处理事件的Lodash.</span></p>
+<p>ReactiveX将<a href="https://en.wikipedia.org/wiki/Observer_pattern" target="_blank" rel="external">Observer模式</a>和<a href="https://en.wikipedia.org/wiki/Iterator_pattern" target="_blank" rel="external">Iterator模式</a>和对集合进行函数式编程结合起来，从而满足了对事件序列进行管理的需求。</p>
+<p>RxJS用于解决异步事件的管理问题，它的核心概念如下：</p>
+<ul>
+<li><strong>Observable:</strong> 代表数据与事件的集合，这个集合可以被调用，从而可以生成数据和事件。</li>
+<li><strong>Observer:</strong> 回调函数的集合，用于获取想要数据。这些数据来自于Observable。</li>
+<li><strong>Subscription:</strong> 用于表示Observable的执行状态，主要用于执行的取消。</li>
+<li><strong>Operator:</strong> 函数式风格的纯函数，通过<code>map</code>, <code>filter</code>, <code>concat</code>, <code>flatMap</code>等操作对集合进行处理。</li>
+<li><strong>Subject:</strong> 与EventEmitter等价，唯一可以将一个值或者事件向个多个Observer进行广播的办法。</li>
+<li><strong>Schedulers:</strong> 一个中心化的、控制并发的分发器，允许我们可以在象<code>setTimeout</code>、<code>requestAnimationFrame</code>或者其它类似的计算中可以进行调整。</li>
+</ul>
+<h2 id="第一个例子"><a href="#第一个例子" class="headerlink" title="第一个例子"></a>第一个例子</h2><p>通常你是这样注册事件的侦听器(listener)的。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> button = <span class="built_in">document</span>.querySelector(<span class="string">'button'</span>);</div><div class="line">button.addEventListener(<span class="string">'click'</span>, () =&gt; <span class="built_in">console</span>.log(<span class="string">'Clicked!'</span>));</div></pre></td></tr></table></figure></p>
+<p>使用RxJS的话，你要创建一个Observable来替换。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> button = <span class="built_in">document</span>.querySelector(<span class="string">'button'</span>);</div><div class="line">Rx.Observable.fromEvent(button, <span class="string">'click'</span>)</div><div class="line">  .subscribe(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">'Clicked!'</span>));</div></pre></td></tr></table></figure>
+<h3 id="纯粹-Purity"><a href="#纯粹-Purity" class="headerlink" title="纯粹(Purity)"></a>纯粹(Purity)</h3><p>让RxJS强大的是它能完全通过函数来生成数值，这也就意味着可以减少代码出错的机会。</p>
+<p>通常你会创建比较不纯粹的函数，在这样的函数里，其它的代码片段会让你的状态变的混乱。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> count = <span class="number">0</span>;</div><div class="line"><span class="keyword">var</span> button = <span class="built_in">document</span>.querySelector(<span class="string">'button'</span>);</div><div class="line">button.addEventListener(<span class="string">'click'</span>, () =&gt; <span class="built_in">console</span>.log(<span class="string">`Clicked <span class="subst">$&#123;++count&#125;</span> times`</span>));</div></pre></td></tr></table></figure>
+<p>而使用RxJS可以将你的状态进行隔离。</p>
+<blockquote>
+<p>译者注： 指count不再需要定义在外面。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> button = <span class="built_in">document</span>.querySelector(<span class="string">'button'</span>);</div><div class="line">Rx.Observable.fromEvent(button, <span class="string">'click'</span>)</div><div class="line">  .scan(<span class="function"><span class="params">count</span> =&gt;</span> count + <span class="number">1</span>, <span class="number">0</span>)</div><div class="line">  .subscribe(<span class="function"><span class="params">count</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">`Clicked <span class="subst">$&#123;count&#125;</span> times`</span>));</div></pre></td></tr></table></figure>
+<p>这里<strong>scan</strong>运算子的工作方式与<strong>reduce</strong>在数组里的工作方式是一样的。它从传给回调函数的值中获取值。返回的值将会作为下一次的传入值。</p>
+<blockquote>
+<p>译者注：scan第二个参数0是初始值。对于上面的函数来说就可以用来侦听被点击的次数了，非常的方便。</p>
+</blockquote>
+<h3 id="流转（Flow）"><a href="#流转（Flow）" class="headerlink" title="流转（Flow）"></a>流转（Flow）</h3><p>RxJS有一堆的运算子可以帮助你控制事件如何在你的可观察对象里流转。</p>
+<p>下面是你在纯JavaScript下允许一分钟最多一次点击的代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> count = <span class="number">0</span>;</div><div class="line"><span class="keyword">var</span> rate = <span class="number">1000</span>;</div><div class="line"><span class="keyword">var</span> lastClick = <span class="built_in">Date</span>.now() - rate;</div><div class="line"><span class="keyword">var</span> button = <span class="built_in">document</span>.querySelector(<span class="string">'button'</span>);</div><div class="line">button.addEventListener(<span class="string">'click'</span>, () =&gt; &#123;</div><div class="line">  <span class="keyword">if</span> (<span class="built_in">Date</span>.now() - lastClick &gt;= rate) &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">`Clicked <span class="subst">$&#123;++count&#125;</span> times`</span>);</div><div class="line">    lastClick = <span class="built_in">Date</span>.now();</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>使用RxJS后:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> button = <span class="built_in">document</span>.querySelector(<span class="string">'button'</span>);</div><div class="line">Rx.Observable.fromEvent(button, <span class="string">'click'</span>)</div><div class="line">  .throttleTime(<span class="number">1000</span>)</div><div class="line">  .scan(<span class="function"><span class="params">count</span> =&gt;</span> count + <span class="number">1</span>, <span class="number">0</span>)</div><div class="line">  .subscribe(<span class="function"><span class="params">count</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="string">`Clicked <span class="subst">$&#123;count&#125;</span> times`</span>));</div></pre></td></tr></table></figure>
+<p>其实的流转控制运算子还有<a href="../class/es6/Observable.js~Observable.html#instance-method-filter"><strong>filter</strong></a>, <a href="../class/es6/Observable.js~Observable.html#instance-method-delay"><strong>delay</strong></a>, <a href="../class/es6/Observable.js~Observable.html#instance-method-debounceTime"><strong>debounceTime</strong></a>, <a href="../class/es6/Observable.js~Observable.html#instance-method-take"><strong>take</strong></a>, <a href="../class/es6/Observable.js~Observable.html#instance-method-takeUntil"><strong>takeUntil</strong></a>, <a href="../class/es6/Observable.js~Observable.html#instance-method-distinct"><strong>distinct</strong></a>, <a href="../class/es6/Observable.js~Observable.html#instance-method-distinctUntilChanged"><strong>distinctUntilChanged</strong></a>等。</p>
+<h3 id="值-Values"><a href="#值-Values" class="headerlink" title="值(Values)"></a>值(Values)</h3><p>你可以转化赋给你的观察者的值。</p>
+<p>下面是你在纯JavaScript下添加当前鼠标的每个点击事件的x轴位置的代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> count = <span class="number">0</span>;</div><div class="line"><span class="keyword">var</span> rate = <span class="number">1000</span>;</div><div class="line"><span class="keyword">var</span> lastClick = <span class="built_in">Date</span>.now() - rate;</div><div class="line"><span class="keyword">var</span> button = <span class="built_in">document</span>.querySelector(<span class="string">'button'</span>);</div><div class="line">button.addEventListener(<span class="string">'click'</span>, (event) =&gt; &#123;</div><div class="line">  <span class="keyword">if</span> (<span class="built_in">Date</span>.now() - lastClick &gt;= rate) &#123;</div><div class="line">    count += event.clientX;</div><div class="line">    <span class="built_in">console</span>.log(count)</div><div class="line">    lastClick = <span class="built_in">Date</span>.now();</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>使用RxJS后:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> button = <span class="built_in">document</span>.querySelector(<span class="string">'button'</span>);</div><div class="line">Rx.Observable.fromEvent(button, <span class="string">'click'</span>)</div><div class="line">  .throttleTime(<span class="number">1000</span>)</div><div class="line">  .map(<span class="function"><span class="params">event</span> =&gt;</span> event.clientX)</div><div class="line">  .scan(<span class="function">(<span class="params">count, clientX</span>) =&gt;</span> count + clientX, <span class="number">0</span>)</div><div class="line">  .subscribe(<span class="function"><span class="params">count</span> =&gt;</span> <span class="built_in">console</span>.log(count));</div></pre></td></tr></table></figure>
+<p>另外几个用于生成值的运算子有<a href="../class/es6/Observable.js~Observable.html#instance-method-pluck"><strong>pluck</strong></a>, <a href="../class/es6/Observable.js~Observable.html#instance-method-pairwise"><strong>pairwise</strong></a>,<br><a href="../class/es6/Observable.js~Observable.html#instance-method-sample"><strong>sample</strong></a>等。</p>
+<blockquote>
+<p>译者注：这里map可以将事件里的值取出来，如果不进行map，clientX里的值就是事件本身。<br>这里要注意的是每次变换，其实对象是发生变化的。subscribe一次之后就不能再subscribe了。</p>
+</blockquote>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> rxjs </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[修正browser-sync公众号文章的错误]]></title>
+      <url>http://baiwenhui.com/2017/01/21/%E4%BF%AE%E6%AD%A3browser-sync%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E7%9A%84%E9%94%99%E8%AF%AF/</url>
+      <content type="html"><![CDATA[<p>首先说说声对不起，在上一篇的公众号文章：《放弃F5，拥抱browser-sync》中存在几个错误点。链接地址:</p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzAxMDgyOTgwOQ==&amp;mid=2247483709&amp;idx=1&amp;sn=9939c3029c12ef1f716111cd0c9e9ffc&amp;chksm=9b4b2ba3ac3ca2b5dea5496d6f9d87d7a0218ed85e4f807d4da2374957dd1b64cea234d5074c&amp;mpshare=1&amp;scene=1&amp;srcid=0228DCwqHbO5bJNRzdNcoQaJ&amp;key=1ffbac7579ea006ba638f1c527ceb6fccc5cd60675bb72cb4ac4e1669f8844ac48f5c811613c0700f5b5a5d0758631cddccd09a62852836bbe7ea0a2f3b6519205a05d50a53e595fa3c414a39a8f507f&amp;ascene=0&amp;uin=MTkwMTU1MzgyMw%3D%3D&amp;devicetype=iMac+Macmini7%2C1+OSX+OSX+10.12.3+build(16D32)&amp;version=12020010&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=iTAw5XKKAiEh5rRG8zKg5HPSatL3GYf2%2FVDBxyBOTnbVmCeOf%2FgW%2FmhS5DctS64z" target="_blank" rel="external">https://mp.weixin.qq.com/s?__biz=MzAxMDgyOTgwOQ==&amp;mid=2247483709&amp;idx=1&amp;sn=9939c3029c12ef1f716111cd0c9e9ffc&amp;chksm=9b4b2ba3ac3ca2b5dea5496d6f9d87d7a0218ed85e4f807d4da2374957dd1b64cea234d5074c&amp;mpshare=1&amp;scene=1&amp;srcid=0228DCwqHbO5bJNRzdNcoQaJ&amp;key=1ffbac7579ea006ba638f1c527ceb6fccc5cd60675bb72cb4ac4e1669f8844ac48f5c811613c0700f5b5a5d0758631cddccd09a62852836bbe7ea0a2f3b6519205a05d50a53e595fa3c414a39a8f507f&amp;ascene=0&amp;uin=MTkwMTU1MzgyMw%3D%3D&amp;devicetype=iMac+Macmini7%2C1+OSX+OSX+10.12.3+build(16D32)&amp;version=12020010&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=iTAw5XKKAiEh5rRG8zKg5HPSatL3GYf2%2FVDBxyBOTnbVmCeOf%2FgW%2FmhS5DctS64z</a></p>
+<p>几个错误点修改如下：</p>
+<ol>
+<li>文章中的：<br><em>……更重要的是 Browsersync可以同时在PC、平板、手机等设备下进项调试…</em><br>将“进项调试”修改为“进行调试”<br>2.　最后的代码有一个目录错误，因为我的粗心，给大家带来的不变，请见谅！在以后的文章中我会更加小心<br>发表文章，力求保证没有错误！<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">var gulp        = require(&apos;gulp&apos;);</div><div class="line">var browserSync = require(&apos;browser-sync&apos;).create();</div><div class="line">var browserify = require(&apos;gulp-browserify&apos;);</div><div class="line">var sass        = require(&apos;gulp-sass&apos;);</div><div class="line">var uglify = require(&apos;gulp-uglify&apos;);</div><div class="line">// Compile sass into CSS &amp; auto-inject into browsers</div><div class="line">gulp.task(&apos;sass&apos;, function() &#123;</div><div class="line">    return gulp.src(&quot;app/scss/*.scss&quot;)</div><div class="line">        .pipe(sass())</div><div class="line">        .pipe(gulp.dest(&quot;dist/css&quot;))</div><div class="line">        .pipe(browserSync.stream());</div><div class="line">&#125;);</div><div class="line">// process JS files and return the stream.</div><div class="line">gulp.task(&apos;js&apos;, function () &#123;</div><div class="line">    return gulp.src(&apos;app/js/*.js&apos;)</div><div class="line">        .pipe(browserify())</div><div class="line">        .pipe(uglify())</div><div class="line">        .pipe(gulp.dest(&apos;dist/js&apos;));</div><div class="line">&#125;);</div><div class="line">// Static Server + watching scss/js/html files</div><div class="line">gulp.task(&apos;serve&apos;, [&apos;sass&apos;,&apos;js&apos;], function() &#123;</div><div class="line">    browserSync.init(&#123;</div><div class="line">        server: &quot;./app&quot;</div><div class="line">    &#125;);</div><div class="line">    gulp.watch(&quot;app/scss/*.scss&quot;, [&apos;sass&apos;]);</div><div class="line">        gulp.watch(&quot;app/js/*.js&quot;, [&apos;js&apos;]);</div><div class="line">    gulp.watch(&quot;app/*.html&quot;).on(&apos;change&apos;, browserSync.reload);</div><div class="line">&#125;);</div><div class="line">gulp.task(&apos;default&apos;, [&apos;serve&apos;]);</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>修改为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">var gulp        = require(&apos;gulp&apos;);</div><div class="line">var browserSync = require(&apos;browser-sync&apos;).create();</div><div class="line">var browserify = require(&apos;gulp-browserify&apos;);</div><div class="line">var sass        = require(&apos;gulp-sass&apos;);</div><div class="line">var uglify = require(&apos;gulp-uglify&apos;);</div><div class="line">// Compile sass into CSS &amp; auto-inject into browsers</div><div class="line">gulp.task(&apos;sass&apos;, function() &#123;</div><div class="line">    return gulp.src(&quot;app/scss/*.scss&quot;)</div><div class="line">        .pipe(sass())</div><div class="line">        .pipe(gulp.dest(&quot;.app/dist/css&quot;))</div><div class="line">        .pipe(browserSync.stream());</div><div class="line">&#125;);</div><div class="line">// process JS files and return the stream.</div><div class="line">gulp.task(&apos;js&apos;, function () &#123;</div><div class="line">    return gulp.src(&apos;app/js/*.js&apos;)</div><div class="line">        .pipe(browserify())</div><div class="line">        .pipe(uglify())</div><div class="line">        .pipe(gulp.dest(&apos;.app/dist/js&apos;));</div><div class="line">&#125;);</div><div class="line">// Static Server + watching scss/js/html files</div><div class="line">gulp.task(&apos;serve&apos;, [&apos;sass&apos;,&apos;js&apos;], function() &#123;</div><div class="line">    browserSync.init(&#123;</div><div class="line">        server: &quot;./app&quot;</div><div class="line">    &#125;);</div><div class="line">    gulp.watch(&quot;app/scss/*.scss&quot;, [&apos;sass&apos;]);</div><div class="line">        gulp.watch(&quot;app/js/*.js&quot;, [&apos;js&apos;]);</div><div class="line">    gulp.watch(&quot;app/*.html&quot;).on(&apos;change&apos;, browserSync.reload);</div><div class="line">&#125;);</div><div class="line">gulp.task(&apos;default&apos;, [&apos;serve&apos;]);</div></pre></td></tr></table></figure></p>
+<p>参照对比原文地址：</p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzAxMDgyOTgwOQ==&amp;mid=2247483709&amp;idx=1&amp;sn=9939c3029c12ef1f716111cd0c9e9ffc&amp;chksm=9b4b2ba3ac3ca2b5dea5496d6f9d87d7a0218ed85e4f807d4da2374957dd1b64cea234d5074c&amp;mpshare=1&amp;scene=1&amp;srcid=0228DCwqHbO5bJNRzdNcoQaJ&amp;key=1ffbac7579ea006ba638f1c527ceb6fccc5cd60675bb72cb4ac4e1669f8844ac48f5c811613c0700f5b5a5d0758631cddccd09a62852836bbe7ea0a2f3b6519205a05d50a53e595fa3c414a39a8f507f&amp;ascene=0&amp;uin=MTkwMTU1MzgyMw%3D%3D&amp;devicetype=iMac+Macmini7%2C1+OSX+OSX+10.12.3+build(16D32)&amp;version=12020010&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=iTAw5XKKAiEh5rRG8zKg5HPSatL3GYf2%2FVDBxyBOTnbVmCeOf%2FgW%2FmhS5DctS64z" target="_blank" rel="external">https://mp.weixin.qq.com/s?__biz=MzAxMDgyOTgwOQ==&amp;mid=2247483709&amp;idx=1&amp;sn=9939c3029c12ef1f716111cd0c9e9ffc&amp;chksm=9b4b2ba3ac3ca2b5dea5496d6f9d87d7a0218ed85e4f807d4da2374957dd1b64cea234d5074c&amp;mpshare=1&amp;scene=1&amp;srcid=0228DCwqHbO5bJNRzdNcoQaJ&amp;key=1ffbac7579ea006ba638f1c527ceb6fccc5cd60675bb72cb4ac4e1669f8844ac48f5c811613c0700f5b5a5d0758631cddccd09a62852836bbe7ea0a2f3b6519205a05d50a53e595fa3c414a39a8f507f&amp;ascene=0&amp;uin=MTkwMTU1MzgyMw%3D%3D&amp;devicetype=iMac+Macmini7%2C1+OSX+OSX+10.12.3+build(16D32)&amp;version=12020010&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=iTAw5XKKAiEh5rRG8zKg5HPSatL3GYf2%2FVDBxyBOTnbVmCeOf%2FgW%2FmhS5DctS64z</a></p>
+<p>目前内容已经修改！欢迎反馈，欢迎交流：</p>
+<p><img src="http://mmbiz.qpic.cn/mmbiz_png/bLPd4tHRLu6MfYBKkZ6Rkk5E2H92YaZN1JO92ub5SEVFEPxCHY8PCRHTLUHXiaghl4p7hRnxT8yySSdl7ZV7epA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="strongant公众号二维码"></p>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[hexo搭建成功]]></title>
+      <url>http://baiwenhui.com/2017/01/19/hexo%E6%90%AD%E5%BB%BA%E6%88%90%E5%8A%9F/</url>
+      <content type="html"><![CDATA[<p>终于折腾完了，搭建好我的hexo，的确挺方便的！感谢前人的贡献！</p>
+]]></content>
+      
+        
+    </entry>
+    
+  
+  
+</search>

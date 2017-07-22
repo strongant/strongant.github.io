@@ -1,8 +1,7 @@
----
 title: IDEA Mac下快捷键奇淫技巧
-date: 2017-07-22 21:59:47
-tags: IDEA,Mac快捷键
+tags: 'IDEA,Mac快捷键'
 reward: true
+date: 2017-07-22 21:59:47
 ---
 * 为你的ide设置背景图片；
 只需要双击enter键，然后输入*set back*， 找到*Set Background Image* 选择你想要添加的背景图片即可。如果不需要设置图片，再次打开单击*clear*按钮即可清除。
@@ -38,3 +37,5 @@ reward: true
 * 使用*control+tab*可以进行对不同的文件进行选择显示打开；
 * 如果你想查看你目前使用快捷键的情况，则可以在idea的*help*菜单找到*Poductivity Guide*查看；
 **注意：以上快捷键主要是Mac系统下的操作，如果你使用的是非Mac系统，那么你只需要安装Presentation Assistant便可以显示Linux和Windows上的快捷键**
+如果想深入学习，可以参考该视频连接：
+<https://www.youtube.com/watch?v=M2eL5YuqecQ&list=PLQ176FUIyIUYUuSwE--flZWw2hfI21SjF&index=2>

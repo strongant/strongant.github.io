@@ -37,5 +37,5 @@ date: 2017-07-22 21:59:47
 * 使用*control+tab*可以进行对不同的文件进行选择显示打开；
 * 如果你想查看你目前使用快捷键的情况，则可以在idea的*help*菜单找到*Poductivity Guide*查看；
 **注意：以上快捷键主要是Mac系统下的操作，如果你使用的是非Mac系统，那么你只需要安装Presentation Assistant便可以显示Linux和Windows上的快捷键**
-如果想深入学习，可以参考该视频连接：
+如果想深入学习，可以参考该视频链接：
 <https://www.youtube.com/watch?v=M2eL5YuqecQ&list=PLQ176FUIyIUYUuSwE--flZWw2hfI21SjF&index=2>

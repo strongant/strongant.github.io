@@ -1,7 +1,9 @@
 title: IDEA Mac下快捷键奇淫技巧
-tags: 'IDEA,Mac快捷键'
+tags:
+  - 'IDEA,Mac快捷键'
 reward: true
-date: 2017-07-22 21:59:47
+categories: []
+date: 2017-07-22 21:59:00
 ---
 * 为你的ide设置背景图片；
 只需要双击enter键，然后输入*set back*， 找到*Set Background Image* 选择你想要添加的背景图片即可。如果不需要设置图片，再次打开单击*clear*按钮即可清除。

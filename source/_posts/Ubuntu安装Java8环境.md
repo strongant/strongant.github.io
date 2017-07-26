@@ -1,7 +1,11 @@
 title: Ubuntu安装Java8环境
 author: strongant
-date: 2017-07-26 21:32:41
 tags:
+  - jdk
+  - java8
+  - sh
+categories: []
+date: 2017-07-26 21:32:00
 ---
 ## Ubuntu 系统安装Java8 JDK
 

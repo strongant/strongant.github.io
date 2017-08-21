@@ -1,10 +1,10 @@
 title: Java 微服务实践- Spring Boot 系列（十四）WebService-学习笔记
 author: strongant
 tags:
-  - webservices
   - springboot
+  - webservices
 categories: []
-date: 2017-08-21 22:34:00
+date: 2017-08-21 22:46:00
 ---
 写在前面的话，之前曾在项目中使用过Webservices，记得当时使用过Apache的CXF，Apache CXF = Celtix + XFire。 随着RESTful服务的越来越流行，渐渐地WebService技术已经渐渐被人们所淘汰。下面主要为了技术的温习，跟上小马哥一起再次复习下那些年我们使用过的WebService。
 

@@ -1,4 +1,4 @@
-title: Grails中序列化json出现异常数据.md
+title: Grails中序列化json出现异常数据
 author: strongant
 tags:
   - 'grails, JsonBuilder'

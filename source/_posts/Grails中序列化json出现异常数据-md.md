@@ -6,8 +6,7 @@ categories:
   - grails
 date: 2017-09-29 17:24:00
 ---
-
-[Httobuilder](https://github.com/jgritman/httpbuilder) 是一个基于groovy简单的HTTP客户端工具。它基本支持常用的几种HTTP请求方式(GET,PUT,POST,DELETE,HEAD,PATCH)。
+[Httpbuilder](https://github.com/jgritman/httpbuilder) 是一个基于groovy简单的HTTP客户端工具。它基本支持常用的几种HTTP请求方式(GET,PUT,POST,DELETE,HEAD,PATCH)。
 
 发生解析url值异常项目环境：
 | Grails Version: 3.0.7
@@ -141,4 +140,3 @@ client.request(POST, ContentType.JSON) {
     }
 }
 ```
-

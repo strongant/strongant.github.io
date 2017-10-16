@@ -46,11 +46,11 @@ Eclipse版插件支持4.2（Juno，JDK1.8+）及以上版本，提供Update Site
 
 呵呵 右键，，看图 --
 
-![img](data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==)
+![](https://ws2.sinaimg.cn/large/006tNc79gy1fkju0ntjhtj30lz0i3wgp.jpg)
 
-![img](data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==)
+![](https://ws1.sinaimg.cn/large/006tNc79gy1fkju13tgw5j30yg0hoaco.jpg)
 
-![img](data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==)
+![](https://ws1.sinaimg.cn/large/006tNc79gy1fkju1kc4h3j30jg0segpw.jpg)
 
 ## 还有自动提示的效果
 

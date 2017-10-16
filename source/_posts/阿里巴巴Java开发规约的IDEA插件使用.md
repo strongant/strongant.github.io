@@ -26,7 +26,7 @@ IDEA版的插件发布到了IDEA官方仓库中(最低支持版本14.1.7，JDK1.
 
 如图:
 
-![img](http://mmbiz.qpic.cn/mmbiz_png/R3InYSAIZkGhoJb7iaWQumUzkaqD7EfucQlBLVlajIOpsRBVgS2zkt9vRmuq19ONe2iaQJZicNN4qbRBOJNl9hOjg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1)
+![](https://ws2.sinaimg.cn/large/006tNc79gy1fkjwg4vasij30qf0nqq4t.jpg)
 
 这里写图片描述
 
@@ -58,7 +58,7 @@ Eclipse版插件支持4.2（Juno，JDK1.8+）及以上版本，提供Update Site
 
 可以说是非常棒了
 
-![img](http://mmbiz.qpic.cn/mmbiz_png/R3InYSAIZkGhoJb7iaWQumUzkaqD7EfucAxVUicBBUX2WQvI9osBsh4uXOl4ibzlfT9j0M3zjOMDRWgZw9AKDub0w/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1)
+![](https://ws2.sinaimg.cn/large/006tNc79gy1fkjwh9h5qxj30yg0p0djz.jpg)
 
 ## **推荐阅读**
 
@@ -72,6 +72,6 @@ Eclipse版插件支持4.2（Juno，JDK1.8+）及以上版本，提供Update Site
 
 一键关注
 
-![img](http://mmbiz.qpic.cn/mmbiz_jpg/R3InYSAIZkHCWVvIZUEa8CQWAStjKkNYbXIicURV5tx4GzRBepUWO9sq8nrkVHwvVylyERaKgQyKvUianyIjelicQ/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1)
+![](https://ws3.sinaimg.cn/large/006tNc79gy1fkjwge7mvqj307607674v.jpg)
 
-![img](http://mmbiz.qpic.cn/mmbiz_png/ich5amXrtqL2ZPTngbnFMYk4cXjia5JTX1Al0Q9NT8qfwAJoq3CWN1feicKU2VGUjiatLSXW2HDo73su4ZHxZoTABA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1)
+![](https://ws1.sinaimg.cn/large/006tNc79gy1fkjwgjluxlj304603saa9.jpg)

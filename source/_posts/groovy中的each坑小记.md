@@ -11,7 +11,7 @@ date: 2017-10-26 15:29:00
 
 ### 如何跳出each循环呢？
 
-  `groovy`的`each`方法是一个闭包操作，如果想跳出当前项，则可以使用`return true`。 但是存在一个问题：就是这里的`return true`并不完全等价于`java` `for`循环中的`break`操作。它更像是`java` `for`循环中的`continue`操作，跳出当前循环，继续下一次循环。至于这里的原因，有待研究。
+  `groovy`的`each`方法是一个闭包操作，如果想跳出循环，则可以使用`return true`。 但是存在一个问题：就是这里的`return true`并不完全等价于`java` `for`循环中的`break`操作。它更像是`java` `for`循环中的`continue`操作，跳出当前循环，继续下一次循环。至于这里的原因，有待研究。
   
 ### 诡异的产生
 

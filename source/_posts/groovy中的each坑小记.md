@@ -7,7 +7,7 @@ date: 2017-10-26 15:29:00
 ---
 ### 前言
 
-在`Java`编程中，如果要跳出`for`循环，直接使用`break`即可。但是在`groovy`的`each`方法中，如果使用`break`，则程序运行时就会报如下错误：`the break statement is only allowed inside loops or switches。`
+`Java`编程中，如果要跳出`for`循环，直接使用`break`即可。但是在`groovy`的`each`方法中，如果使用`break`，则程序在运行时就会报如下错误：`the break statement is only allowed inside loops or switches。`
 
 ### 如何跳出each循环呢？
 

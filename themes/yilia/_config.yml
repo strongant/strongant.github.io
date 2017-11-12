@@ -56,8 +56,9 @@ google_analytics: 'UA-87429933-2'
 favicon: /favicon.ico
 
 #你的头像url
-avatar: https://avatars3.githubusercontent.com/u/7685936?v=3&s=460
 
+#avatar: https://avatars3.githubusercontent.com/u/7685936?v=3&s=460
+avatar: /img/ant.jpeg
 #是否开启分享
 share_jia: true
 

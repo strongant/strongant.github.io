@@ -18,7 +18,7 @@
 <meta property="og:description" content="首先使用递归输出经典的阶乘，描述如下：   1! =1 2! = 2 3! = 6…  接下来使用常规的递归方式实现（Java），则可以得到以下程序：1234567891011121314/**     * Java普通递归实现阶乘     *     * @param n 传递的大于0的正整数     * @return 该数字的阶乘    如：传递3 则计算 1 * 2 * 3 =  6">
 <meta property="og:locale" content="Chinese">
 <meta property="og:image" content="http://baiwenhui.com/images/Java递归调用示意图.png">
-<meta property="og:updated_time" content="2017-07-21T01:33:55.000Z">
+<meta property="og:updated_time" content="2017-10-21T08:36:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="递归的执行原理浅析">
 <meta name="twitter:description" content="首先使用递归输出经典的阶乘，描述如下：   1! =1 2! = 2 3! = 6…  接下来使用常规的递归方式实现（Java），则可以得到以下程序：1234567891011121314/**     * Java普通递归实现阶乘     *     * @param n 传递的大于0的正整数     * @return 该数字的阶乘    如：传递3 则计算 1 * 2 * 3 =  6">
@@ -74,7 +74,7 @@ var _hmt = _hmt || [];
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="https://avatars3.githubusercontent.com/u/7685936?v=3&amp;s=460" class="js-avatar">
+			<img src="/img/ant.jpeg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">strongant</a></h1>
@@ -87,6 +87,8 @@ var _hmt = _hmt || [];
 			<ul>
 			
 				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/随笔/">随笔</a></li>
 	        
 			</ul>
 		</nav>
@@ -142,7 +144,7 @@ var _hmt = _hmt || [];
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="https://avatars3.githubusercontent.com/u/7685936?v=3&amp;s=460" class="js-avatar">
+				<img src="/img/ant.jpeg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">strongant</h1>
@@ -151,6 +153,8 @@ var _hmt = _hmt || [];
 			<p class="header-subtitle"><i class="icon icon-quo-left"></i>一个正在成长的码农<i class="icon icon-quo-right"></i></p>
 			
 			
+			
+				
 			
 				
 			
@@ -184,7 +188,9 @@ var _hmt = _hmt || [];
 				<ul style="width: 50%">
 				
 				
-					<li style="width: 100%"><a href="/">主页</a></li>
+					<li style="width: 50%"><a href="/">主页</a></li>
+		        
+					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
 		        
 				</ul>
 			</nav>
@@ -199,7 +205,8 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-递归原理解析" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-递归原理解析" class="article article-type-post "
+  itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -210,16 +217,20 @@ var _hmt = _hmt || [];
     </h1>
   
 
-        
-        <a href="/2017/05/29/递归原理解析/" class="archive-article-date">
+          
+            <a href="/2017/05/29/递归原理解析/" class="archive-article-date">
   	<time datetime="2017-05-29T15:48:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-29</time>
 </a>
-        
+              
+                <!-- 目录内容 -->
+                
+                    <!-- 目录内容结束 -->
       </header>
-    
-    <div class="article-entry" itemprop="articleBody">
       
-        <ol>
+
+        <div class="article-entry" itemprop="articleBody">
+          
+                    <ol>
 <li>首先使用递归输出经典的阶乘，描述如下：</li>
 </ol>
 <ul>
@@ -227,7 +238,7 @@ var _hmt = _hmt || [];
 <li>2! = 2</li>
 <li>3! = 6<br>…</li>
 </ul>
-<p>接下来使用常规的递归方式实现（Java），则可以得到以下程序：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">     * Java普通递归实现阶乘</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> n 传递的大于0的正整数</div><div class="line">     * <span class="doctag">@return</span> 该数字的阶乘    如：传递3 则计算 1 * 2 * 3 =  6</div><div class="line">     * 递归的核心思想自我理解： 先入栈计算直到递归终止   然后初栈 对每个栈中的值进行计算  最后得到结果</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">factorial</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (n == <span class="number">1</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">return</span> n * factorial(n - <span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>接下来使用常规的递归方式实现（Java），则可以得到以下程序：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">     * Java普通递归实现阶乘</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span> n 传递的大于0的正整数</div><div class="line">     * <span class="doctag">@return</span> 该数字的阶乘    如：传递3 则计算 1 * 2 * 3 =  6</div><div class="line">     * 递归的核心思想自我理解： 先入栈计算直到递归终止   然后出栈 对每个栈中的值进行计算  最后得到结果</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">factorial</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (n == <span class="number">1</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">return</span> n * factorial(n - <span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
 <p><center><img src="/images/Java递归调用示意图.png" alt=""></center></p>
 <p><center>递归调用示意图</center><br>此递归的计算原理主要是先申请栈幁1到栈幁n，直到找到递归终止的条件，然后开始汇总结果，最后出栈，返回结果，这种递归算法方式有一个弊端，就是在计算的过程中当n很大的情况下会出现栈溢出的错误（java.lang.StackOverflowError），可以使用尾递归的方式进行优化，比如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">    * 使用尾递归进行计算阶乘</div><div class="line">    *</div><div class="line">    * <span class="doctag">@param</span> n      需要计算的n的阶乘</div><div class="line">    * <span class="doctag">@param</span> result 返回n的阶乘结果  如： 传递3  则计算 1 * 2 *3 = 6</div><div class="line">    *               计算过程如下： tailFactorial(3,1)</div><div class="line">    *               = tailFactorial(2,3*1)</div><div class="line">    *               = tailFactorial(1,2*3*1)</div><div class="line">    *               = tailFactorial(1,6)</div><div class="line">    *               = 6</div><div class="line">    *               揭秘：只使用一个栈幁就可以搞定计算</div><div class="line">    * <span class="doctag">@return</span> 返回n的阶乘</div><div class="line">    */</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">tailFactorial</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> result)</span> </span>&#123;</div><div class="line">       <span class="keyword">if</span> (n == <span class="number">1</span>) &#123;</div><div class="line">           <span class="keyword">return</span> result;</div><div class="line">       &#125; <span class="keyword">else</span> &#123;</div><div class="line">           <span class="keyword">return</span> tailFactorial(n - <span class="number">1</span>, n * result);</div><div class="line">       &#125;</div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
 <ol>
@@ -236,13 +247,13 @@ var _hmt = _hmt || [];
 </ol>
 <p>最后我们开始使用递归遍历某个目录下的所有子目录和文件进行加深理解和运用：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printDirectoriesAndFilesByPath</span><span class="params">(String path)</span> </span>&#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            File file = <span class="keyword">new</span> File(path);</div><div class="line">            <span class="keyword">if</span> (file.exists()) &#123;</div><div class="line">                File[] files = file.listFiles();</div><div class="line">                <span class="keyword">for</span> (File f :</div><div class="line">                        files) &#123;</div><div class="line">                    <span class="keyword">if</span> (f.isDirectory() &amp;&amp; f.listFiles().length &gt;= <span class="number">0</span>) &#123;</div><div class="line">                        <span class="keyword">if</span> (f.isDirectory()) &#123;</div><div class="line">                            String directory = f.getAbsolutePath();</div><div class="line">                            System.out.println(<span class="string">"-------目录名称:"</span> + f.getAbsolutePath());</div><div class="line">                            printDirectoriesAndFilesByPath(directory);</div><div class="line">                        &#125;</div><div class="line">                    &#125; <span class="keyword">else</span> &#123;</div><div class="line">                        System.out.println(<span class="string">"-------目录名称:"</span>+f.getParent()+<span class="string">"---&gt;文件名称："</span> + f.getAbsolutePath());</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                System.out.println(<span class="string">"对不起，文件路径不存在"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
 
-      
+                      
 
-      
+                        
     </div>
     <div class="article-info article-info-index">
       
-      
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -254,7 +265,7 @@ var _hmt = _hmt || [];
 		</ul>
 	</div>
 
-      
+            
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -267,10 +278,10 @@ var _hmt = _hmt || [];
 	</div>
 
 
-      
+              
 
-      
-        
+                  
+                    
 <div class="share-btn share-icons tooltip-left">
   <div class="tooltip tooltip-east">
     <span class="tooltip-item">
@@ -320,10 +331,10 @@ var _hmt = _hmt || [];
 </div>
 
 <div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
+                      
+                        <div class="clearfix"></div>
     </div>
-  </div>
+    </div>
 </article>
 
   
@@ -346,13 +357,13 @@ var _hmt = _hmt || [];
   
 </nav>
 
+    
 
+      
 
-
-
-
-  
-  <!-- 畅言评论框 start -->
+            
+              
+                <!-- 畅言评论框 start -->
 <div id="SOHUCS" sid="递归的执行原理浅析" style="padding: 0px 30px 0px 46px;"></div>
 <script type="text/javascript"> 
 (function(){ 
@@ -361,23 +372,23 @@ var conf = 'prod_25363bfe21a9a09909208a01135582ea';
 var width = window.innerWidth || document.documentElement.clientWidth; 
 if (width < 960) { 
 window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
-  
+                  
+                      
+
+                        
+                          <script>
+                            (function () {
+                              var bp = document.createElement('script');
+                              bp.src = '//push.zhanzhang.baidu.com/push.js';
+                              var s = document.getElementsByTagName("script")[0];
+                              s.parentNode.insertBefore(bp, s);
+                            })();
+
+                          </script>
+                          
 
 
-
-<script>
-(function(){
-    var bp = document.createElement('script');
-    bp.src = '//push.zhanzhang.baidu.com/push.js';
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>     
-
-
-
-
-
+                            
           </div>
         </div>
       </div>
@@ -385,14 +396,24 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 strongant
+    		&copy; 2018 strongant
     	</div>
+     <script async
+src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_site_pv">本站总访问量<span
+id="busuanzi_value_site_pv"></span>次</span>
+    <span id="busuanzi_container_page_pv">
+  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+您是第<span id="busuanzi_value_site_uv"></span>个小伙伴
+<span id="busuanzi_value_page_pv"></span>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
       	</div>
     </div>
   </div>
 </footer>
+
     </div>
     <script>
 	var yiliaConfig = {
@@ -502,6 +523,134 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">DataStructureAndAlgorithm</a>
               </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">终端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">showterm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jdk</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">java8</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">sh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">brew</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">groovy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">grails</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">gorm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">生活</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">chrome扩展</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">angularjs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">图床</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">图片</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">springboot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">webservices</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spring官方周报</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">翻译</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Spring周报</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">grails, JsonBuilder</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Spring官方周报翻译</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">electron</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SpringSecurity</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -549,13 +698,73 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
     
     	<section class="tools-section tools-section-friends" q-show="friends">
   		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="http://www.bysocket.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>泥瓦匠BYSocket</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://blog.didispace.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>程序员DD</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://www.itmuch.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>周立</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://cmsblogs.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>陈明</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://sunliangliang.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>孙亮亮</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://wayzo.github.io/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>王宇宙</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://www.cs.usfca.edu/~galles/visualization/Algorithms.html" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>数据结构和算法</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://algo-visualizer.jasonpark.me/#path=backtracking/knight's_tour/basic" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>可视化数据结构算法理解</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://yuba.douyu.com/qincha" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>覃超数据结构和算法加强</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://github.com/EbookFoundation/free-programming-books/blob/master/free-programming-books.md" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>开源编程学习书籍</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://github.com/EbookFoundation/free-programming-books/blob/master/free-programming-books-zh.md" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>开源中文学习书籍</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://webfullstack.me/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>web全栈导航</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://www.cs.cmu.edu/~213/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>CMU15213</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://www.cs.cmu.edu/~410/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>CMU15410</a>
+            </li>
+          
+        </ul>
+  		
     	</section>
     
 
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">一个正在蜕变的码农</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">白文辉 &lt;br/&gt; Java开发工程师，3年相关开发经验，现在就职于好车伯乐(上海优与汽车科技有限公司)。 &lt;br/&gt; 技能 &lt;br/&gt; Java开发 &lt;br/&gt; 略懂groovy，python，NodeJS等 &lt;br/&gt; 工作经历 &lt;br/&gt; 1. 上海优与汽车科技有限公司 Java开发 &lt;br/&gt; 2. 上海浦东软件园信息技术有限公司Java开发 &lt;br/&gt; 3. 兰州中林智能科技有限公司Java开发 &lt;br/&gt; &lt;br/&gt; 链接 &lt;br/&gt; GitHub - https://github.com/strongant/ &lt;br/&gt; 我的博客 - https://strongant.github.io/ &lt;br/&gt; SpringForAll - http://spring4all.com/people/strongant &lt;br/&gt; 联系方式 &lt;br/&gt; 微信 18215361994 &lt;br/&gt; 邮箱 &lt;br/&gt; 18215361994@163.com &lt;br/&gt; bstrongant@gmail.com</div>
   	  	
     	</section>
     

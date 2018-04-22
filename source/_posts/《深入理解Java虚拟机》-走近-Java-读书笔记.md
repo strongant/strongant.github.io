@@ -1,4 +1,4 @@
-title: 《深入理解Java虚拟机》-第一章-走近 Java 读书笔记
+title: 《深入理解Java虚拟机》-走近 Java 读书笔记
 author: strongant
 tags:
   - JVM

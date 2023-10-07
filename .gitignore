@@ -10,3 +10,4 @@ db.json
 node_modules/
 .npmignore
 public/
+.idea

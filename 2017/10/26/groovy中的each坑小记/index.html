@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <meta name="baidu-site-verification" content="fuAHxSTCv4" />
+  <meta name="baidu-site-verification" content="fuAHxSTCv4">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://baiwenhui.com">
   <title>groovy中的each坑小记 | strongant的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="前言Java编程中，如果要跳出for循环，直接使用break即可。但是在groovy的each方法中，如果使用break，则程序在运行时就会报如下错误：the break statement is only allowed inside loops or switches。 如何跳出each循环呢？  groovy的each方法是一个闭包操作，如果想跳出循环，则可以使用return true。 但">
+<meta name="keywords" content="groovy">
 <meta property="og:type" content="article">
 <meta property="og:title" content="groovy中的each坑小记">
-<meta property="og:url" content="http://baiwenhui.com/2017/10/26/groovy%E4%B8%AD%E7%9A%84each%E5%9D%91%E5%B0%8F%E8%AE%B0/index.html">
+<meta property="og:url" content="http://baiwenhui.com/2017/10/26/groovy中的each坑小记/index.html">
 <meta property="og:site_name" content="strongant的个人博客">
 <meta property="og:description" content="前言Java编程中，如果要跳出for循环，直接使用break即可。但是在groovy的each方法中，如果使用break，则程序在运行时就会报如下错误：the break statement is only allowed inside loops or switches。 如何跳出each循环呢？  groovy的each方法是一个闭包操作，如果想跳出循环，则可以使用return true。 但">
-<meta property="og:locale">
-<meta property="article:published_time" content="2017-10-26T07:29:00.000Z">
-<meta property="article:modified_time" content="2023-10-07T15:59:31.602Z">
-<meta property="article:author" content="strongant">
-<meta property="article:tag" content="groovy">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2023-10-07T15:59:31.602Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="groovy中的each坑小记">
+<meta name="twitter:description" content="前言Java编程中，如果要跳出for循环，直接使用break即可。但是在groovy的each方法中，如果使用break，则程序在运行时就会报如下错误：the break statement is only allowed inside loops or switches。 如何跳出each循环呢？  groovy的each方法是一个闭包操作，如果想跳出循环，则可以使用return true。 但">
   
     <link rel="alternative" href="/atom.xml" title="strongant的个人博客" type="application/atom+xml">
   
@@ -61,8 +61,8 @@ var _hmt = _hmt || [];
 </script>
 
 
-<meta name="generator" content="Hexo 6.0.0"></head>
-
+</head>
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -75,8 +75,10 @@ var _hmt = _hmt || [];
 			<img src="/img/ant.jpeg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">undefined</a></h1>
+		  <h1 class="header-author"><a href="/">strongant</a></h1>
 		</hgroup>
+		
+		<p class="header-subtitle">strongant的个人博客</p>
 		
 
 		<nav class="header-menu">
@@ -84,7 +86,7 @@ var _hmt = _hmt || [];
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+				<li><a href="/tags/随笔/">随笔</a></li>
 	        
 			</ul>
 		</nav>
@@ -143,8 +145,10 @@ var _hmt = _hmt || [];
 				<img src="/img/ant.jpeg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">undefined</h1>
+			  <h1 class="header-author js-header-author">strongant</h1>
 			</hgroup>
+			
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>strongant的个人博客<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -184,7 +188,7 @@ var _hmt = _hmt || [];
 				
 					<li style="width: 50%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
 		        
 				</ul>
 			</nav>
@@ -212,7 +216,7 @@ var _hmt = _hmt || [];
   
 
           
-            <a href="/2017/10/26/groovy%E4%B8%AD%E7%9A%84each%E5%9D%91%E5%B0%8F%E8%AE%B0/" class="archive-article-date">
+            <a href="/2017/10/26/groovy中的each坑小记/" class="archive-article-date">
   	<time datetime="2017-10-26T07:29:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-26</time>
 </a>
               
@@ -227,8 +231,8 @@ var _hmt = _hmt || [];
                     <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><code>Java</code>编程中，如果要跳出<code>for</code>循环，直接使用<code>break</code>即可。但是在<code>groovy</code>的<code>each</code>方法中，如果使用<code>break</code>，则程序在运行时就会报如下错误：<code>the break statement is only allowed inside loops or switches。</code></p>
 <h3 id="如何跳出each循环呢？"><a href="#如何跳出each循环呢？" class="headerlink" title="如何跳出each循环呢？"></a>如何跳出each循环呢？</h3><p>  <code>groovy</code>的<code>each</code>方法是一个闭包操作，如果想跳出循环，则可以使用<code>return true</code>。 但是存在一个问题：就是这里的<code>return true</code>并不完全等价于<code>java</code> <code>for</code>循环中的<code>break</code>操作。它更像是<code>java</code> <code>for</code>循环中的<code>continue</code>操作，跳出当前循环，继续下一次循环。至于这里的原因，有待研究。</p>
 <h3 id="诡异的产生"><a href="#诡异的产生" class="headerlink" title="诡异的产生"></a>诡异的产生</h3><p>  当使用“==”操作符号进行比较时，<code>return true</code>等价于<code>java</code> <code>for</code>循环中的<code>continue</code>，但如果是“&gt;=” 操作符的话，等价于<code>java</code> <code>for</code>循环中的<code>break</code>操作。测试代码如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">def a = [1, 2, 3, 4]</span><br><span class="line"></span><br><span class="line">println &quot;each loop break use groovy&quot;</span><br><span class="line"></span><br><span class="line">a.each &#123;</span><br><span class="line">    // groovy each 循环中的return true类似于java for循环中的continue</span><br><span class="line">    // 当遍历的元素等于2时，跳过当前元素，继续执行, 如果写&gt;= 时，的确也等价于break</span><br><span class="line">    if (it &gt;= 2) return true // break</span><br><span class="line">    println it  // do the stuff that you wanted to before break</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">println &quot;for loop break use java&quot;</span><br><span class="line"></span><br><span class="line">for (int i = 0; i &lt; a.size(); i++) &#123;</span><br><span class="line">    if (a[i] == 2) &#123;</span><br><span class="line">        // java for 循环中的break直接跳出当前循环</span><br><span class="line">        // 当遍历的元素等于2时，直接跳出循环</span><br><span class="line">        break</span><br><span class="line">    &#125;</span><br><span class="line">    println a[i]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这便是<code>groovy</code>中的<code>each</code>闭包方法的诡异之处，奇怪的是，如果你对集合元素使用<code>find</code>方法遍历，当比较操作符是“==”时，并不会发生以上的问题，测试代码如下：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def a = [1, 2, 3, 4, 5, 6, 7]</span><br><span class="line"></span><br><span class="line">a.find &#123;</span><br><span class="line">    if (it == 3) return true // break 此时的break等价于java for循环中的break</span><br><span class="line">    println it  </span><br><span class="line">    return false // 继续循环</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">def a = [1, 2, 3, 4]</span><br><span class="line"></span><br><span class="line">println &quot;each loop break use groovy&quot;</span><br><span class="line"></span><br><span class="line">a.each &#123;</span><br><span class="line">    // groovy each 循环中的return true类似于java for循环中的continue</span><br><span class="line">    // 当遍历的元素等于2时，跳过当前元素，继续执行, 如果写&gt;= 时，的确也等价于break</span><br><span class="line">    if (it &gt;= 2) return true // break</span><br><span class="line">    println it  // do the stuff that you wanted to before break</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">println &quot;for loop break use java&quot;</span><br><span class="line"></span><br><span class="line">for (int i = 0; i &lt; a.size(); i++) &#123;</span><br><span class="line">    if (a[i] == 2) &#123;</span><br><span class="line">        // java for 循环中的break直接跳出当前循环</span><br><span class="line">        // 当遍历的元素等于2时，直接跳出循环</span><br><span class="line">        break</span><br><span class="line">    &#125;</span><br><span class="line">    println a[i]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这便是<code>groovy</code>中的<code>each</code>闭包方法的诡异之处，奇怪的是，如果你对集合元素使用<code>find</code>方法遍历，当比较操作符是“==”时，并不会发生以上的问题，测试代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def a = [1, 2, 3, 4, 5, 6, 7]</span><br><span class="line"></span><br><span class="line">a.find &#123;</span><br><span class="line">    if (it == 3) return true // break 此时的break等价于java for循环中的break</span><br><span class="line">    println it  </span><br><span class="line">    return false // 继续循环</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h3><p>  当对遍历的元素进行迭代，并且在迭代的过程中需要跳出当前循环的，推荐使用<code>groovy</code>的<code>find</code>方法或者使用<code>java</code>的<code>for</code>循环，不要使用<code>groovy</code>的<code>each</code>方法，这样就可以保证流程控制没有错误。</p>
 
                       
@@ -299,7 +303,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://baiwenhui.com/2017/10/26/groovy%E4%B8%AD%E7%9A%84each%E5%9D%91%E5%B0%8F%E8%AE%B0/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://baiwenhui.com/2017/10/26/groovy中的each坑小记/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -313,7 +317,7 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2017/10/29/%E4%BD%BF%E7%94%A8%E6%B7%98%E5%AE%9D%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9Felectron%E7%9A%84%E4%B8%8B%E8%BD%BD/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/10/29/使用淘宝镜像加速electron的下载/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -323,7 +327,7 @@ var _hmt = _hmt || [];
     </a>
   
   
-    <a href="/2017/10/23/Mac%E4%B8%8B%E4%BD%BF%E7%94%A8jenvs%E5%AE%89%E8%A3%85Java9/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/10/23/Mac下使用jenvs安装Java9/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">Mac下使用jenvs安装Java9</div>
       <i class="icon-circle-right"></i>
     </a>
@@ -567,6 +571,10 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SpringSecurity</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
               </li>
              
@@ -591,27 +599,11 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">rxjs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Tools</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OSS，Java,云存储</a>
+                <a href="javascript:void(0)" class="js-tag color5">rxjs</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -639,11 +631,11 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">生活感悟</a>
+                <a href="javascript:void(0)" class="js-tag color1">Spring官方周报</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spring官方周报</a>
+                <a href="javascript:void(0)" class="js-tag color5">生活感悟</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -667,15 +659,27 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">DataStructureAndAlgorithm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java,中间件,MyCAT</a>
+                <a href="javascript:void(0)" class="js-tag color3">OSS，Java,云存储</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringSecurity</a>
+                <a href="javascript:void(0)" class="js-tag color5">java,中间件,MyCAT</a>
               </li>
             
             <div class="clearfix"></div>

@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <meta name="baidu-site-verification" content="fuAHxSTCv4" />
+  <meta name="baidu-site-verification" content="fuAHxSTCv4">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://baiwenhui.com">
   <title>ELK日志迁移技术分享 | strongant的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="日志处理方案演进1.1 什么是日志  日志是带时间戳的基于时间序列的机器数据，包括IT系统信息（服务器、网络设备、操作系统、应 用软件）、物联网各种传感器信息。日志反映用户行为，是事实数据，也是系统运维、故障诊断、性能分析的重要来源。对于任何系统，日志都是极其重要的组成部分。 1.2 日志处理的背景  随着大数据时代的来临，系统日志量也呈指数级增加。随着日志格式复杂度的增加、日志规模的扩大以及应用">
+<meta name="keywords" content="elk,elasticsearch">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ELK日志迁移技术分享">
-<meta property="og:url" content="http://baiwenhui.com/2020/09/14/ELK%E6%97%A5%E5%BF%97%E8%BF%81%E7%A7%BB%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/index.html">
+<meta property="og:url" content="http://baiwenhui.com/2020/09/14/ELK日志迁移技术分享/index.html">
 <meta property="og:site_name" content="strongant的个人博客">
 <meta property="og:description" content="日志处理方案演进1.1 什么是日志  日志是带时间戳的基于时间序列的机器数据，包括IT系统信息（服务器、网络设备、操作系统、应 用软件）、物联网各种传感器信息。日志反映用户行为，是事实数据，也是系统运维、故障诊断、性能分析的重要来源。对于任何系统，日志都是极其重要的组成部分。 1.2 日志处理的背景  随着大数据时代的来临，系统日志量也呈指数级增加。随着日志格式复杂度的增加、日志规模的扩大以及应用">
-<meta property="og:locale">
+<meta property="og:locale" content="Chinese">
 <meta property="og:image" content="http://assets.processon.com/chart_image/5ca22e87e4b029f6dae31f31.png">
 <meta property="og:image" content="http://assets.processon.com/chart_image/5ca2317ee4b035b243be603c.png">
 <meta property="og:image" content="http://assets.processon.com/chart_image/5ca236dee4b034408de95f19.png">
 <meta property="og:image" content="http://images.gitbook.cn/f58fff30-fc69-11e7-b269-5929bdce6d95">
-<meta property="article:published_time" content="2020-09-14T13:03:08.000Z">
-<meta property="article:modified_time" content="2023-10-07T15:59:31.590Z">
-<meta property="article:author" content="strongant">
-<meta property="article:tag" content="elk,elasticsearch">
+<meta property="og:updated_time" content="2023-10-07T15:59:31.590Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ELK日志迁移技术分享">
+<meta name="twitter:description" content="日志处理方案演进1.1 什么是日志  日志是带时间戳的基于时间序列的机器数据，包括IT系统信息（服务器、网络设备、操作系统、应 用软件）、物联网各种传感器信息。日志反映用户行为，是事实数据，也是系统运维、故障诊断、性能分析的重要来源。对于任何系统，日志都是极其重要的组成部分。 1.2 日志处理的背景  随着大数据时代的来临，系统日志量也呈指数级增加。随着日志格式复杂度的增加、日志规模的扩大以及应用">
 <meta name="twitter:image" content="http://assets.processon.com/chart_image/5ca22e87e4b029f6dae31f31.png">
   
     <link rel="alternative" href="/atom.xml" title="strongant的个人博客" type="application/atom+xml">
@@ -66,8 +66,8 @@ var _hmt = _hmt || [];
 </script>
 
 
-<meta name="generator" content="Hexo 6.0.0"></head>
-
+</head>
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -80,8 +80,10 @@ var _hmt = _hmt || [];
 			<img src="/img/ant.jpeg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">undefined</a></h1>
+		  <h1 class="header-author"><a href="/">strongant</a></h1>
 		</hgroup>
+		
+		<p class="header-subtitle">strongant的个人博客</p>
 		
 
 		<nav class="header-menu">
@@ -89,7 +91,7 @@ var _hmt = _hmt || [];
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+				<li><a href="/tags/随笔/">随笔</a></li>
 	        
 			</ul>
 		</nav>
@@ -148,8 +150,10 @@ var _hmt = _hmt || [];
 				<img src="/img/ant.jpeg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">undefined</h1>
+			  <h1 class="header-author js-header-author">strongant</h1>
 			</hgroup>
+			
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>strongant的个人博客<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -189,7 +193,7 @@ var _hmt = _hmt || [];
 				
 					<li style="width: 50%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
 		        
 				</ul>
 			</nav>
@@ -217,7 +221,7 @@ var _hmt = _hmt || [];
   
 
           
-            <a href="/2020/09/14/ELK%E6%97%A5%E5%BF%97%E8%BF%81%E7%A7%BB%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" class="archive-article-date">
+            <a href="/2020/09/14/ELK日志迁移技术分享/" class="archive-article-date">
   	<time datetime="2020-09-14T13:03:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-14</time>
 </a>
               
@@ -252,9 +256,9 @@ var _hmt = _hmt || [];
 </ol>
 <p>其中，ELK 在业界最受欢迎，目前我们也使用的是ELK日志处理方案。ELK 是 Elastic 公司出品的开源实时日志处理与分析的解决方案，ELK 分别代表分布式搜索引擎 Elasticsearch、日志采集与解析工具 Logstash、日志可视化分析工具 Kibana，ELK日志处理方案具有配置灵活、集群可线性扩展、日志实时导入、检索性能高效、可视化分析方便等优点，已经成为业界日志处理方案的不二选择。</p>
 <h2 id="ELK-架构解读"><a href="#ELK-架构解读" class="headerlink" title="ELK 架构解读"></a>ELK 架构解读</h2><h2 id="2-1-架构选择"><a href="#2-1-架构选择" class="headerlink" title="2.1 架构选择"></a>2.1 架构选择</h2><p>  完整的日志分析系统主要包括日志采集系统、日志解析系统、日志存储系统和可视化分析系统四部分组成。典型的 ELK 架构图如下所示：</p>
-<p><img src="http://assets.processon.com/chart_image/5ca22e87e4b029f6dae31f31.png" alt=""></p>
+<p><img src="http://assets.processon.com/chart_image/5ca22e87e4b029f6dae31f31.png" alt></p>
 <p>ELK 架构中，由于 Logstash 既作为日志搜集器又作为日志解析器，本身会消耗服务器较多的CPU 和 内存，如果服务器计算资源不够丰富，则会造成服务器性能下降无法正常工作。为了解决Logstash 占用系统资源高的问题，Elastic 公司推出了轻量级的日志采集器 Beats，在数据收集方面取代 Logstash，引入 Beats 后的系统架构如如下：</p>
-<p><img src="http://assets.processon.com/chart_image/5ca2317ee4b035b243be603c.png" alt=""></p>
+<p><img src="http://assets.processon.com/chart_image/5ca2317ee4b035b243be603c.png" alt></p>
 <p>Beats 是一系列采集器的总称，对于不同的日志源和日志格式可以使用不同的Beats，截止目前为止，Beats 家族包括以下 7 个成员：</p>
 <ul>
 <li>Filebeat：轻量级的日志采集器，可用于收集文件数据。</li>
@@ -266,7 +270,7 @@ var _hmt = _hmt || [];
 <li>Functionbeat：无需服务器的采集器。</li>
 </ul>
 <p>  目前对于日志规模较大的场景，还需要引入消息队列，Logstash 支持常用的消息队列有 Kafka、RabbitMQ、Redis等。引入消息队列后的架构如下：</p>
-<p><img src="http://assets.processon.com/chart_image/5ca236dee4b034408de95f19.png" alt=""></p>
+<p><img src="http://assets.processon.com/chart_image/5ca236dee4b034408de95f19.png" alt></p>
 <h2 id="2-2-日志采集模块分析"><a href="#2-2-日志采集模块分析" class="headerlink" title="2.2 日志采集模块分析"></a>2.2 日志采集模块分析</h2><p>  日志采集是对日志进行分析的基础，我们对于不同的日志类型可以选择不同类型的 beats。在我们的日常使用中，基本大多数情况以文件类型的日志居多，这里我们就以filebeat 采集文件类型的日志进行探索日志采集的原理。</p>
 <p>  FileBeat 是采用Go 语言由 Elastic 官方开发的轻量级日志采集器，在应用服务器上以代理的形式安装。当这个 FileBeat 进行启动时，它会启动一个 prospector 监控日志路径或者日志文件，每一个日志文件都会有一个对应的 harvester， harvester 按行读取日志内容并转发至后台程序。FileBeat 维护了一个记录文件读取信息的注册文件，记录每个 harvester 最后读取位置的偏移量。日志按行读取以后，转发至 logstash 做解析。</p>
 <h3 id="2-3-日志解析模块分析"><a href="#2-3-日志解析模块分析" class="headerlink" title="2.3 日志解析模块分析"></a>2.3 日志解析模块分析</h3><p>  Logstash是分布式数据收集引擎，在日志处理中担任搬运工的角色，它支持动态的从各种数据源搜集数据，并对数据进行过滤、分析、统一格式等操作，然后输出到用户指定的位置。事件流通过Logstash中的Input、Filter和Output插件处理和转换，Input用于配置日志的输入源，Filter用来解析日志，Output指定日志的输出去向。</p>
@@ -275,11 +279,11 @@ var _hmt = _hmt || [];
 <p>（2）根据步骤（1）的切分原则确定提取每一个字段的正则表达式，如果Grok中的正则库满足需求直接使用即可，否则采用自定义模式，两者可以组合使用。</p>
 <p>（3）在Grok Debugger调试工具中调试、验证解析日志的正则表达式是否正确。</p>
 <p>举一个例子，下面是一条半结构化日志：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2017-12-16 00:00:01,570 133382978 [  HandleConsumer.java:445:INFO ]  车辆号牌为空</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2017-12-16 00:00:01,570 133382978 [  HandleConsumer.java:445:INFO ]  车辆号牌为空</span><br></pre></td></tr></table></figure>
 <p>对应的Grok表达式如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%&#123;TIMESTAMP_ISO8601:time&#125;\s*%&#123;NUMBER:bytes&#125;\s*\[\s*%&#123;JAVAFILE:class&#125;\:%&#123;NUMBER:lineNumber&#125;\s*\:%&#123;LOGLEVEL:level&#125;\s*\]\s*(?&lt;info&gt;([\s\S]*))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%&#123;TIMESTAMP_ISO8601:time&#125;\s*%&#123;NUMBER:bytes&#125;\s*\[\s*%&#123;JAVAFILE:class&#125;\:%&#123;NUMBER:lineNumber&#125;\s*\:%&#123;LOGLEVEL:level&#125;\s*\]\s*(?&lt;info&gt;([\s\S]*))</span><br></pre></td></tr></table></figure>
 <p>格式化后的日志如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;time&quot;: &quot;2017-12-16 00:00:01,570&quot;,</span><br><span class="line">  &quot;bytes&quot;:&quot;133382978&quot;,</span><br><span class="line">  &quot;class&quot;: &quot;HandleConsumer.java&quot;,</span><br><span class="line">  &quot;lineNumber&quot;: &quot;445&quot;,</span><br><span class="line">  &quot;level&quot;: &quot;INFO&quot;,</span><br><span class="line">  &quot;info&quot;:&quot;车辆号牌为空。&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;time&quot;: &quot;2017-12-16 00:00:01,570&quot;,</span><br><span class="line">  &quot;bytes&quot;:&quot;133382978&quot;,</span><br><span class="line">  &quot;class&quot;: &quot;HandleConsumer.java&quot;,</span><br><span class="line">  &quot;lineNumber&quot;: &quot;445&quot;,</span><br><span class="line">  &quot;level&quot;: &quot;INFO&quot;,</span><br><span class="line">  &quot;info&quot;:&quot;车辆号牌为空。&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Grok Debugger调试正则表达式如图4所示：</p>
 <p><img src="http://images.gitbook.cn/f58fff30-fc69-11e7-b269-5929bdce6d95" alt="enter image description here"></p>
 <h3 id="2-4-日志存储模块分析"><a href="#2-4-日志存储模块分析" class="headerlink" title="2.4 日志存储模块分析"></a>2.4 日志存储模块分析</h3><p>  Elasticsearch是存储日志的中央系统，实际项目中，根据需求搭建Elasticsearch集群即可。</p>
@@ -353,7 +357,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://baiwenhui.com/2020/09/14/ELK%E6%97%A5%E5%BF%97%E8%BF%81%E7%A7%BB%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://baiwenhui.com/2020/09/14/ELK日志迁移技术分享/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -367,7 +371,7 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2020/09/16/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1XXL-JOB%E5%9C%A8%E6%88%91%E5%8F%B8%E7%9A%84%E9%80%89%E5%9E%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/09/16/分布式定时任务XXL-JOB在我司的选型/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -377,7 +381,7 @@ var _hmt = _hmt || [];
     </a>
   
   
-    <a href="/2020/05/19/%E4%BD%BF%E7%94%A8Docker%E6%9E%84%E5%BB%BA%E4%BC%81%E4%B8%9A%E7%BA%A7%E8%87%AA%E5%AE%9A%E4%B9%89%E9%95%9C%E5%83%8F/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/05/19/使用Docker构建企业级自定义镜像/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">使用Docker构建企业级自定义镜像</div>
       <i class="icon-circle-right"></i>
     </a>
@@ -621,6 +625,10 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SpringSecurity</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
               </li>
              
@@ -645,27 +653,11 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">rxjs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Tools</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OSS，Java,云存储</a>
+                <a href="javascript:void(0)" class="js-tag color5">rxjs</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -693,11 +685,11 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">生活感悟</a>
+                <a href="javascript:void(0)" class="js-tag color1">Spring官方周报</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spring官方周报</a>
+                <a href="javascript:void(0)" class="js-tag color5">生活感悟</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -721,15 +713,27 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">DataStructureAndAlgorithm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java,中间件,MyCAT</a>
+                <a href="javascript:void(0)" class="js-tag color3">OSS，Java,云存储</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringSecurity</a>
+                <a href="javascript:void(0)" class="js-tag color5">java,中间件,MyCAT</a>
               </li>
             
             <div class="clearfix"></div>

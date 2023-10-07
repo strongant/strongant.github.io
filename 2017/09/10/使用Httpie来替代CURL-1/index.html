@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <meta name="baidu-site-verification" content="fuAHxSTCv4" />
+  <meta name="baidu-site-verification" content="fuAHxSTCv4">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://baiwenhui.com">
   <title>使用Httpie来替代CURL | strongant的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="当下的一些比较人们的测试接口的客户端工具大概有以下几种： Postman（使用最多，一个基于Chrome的app） CURL（在终端下工作的文件传输工具） Httpie（终端下比较友好、简洁、特性更多，功能更强大） 个人在终端下比较推荐使用Httpie，原因如下： 举个例子，如果我们发起一个请求，获取一个JSON字符串，如果我们使用CURL进行获取的话，需要使用管道命令结合python自带的jso">
+<meta name="keywords" content="工具">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用Httpie来替代CURL">
-<meta property="og:url" content="http://baiwenhui.com/2017/09/10/%E4%BD%BF%E7%94%A8Httpie%E6%9D%A5%E6%9B%BF%E4%BB%A3CURL-1/index.html">
+<meta property="og:url" content="http://baiwenhui.com/2017/09/10/使用Httpie来替代CURL-1/index.html">
 <meta property="og:site_name" content="strongant的个人博客">
 <meta property="og:description" content="当下的一些比较人们的测试接口的客户端工具大概有以下几种： Postman（使用最多，一个基于Chrome的app） CURL（在终端下工作的文件传输工具） Httpie（终端下比较友好、简洁、特性更多，功能更强大） 个人在终端下比较推荐使用Httpie，原因如下： 举个例子，如果我们发起一个请求，获取一个JSON字符串，如果我们使用CURL进行获取的话，需要使用管道命令结合python自带的jso">
-<meta property="og:locale">
-<meta property="article:published_time" content="2017-09-10T13:51:00.000Z">
-<meta property="article:modified_time" content="2023-10-07T15:59:31.605Z">
-<meta property="article:author" content="strongant">
-<meta property="article:tag" content="工具">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2023-10-07T15:59:31.605Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Httpie来替代CURL">
+<meta name="twitter:description" content="当下的一些比较人们的测试接口的客户端工具大概有以下几种： Postman（使用最多，一个基于Chrome的app） CURL（在终端下工作的文件传输工具） Httpie（终端下比较友好、简洁、特性更多，功能更强大） 个人在终端下比较推荐使用Httpie，原因如下： 举个例子，如果我们发起一个请求，获取一个JSON字符串，如果我们使用CURL进行获取的话，需要使用管道命令结合python自带的jso">
   
     <link rel="alternative" href="/atom.xml" title="strongant的个人博客" type="application/atom+xml">
   
@@ -61,8 +61,8 @@ var _hmt = _hmt || [];
 </script>
 
 
-<meta name="generator" content="Hexo 6.0.0"></head>
-
+</head>
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -75,8 +75,10 @@ var _hmt = _hmt || [];
 			<img src="/img/ant.jpeg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">undefined</a></h1>
+		  <h1 class="header-author"><a href="/">strongant</a></h1>
 		</hgroup>
+		
+		<p class="header-subtitle">strongant的个人博客</p>
 		
 
 		<nav class="header-menu">
@@ -84,7 +86,7 @@ var _hmt = _hmt || [];
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+				<li><a href="/tags/随笔/">随笔</a></li>
 	        
 			</ul>
 		</nav>
@@ -143,8 +145,10 @@ var _hmt = _hmt || [];
 				<img src="/img/ant.jpeg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">undefined</h1>
+			  <h1 class="header-author js-header-author">strongant</h1>
 			</hgroup>
+			
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>strongant的个人博客<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -184,7 +188,7 @@ var _hmt = _hmt || [];
 				
 					<li style="width: 50%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
 		        
 				</ul>
 			</nav>
@@ -212,7 +216,7 @@ var _hmt = _hmt || [];
   
 
           
-            <a href="/2017/09/10/%E4%BD%BF%E7%94%A8Httpie%E6%9D%A5%E6%9B%BF%E4%BB%A3CURL-1/" class="archive-article-date">
+            <a href="/2017/09/10/使用Httpie来替代CURL-1/" class="archive-article-date">
   	<time datetime="2017-09-10T13:51:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-10</time>
 </a>
               
@@ -230,11 +234,11 @@ var _hmt = _hmt || [];
 <p>Httpie（终端下比较友好、简洁、特性更多，功能更强大）</p>
 <p>个人在终端下比较推荐使用Httpie，原因如下：</p>
 <p>举个例子，如果我们发起一个请求，获取一个JSON字符串，如果我们使用CURL进行获取的话，需要使用管道命令结合python自带的json.tool这个脚本才能完成，<code>curl  https://httpbin.org/get | python -m json.tool</code></p>
-<p>如果我们使用Httpie的话，只需要这样：<code>http  https://httpbin.org/get</code>,可以发现它不仅返回了body内容，也同时返回了header信息。当然如果我们只需要看body内容，此时只需要进行筛选即可，使用如下命令请求即可：<code>http  https://httpbin.org/get --body</code>,如果只需要header信息，可以这样：<code>http  https://httpbin.org/get --header</code>。更多特性，请参考：<a target="_blank" rel="noopener" href="https://httpie.org/">https://httpie.org/</a></p>
+<p>如果我们使用Httpie的话，只需要这样：<code>http  https://httpbin.org/get</code>,可以发现它不仅返回了body内容，也同时返回了header信息。当然如果我们只需要看body内容，此时只需要进行筛选即可，使用如下命令请求即可：<code>http  https://httpbin.org/get --body</code>,如果只需要header信息，可以这样：<code>http  https://httpbin.org/get --header</code>。更多特性，请参考：<a href="https://httpie.org/" target="_blank" rel="noopener">https://httpie.org/</a></p>
 <p>Httpie默认会将返回的JSON数据进行格式化，不再需要二次转换，并且它会使用颜色将一些不同类型的数据加以区分，这样也方便我们进行查看。</p>
 <p>这里介绍下Mac下的安装方式：<br>由于Httpie依赖Python，一般情况下Mac下已经自带了Python环境，只不过版本可能并不是最新的。使用brew安装即可：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install httpie</span><br></pre></td></tr></table></figure>
-<p>安装成功后我们进行测试是否可用：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http ifconfig.me/all.json</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install httpie</span><br></pre></td></tr></table></figure>
+<p>安装成功后我们进行测试是否可用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http ifconfig.me/all.json</span><br></pre></td></tr></table></figure></p>
 <p>正常情况下便可以得到带颜色的格式良好的JSON数据。</p>
 
                       
@@ -305,7 +309,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://baiwenhui.com/2017/09/10/%E4%BD%BF%E7%94%A8Httpie%E6%9D%A5%E6%9B%BF%E4%BB%A3CURL-1/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://baiwenhui.com/2017/09/10/使用Httpie来替代CURL-1/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -319,7 +323,7 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2017/09/17/%E7%AE%97%E6%B3%95%E4%B8%AD%E7%9A%84%E5%8F%8D%E8%BD%AC/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/09/17/算法中的反转/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -329,7 +333,7 @@ var _hmt = _hmt || [];
     </a>
   
   
-    <a href="/2017/09/07/%E5%AE%98%E6%96%B9Spring%E5%91%A8%E6%8A%A5-20170905/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/09/07/官方Spring周报-20170905/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">官方Spring周报-20170905</div>
       <i class="icon-circle-right"></i>
     </a>
@@ -573,6 +577,10 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SpringSecurity</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
               </li>
              
@@ -597,27 +605,11 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">rxjs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Tools</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OSS，Java,云存储</a>
+                <a href="javascript:void(0)" class="js-tag color5">rxjs</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -645,11 +637,11 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">生活感悟</a>
+                <a href="javascript:void(0)" class="js-tag color1">Spring官方周报</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spring官方周报</a>
+                <a href="javascript:void(0)" class="js-tag color5">生活感悟</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -673,15 +665,27 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">DataStructureAndAlgorithm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java,中间件,MyCAT</a>
+                <a href="javascript:void(0)" class="js-tag color3">OSS，Java,云存储</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringSecurity</a>
+                <a href="javascript:void(0)" class="js-tag color5">java,中间件,MyCAT</a>
               </li>
             
             <div class="clearfix"></div>

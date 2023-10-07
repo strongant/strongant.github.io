@@ -1,28 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <meta name="baidu-site-verification" content="fuAHxSTCv4" />
+  <meta name="baidu-site-verification" content="fuAHxSTCv4">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://baiwenhui.com">
   <title>Grails中一个日期差引起的思考 | strongant的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="需求如下 对某表中的数据进行查询限制，当根据某个条件进行查询表记录时，如果该记录的查询时间与当前服务器时间相差大于一周，则允许查询操作，否则不允许重复查询操作。  编码根据当前需求进行编码，代码如下：1234567891011121314151617181920class ExampleController &amp;#123;    def test() &amp;#123;        ...">
+<meta name="keywords" content="grails,groovy,gorm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Grails中一个日期差引起的思考">
-<meta property="og:url" content="http://baiwenhui.com/2017/08/02/Grails%E4%B8%AD%E4%B8%80%E4%B8%AA%E6%97%A5%E6%9C%9F%E5%B7%AE%E5%BC%95%E8%B5%B7%E7%9A%84%E6%80%9D%E8%80%83/index.html">
+<meta property="og:url" content="http://baiwenhui.com/2017/08/02/Grails中一个日期差引起的思考/index.html">
 <meta property="og:site_name" content="strongant的个人博客">
 <meta property="og:description" content="需求如下 对某表中的数据进行查询限制，当根据某个条件进行查询表记录时，如果该记录的查询时间与当前服务器时间相差大于一周，则允许查询操作，否则不允许重复查询操作。  编码根据当前需求进行编码，代码如下：1234567891011121314151617181920class ExampleController &amp;#123;    def test() &amp;#123;        ...">
-<meta property="og:locale">
-<meta property="article:published_time" content="2017-08-02T14:02:00.000Z">
-<meta property="article:modified_time" content="2023-10-07T15:59:31.592Z">
-<meta property="article:author" content="strongant">
-<meta property="article:tag" content="grails">
-<meta property="article:tag" content="groovy">
-<meta property="article:tag" content="gorm">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2023-10-07T15:59:31.592Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Grails中一个日期差引起的思考">
+<meta name="twitter:description" content="需求如下 对某表中的数据进行查询限制，当根据某个条件进行查询表记录时，如果该记录的查询时间与当前服务器时间相差大于一周，则允许查询操作，否则不允许重复查询操作。  编码根据当前需求进行编码，代码如下：1234567891011121314151617181920class ExampleController &amp;#123;    def test() &amp;#123;        ...">
   
     <link rel="alternative" href="/atom.xml" title="strongant的个人博客" type="application/atom+xml">
   
@@ -63,8 +61,8 @@ var _hmt = _hmt || [];
 </script>
 
 
-<meta name="generator" content="Hexo 6.0.0"></head>
-
+</head>
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -77,8 +75,10 @@ var _hmt = _hmt || [];
 			<img src="/img/ant.jpeg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">undefined</a></h1>
+		  <h1 class="header-author"><a href="/">strongant</a></h1>
 		</hgroup>
+		
+		<p class="header-subtitle">strongant的个人博客</p>
 		
 
 		<nav class="header-menu">
@@ -86,7 +86,7 @@ var _hmt = _hmt || [];
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+				<li><a href="/tags/随笔/">随笔</a></li>
 	        
 			</ul>
 		</nav>
@@ -145,8 +145,10 @@ var _hmt = _hmt || [];
 				<img src="/img/ant.jpeg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">undefined</h1>
+			  <h1 class="header-author js-header-author">strongant</h1>
 			</hgroup>
+			
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>strongant的个人博客<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -186,7 +188,7 @@ var _hmt = _hmt || [];
 				
 					<li style="width: 50%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
 		        
 				</ul>
 			</nav>
@@ -214,7 +216,7 @@ var _hmt = _hmt || [];
   
 
           
-            <a href="/2017/08/02/Grails%E4%B8%AD%E4%B8%80%E4%B8%AA%E6%97%A5%E6%9C%9F%E5%B7%AE%E5%BC%95%E8%B5%B7%E7%9A%84%E6%80%9D%E8%80%83/" class="archive-article-date">
+            <a href="/2017/08/02/Grails中一个日期差引起的思考/" class="archive-article-date">
   	<time datetime="2017-08-02T14:02:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-02</time>
 </a>
               
@@ -227,18 +229,18 @@ var _hmt = _hmt || [];
         <div class="article-entry" itemprop="articleBody">
           
                     <h3 id="需求如下"><a href="#需求如下" class="headerlink" title="需求如下"></a>需求如下</h3><p><strong> 对某表中的数据进行查询限制，当根据某个条件进行查询表记录时，如果该记录的查询时间与当前服务器时间相差大于一周，则允许查询操作，否则不允许重复查询操作。 </strong></p>
-<h4 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h4><p>根据当前需求进行编码，代码如下：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class ExampleController &#123;</span><br><span class="line">    def test() &#123;</span><br><span class="line">        ...</span><br><span class="line">        def obj = XXX.findByName(&#x27;xxx&#x27;)</span><br><span class="line">        def limitDays = 7</span><br><span class="line">        if(obj &amp;&amp; daysBetween(obj.queryTime,new Date())&lt;=7)&#123;</span><br><span class="line">                            render([code: 10101, msg: &quot;查询失败，7天内不允许重复查询&quot;, data: []] as grails.converters.JSON)</span><br><span class="line">                            return</span><br><span class="line"> </span><br><span class="line">        &#125;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">    //TODO: 将此处判断移动至service或者util类</span><br><span class="line">    static def daysBetween(def startDate, def endDate) &#123;</span><br><span class="line">        use(groovy.time.TimeCategory) &#123;</span><br><span class="line">            def duration = endDate - startDate</span><br><span class="line">            return duration.days</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h4><p>根据当前需求进行编码，代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class ExampleController &#123;</span><br><span class="line">    def test() &#123;</span><br><span class="line">        ...</span><br><span class="line">        def obj = XXX.findByName(&apos;xxx&apos;)</span><br><span class="line">        def limitDays = 7</span><br><span class="line">        if(obj &amp;&amp; daysBetween(obj.queryTime,new Date())&lt;=7)&#123;</span><br><span class="line">                            render([code: 10101, msg: &quot;查询失败，7天内不允许重复查询&quot;, data: []] as grails.converters.JSON)</span><br><span class="line">                            return</span><br><span class="line"> </span><br><span class="line">        &#125;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">    //TODO: 将此处判断移动至service或者util类</span><br><span class="line">    static def daysBetween(def startDate, def endDate) &#123;</span><br><span class="line">        use(groovy.time.TimeCategory) &#123;</span><br><span class="line">            def duration = endDate - startDate</span><br><span class="line">            return duration.days</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>出现bug:<br><strong>本地测试程序可以正常执行，但是发现在生产环境下并没有正常执行</strong></p>
 <p>错误解决：<br><strong>以为是groovy.time.TimeCategory原生类有bug，将比较日期间隔天数的方法修改为如下:</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//TODO: 将此处判断移动至service或者util类</span><br><span class="line">static boolean keep7Days(endDate)&#123;</span><br><span class="line">     return (System.currentTimeMillis()-endDate.getTime())&lt;3600*1000*24*7</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//TODO: 将此处判断移动至service或者util类</span><br><span class="line">static boolean keep7Days(endDate)&#123;</span><br><span class="line">     return (System.currentTimeMillis()-endDate.getTime())&lt;3600*1000*24*7</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>修改结果：<br>问题依然存在。</p>
 <p>进行分析：</p>
 <p><strong> 当我们从某张表中根据某个条件查询一条记录，如果该条件对一个多条重复记录，那数据库将按照表中的记录插入顺序返回最初插入的一条记录。因此，当根据某条件进行匹配查询时，应该按照id降序排列后取得第一条即可。 </strong></p>
-<p>解决办法：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">def obj = XXX.find(&quot;from XXX as b where b.xxx=:xxx order by b.id desc&quot;,[xxx:xxx])</span><br><span class="line">...</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>解决办法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">def obj = XXX.find(&quot;from XXX as b where b.xxx=:xxx order by b.id desc&quot;,[xxx:xxx])</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
 <p>通过以上方式，我们便可以得到最后插入的记录，此时再使用时间差进行判断就不会出现匹配不正确问题。</p>
 <h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>当项目中遇到bug时应该找到问题的根源再进行解决。在测试的过程中数据应该保持和生产环境数据一致！</p>
 <h4 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h4><p>推荐两个不错的播客平台：</p>
-<p> <a target="_blank" rel="noopener" href="https://ipn.li/kernelpanic/">内核恐慌</a><br> <a target="_blank" rel="noopener" href="http://banlan.show/bitvoice">比特新声</a></p>
+<p> <a href="https://ipn.li/kernelpanic/" target="_blank" rel="noopener">内核恐慌</a><br> <a href="http://banlan.show/bitvoice" target="_blank" rel="noopener">比特新声</a></p>
 
                       
 
@@ -316,7 +318,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://baiwenhui.com/2017/08/02/Grails%E4%B8%AD%E4%B8%80%E4%B8%AA%E6%97%A5%E6%9C%9F%E5%B7%AE%E5%BC%95%E8%B5%B7%E7%9A%84%E6%80%9D%E8%80%83/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://baiwenhui.com/2017/08/02/Grails中一个日期差引起的思考/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -330,7 +332,7 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2017/08/05/%E7%94%9F%E6%B4%BB%E6%84%9F%E6%85%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/08/05/生活感慨/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -340,7 +342,7 @@ var _hmt = _hmt || [];
     </a>
   
   
-    <a href="/2017/07/26/Mac%E9%80%9A%E8%BF%87brew%E5%AE%89%E8%A3%85redis/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/07/26/Mac通过brew安装redis/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">Mac通过brew安装redis</div>
       <i class="icon-circle-right"></i>
     </a>
@@ -584,6 +586,10 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SpringSecurity</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
               </li>
              
@@ -608,27 +614,11 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">rxjs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Tools</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OSS，Java,云存储</a>
+                <a href="javascript:void(0)" class="js-tag color5">rxjs</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -656,11 +646,11 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">生活感悟</a>
+                <a href="javascript:void(0)" class="js-tag color1">Spring官方周报</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spring官方周报</a>
+                <a href="javascript:void(0)" class="js-tag color5">生活感悟</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -684,15 +674,27 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">DataStructureAndAlgorithm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java,中间件,MyCAT</a>
+                <a href="javascript:void(0)" class="js-tag color3">OSS，Java,云存储</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringSecurity</a>
+                <a href="javascript:void(0)" class="js-tag color5">java,中间件,MyCAT</a>
               </li>
             
             <div class="clearfix"></div>

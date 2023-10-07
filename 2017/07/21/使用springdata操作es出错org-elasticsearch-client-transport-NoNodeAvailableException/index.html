@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <meta name="baidu-site-verification" content="fuAHxSTCv4" />
+  <meta name="baidu-site-verification" content="fuAHxSTCv4">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://baiwenhui.com">
   <title>使用springdata操作es出错org.elasticsearch.client.transport.NoNodeAvailableException | strongant的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="之前的项目中使用的是http-client操作es，比较轻量级。目前为了学习下springdata，使用Java API 的方式来操作ES，但是在引入SpringData的es模块依赖后，操作es并未成功，出现以下错误：1org.elasticsearch.client.transport.NoNodeAvailableException: None of the configured nod">
+<meta name="keywords" content="SpringData,Elasticsearch">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用springdata操作es出错org.elasticsearch.client.transport.NoNodeAvailableException">
-<meta property="og:url" content="http://baiwenhui.com/2017/07/21/%E4%BD%BF%E7%94%A8springdata%E6%93%8D%E4%BD%9Ces%E5%87%BA%E9%94%99org-elasticsearch-client-transport-NoNodeAvailableException/index.html">
+<meta property="og:url" content="http://baiwenhui.com/2017/07/21/使用springdata操作es出错org-elasticsearch-client-transport-NoNodeAvailableException/index.html">
 <meta property="og:site_name" content="strongant的个人博客">
 <meta property="og:description" content="之前的项目中使用的是http-client操作es，比较轻量级。目前为了学习下springdata，使用Java API 的方式来操作ES，但是在引入SpringData的es模块依赖后，操作es并未成功，出现以下错误：1org.elasticsearch.client.transport.NoNodeAvailableException: None of the configured nod">
-<meta property="og:locale">
-<meta property="article:published_time" content="2017-07-21T01:48:10.000Z">
-<meta property="article:modified_time" content="2023-10-07T15:59:31.606Z">
-<meta property="article:author" content="strongant">
-<meta property="article:tag" content="SpringData">
-<meta property="article:tag" content="Elasticsearch">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2023-10-07T15:59:31.606Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用springdata操作es出错org.elasticsearch.client.transport.NoNodeAvailableException">
+<meta name="twitter:description" content="之前的项目中使用的是http-client操作es，比较轻量级。目前为了学习下springdata，使用Java API 的方式来操作ES，但是在引入SpringData的es模块依赖后，操作es并未成功，出现以下错误：1org.elasticsearch.client.transport.NoNodeAvailableException: None of the configured nod">
   
     <link rel="alternative" href="/atom.xml" title="strongant的个人博客" type="application/atom+xml">
   
@@ -62,8 +61,8 @@ var _hmt = _hmt || [];
 </script>
 
 
-<meta name="generator" content="Hexo 6.0.0"></head>
-
+</head>
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -76,8 +75,10 @@ var _hmt = _hmt || [];
 			<img src="/img/ant.jpeg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">undefined</a></h1>
+		  <h1 class="header-author"><a href="/">strongant</a></h1>
 		</hgroup>
+		
+		<p class="header-subtitle">strongant的个人博客</p>
 		
 
 		<nav class="header-menu">
@@ -85,7 +86,7 @@ var _hmt = _hmt || [];
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+				<li><a href="/tags/随笔/">随笔</a></li>
 	        
 			</ul>
 		</nav>
@@ -144,8 +145,10 @@ var _hmt = _hmt || [];
 				<img src="/img/ant.jpeg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">undefined</h1>
+			  <h1 class="header-author js-header-author">strongant</h1>
 			</hgroup>
+			
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>strongant的个人博客<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -185,7 +188,7 @@ var _hmt = _hmt || [];
 				
 					<li style="width: 50%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
 		        
 				</ul>
 			</nav>
@@ -213,7 +216,7 @@ var _hmt = _hmt || [];
   
 
           
-            <a href="/2017/07/21/%E4%BD%BF%E7%94%A8springdata%E6%93%8D%E4%BD%9Ces%E5%87%BA%E9%94%99org-elasticsearch-client-transport-NoNodeAvailableException/" class="archive-article-date">
+            <a href="/2017/07/21/使用springdata操作es出错org-elasticsearch-client-transport-NoNodeAvailableException/" class="archive-article-date">
   	<time datetime="2017-07-21T01:48:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-21</time>
 </a>
               
@@ -225,8 +228,10 @@ var _hmt = _hmt || [];
 
         <div class="article-entry" itemprop="articleBody">
           
-                    <p>  之前的项目中使用的是http-client操作es，比较轻量级。目前为了学习下springdata，使用Java API 的方式来操作ES，但是在引入SpringData的es模块依赖后，操作es并未成功，出现以下错误：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">org.elasticsearch.client.transport.NoNodeAvailableException: None of the configured nodes are available: [&#123;#transport#-1&#125;&#123;127.0.0.1&#125;&#123;127.0.0.1:9300&#125;]</span><br></pre></td></tr></table></figure></p>
-<p><strong>注意：</strong>如果你下载elasticsearch的压缩包安装的话，可能不会出现该问题！因为es默认的配置文件cluster.name是elasticsearch。但是奇葩的是使用brew安装es之后，默认的elasticsearch.yml的配置项成了这样：cluster.name: elasticsearch_bwh，就是这个原因导致了这个问题的产生，项目启动后控制台一直抛这个错：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">transport#-1&#125;&#123;127.0.0.1&#125;&#123;127.0.0.1:9300&#125; not part of the cluster Cluster [Assassin], ignoring...</span><br></pre></td></tr></table></figure><br>当执行添加操作时，提示：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">org.elasticsearch.client.transport.NoNodeAvailableException: None of the configured nodes are available: [&#123;#transport#-1&#125;&#123;127.0.0.1&#125;&#123;127.0.0.1:9300&#125;]</span><br></pre></td></tr></table></figure><br>最后需要注意的是，如果你修改了es默认的集群名称，则需要在src/main/resources/application.properties配置文件中进行指定：</p>
+                    <p>  之前的项目中使用的是http-client操作es，比较轻量级。目前为了学习下springdata，使用Java API 的方式来操作ES，但是在引入SpringData的es模块依赖后，操作es并未成功，出现以下错误：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">org.elasticsearch.client.transport.NoNodeAvailableException: None of the configured nodes are available: [&#123;#transport#-1&#125;&#123;127.0.0.1&#125;&#123;127.0.0.1:9300&#125;]</span><br></pre></td></tr></table></figure></p>
+<p><strong>注意：</strong>如果你下载elasticsearch的压缩包安装的话，可能不会出现该问题！因为es默认的配置文件cluster.name是elasticsearch。但是奇葩的是使用brew安装es之后，默认的elasticsearch.yml的配置项成了这样：cluster.name: elasticsearch_bwh，就是这个原因导致了这个问题的产生，项目启动后控制台一直抛这个错：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">transport#-1&#125;&#123;127.0.0.1&#125;&#123;127.0.0.1:9300&#125; not part of the cluster Cluster [Assassin], ignoring...</span><br></pre></td></tr></table></figure></p>
+<p>当执行添加操作时，提示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">org.elasticsearch.client.transport.NoNodeAvailableException: None of the configured nodes are available: [&#123;#transport#-1&#125;&#123;127.0.0.1&#125;&#123;127.0.0.1:9300&#125;]</span><br></pre></td></tr></table></figure></p>
+<p>最后需要注意的是，如果你修改了es默认的集群名称，则需要在src/main/resources/application.properties配置文件中进行指定：</p>
 <p>spring.data.elasticsearch.clusterName=elasticsearch_bwh<br>通过源码org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchProperties可以看到，默认的<br>clusterName为elasticsearch。</p>
 <p>希望可以帮助遇到此类问题的同学。</p>
 
@@ -344,7 +349,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://baiwenhui.com/2017/07/21/%E4%BD%BF%E7%94%A8springdata%E6%93%8D%E4%BD%9Ces%E5%87%BA%E9%94%99org-elasticsearch-client-transport-NoNodeAvailableException/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://baiwenhui.com/2017/07/21/使用springdata操作es出错org-elasticsearch-client-transport-NoNodeAvailableException/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -358,7 +363,7 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2017/07/22/IDEA-Mac%E4%B8%8B%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%A5%87%E6%B7%AB%E6%8A%80%E5%B7%A7/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/07/22/IDEA-Mac下快捷键奇淫技巧/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -368,7 +373,7 @@ var _hmt = _hmt || [];
     </a>
   
   
-    <a href="/2017/05/30/hexo%E5%B0%86%E5%A4%9A%E8%AF%B4%E6%9B%BF%E6%8D%A2%E4%B8%BA%E7%95%85%E8%A8%80/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/05/30/hexo将多说替换为畅言/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">hexo将多说替换为畅言</div>
       <i class="icon-circle-right"></i>
     </a>
@@ -612,6 +617,10 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SpringSecurity</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
               </li>
              
@@ -636,27 +645,11 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">rxjs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Tools</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OSS，Java,云存储</a>
+                <a href="javascript:void(0)" class="js-tag color5">rxjs</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -684,11 +677,11 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">生活感悟</a>
+                <a href="javascript:void(0)" class="js-tag color1">Spring官方周报</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spring官方周报</a>
+                <a href="javascript:void(0)" class="js-tag color5">生活感悟</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -712,15 +705,27 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">DataStructureAndAlgorithm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java,中间件,MyCAT</a>
+                <a href="javascript:void(0)" class="js-tag color3">OSS，Java,云存储</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringSecurity</a>
+                <a href="javascript:void(0)" class="js-tag color5">java,中间件,MyCAT</a>
               </li>
             
             <div class="clearfix"></div>

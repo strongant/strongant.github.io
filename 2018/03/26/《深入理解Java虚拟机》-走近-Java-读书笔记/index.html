@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <meta name="baidu-site-verification" content="fuAHxSTCv4" />
+  <meta name="baidu-site-verification" content="fuAHxSTCv4">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://baiwenhui.com">
   <title>《深入理解Java虚拟机》-走近 Java 读书笔记 | strongant的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="走进Java概述Java 的优点 结构严谨 平台无关性，一次编写到处运行 提供安全的内存管理和访问机制，避免大部分的内存泄漏和指针越界 热点代码检测和运行时编译优化，使得 Java 应用随运行时间的增加而获得更高的性能 具有一套完善的应用程序接口，丰富的第三方库  Java 技术体系 Java 程序设计语言 各种硬件平台上的 Java 虚拟机  Java API 类库 Class 文件格式 来自商">
+<meta name="keywords" content="JVM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《深入理解Java虚拟机》-走近 Java 读书笔记">
-<meta property="og:url" content="http://baiwenhui.com/2018/03/26/%E3%80%8A%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E3%80%8B-%E8%B5%B0%E8%BF%91-Java-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:url" content="http://baiwenhui.com/2018/03/26/《深入理解Java虚拟机》-走近-Java-读书笔记/index.html">
 <meta property="og:site_name" content="strongant的个人博客">
 <meta property="og:description" content="走进Java概述Java 的优点 结构严谨 平台无关性，一次编写到处运行 提供安全的内存管理和访问机制，避免大部分的内存泄漏和指针越界 热点代码检测和运行时编译优化，使得 Java 应用随运行时间的增加而获得更高的性能 具有一套完善的应用程序接口，丰富的第三方库  Java 技术体系 Java 程序设计语言 各种硬件平台上的 Java 虚拟机  Java API 类库 Class 文件格式 来自商">
-<meta property="og:locale">
+<meta property="og:locale" content="Chinese">
 <meta property="og:image" content="http://p67ct12ik.bkt.clouddn.com/jvm%E6%8A%80%E6%9C%AF%E4%BD%93%E7%B3%BB.png">
 <meta property="og:image" content="http://p67ct12ik.bkt.clouddn.com/java_timeline.png">
 <meta property="og:image" content="http://on-img.com/chart_image/5ab90628e4b0a248b0e637d5.png">
-<meta property="article:published_time" content="2018-03-26T14:48:00.000Z">
-<meta property="article:modified_time" content="2023-10-07T15:59:31.604Z">
-<meta property="article:author" content="strongant">
-<meta property="article:tag" content="JVM">
+<meta property="og:updated_time" content="2023-10-07T15:59:31.604Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《深入理解Java虚拟机》-走近 Java 读书笔记">
+<meta name="twitter:description" content="走进Java概述Java 的优点 结构严谨 平台无关性，一次编写到处运行 提供安全的内存管理和访问机制，避免大部分的内存泄漏和指针越界 热点代码检测和运行时编译优化，使得 Java 应用随运行时间的增加而获得更高的性能 具有一套完善的应用程序接口，丰富的第三方库  Java 技术体系 Java 程序设计语言 各种硬件平台上的 Java 虚拟机  Java API 类库 Class 文件格式 来自商">
 <meta name="twitter:image" content="http://p67ct12ik.bkt.clouddn.com/jvm%E6%8A%80%E6%9C%AF%E4%BD%93%E7%B3%BB.png">
   
     <link rel="alternative" href="/atom.xml" title="strongant的个人博客" type="application/atom+xml">
@@ -65,8 +65,8 @@ var _hmt = _hmt || [];
 </script>
 
 
-<meta name="generator" content="Hexo 6.0.0"></head>
-
+</head>
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -79,8 +79,10 @@ var _hmt = _hmt || [];
 			<img src="/img/ant.jpeg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">undefined</a></h1>
+		  <h1 class="header-author"><a href="/">strongant</a></h1>
 		</hgroup>
+		
+		<p class="header-subtitle">strongant的个人博客</p>
 		
 
 		<nav class="header-menu">
@@ -88,7 +90,7 @@ var _hmt = _hmt || [];
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+				<li><a href="/tags/随笔/">随笔</a></li>
 	        
 			</ul>
 		</nav>
@@ -147,8 +149,10 @@ var _hmt = _hmt || [];
 				<img src="/img/ant.jpeg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">undefined</h1>
+			  <h1 class="header-author js-header-author">strongant</h1>
 			</hgroup>
+			
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>strongant的个人博客<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -188,7 +192,7 @@ var _hmt = _hmt || [];
 				
 					<li style="width: 50%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
 		        
 				</ul>
 			</nav>
@@ -216,7 +220,7 @@ var _hmt = _hmt || [];
   
 
           
-            <a href="/2018/03/26/%E3%80%8A%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E3%80%8B-%E8%B5%B0%E8%BF%91-Java-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="archive-article-date">
+            <a href="/2018/03/26/《深入理解Java虚拟机》-走近-Java-读书笔记/" class="archive-article-date">
   	<time datetime="2018-03-26T14:48:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-26</time>
 </a>
               
@@ -251,7 +255,7 @@ var _hmt = _hmt || [];
 <li>Java SE</li>
 <li>Java EE</li>
 </ul>
-<h4 id="Java-发展史"><a href="#Java-发展史" class="headerlink" title="Java 发展史"></a>Java 发展史</h4><p><img src="http://p67ct12ik.bkt.clouddn.com/java_timeline.png" alt=""></p>
+<h4 id="Java-发展史"><a href="#Java-发展史" class="headerlink" title="Java 发展史"></a>Java 发展史</h4><p><img src="http://p67ct12ik.bkt.clouddn.com/java_timeline.png" alt></p>
 <ul>
 <li>JDK 1.0: Java虚拟机、Applet、AWT等；</li>
 <li>JDK 1.1：JAR文件格式、JDBC、JavaBeans、RMI、内部类、反射；</li>
@@ -263,7 +267,7 @@ var _hmt = _hmt || [];
 <li>JDK 1.7：G1收集器、加强对Java语言的调用支持、升级类加载架构；</li>
 <li>JDK 1.8：Lambda表达式等；</li>
 </ul>
-<h4 id="Java-虚拟机发展史"><a href="#Java-虚拟机发展史" class="headerlink" title="Java 虚拟机发展史"></a>Java 虚拟机发展史</h4><p><img src="http://on-img.com/chart_image/5ab90628e4b0a248b0e637d5.png" alt=""></p>
+<h4 id="Java-虚拟机发展史"><a href="#Java-虚拟机发展史" class="headerlink" title="Java 虚拟机发展史"></a>Java 虚拟机发展史</h4><p><img src="http://on-img.com/chart_image/5ab90628e4b0a248b0e637d5.png" alt></p>
 <h4 id="展望-Java-技术的未来"><a href="#展望-Java-技术的未来" class="headerlink" title="展望 Java 技术的未来"></a>展望 Java 技术的未来</h4><ul>
 <li>模块化</li>
 <li>混合语言</li>
@@ -351,7 +355,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://baiwenhui.com/2018/03/26/%E3%80%8A%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E3%80%8B-%E8%B5%B0%E8%BF%91-Java-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://baiwenhui.com/2018/03/26/《深入理解Java虚拟机》-走近-Java-读书笔记/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -365,7 +369,7 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2018/04/22/%E3%80%8A%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E3%80%8B-Java-%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/04/22/《深入理解Java虚拟机》-Java-内存区域读书笔记/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -375,7 +379,7 @@ var _hmt = _hmt || [];
     </a>
   
   
-    <a href="/2018/01/28/Grails%E4%B8%AD%E7%A5%9E%E5%A5%87%E7%9A%84HibernateCriteriaBuilder/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/01/28/Grails中神奇的HibernateCriteriaBuilder/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">Grails中神奇的HibernateCriteriaBuilder</div>
       <i class="icon-circle-right"></i>
     </a>
@@ -619,6 +623,10 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SpringSecurity</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
               </li>
              
@@ -643,27 +651,11 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">rxjs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Tools</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OSS，Java,云存储</a>
+                <a href="javascript:void(0)" class="js-tag color5">rxjs</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -691,11 +683,11 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">生活感悟</a>
+                <a href="javascript:void(0)" class="js-tag color1">Spring官方周报</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spring官方周报</a>
+                <a href="javascript:void(0)" class="js-tag color5">生活感悟</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -719,15 +711,27 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">DataStructureAndAlgorithm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java,中间件,MyCAT</a>
+                <a href="javascript:void(0)" class="js-tag color3">OSS，Java,云存储</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringSecurity</a>
+                <a href="javascript:void(0)" class="js-tag color5">java,中间件,MyCAT</a>
               </li>
             
             <div class="clearfix"></div>

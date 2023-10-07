@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <meta name="baidu-site-verification" content="fuAHxSTCv4" />
+  <meta name="baidu-site-verification" content="fuAHxSTCv4">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://baiwenhui.com">
   <title>strongant的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -15,9 +15,10 @@
 <meta property="og:url" content="http://baiwenhui.com/page/3/index.html">
 <meta property="og:site_name" content="strongant的个人博客">
 <meta property="og:description" content="strongant的个人博客，积累技术，记录自己的成长！">
-<meta property="og:locale">
-<meta property="article:author" content="strongant">
+<meta property="og:locale" content="Chinese">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="strongant的个人博客">
+<meta name="twitter:description" content="strongant的个人博客，积累技术，记录自己的成长！">
   
     <link rel="alternative" href="/atom.xml" title="strongant的个人博客" type="application/atom+xml">
   
@@ -58,8 +59,8 @@ var _hmt = _hmt || [];
 </script>
 
 
-<meta name="generator" content="Hexo 6.0.0"></head>
-
+</head>
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -72,8 +73,10 @@ var _hmt = _hmt || [];
 			<img src="/img/ant.jpeg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">undefined</a></h1>
+		  <h1 class="header-author"><a href="/">strongant</a></h1>
 		</hgroup>
+		
+		<p class="header-subtitle">strongant的个人博客</p>
 		
 
 		<nav class="header-menu">
@@ -81,7 +84,7 @@ var _hmt = _hmt || [];
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+				<li><a href="/tags/随笔/">随笔</a></li>
 	        
 			</ul>
 		</nav>
@@ -140,8 +143,10 @@ var _hmt = _hmt || [];
 				<img src="/img/ant.jpeg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">undefined</h1>
+			  <h1 class="header-author js-header-author">strongant</h1>
 			</hgroup>
+			
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>strongant的个人博客<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -181,7 +186,7 @@ var _hmt = _hmt || [];
 				
 					<li style="width: 50%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
 		        
 				</ul>
 			</nav>
@@ -206,12 +211,12 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/29/Grails%E4%B8%AD%E5%BA%8F%E5%88%97%E5%8C%96json%E5%87%BA%E7%8E%B0%E5%BC%82%E5%B8%B8%E6%95%B0%E6%8D%AE-md/">Grails中序列化json出现异常数据</a>
+      <a class="article-title" href="/2017/09/29/Grails中序列化json出现异常数据-md/">Grails中序列化json出现异常数据</a>
     </h1>
   
 
           
-            <a href="/2017/09/29/Grails%E4%B8%AD%E5%BA%8F%E5%88%97%E5%8C%96json%E5%87%BA%E7%8E%B0%E5%BC%82%E5%B8%B8%E6%95%B0%E6%8D%AE-md/" class="archive-article-date">
+            <a href="/2017/09/29/Grails中序列化json出现异常数据-md/" class="archive-article-date">
   	<time datetime="2017-09-29T09:24:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-29</time>
 </a>
               
@@ -223,19 +228,21 @@ var _hmt = _hmt || [];
 
         <div class="article-entry" itemprop="articleBody">
           
-                    <p><a target="_blank" rel="noopener" href="https://github.com/jgritman/httpbuilder">Httpbuilder</a> 是一个基于groovy简单的HTTP客户端工具。它基本支持常用的几种HTTP请求方式(GET,PUT,POST,DELETE,HEAD,PATCH)。</p>
+                    <p><a href="https://github.com/jgritman/httpbuilder" target="_blank" rel="noopener">Httpbuilder</a> 是一个基于groovy简单的HTTP客户端工具。它基本支持常用的几种HTTP请求方式(GET,PUT,POST,DELETE,HEAD,PATCH)。</p>
 <p>发生解析url值异常项目环境：<br>| Grails Version: 3.0.7<br>| Groovy Version: 2.4.4<br>| JVM Version: 1.8.0_121</p>
 <p>由于是使用post方式给对方推送数据，所以我们先模拟一个请求服务，使用grails快速创建一个项目，然后编写一个方法，用于处理post请求，在后端输出接收到的具体数据是什么。步骤如下：</p>
-<p>1.进入我的目录<code>/Users/bwh/study/grails</code> 生成一个grails的项目<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /Users/bwh/study/grails &amp;&amp; cd $_ &amp;&amp; grails create-app test111</span><br></pre></td></tr></table></figure><br>使用grails脚手架生成项目，如果没有产生其他异常，一般情况下我们会得到如下提示：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">| Application created at /Users/bwh/study/grails/test111</span><br></pre></td></tr></table></figure></p>
-<p>2.进入刚才生成的项目中，由于本地已经使用了8080端口，修改grails项目的默认端口：<br>在<code>/Users/bwh/study/grails/test111/grails-app/conf/application.yml</code> 修改默认的8080端口，修改如下<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">...</span><br><span class="line"># 修改项目默认端口8080为7070</span><br><span class="line">server:</span><br><span class="line">  port: 7799</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
-<p>3.打开项目，在当前项目的controllers目录下新建一个测试Controller，暂时叫做TestController，使用如下脚本进行生成相应的Controller文件，其当前目录结构如下：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">├── grails-app</span><br><span class="line">│   ├── assets</span><br><span class="line">│   │   ├── images</span><br><span class="line">│   │   ├── javascripts</span><br><span class="line">│   │   └── stylesheets</span><br><span class="line">│   ├── conf</span><br><span class="line">│   │   ├── application.yml</span><br><span class="line">│   │   ├── logback.groovy</span><br><span class="line">│   │   └── spring</span><br><span class="line">│   ├── controllers</span><br><span class="line">│   │   ├── TestController.groovy</span><br><span class="line">│   │   └── UrlMappings.groovy</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
-<p>4.还原现场,在刚才新建的TestController中添加此方法，用于接收对方传递过来的数据：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def postReport() &#123;</span><br><span class="line">        println params</span><br><span class="line">        def jsonObject = request.JSON</span><br><span class="line">        println &quot;jsonObject: $&#123;jsonObject&#125;&quot;</span><br><span class="line">        println &quot;jsonObject String: $&#123;jsonObject as JSON&#125;&quot;</span><br><span class="line">        render([code: 10000, msg: &quot;测试获取数据!&quot;, data: params] as grails.converters.JSON)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<p>5.启动项目<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grails run-app</span><br></pre></td></tr></table></figure></p>
-<p>用于接收post请求的测试服务已经启动完毕，接下来修改响应的推送地址进行发送数据即可。<br>相关测试代码：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#Test.groovyimport groovyx.net.http.ContentType</span><br><span class="line">import groovyx.net.http.HTTPBuilder</span><br><span class="line">import static groovyx.net.http.Method.POST</span><br><span class="line">def baseURL = &quot;http://localhost:7799/test/postReport&quot;</span><br><span class="line">def data = [&quot;url&quot;: &quot;http://$&#123;baseURL&#125;/test/postReport&quot;]</span><br><span class="line">def client = new HTTPBuilder(baseURL)</span><br><span class="line">client.request(POST, ContentType.JSON) &#123;</span><br><span class="line">    body = data</span><br><span class="line">    response.success = &#123; resp, json -&gt;</span><br><span class="line">        println &quot;resp: $&#123;resp&#125;&quot;</span><br><span class="line">        println &quot;success data: $&#123;json&#125;&quot;</span><br><span class="line">    &#125;</span><br><span class="line">    response.failure = &#123; resp, json -&gt;</span><br><span class="line">        println &quot;resp:$&#123;resp&#125;&quot;</span><br><span class="line">        println &quot;failure data: $&#123;json&#125;&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>运行测试代码后，发现测试服务端收到如下结果：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jsonObject String: &#123;&quot;url&quot;:&#123;&quot;valueCount&quot;:1,&quot;strings&quot;:[&quot;http://&quot;,&quot;/test/postReport&quot;],&quot;bytes&quot;:[104,116,116,112,58,47,47,104,116,116,112,58,47,47,108,111,99,97,108,104,111,115,116,58,55,55,57,57,47,116,101,115,116,47,112,111,115,116,82,101,112,111,114,116,47,116,101,115,116,47,112,111,115,116,82,101,112,111,114,116],&quot;values&quot;:[&quot;http://localhost:7799/test/postReport&quot;]&#125;&#125;</span><br></pre></td></tr></table></figure>
-<p>可以发现url是被转换成一个字符数组了，为什么呢？<br>通过跟踪源码，发现它的body数据构造位于此方法：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">protected Object doRequest( URI uri, Method method, Object contentType, Closure configClosure )</span><br><span class="line">            throws ClientProtocolException, IOException &#123;</span><br><span class="line">        HttpRequestBase reqMethod;</span><br><span class="line">        try &#123; reqMethod = method.getRequestType().newInstance();</span><br><span class="line">        // this exception should reasonably never occur:</span><br><span class="line">        &#125; catch ( Exception e ) &#123; throw new RuntimeException( e ); &#125;</span><br><span class="line">        reqMethod.setURI( uri );</span><br><span class="line">        RequestConfigDelegate delegate = new RequestConfigDelegate( reqMethod, contentType,</span><br><span class="line">                this.defaultRequestHeaders,</span><br><span class="line">                this.defaultResponseHandlers );</span><br><span class="line">        configClosure.setDelegate( delegate );</span><br><span class="line">        configClosure.setResolveStrategy( Closure.DELEGATE_FIRST );</span><br><span class="line">        configClosure.call( reqMethod );</span><br><span class="line">        return this.doRequest( delegate );</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>1.进入我的目录<code>/Users/bwh/study/grails</code> 生成一个grails的项目<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /Users/bwh/study/grails &amp;&amp; cd $_ &amp;&amp; grails create-app test111</span><br></pre></td></tr></table></figure></p>
+<p>使用grails脚手架生成项目，如果没有产生其他异常，一般情况下我们会得到如下提示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">| Application created at /Users/bwh/study/grails/test111</span><br></pre></td></tr></table></figure></p>
+<p>2.进入刚才生成的项目中，由于本地已经使用了8080端口，修改grails项目的默认端口：<br>在<code>/Users/bwh/study/grails/test111/grails-app/conf/application.yml</code> 修改默认的8080端口，修改如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">...</span><br><span class="line"># 修改项目默认端口8080为7070</span><br><span class="line">server:</span><br><span class="line">  port: 7799</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>3.打开项目，在当前项目的controllers目录下新建一个测试Controller，暂时叫做TestController，使用如下脚本进行生成相应的Controller文件，其当前目录结构如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">├── grails-app</span><br><span class="line">│   ├── assets</span><br><span class="line">│   │   ├── images</span><br><span class="line">│   │   ├── javascripts</span><br><span class="line">│   │   └── stylesheets</span><br><span class="line">│   ├── conf</span><br><span class="line">│   │   ├── application.yml</span><br><span class="line">│   │   ├── logback.groovy</span><br><span class="line">│   │   └── spring</span><br><span class="line">│   ├── controllers</span><br><span class="line">│   │   ├── TestController.groovy</span><br><span class="line">│   │   └── UrlMappings.groovy</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>4.还原现场,在刚才新建的TestController中添加此方法，用于接收对方传递过来的数据：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def postReport() &#123;</span><br><span class="line">        println params</span><br><span class="line">        def jsonObject = request.JSON</span><br><span class="line">        println &quot;jsonObject: $&#123;jsonObject&#125;&quot;</span><br><span class="line">        println &quot;jsonObject String: $&#123;jsonObject as JSON&#125;&quot;</span><br><span class="line">        render([code: 10000, msg: &quot;测试获取数据!&quot;, data: params] as grails.converters.JSON)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>5.启动项目<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grails run-app</span><br></pre></td></tr></table></figure></p>
+<p>用于接收post请求的测试服务已经启动完毕，接下来修改响应的推送地址进行发送数据即可。<br>相关测试代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#Test.groovyimport groovyx.net.http.ContentType</span><br><span class="line">import groovyx.net.http.HTTPBuilder</span><br><span class="line">import static groovyx.net.http.Method.POST</span><br><span class="line">def baseURL = &quot;http://localhost:7799/test/postReport&quot;</span><br><span class="line">def data = [&quot;url&quot;: &quot;http://$&#123;baseURL&#125;/test/postReport&quot;]</span><br><span class="line">def client = new HTTPBuilder(baseURL)</span><br><span class="line">client.request(POST, ContentType.JSON) &#123;</span><br><span class="line">    body = data</span><br><span class="line">    response.success = &#123; resp, json -&gt;</span><br><span class="line">        println &quot;resp: $&#123;resp&#125;&quot;</span><br><span class="line">        println &quot;success data: $&#123;json&#125;&quot;</span><br><span class="line">    &#125;</span><br><span class="line">    response.failure = &#123; resp, json -&gt;</span><br><span class="line">        println &quot;resp:$&#123;resp&#125;&quot;</span><br><span class="line">        println &quot;failure data: $&#123;json&#125;&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>运行测试代码后，发现测试服务端收到如下结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jsonObject String: &#123;&quot;url&quot;:&#123;&quot;valueCount&quot;:1,&quot;strings&quot;:[&quot;http://&quot;,&quot;/test/postReport&quot;],&quot;bytes&quot;:[104,116,116,112,58,47,47,104,116,116,112,58,47,47,108,111,99,97,108,104,111,115,116,58,55,55,57,57,47,116,101,115,116,47,112,111,115,116,82,101,112,111,114,116,47,116,101,115,116,47,112,111,115,116,82,101,112,111,114,116],&quot;values&quot;:[&quot;http://localhost:7799/test/postReport&quot;]&#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>可以发现url是被转换成一个字符数组了，为什么呢？<br>通过跟踪源码，发现它的body数据构造位于此方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">protected Object doRequest( URI uri, Method method, Object contentType, Closure configClosure )</span><br><span class="line">            throws ClientProtocolException, IOException &#123;</span><br><span class="line">        HttpRequestBase reqMethod;</span><br><span class="line">        try &#123; reqMethod = method.getRequestType().newInstance();</span><br><span class="line">        // this exception should reasonably never occur:</span><br><span class="line">        &#125; catch ( Exception e ) &#123; throw new RuntimeException( e ); &#125;</span><br><span class="line">        reqMethod.setURI( uri );</span><br><span class="line">        RequestConfigDelegate delegate = new RequestConfigDelegate( reqMethod, contentType,</span><br><span class="line">                this.defaultRequestHeaders,</span><br><span class="line">                this.defaultResponseHandlers );</span><br><span class="line">        configClosure.setDelegate( delegate );</span><br><span class="line">        configClosure.setResolveStrategy( Closure.DELEGATE_FIRST );</span><br><span class="line">        configClosure.call( reqMethod );</span><br><span class="line">        return this.doRequest( delegate );</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
 <p>其中函数执行到configClosure.call( reqMethod )方法时，其代理对象的body值为GStringImpl对象。由此可以判断，对map中的对象类型数据没有进行转换，因此出现了以上问题。</p>
-<p>解决办法，使用groovy自带的json序列化类JsonBuilder进行将map对象先序列化成字符串然后再传递即可。<br>修改后测试代码如下：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import groovy.json.JsonBuilder</span><br><span class="line">import groovyx.net.http.ContentType</span><br><span class="line">import groovyx.net.http.HTTPBuilder</span><br><span class="line">import static groovyx.net.http.Method.POST</span><br><span class="line">def baseURL = &quot;http://localhost:7799/test/postReport&quot;</span><br><span class="line">def data = [&quot;link&quot;: &quot;http://$&#123;baseURL&#125;/test/postReport&quot;]</span><br><span class="line">def dataString = new JsonBuilder(data).toString()</span><br><span class="line">def client = new HTTPBuilder(baseURL)</span><br><span class="line">client.request(POST, ContentType.JSON) &#123;</span><br><span class="line">    body = dataString</span><br><span class="line">    response.success = &#123; resp, json -&gt;</span><br><span class="line">        println &quot;resp: $&#123;resp&#125;&quot;</span><br><span class="line">        println &quot;success data: $&#123;json&#125;&quot;</span><br><span class="line">    &#125;</span><br><span class="line">    response.failure = &#123; resp, json -&gt;</span><br><span class="line">        println &quot;resp:$&#123;resp&#125;&quot;</span><br><span class="line">        println &quot;failure data: $&#123;json&#125;&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>解决办法，使用groovy自带的json序列化类JsonBuilder进行将map对象先序列化成字符串然后再传递即可。<br>修改后测试代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import groovy.json.JsonBuilder</span><br><span class="line">import groovyx.net.http.ContentType</span><br><span class="line">import groovyx.net.http.HTTPBuilder</span><br><span class="line">import static groovyx.net.http.Method.POST</span><br><span class="line">def baseURL = &quot;http://localhost:7799/test/postReport&quot;</span><br><span class="line">def data = [&quot;link&quot;: &quot;http://$&#123;baseURL&#125;/test/postReport&quot;]</span><br><span class="line">def dataString = new JsonBuilder(data).toString()</span><br><span class="line">def client = new HTTPBuilder(baseURL)</span><br><span class="line">client.request(POST, ContentType.JSON) &#123;</span><br><span class="line">    body = dataString</span><br><span class="line">    response.success = &#123; resp, json -&gt;</span><br><span class="line">        println &quot;resp: $&#123;resp&#125;&quot;</span><br><span class="line">        println &quot;success data: $&#123;json&#125;&quot;</span><br><span class="line">    &#125;</span><br><span class="line">    response.failure = &#123; resp, json -&gt;</span><br><span class="line">        println &quot;resp:$&#123;resp&#125;&quot;</span><br><span class="line">        println &quot;failure data: $&#123;json&#125;&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
                       
 
@@ -270,7 +277,7 @@ var _hmt = _hmt || [];
 
               
                 <p class="article-more-link">
-                  <a class="article-more-a" href="/2017/09/29/Grails%E4%B8%AD%E5%BA%8F%E5%88%97%E5%8C%96json%E5%87%BA%E7%8E%B0%E5%BC%82%E5%B8%B8%E6%95%B0%E6%8D%AE-md/">
+                  <a class="article-more-a" href="/2017/09/29/Grails中序列化json出现异常数据-md/">
                     展开全文 >></a>
                 </p>
                 
@@ -299,12 +306,12 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/27/Spring%E5%AE%98%E6%96%B9%E5%91%A8%E6%8A%A520170926/">Spring官方周报20170926</a>
+      <a class="article-title" href="/2017/09/27/Spring官方周报20170926/">Spring官方周报20170926</a>
     </h1>
   
 
           
-            <a href="/2017/09/27/Spring%E5%AE%98%E6%96%B9%E5%91%A8%E6%8A%A520170926/" class="archive-article-date">
+            <a href="/2017/09/27/Spring官方周报20170926/" class="archive-article-date">
   	<time datetime="2017-09-27T13:45:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-27</time>
 </a>
               
@@ -317,51 +324,51 @@ var _hmt = _hmt || [];
         <div class="article-entry" itemprop="articleBody">
           
                     <h4 id="strongant-amp-maskwang-翻译"><a href="#strongant-amp-maskwang-翻译" class="headerlink" title="strongant &amp; maskwang 翻译"></a>strongant &amp; maskwang 翻译</h4><p>嗨,亲爱的Spring粉丝们！又是一个疯狂美妙的一周！我回到旧金山，与客户和当地合作伙伴谈论关于Pivotal相关的所有事情，同时在旧金山的阳光下享受玩Java 9的乐趣。我非常喜欢，并期待着这个新的版本，当然，Spring Framework 5是开箱即用的，它使用了Java 9。</p>
-<p><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/9/whatsnew/toc.htm#JSNEW-GUID-C23AFD78-C777-460B-8ACE-58BE5EA681F6">https://docs.oracle.com/javase/9/whatsnew/toc.htm#JSNEW-GUID-C23AFD78-C777-460B-8ACE-58BE5EA681F6</a></p>
+<p><a href="https://docs.oracle.com/javase/9/whatsnew/toc.htm#JSNEW-GUID-C23AFD78-C777-460B-8ACE-58BE5EA681F6" target="_blank" rel="noopener">https://docs.oracle.com/javase/9/whatsnew/toc.htm#JSNEW-GUID-C23AFD78-C777-460B-8ACE-58BE5EA681F6</a></p>
 <p>1: Spring IO平台领导Andy Wilkinson刚刚宣布了Spring IO Platform Brussels SR5。新版本包括Spring AMQP 1.7.4，Spring Boot 1.5.7，Spring Data Ingalls SR7，Spring Framework 4.3.11，Spring Integration 4.3.12，Spring Loaded 1.2.8和Spring Web Flow 2.4.6。在这个新版本中，很多东西是这样的，所以现在就开始吧！</p>
-<p><a target="_blank" rel="noopener" href="https://spring.io/blog/2017/09/19/spring-io-platform-brussels-sr5">https://spring.io/blog/2017/09/19/spring-io-platform-brussels-sr5</a></p>
+<p><a href="https://spring.io/blog/2017/09/19/spring-io-platform-brussels-sr5" target="_blank" rel="noopener">https://spring.io/blog/2017/09/19/spring-io-platform-brussels-sr5</a></p>
 <p>2: Spring工具套件主管Martin Lippert刚刚发布了在MacOS High Sierra 10.13上运行STS时如何避免一些问题。</p>
-<p><a target="_blank" rel="noopener" href="https://spring.io/blog/2017/09/21/how-to-get-sts-eclipse-running-on-macos-high-sierra-10-13">https://spring.io/blog/2017/09/21/how-to-get-sts-eclipse-running-on-macos-high-sierra-10-13</a></p>
+<p><a href="https://spring.io/blog/2017/09/21/how-to-get-sts-eclipse-running-on-macos-high-sierra-10-13" target="_blank" rel="noopener">https://spring.io/blog/2017/09/21/how-to-get-sts-eclipse-running-on-macos-high-sierra-10-13</a></p>
 <p>3: Spring Cloud Task 的领导 Michael Minella刚刚宣布了Spring Cloud Task 1.2.2.RELEASE。新版本增加了对Spring Framework最近对使用MySQL的序列表的除MYISAM之外的数据库引擎的支持。</p>
-<p><a target="_blank" rel="noopener" href="https://spring.io/blog/2017/09/25/spring-cloud-task-1-2-2-release-is-now-available">https://spring.io/blog/2017/09/25/spring-cloud-task-1-2-2-release-is-now-available</a></p>
+<p><a href="https://spring.io/blog/2017/09/25/spring-cloud-task-1-2-2-release-is-now-available" target="_blank" rel="noopener">https://spring.io/blog/2017/09/25/spring-cloud-task-1-2-2-release-is-now-available</a></p>
 <p>4: 经典的Spring PetClinic多年来发生了很大变化！该版本演示了与Spring和Kotlin的PetClinic。如果你曾经看过任何一个原始的PetClinics（其中许多早于Spring本身！），你会觉得这是一个非常简洁的小应用程序，</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/spring-petclinic/spring-petclinic-kotlin">https://github.com/spring-petclinic/spring-petclinic-kotlin</a></p>
+<p><a href="https://github.com/spring-petclinic/spring-petclinic-kotlin" target="_blank" rel="noopener">https://github.com/spring-petclinic/spring-petclinic-kotlin</a></p>
 <p>5: 想了解Spring Boot的功能？这份分析报告可能是指南清单！</p>
-<p><a target="_blank" rel="noopener" href="https://content.pivotal.io/analyst-reports/spring-boot-simplifies-end-to-end-development?_lrsc=7c3f3dc7-c1fa-4e7b-863f-615b5abb2c52">https://content.pivotal.io/analyst-reports/spring-boot-simplifies-end-to-end-development?_lrsc=7c3f3dc7-c1fa-4e7b-863f-615b5abb2c52</a></p>
+<p><a href="https://content.pivotal.io/analyst-reports/spring-boot-simplifies-end-to-end-development?_lrsc=7c3f3dc7-c1fa-4e7b-863f-615b5abb2c52" target="_blank" rel="noopener">https://content.pivotal.io/analyst-reports/spring-boot-simplifies-end-to-end-development?_lrsc=7c3f3dc7-c1fa-4e7b-863f-615b5abb2c52</a></p>
 <p>6: Spring Cloud Pipelines 现在也支持Kubernetes</p>
-<p><a target="_blank" rel="noopener" href="http://cloud.spring.io/spring-cloud-pipelines/multi/multi_jenkins-pipeline-k8s.html#_connecting_to_a_kubo_cluster">http://cloud.spring.io/spring-cloud-pipelines/multi/multi_jenkins-pipeline-k8s.html#_connecting_to_a_kubo_cluster</a></p>
+<p><a href="http://cloud.spring.io/spring-cloud-pipelines/multi/multi_jenkins-pipeline-k8s.html#_connecting_to_a_kubo_cluster" target="_blank" rel="noopener">http://cloud.spring.io/spring-cloud-pipelines/multi/multi_jenkins-pipeline-k8s.html#_connecting_to_a_kubo_cluster</a></p>
 <p>7: Oracle发布Java 9！这是一个很大的事情！在Java 9中有很多好处。如果不使用Java 9，请尝试一下Spring Framework 5，Spring Framework 5在Java 9（模块和类路径）上运行，没有任何问题。</p>
-<p><a target="_blank" rel="noopener" href="https://www.infoq.com/news/2017/09/Java-9-release-sept-21">https://www.infoq.com/news/2017/09/Java-9-release-sept-21</a></p>
-<p>8: Twitter上的Alex Falappa发表：“下一个牛逼的SpringBoot插件：用于检测和修复丢失的pom依赖关系的java编辑器提示<a target="_blank" rel="noopener" href="https://t.co/n7w22q4sMK”">https://t.co/n7w22q4sMK”</a></p>
-<p><a target="_blank" rel="noopener" href="https://twitter.com/aless_falappa/status/912735050093010944">https://twitter.com/aless_falappa/status/912735050093010944</a></p>
+<p><a href="https://www.infoq.com/news/2017/09/Java-9-release-sept-21" target="_blank" rel="noopener">https://www.infoq.com/news/2017/09/Java-9-release-sept-21</a></p>
+<p>8: Twitter上的Alex Falappa发表：“下一个牛逼的SpringBoot插件：用于检测和修复丢失的pom依赖关系的java编辑器提示<a href="https://t.co/n7w22q4sMK”" target="_blank" rel="noopener">https://t.co/n7w22q4sMK”</a></p>
+<p><a href="https://twitter.com/aless_falappa/status/912735050093010944" target="_blank" rel="noopener">https://twitter.com/aless_falappa/status/912735050093010944</a></p>
 <p>9: 最近有人询问有关在Cloud Foundry的Spring Boot应用程序中演示mTLS身份验证的示例。我不知道，所以 - 我经常这样做 - 我问Spring Security的主管Rob Winch，他分享了Java Cloud Foundry经验领导Ben Hale这个惊人的例子。很有意思！</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/nebhale/mtls-sample">https://github.com/nebhale/mtls-sample</a></p>
+<p><a href="https://github.com/nebhale/mtls-sample" target="_blank" rel="noopener">https://github.com/nebhale/mtls-sample</a></p>
 <p>10: 我喜欢这个博客关于Pivotal领域的首席技术官Josh McKenty和他所在的云和云构建</p>
-<p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=OfwDTYeqHcI">https://www.youtube.com/watch?v=OfwDTYeqHcI</a></p>
+<p><a href="https://www.youtube.com/watch?v=OfwDTYeqHcI" target="_blank" rel="noopener">https://www.youtube.com/watch?v=OfwDTYeqHcI</a></p>
 <p>11: 新的RebelLabs开发人员生产力报告已经出炉，并显示出Spring持续强劲增长。 Spring有众多用户，占46％，而Java EE则占33％。它也显示了Java 8的惊人增长，72％的用户使用它。哈哈，这两个好消息！</p>
-<p><a target="_blank" rel="noopener" href="https://zeroturnaround.com/rebellabs/developer-productivity-report-2017-why-do-you-use-java-tools-you-use/">https://zeroturnaround.com/rebellabs/developer-productivity-report-2017-why-do-you-use-java-tools-you-use/</a></p>
+<p><a href="https://zeroturnaround.com/rebellabs/developer-productivity-report-2017-why-do-you-use-java-tools-you-use/" target="_blank" rel="noopener">https://zeroturnaround.com/rebellabs/developer-productivity-report-2017-why-do-you-use-java-tools-you-use/</a></p>
 <p>12: 新的Microsoft和新的Microsoft SQL Server 2017版本在这里，它运行在Linux上！我从来没有想过我会看到这一天。这与Spring有什么关系？绝对没有。只是..它真的很酷！</p>
-<p><a target="_blank" rel="noopener" href="https://arstechnica.com/gadgets/2017/09/microsoft-ignite-2017-azure-sql/?amp=1">https://arstechnica.com/gadgets/2017/09/microsoft-ignite-2017-azure-sql/?amp=1</a></p>
+<p><a href="https://arstechnica.com/gadgets/2017/09/microsoft-ignite-2017-azure-sql/?amp=1" target="_blank" rel="noopener">https://arstechnica.com/gadgets/2017/09/microsoft-ignite-2017-azure-sql/?amp=1</a></p>
 <p>13: 您在Spring Framework 5的功能Web框架中看到了7月份的活动中Spring大牛Arjen Poutsma的网络研讨会的成果？</p>
-<p><a target="_blank" rel="noopener" href="https://www.brighttalk.com/webcast/14893/263393?_lrsc=b02b5b66-1acb-44bc-8a09-1f23cdc47bf2">https://www.brighttalk.com/webcast/14893/263393?_lrsc=b02b5b66-1acb-44bc-8a09-1f23cdc47bf2</a></p>
+<p><a href="https://www.brighttalk.com/webcast/14893/263393?_lrsc=b02b5b66-1acb-44bc-8a09-1f23cdc47bf2" target="_blank" rel="noopener">https://www.brighttalk.com/webcast/14893/263393?_lrsc=b02b5b66-1acb-44bc-8a09-1f23cdc47bf2</a></p>
 <p>14: 说到响应式，你也可以欣赏Evgeny Poberezkin关于响应式编程演变的这个演讲。</p>
-<p><a target="_blank" rel="noopener" href="https://www.infoq.com/presentations/reactive-programming-evolution">https://www.infoq.com/presentations/reactive-programming-evolution</a></p>
+<p><a href="https://www.infoq.com/presentations/reactive-programming-evolution" target="_blank" rel="noopener">https://www.infoq.com/presentations/reactive-programming-evolution</a></p>
 <p>15: Oracle有一个很好的选择了一些内容，引入了Java 9中的新功能。看看吧！</p>
-<p><a target="_blank" rel="noopener" href="https://www.oracle.com/java/java9-screencasts.html">https://www.oracle.com/java/java9-screencasts.html</a></p>
+<p><a href="https://www.oracle.com/java/java9-screencasts.html" target="_blank" rel="noopener">https://www.oracle.com/java/java9-screencasts.html</a></p>
 <p>16: Spring社区朋友迈克尔·西蒙斯（Michael Simons）介绍了Spring Boot的新版德语书籍。快去一探究竟！</p>
-<p><a target="_blank" rel="noopener" href="https://www.amazon.de/dp/3864905257/ref=cm_sw_r_tw_api_1.zXzbGMMWCEC">https://www.amazon.de/dp/3864905257/ref=cm_sw_r_tw_api_1.zXzbGMMWCEC</a></p>
+<p><a href="https://www.amazon.de/dp/3864905257/ref=cm_sw_r_tw_api_1.zXzbGMMWCEC" target="_blank" rel="noopener">https://www.amazon.de/dp/3864905257/ref=cm_sw_r_tw_api_1.zXzbGMMWCEC</a></p>
 <p>17: 最新版本的Camunda BPM系统具有Spring Boot集成功能。</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/camunda/camunda-bpm-spring-boot-starter/">https://github.com/camunda/camunda-bpm-spring-boot-starter/</a></p>
+<p><a href="https://github.com/camunda/camunda-bpm-spring-boot-starter/" target="_blank" rel="noopener">https://github.com/camunda/camunda-bpm-spring-boot-starter/</a></p>
 <p>18: .NET大牛Richard Seroter表示，Java和Spring Cloud用户对如下会觉得无趣：学习如何使用Pivotal的Steeltoe框架将断路器集成到.NET应用程序中。</p>
-<p><a target="_blank" rel="noopener" href="https://seroter.wordpress.com/2017/09/21/adding-circuit-breakers-to-your-net-applications/amp/">https://seroter.wordpress.com/2017/09/21/adding-circuit-breakers-to-your-net-applications/amp/</a></p>
+<p><a href="https://seroter.wordpress.com/2017/09/21/adding-circuit-breakers-to-your-net-applications/amp/" target="_blank" rel="noopener">https://seroter.wordpress.com/2017/09/21/adding-circuit-breakers-to-your-net-applications/amp/</a></p>
 <p>19: 织机系统将Pivotal Cloud Foundry和Pivotal集装箱服务（基于Kubernetes）进行了环境化。</p>
-<p><a target="_blank" rel="noopener" href="https://www.loomsystems.com/blog/everything-you-need-to-know-about-pks-in-3-acts?_lrsc=ae2c4d5a-294e-4484-8ea8-e6beccfc4caa">https://www.loomsystems.com/blog/everything-you-need-to-know-about-pks-in-3-acts?_lrsc=ae2c4d5a-294e-4484-8ea8-e6beccfc4caa</a></p>
+<p><a href="https://www.loomsystems.com/blog/everything-you-need-to-know-about-pks-in-3-acts?_lrsc=ae2c4d5a-294e-4484-8ea8-e6beccfc4caa" target="_blank" rel="noopener">https://www.loomsystems.com/blog/everything-you-need-to-know-about-pks-in-3-acts?_lrsc=ae2c4d5a-294e-4484-8ea8-e6beccfc4caa</a></p>
 <p>20: Jenn Strater - 一个Spring REST文档的专家，除了许多其他内容之外，还汇集了一个介绍测试驱动文档的精彩演示文稿（根据Spring REST文档，natch）。</p>
-<p><a target="_blank" rel="noopener" href="https://speakerdeck.com/jlstrater/test-driven-docs-apiconf-de-2017">https://speakerdeck.com/jlstrater/test-driven-docs-apiconf-de-2017</a></p>
+<p><a href="https://speakerdeck.com/jlstrater/test-driven-docs-apiconf-de-2017" target="_blank" rel="noopener">https://speakerdeck.com/jlstrater/test-driven-docs-apiconf-de-2017</a></p>
 <p>21: IBM最近发布了他们的J9 JVM。这篇文章让你对J9这个名字背后的独特历史有一点了解。</p>
-<p><a target="_blank" rel="noopener" href="https://medium.com/@rservant/how-did-the-j9-in-openj9-get-its-name-95a6416b4cb9?source=userActivityShare-a17df5ec14a4-1505939701">https://medium.com/@rservant/how-did-the-j9-in-openj9-get-its-name-95a6416b4cb9?source=userActivityShare-a17df5ec14a4-1505939701</a></p>
+<p><a href="https://medium.com/@rservant/how-did-the-j9-in-openj9-get-its-name-95a6416b4cb9?source=userActivityShare-a17df5ec14a4-1505939701" target="_blank" rel="noopener">https://medium.com/@rservant/how-did-the-j9-in-openj9-get-its-name-95a6416b4cb9?source=userActivityShare-a17df5ec14a4-1505939701</a></p>
 <p>22: 这篇文章关于API文档的十个好主意与Spring并没有任何关系，但它似乎强调了这一点：Spring REST文档是一个好主意（TM）！</p>
-<p><a target="_blank" rel="noopener" href="https://alistapart.com/article/the-ten-essentials-for-good-api-documentation">https://alistapart.com/article/the-ten-essentials-for-good-api-documentation</a></p>
+<p><a href="https://alistapart.com/article/the-ten-essentials-for-good-api-documentation" target="_blank" rel="noopener">https://alistapart.com/article/the-ten-essentials-for-good-api-documentation</a></p>
 
                       
 
@@ -400,7 +407,7 @@ var _hmt = _hmt || [];
 
               
                 <p class="article-more-link">
-                  <a class="article-more-a" href="/2017/09/27/Spring%E5%AE%98%E6%96%B9%E5%91%A8%E6%8A%A520170926/">
+                  <a class="article-more-a" href="/2017/09/27/Spring官方周报20170926/">
                     展开全文 >></a>
                 </p>
                 
@@ -429,12 +436,12 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/17/%E7%AE%97%E6%B3%95%E4%B8%AD%E7%9A%84%E5%8F%8D%E8%BD%AC/">算法中的反转</a>
+      <a class="article-title" href="/2017/09/17/算法中的反转/">算法中的反转</a>
     </h1>
   
 
           
-            <a href="/2017/09/17/%E7%AE%97%E6%B3%95%E4%B8%AD%E7%9A%84%E5%8F%8D%E8%BD%AC/" class="archive-article-date">
+            <a href="/2017/09/17/算法中的反转/" class="archive-article-date">
   	<time datetime="2017-09-17T05:27:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-17</time>
 </a>
               
@@ -448,30 +455,30 @@ var _hmt = _hmt || [];
           
                     <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>一般工作中，可能不会自己去实现元素反转的操作。因为目前的高级语言基本已经帮我们实现好了，我们要做的就是使用好相关的函数就可以了。但是对于知识的认知不能只停留在表面，有些时候更需要去寻求底层的实现原理，这样一来，对于我们自身能力的提高有很大帮助!</p>
 <h3 id="数组元素的反转"><a href="#数组元素的反转" class="headerlink" title="数组元素的反转"></a>数组元素的反转</h3><p>有n个元素的数组，我们可以得到该数组的大小。需要做的就是把第一个元素和最后一个元素进行调换位置即可，对于奇数数组和偶数数组处理类似。只不过奇数数组我们不用管中间的那个元素，比如奇数数组处理思路如下：</p>
-<p><code>int[] oddArray = new int[]&#123; 1, 2, 3 &#125;;</code></p>
+<p><code>int[] oddArray = new int[]{ 1, 2, 3 };</code></p>
 <p>反转这个数组的方法只需要进行将索引为0的1和索引为2的3元素进行位置的调换即可完成。</p>
 <p>偶数数组处理思路如下：</p>
-<p><code>int[] oddArray = new int[]&#123; 1, 2, 3, 4 &#125;;</code></p>
+<p><code>int[] oddArray = new int[]{ 1, 2, 3, 4 };</code></p>
 <p>同奇数的处理思路一样，将数组索引为0的元素与索引为3的元素换位，将索引为1的元素与索引为2的元素进行换位。</p>
 <p>明白了以上的解决思路，写代码就简单了，具体的实现方案如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class Solution&#123;</span><br><span class="line">    private static void reverseArray(int[] array) &#123;</span><br><span class="line">        final int len = array.length - 1;</span><br><span class="line">        final int mid = array.length &gt;&gt; 1;</span><br><span class="line">        for (int i = 0; i &lt; mid; i++) &#123;</span><br><span class="line">            final int temp = array[len - i];</span><br><span class="line">            array[len - i] = array[i];</span><br><span class="line">            array[i] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class Solution&#123;</span><br><span class="line">    private static void reverseArray(int[] array) &#123;</span><br><span class="line">        final int len = array.length - 1;</span><br><span class="line">        final int mid = array.length &gt;&gt; 1;</span><br><span class="line">        for (int i = 0; i &lt; mid; i++) &#123;</span><br><span class="line">            final int temp = array[len - i];</span><br><span class="line">            array[len - i] = array[i];</span><br><span class="line">            array[i] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="单链表元素的反转"><a href="#单链表元素的反转" class="headerlink" title="单链表元素的反转"></a>单链表元素的反转</h3><p>1.什么是链表？</p>
 <blockquote>
 <p>链表（Linked list）是一种常见的基础数据结构，是一种线性表，但是并不会按线性的顺序存储数据，而是在每一个节点里存到下一个节点的指针(Pointer)。由于不必须按顺序存储，链表在插入的时候可以达到O(1)的复杂度，比另一种线性表顺序表快得多，但是查找一个节点或者访问特定编号的节点则需要O(n)的时间，而顺序表相应的时间复杂度分别是O(logn)和O(1)。——-摘抄自维基百科</p>
 </blockquote>
 <p>2.定义链表数据结构</p>
 <p>通过概念我们可以了解到，链表的结构应该包含当前节点的值，和指向下一个节点的指针元素。那么，便可以对其数据结构做如下定义：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class ListNode &#123;</span><br><span class="line"></span><br><span class="line">    int val;</span><br><span class="line"></span><br><span class="line">    ListNode next;</span><br><span class="line"></span><br><span class="line">    ListNode(int val)&#123;</span><br><span class="line">        this.val = val;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String toString() &#123;</span><br><span class="line">        return &quot;ListNode&#123;&quot; +</span><br><span class="line">                &quot;val=&quot; + val +</span><br><span class="line">                &quot;, next=&quot; + next +</span><br><span class="line">                &#x27;&#125;&#x27;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class ListNode &#123;</span><br><span class="line"></span><br><span class="line">    int val;</span><br><span class="line"></span><br><span class="line">    ListNode next;</span><br><span class="line"></span><br><span class="line">    ListNode(int val)&#123;</span><br><span class="line">        this.val = val;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String toString() &#123;</span><br><span class="line">        return &quot;ListNode&#123;&quot; +</span><br><span class="line">                &quot;val=&quot; + val +</span><br><span class="line">                &quot;, next=&quot; + next +</span><br><span class="line">                &apos;&#125;&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>3.初始化链表</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">public class LinkedListReverse &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line">        int count = 9;</span><br><span class="line"></span><br><span class="line">        ListNode t = initListNode(count,count);</span><br><span class="line"></span><br><span class="line">        printLinkedList(t);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static ListNode initListNode(int len , int count) &#123;</span><br><span class="line">        ListNode t = new ListNode(1);</span><br><span class="line">        ListNode x = t;</span><br><span class="line">        for(int i = 2; i &lt;= len; i++)&#123;</span><br><span class="line">            // x 用于指向新创建的节点，将新创建的节点指向当前节// 点的下一个引用</span><br><span class="line">            x = (x.next = new ListNode(i));</span><br><span class="line">        &#125;</span><br><span class="line">        return t;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static void printLinkedList(ListNode head) &#123;</span><br><span class="line">        ListNode node = head;</span><br><span class="line">        while(node != null)&#123;</span><br><span class="line">            System.out.println(node.val);</span><br><span class="line">            node = node.next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class ListNode &#123;</span><br><span class="line"></span><br><span class="line">    int val;</span><br><span class="line"></span><br><span class="line">    ListNode next;</span><br><span class="line"></span><br><span class="line">    ListNode(int val)&#123;</span><br><span class="line">        this.val = val;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String toString() &#123;</span><br><span class="line">        return &quot;ListNode&#123;&quot; +</span><br><span class="line">                &quot;val=&quot; + val +</span><br><span class="line">                &quot;, next=&quot; + next +</span><br><span class="line">                &#x27;&#125;&#x27;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">public class LinkedListReverse &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line">        int count = 9;</span><br><span class="line"></span><br><span class="line">        ListNode t = initListNode(count,count);</span><br><span class="line"></span><br><span class="line">        printLinkedList(t);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static ListNode initListNode(int len , int count) &#123;</span><br><span class="line">        ListNode t = new ListNode(1);</span><br><span class="line">        ListNode x = t;</span><br><span class="line">        for(int i = 2; i &lt;= len; i++)&#123;</span><br><span class="line">            // x 用于指向新创建的节点，将新创建的节点指向当前节// 点的下一个引用</span><br><span class="line">            x = (x.next = new ListNode(i));</span><br><span class="line">        &#125;</span><br><span class="line">        return t;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static void printLinkedList(ListNode head) &#123;</span><br><span class="line">        ListNode node = head;</span><br><span class="line">        while(node != null)&#123;</span><br><span class="line">            System.out.println(node.val);</span><br><span class="line">            node = node.next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class ListNode &#123;</span><br><span class="line"></span><br><span class="line">    int val;</span><br><span class="line"></span><br><span class="line">    ListNode next;</span><br><span class="line"></span><br><span class="line">    ListNode(int val)&#123;</span><br><span class="line">        this.val = val;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String toString() &#123;</span><br><span class="line">        return &quot;ListNode&#123;&quot; +</span><br><span class="line">                &quot;val=&quot; + val +</span><br><span class="line">                &quot;, next=&quot; + next +</span><br><span class="line">                &apos;&#125;&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>通过以上的方式我们创建了一个从1到9的单向链表。</p>
 <p>4.反转单链表</p>
-<p>反转思路：这个实现的思路和数组元素的反转类似，只不过需要做一点稍微的变化，我们知道单链表的最后一个元素指向null,有1-10之间的元素链表,只需要将值为1的节点引用指向null,值为2的节点引用指向1，以此类推，根据以上分析可以得到以下方法，暂且将方法命名为 reverse ，方法实现如下：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public static  ListNode reverse(ListNode head) &#123;</span><br><span class="line">        ListNode prev = null;</span><br><span class="line">        ListNode curr = head;</span><br><span class="line">        while (curr != null) &#123;</span><br><span class="line">            //save next node</span><br><span class="line">            ListNode nextTemp = curr.next;</span><br><span class="line">            //change</span><br><span class="line">            curr.next = prev;</span><br><span class="line">            //cache prev node</span><br><span class="line">            prev = curr;</span><br><span class="line">            curr = nextTemp;</span><br><span class="line">        &#125;</span><br><span class="line">        return prev;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<p>关于反转的详细思路结合reverse方法参考如下分析过程：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">单链表反转分析过程：</span><br><span class="line">1-&gt;2-&gt;3-&gt;4</span><br><span class="line"></span><br><span class="line">prev = null</span><br><span class="line"></span><br><span class="line">curr  = head(值为1的节点)</span><br><span class="line"></span><br><span class="line">nextTemp -&gt; next (值为2的节点)</span><br><span class="line"></span><br><span class="line">curr.next  = prev(当curr的值为1时，它的next为null)</span><br><span class="line"></span><br><span class="line">设置完毕后，将当前节点(值为1的节点)缓存起来，供下一次循环到的节点进行使用</span><br><span class="line"></span><br><span class="line">prev -&gt; curr</span><br><span class="line"></span><br><span class="line">最后，将当前节点的引用指向 next (值为2的节点)</span><br><span class="line"></span><br><span class="line">第一次循环之后，可以得到如下数据：</span><br><span class="line"></span><br><span class="line">2--&gt;1--&gt;null</span><br><span class="line"></span><br><span class="line">第二次循环</span><br><span class="line"></span><br><span class="line">此时，curr是值为2的节点</span><br><span class="line"></span><br><span class="line">nextTemp -&gt; next (值为3的节点)</span><br><span class="line"></span><br><span class="line">curr.next  = prev(当curr的值为2时，它的next为prev，即：next指向上一次循环时缓存下来的值为1的节点)</span><br><span class="line"></span><br><span class="line">再讲prev引用指向当前遍历的值为2的节点，供下一次循环使用,即</span><br><span class="line">prev = curr (值为2的节点)</span><br><span class="line">接着将当前值为2的节点指向值为3的节点</span><br><span class="line"></span><br><span class="line">第二次循环之后，结果变为：</span><br><span class="line">3-&gt;2-&gt;1-&gt;null</span><br><span class="line"></span><br><span class="line">以此类推，当遍历到节点为4的值时，curr=null，循环结束，具体结果为：</span><br><span class="line">4-&gt;3-&gt;2-&gt;1-&gt;null</span><br><span class="line"></span><br><span class="line">通过以上的分析，可以深刻理解单链表的反转操作套路。</span><br><span class="line"></span><br><span class="line">*/</span><br></pre></td></tr></table></figure></p>
+<p>反转思路：这个实现的思路和数组元素的反转类似，只不过需要做一点稍微的变化，我们知道单链表的最后一个元素指向null,有1-10之间的元素链表,只需要将值为1的节点引用指向null,值为2的节点引用指向1，以此类推，根据以上分析可以得到以下方法，暂且将方法命名为 reverse ，方法实现如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public static  ListNode reverse(ListNode head) &#123;</span><br><span class="line">        ListNode prev = null;</span><br><span class="line">        ListNode curr = head;</span><br><span class="line">        while (curr != null) &#123;</span><br><span class="line">            //save next node</span><br><span class="line">            ListNode nextTemp = curr.next;</span><br><span class="line">            //change</span><br><span class="line">            curr.next = prev;</span><br><span class="line">            //cache prev node</span><br><span class="line">            prev = curr;</span><br><span class="line">            curr = nextTemp;</span><br><span class="line">        &#125;</span><br><span class="line">        return prev;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>关于反转的详细思路结合reverse方法参考如下分析过程：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">单链表反转分析过程：</span><br><span class="line">1-&gt;2-&gt;3-&gt;4</span><br><span class="line"></span><br><span class="line">prev = null</span><br><span class="line"></span><br><span class="line">curr  = head(值为1的节点)</span><br><span class="line"></span><br><span class="line">nextTemp -&gt; next (值为2的节点)</span><br><span class="line"></span><br><span class="line">curr.next  = prev(当curr的值为1时，它的next为null)</span><br><span class="line"></span><br><span class="line">设置完毕后，将当前节点(值为1的节点)缓存起来，供下一次循环到的节点进行使用</span><br><span class="line"></span><br><span class="line">prev -&gt; curr</span><br><span class="line"></span><br><span class="line">最后，将当前节点的引用指向 next (值为2的节点)</span><br><span class="line"></span><br><span class="line">第一次循环之后，可以得到如下数据：</span><br><span class="line"></span><br><span class="line">2--&gt;1--&gt;null</span><br><span class="line"></span><br><span class="line">第二次循环</span><br><span class="line"></span><br><span class="line">此时，curr是值为2的节点</span><br><span class="line"></span><br><span class="line">nextTemp -&gt; next (值为3的节点)</span><br><span class="line"></span><br><span class="line">curr.next  = prev(当curr的值为2时，它的next为prev，即：next指向上一次循环时缓存下来的值为1的节点)</span><br><span class="line"></span><br><span class="line">再讲prev引用指向当前遍历的值为2的节点，供下一次循环使用,即</span><br><span class="line">prev = curr (值为2的节点)</span><br><span class="line">接着将当前值为2的节点指向值为3的节点</span><br><span class="line"></span><br><span class="line">第二次循环之后，结果变为：</span><br><span class="line">3-&gt;2-&gt;1-&gt;null</span><br><span class="line"></span><br><span class="line">以此类推，当遍历到节点为4的值时，curr=null，循环结束，具体结果为：</span><br><span class="line">4-&gt;3-&gt;2-&gt;1-&gt;null</span><br><span class="line"></span><br><span class="line">通过以上的分析，可以深刻理解单链表的反转操作套路。</span><br><span class="line"></span><br><span class="line">*/</span><br></pre></td></tr></table></figure></p>
 <p>Java实现数组元素的反转demo</p>
-<p><a target="_blank" rel="noopener" href="https://gist.github.com/strongant/7e2baab6291a569586bab1b97b0b22c6">https://gist.github.com/strongant/7e2baab6291a569586bab1b97b0b22c6</a></p>
+<p><a href="https://gist.github.com/strongant/7e2baab6291a569586bab1b97b0b22c6" target="_blank" rel="noopener">https://gist.github.com/strongant/7e2baab6291a569586bab1b97b0b22c6</a></p>
 <p>Java实现单链表的反转demo</p>
-<p><a target="_blank" rel="noopener" href="https://gist.github.com/strongant/f31727433ce0af4d2f6afb14ff304a19">https://gist.github.com/strongant/f31727433ce0af4d2f6afb14ff304a19</a></p>
+<p><a href="https://gist.github.com/strongant/f31727433ce0af4d2f6afb14ff304a19" target="_blank" rel="noopener">https://gist.github.com/strongant/f31727433ce0af4d2f6afb14ff304a19</a></p>
 
                       
 
@@ -495,7 +502,7 @@ var _hmt = _hmt || [];
 
               
                 <p class="article-more-link">
-                  <a class="article-more-a" href="/2017/09/17/%E7%AE%97%E6%B3%95%E4%B8%AD%E7%9A%84%E5%8F%8D%E8%BD%AC/">
+                  <a class="article-more-a" href="/2017/09/17/算法中的反转/">
                     展开全文 >></a>
                 </p>
                 
@@ -524,12 +531,12 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/10/%E4%BD%BF%E7%94%A8Httpie%E6%9D%A5%E6%9B%BF%E4%BB%A3CURL-1/">使用Httpie来替代CURL</a>
+      <a class="article-title" href="/2017/09/10/使用Httpie来替代CURL-1/">使用Httpie来替代CURL</a>
     </h1>
   
 
           
-            <a href="/2017/09/10/%E4%BD%BF%E7%94%A8Httpie%E6%9D%A5%E6%9B%BF%E4%BB%A3CURL-1/" class="archive-article-date">
+            <a href="/2017/09/10/使用Httpie来替代CURL-1/" class="archive-article-date">
   	<time datetime="2017-09-10T13:51:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-10</time>
 </a>
               
@@ -547,11 +554,11 @@ var _hmt = _hmt || [];
 <p>Httpie（终端下比较友好、简洁、特性更多，功能更强大）</p>
 <p>个人在终端下比较推荐使用Httpie，原因如下：</p>
 <p>举个例子，如果我们发起一个请求，获取一个JSON字符串，如果我们使用CURL进行获取的话，需要使用管道命令结合python自带的json.tool这个脚本才能完成，<code>curl  https://httpbin.org/get | python -m json.tool</code></p>
-<p>如果我们使用Httpie的话，只需要这样：<code>http  https://httpbin.org/get</code>,可以发现它不仅返回了body内容，也同时返回了header信息。当然如果我们只需要看body内容，此时只需要进行筛选即可，使用如下命令请求即可：<code>http  https://httpbin.org/get --body</code>,如果只需要header信息，可以这样：<code>http  https://httpbin.org/get --header</code>。更多特性，请参考：<a target="_blank" rel="noopener" href="https://httpie.org/">https://httpie.org/</a></p>
+<p>如果我们使用Httpie的话，只需要这样：<code>http  https://httpbin.org/get</code>,可以发现它不仅返回了body内容，也同时返回了header信息。当然如果我们只需要看body内容，此时只需要进行筛选即可，使用如下命令请求即可：<code>http  https://httpbin.org/get --body</code>,如果只需要header信息，可以这样：<code>http  https://httpbin.org/get --header</code>。更多特性，请参考：<a href="https://httpie.org/" target="_blank" rel="noopener">https://httpie.org/</a></p>
 <p>Httpie默认会将返回的JSON数据进行格式化，不再需要二次转换，并且它会使用颜色将一些不同类型的数据加以区分，这样也方便我们进行查看。</p>
 <p>这里介绍下Mac下的安装方式：<br>由于Httpie依赖Python，一般情况下Mac下已经自带了Python环境，只不过版本可能并不是最新的。使用brew安装即可：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install httpie</span><br></pre></td></tr></table></figure>
-<p>安装成功后我们进行测试是否可用：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http ifconfig.me/all.json</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install httpie</span><br></pre></td></tr></table></figure>
+<p>安装成功后我们进行测试是否可用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http ifconfig.me/all.json</span><br></pre></td></tr></table></figure></p>
 <p>正常情况下便可以得到带颜色的格式良好的JSON数据。</p>
 
                       
@@ -576,7 +583,7 @@ var _hmt = _hmt || [];
 
               
                 <p class="article-more-link">
-                  <a class="article-more-a" href="/2017/09/10/%E4%BD%BF%E7%94%A8Httpie%E6%9D%A5%E6%9B%BF%E4%BB%A3CURL-1/">
+                  <a class="article-more-a" href="/2017/09/10/使用Httpie来替代CURL-1/">
                     展开全文 >></a>
                 </p>
                 
@@ -605,12 +612,12 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/07/%E5%AE%98%E6%96%B9Spring%E5%91%A8%E6%8A%A5-20170905/">官方Spring周报-20170905</a>
+      <a class="article-title" href="/2017/09/07/官方Spring周报-20170905/">官方Spring周报-20170905</a>
     </h1>
   
 
           
-            <a href="/2017/09/07/%E5%AE%98%E6%96%B9Spring%E5%91%A8%E6%8A%A5-20170905/" class="archive-article-date">
+            <a href="/2017/09/07/官方Spring周报-20170905/" class="archive-article-date">
   	<time datetime="2017-09-07T14:31:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-07</time>
 </a>
               
@@ -623,45 +630,45 @@ var _hmt = _hmt || [];
         <div class="article-entry" itemprop="articleBody">
           
                     <p>Spring的粉丝们，欢迎来到本周的另一期官方周报！这个星期我在香港看这个惊人的YOW！然后是新加坡的YOW。这些会议都是来自澳大利亚顶尖的会议，而且会议很新颖。如果你在这两个地方，我希望你会来。</p>
-<p><a target="_blank" rel="noopener" href="http://www.yowconference.hk/">http://www.yowconference.hk/</a></p>
-<p><a target="_blank" rel="noopener" href="http://www.yowconference.sg/">http://www.yowconference.sg/</a></p>
+<p><a href="http://www.yowconference.hk/" target="_blank" rel="noopener">http://www.yowconference.hk/</a></p>
+<p><a href="http://www.yowconference.sg/" target="_blank" rel="noopener">http://www.yowconference.sg/</a></p>
 <p>1.介绍下关于Spring Cloud Data Flow最重要的一个方面。 Spring Cloud Data Flow大牛Eric Bottard首先介绍了Spring Cloud Data Flow Shell本身。</p>
-<p><a target="_blank" rel="noopener" href="https://spring.io/blog/2017/08/29/spring-cloud-data-flow-tips-tricks-interacting-with-the-shell">https://spring.io/blog/2017/08/29/spring-cloud-data-flow-tips-tricks-interacting-with-the-shell</a></p>
+<p><a href="https://spring.io/blog/2017/08/29/spring-cloud-data-flow-tips-tricks-interacting-with-the-shell" target="_blank" rel="noopener">https://spring.io/blog/2017/08/29/spring-cloud-data-flow-tips-tricks-interacting-with-the-shell</a></p>
 <p>2.Spring Cloud贡献者Ryan Baxter刚刚宣布了Spring Cloud Edgeware M1 的发布。新版本包括对各种项目的更新以及新的Spring Cloud Gateway项目。此版本基于Spring Boot 1.5.x。</p>
-<p><a target="_blank" rel="noopener" href="https://spring.io/blog/2017/08/29/spring-cloud-edgware-m1-is-now-available">https://spring.io/blog/2017/08/29/spring-cloud-edgware-m1-is-now-available</a></p>
+<p><a href="https://spring.io/blog/2017/08/29/spring-cloud-edgware-m1-is-now-available" target="_blank" rel="noopener">https://spring.io/blog/2017/08/29/spring-cloud-edgware-m1-is-now-available</a></p>
 <p>3.Spring Cloud联合创始人Spencer Gibb刚刚宣布了Spring Cloud Finchely M2的发布。这个新版本基于Spring Boot 2.0.x，所以是基于Java 8。它还支持Spring Cloud Gateway中更多更酷的功能。在Spring Cloud Gateway和其他版本中，一个常见主题是反应性支持。</p>
-<p><a target="_blank" rel="noopener" href="https://spring.io/blog/2017/08/30/spring-cloud-finchley-m2-is-available">https://spring.io/blog/2017/08/30/spring-cloud-finchley-m2-is-available</a></p>
+<p><a href="https://spring.io/blog/2017/08/30/spring-cloud-finchley-m2-is-available" target="_blank" rel="noopener">https://spring.io/blog/2017/08/30/spring-cloud-finchley-m2-is-available</a></p>
 <p>4.Spring Cloud Flow大牛Thomas Risberg在本文中介绍了针对Kubernetes的Spring Cloud Data Flow的Helm安装程序。 Helm是Kubernetes的包管理者。</p>
-<p><a target="_blank" rel="noopener" href="https://spring.io/blog/2017/08/31/simple-installation-of-data-flow-for-kubernetes-with-helm">https://spring.io/blog/2017/08/31/simple-installation-of-data-flow-for-kubernetes-with-helm</a></p>
+<p><a href="https://spring.io/blog/2017/08/31/simple-installation-of-data-flow-for-kubernetes-with-helm" target="_blank" rel="noopener">https://spring.io/blog/2017/08/31/simple-installation-of-data-flow-for-kubernetes-with-helm</a></p>
 <p>5.这个应用现代化的Pivotal和Apigee白皮书是一个很好的阅读题材。</p>
-<p><a target="_blank" rel="noopener" href="https://content.pivotal.io/apigee/application-modernization?_lrsc=9d76ba9e-eb43-42fb-b85d-9e5b48373ac4">https://content.pivotal.io/apigee/application-modernization?_lrsc=9d76ba9e-eb43-42fb-b85d-9e5b48373ac4</a></p>
+<p><a href="https://content.pivotal.io/apigee/application-modernization?_lrsc=9d76ba9e-eb43-42fb-b85d-9e5b48373ac4" target="_blank" rel="noopener">https://content.pivotal.io/apigee/application-modernization?_lrsc=9d76ba9e-eb43-42fb-b85d-9e5b48373ac4</a></p>
 <p>6.Matt McCandless称Spring Boot老而弥新，这是个很好的起步。</p>
-<p><a target="_blank" rel="noopener" href="https://dzone.com/articles/spring-boot-the-right-boot-for-you-1">https://dzone.com/articles/spring-boot-the-right-boot-for-you-1</a></p>
+<p><a href="https://dzone.com/articles/spring-boot-the-right-boot-for-you-1" target="_blank" rel="noopener">https://dzone.com/articles/spring-boot-the-right-boot-for-you-1</a></p>
 <p>7.这篇关于使用Spring Boot的Quartz Scheduler的文章是曾经看过的一篇文章。我喜欢。</p>
-<p><a target="_blank" rel="noopener" href="http://www.opencodez.com/java/quartz-scheduler-with-spring-boot.htm">http://www.opencodez.com/java/quartz-scheduler-with-spring-boot.htm</a></p>
+<p><a href="http://www.opencodez.com/java/quartz-scheduler-with-spring-boot.htm" target="_blank" rel="noopener">http://www.opencodez.com/java/quartz-scheduler-with-spring-boot.htm</a></p>
 <p>8.看起来要想Java 9发布，这个新的Java版本将会有6个月的时间。我个人欢迎新版本。</p>
-<p><a target="_blank" rel="noopener" href="https://jcp.org/aboutJava/communityprocess/ec-public/materials/2017-08-15/JCP-EC-Minutes-August-2017.html">https://jcp.org/aboutJava/communityprocess/ec-public/materials/2017-08-15/JCP-EC-Minutes-August-2017.html</a></p>
+<p><a href="https://jcp.org/aboutJava/communityprocess/ec-public/materials/2017-08-15/JCP-EC-Minutes-August-2017.html" target="_blank" rel="noopener">https://jcp.org/aboutJava/communityprocess/ec-public/materials/2017-08-15/JCP-EC-Minutes-August-2017.html</a></p>
 <p>9.我真的很喜欢这个俄语的帖子，介绍Spring Boot的应用程序开发。</p>
-<p><a target="_blank" rel="noopener" href="https://alexkosarev.name/2017/08/08/application-development-with-spring-part-1/">https://alexkosarev.name/2017/08/08/application-development-with-spring-part-1/</a></p>
+<p><a href="https://alexkosarev.name/2017/08/08/application-development-with-spring-part-1/" target="_blank" rel="noopener">https://alexkosarev.name/2017/08/08/application-development-with-spring-part-1/</a></p>
 <p>10.上周Pivotal与Google和VMWare合作，宣布了Pivotal Cloud Foundry生态系统 - Pivotal Container Service - 由BOSH管理的Kubernetes服务的下一步工作。我们从TechCrunch片中得到一些细节。</p>
-<p><a target="_blank" rel="noopener" href="https://www.blog.google/topics/google-cloud/vmware-and-pivotal-launch-new-hybrid-kubernetes-solution-optimized-gcp/">https://www.blog.google/topics/google-cloud/vmware-and-pivotal-launch-new-hybrid-kubernetes-solution-optimized-gcp/</a></p>
-<p><a target="_blank" rel="noopener" href="https://techcrunch.com/2017/08/29/seven-moves-that-led-to-the-vmware-pivotal-google-partnership/amp/">https://techcrunch.com/2017/08/29/seven-moves-that-led-to-the-vmware-pivotal-google-partnership/amp/</a></p>
+<p><a href="https://www.blog.google/topics/google-cloud/vmware-and-pivotal-launch-new-hybrid-kubernetes-solution-optimized-gcp/" target="_blank" rel="noopener">https://www.blog.google/topics/google-cloud/vmware-and-pivotal-launch-new-hybrid-kubernetes-solution-optimized-gcp/</a></p>
+<p><a href="https://techcrunch.com/2017/08/29/seven-moves-that-led-to-the-vmware-pivotal-google-partnership/amp/" target="_blank" rel="noopener">https://techcrunch.com/2017/08/29/seven-moves-that-led-to-the-vmware-pivotal-google-partnership/amp/</a></p>
 <p>11.我喜欢这个Auth0在集成Spring Boot与SQL数据库（PostgreSQL），JPA和Liquibase。</p>
-<p><a target="_blank" rel="noopener" href="https://auth0.com/blog/integrating-spring-data-jpa-postgresql-liquibase/">https://auth0.com/blog/integrating-spring-data-jpa-postgresql-liquibase/</a></p>
+<p><a href="https://auth0.com/blog/integrating-spring-data-jpa-postgresql-liquibase/" target="_blank" rel="noopener">https://auth0.com/blog/integrating-spring-data-jpa-postgresql-liquibase/</a></p>
 <p>12.来自JHipster的这篇关于“API优先开发”的文章很有趣。</p>
-<p><a target="_blank" rel="noopener" href="http://www.jhipster.tech/doing-api-first-development/">http://www.jhipster.tech/doing-api-first-development/</a></p>
+<p><a href="http://www.jhipster.tech/doing-api-first-development/" target="_blank" rel="noopener">http://www.jhipster.tech/doing-api-first-development/</a></p>
 <p>13.Spring Boot 2.0具有反应弹性框架5和Java 8基准线，肯定会令人印象深刻。新版本中我最喜欢的功能之一就是支持Spring Boot Actuator端点的REST-stack（响应式Spring WebFlux，Spring MVC或JAX-RS）。</p>
-<p><a target="_blank" rel="noopener" href="https://www.infoq.com/news/2017/08/spring-boot-2-actuator-endpoints">https://www.infoq.com/news/2017/08/spring-boot-2-actuator-endpoints</a></p>
+<p><a href="https://www.infoq.com/news/2017/08/spring-boot-2-actuator-endpoints" target="_blank" rel="noopener">https://www.infoq.com/news/2017/08/spring-boot-2-actuator-endpoints</a></p>
 <p>14.看看这个优秀的网络研讨会，了解为什么IntelliJ IDEA是Grails应用程序的首选。我喜欢这个，因为Grails 3是基于Spring Boot的，因为Jeff Scott Brown是一个伟大的演讲者，因为IntelliJ做了一个漂亮的好IDE。</p>
-<p><a target="_blank" rel="noopener" href="https://blog.jetbrains.com/idea/2017/07/webinar-recording-why-intellij-idea-is-the-premier-ide-for-grails-3/">https://blog.jetbrains.com/idea/2017/07/webinar-recording-why-intellij-idea-is-the-premier-ide-for-grails-3/</a></p>
+<p><a href="https://blog.jetbrains.com/idea/2017/07/webinar-recording-why-intellij-idea-is-the-premier-ide-for-grails-3/" target="_blank" rel="noopener">https://blog.jetbrains.com/idea/2017/07/webinar-recording-why-intellij-idea-is-the-premier-ide-for-grails-3/</a></p>
 <p>15.严格来说，这与Spring不是很相关，但它是值得一读的。丹尼尔·布莱恩特（Daniel Bryant）在这篇文章中描述了测试微服务（以及您可能使用的所有组件）的全方位方法。</p>
-<p><a target="_blank" rel="noopener" href="https://specto.io/blog/2016/8/16/recipe-for-designing-building-testing-microservices/">https://specto.io/blog/2016/8/16/recipe-for-designing-building-testing-microservices/</a></p>
+<p><a href="https://specto.io/blog/2016/8/16/recipe-for-designing-building-testing-microservices/" target="_blank" rel="noopener">https://specto.io/blog/2016/8/16/recipe-for-designing-building-testing-microservices/</a></p>
 <p>16.我喜欢这个来自Spring Data的StackOverflow响应Oliver Gierke：如何在Spring Boot中选择性升级依赖项？</p>
-<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/45967464/how-to-selectively-upgrade-a-dependency-in-spring-boot-sample-case-spring-dat">https://stackoverflow.com/questions/45967464/how-to-selectively-upgrade-a-dependency-in-spring-boot-sample-case-spring-dat</a></p>
+<p><a href="https://stackoverflow.com/questions/45967464/how-to-selectively-upgrade-a-dependency-in-spring-boot-sample-case-spring-dat" target="_blank" rel="noopener">https://stackoverflow.com/questions/45967464/how-to-selectively-upgrade-a-dependency-in-spring-boot-sample-case-spring-dat</a></p>
 <p>17.如果您想快速了解一下Cloud Foundry服务代理商，请阅读本文。</p>
-<p><a target="_blank" rel="noopener" href="http://www.automate-it.today/about-cloud-foundry-service-brokers/">http://www.automate-it.today/about-cloud-foundry-service-brokers/</a></p>
+<p><a href="http://www.automate-it.today/about-cloud-foundry-service-brokers/" target="_blank" rel="noopener">http://www.automate-it.today/about-cloud-foundry-service-brokers/</a></p>
 <p>18.这篇也不是严格来说与Spring有关，但对于构建云原生应用程序的一些Spring用户来说，这对于Java云主机服务的成本降低策略来说非常有用。</p>
-<p><a target="_blank" rel="noopener" href="https://www.infoq.com/articles/java-cloud-cost-reduction">https://www.infoq.com/articles/java-cloud-cost-reduction</a></p>
+<p><a href="https://www.infoq.com/articles/java-cloud-cost-reduction" target="_blank" rel="noopener">https://www.infoq.com/articles/java-cloud-cost-reduction</a></p>
 
                       
 
@@ -685,7 +692,7 @@ var _hmt = _hmt || [];
 
               
                 <p class="article-more-link">
-                  <a class="article-more-a" href="/2017/09/07/%E5%AE%98%E6%96%B9Spring%E5%91%A8%E6%8A%A5-20170905/">
+                  <a class="article-more-a" href="/2017/09/07/官方Spring周报-20170905/">
                     展开全文 >></a>
                 </p>
                 
@@ -714,12 +721,12 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/21/Java-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AE%9E%E8%B7%B5-Spring-Boot-%E7%B3%BB%E5%88%97%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89WebService-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Java 微服务实践- Spring Boot 系列（十四）WebService-学习笔记</a>
+      <a class="article-title" href="/2017/08/21/Java-微服务实践-Spring-Boot-系列（十四）WebService-学习笔记/">Java 微服务实践- Spring Boot 系列（十四）WebService-学习笔记</a>
     </h1>
   
 
           
-            <a href="/2017/08/21/Java-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AE%9E%E8%B7%B5-Spring-Boot-%E7%B3%BB%E5%88%97%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89WebService-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="archive-article-date">
+            <a href="/2017/08/21/Java-微服务实践-Spring-Boot-系列（十四）WebService-学习笔记/" class="archive-article-date">
   	<time datetime="2017-08-21T14:46:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-21</time>
 </a>
               
@@ -758,9 +765,10 @@ var _hmt = _hmt || [];
 </blockquote>
 </li>
 </ul>
-<p>以上概念定义解释来自<a target="_blank" rel="noopener" href="http://www.w3school.com.cn/">w3cschool</a></p>
-<p>其中需要注意的有使用Java6以后自带的xjc工具根据xsd生成webservices相关实体代码命令：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xjc -d src/main/java -p com.example.springbootwebservices.domain src/main/resources/META-INF/schemas/user.xsd</span><br></pre></td></tr></table></figure><br>-d表示指定java包路径的相对目录</p>
-<p>具体SpringBoot中使用webservices案例请参考：<a target="_blank" rel="noopener" href="https://github.com/mercyblitz/segmentfault-lessons/tree/master/spring-boot/lesson-14/spring-boot-lesson-14">https://github.com/mercyblitz/segmentfault-lessons/tree/master/spring-boot/lesson-14/spring-boot-lesson-14</a></p>
+<p>以上概念定义解释来自<a href="http://www.w3school.com.cn/" target="_blank" rel="noopener">w3cschool</a></p>
+<p>其中需要注意的有使用Java6以后自带的xjc工具根据xsd生成webservices相关实体代码命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xjc -d src/main/java -p com.example.springbootwebservices.domain src/main/resources/META-INF/schemas/user.xsd</span><br></pre></td></tr></table></figure></p>
+<p>-d表示指定java包路径的相对目录</p>
+<p>具体SpringBoot中使用webservices案例请参考：<a href="https://github.com/mercyblitz/segmentfault-lessons/tree/master/spring-boot/lesson-14/spring-boot-lesson-14" target="_blank" rel="noopener">https://github.com/mercyblitz/segmentfault-lessons/tree/master/spring-boot/lesson-14/spring-boot-lesson-14</a></p>
 
                       
 
@@ -788,7 +796,7 @@ var _hmt = _hmt || [];
 
               
                 <p class="article-more-link">
-                  <a class="article-more-a" href="/2017/08/21/Java-%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%AE%9E%E8%B7%B5-Spring-Boot-%E7%B3%BB%E5%88%97%EF%BC%88%E5%8D%81%E5%9B%9B%EF%BC%89WebService-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                  <a class="article-more-a" href="/2017/08/21/Java-微服务实践-Spring-Boot-系列（十四）WebService-学习笔记/">
                     展开全文 >></a>
                 </p>
                 
@@ -817,12 +825,12 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/13/HTTP%E7%8A%B6%E6%80%81%E7%A0%81%E5%9B%BE%E7%A4%BA/">HTTP状态码图示</a>
+      <a class="article-title" href="/2017/08/13/HTTP状态码图示/">HTTP状态码图示</a>
     </h1>
   
 
           
-            <a href="/2017/08/13/HTTP%E7%8A%B6%E6%80%81%E7%A0%81%E5%9B%BE%E7%A4%BA/" class="archive-article-date">
+            <a href="/2017/08/13/HTTP状态码图示/" class="archive-article-date">
   	<time datetime="2017-08-13T08:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-13</time>
 </a>
               
@@ -834,9 +842,9 @@ var _hmt = _hmt || [];
 
         <div class="article-entry" itemprop="articleBody">
           
-                    <p>这里总结下我们日常开发中常用的HTTP状态码，分享一个老外对HTTP状态码形象化用图片表示的网站：<a target="_blank" rel="noopener" href="https://http.cat/">https://http.cat/</a></p>
+                    <p>这里总结下我们日常开发中常用的HTTP状态码，分享一个老外对HTTP状态码形象化用图片表示的网站：<a href="https://http.cat/" target="_blank" rel="noopener">https://http.cat/</a></p>
 <p>总结如下：</p>
-<center><br><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fii4a1juo9j30ee0bj3zw.jpg" alt=""><br><strong>表示服务器已经接收到了请求头，并且客户端应该继续发送请求体。</strong><br><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fii4a0xeytj30dw0b40t4.jpg" alt=""><br><strong>表示请求方已经要求服务器切换协议，并且服务器已经接受并会进行处理。</strong><br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fii4a0l292j30dk0b4wfc.jpg" alt=""><br><strong>HTTP 请求成功的标准应答。实际的应答内容由请求使用的方法来决定。</strong><br><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fii4a01i3rj30do0b4gmt.jpg" alt=""><br><strong>请求已经被接受，并且请求所对应的资源已经被创建。</strong><br><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fii49zt676j30dw0b4q3l.jpg" alt=""><br><strong>请求已被接受，尚未完成处理，也有可能会被拒绝。</strong><br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fii49zmp71j30dw0b474u.jpg" alt=""><br><strong>在成功处理请求后服务器并没有返回任何实体内容。</strong><br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fii49zfw3vj30dw0b4aak.jpg" alt=""><br><strong>依照子请求的数量的不同，消息体包含不同的响应代码。</strong><br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fii49z28hnj30b40dwjs1.jpg" alt=""><br><strong>表示被请求的资源可以提供多种选项让客户端进行选择</strong><br><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fii49yvwcaj30dw0b4t9b.jpg" alt=""><br><strong>该请求应当被定向到给定的URI（统一资源定位符）</strong><br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fii49yrg7qj30dl0b40u3.jpg" alt=""><br><strong>这是一个工业实践和标准相互矛盾的例子。一些Web应用和框架会使用302状态码</strong><br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fii49yl9uuj30dw0b4q3h.jpg" alt=""><br><strong>对应当前请求的响应可以使用GET方法从另一个URI获取</strong><br><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fii49yc066j30b40dwwfb.jpg" alt=""><br><strong>表示资源自上次请求以来没有被改变。</strong><br><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fii49y6afmj30dw0b4mxp.jpg" alt=""><br><strong>（译注：被请求的资源必须通过指定的代理才能被访问） 大多数HTTP客户端不会正确响应这个状态码，主要是出于安全性的原因</strong><br><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fii49y3ty9j30b40dwq3l.jpg" alt=""><br><strong>在这种情况下，请求会从另外的URI响应但是未来的请求仍会使用原始的URI</strong><br><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fii45xt3cpj30dw0b43zb.jpg" alt=""><br><strong>因为错误的语法，请求不能完成</strong><br><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fii45xk04fj30df0b43zy.jpg" alt=""><br><strong>当需要授权，但授权失败或还没有授权时返回的状态码</strong><br><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fii45xd1i2j30dw0b4aav.jpg" alt=""><br><strong>该状态码是为了将来可能的需求而预留的。这个代码通常不使用，但是其最初的意图是可以被某种电子货币所使用。</strong><br><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fii45x75byj30dr0b4aaw.jpg" alt=""><br><strong>请求有效，但是服务器拒绝响应它。</strong><br><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fii45wzw3qj30dt0b4q4o.jpg" alt=""><br><strong>请求的资源不能找到，但是将来也许可用。</strong><br><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fii45wvyv0j30dm0b4aaz.jpg" alt=""><br><strong>请求某资源时使用的请求方法不能被该资源所支持。</strong><br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fii45wlh8kj30de0b475n.jpg" alt=""><br><strong>被请求资源能够产生的内容不满足请求头中指定的类型。</strong><br><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fii45w9496j30dr0b4t9z.jpg" alt=""><br><strong>服务器等待请求超时</strong><br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fii45vuqk7j30dr0b4t9z.jpg" alt=""><br><strong>因为请求中存在冲突导致请求无法被处理</strong><br><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fii45vcm96j30dw0b4mxq.jpg" alt=""><br><strong>被请求的资源已不可用，同时后续也不再可用。</strong><br><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fii45uwpztj30dw0b4gma.jpg" alt=""><br><strong>请求所对应的资源需要指明长度，但请求中并没有包含长度。</strong><br><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fii45ug6rkj30dk0b40tl.jpg" alt=""><br><strong>其请求数据实体过大，超过服务器处理能力。</strong><br><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fii45u41r2j309h0dw0tq.jpg" alt=""><br><strong>URI过长，服务器不能处理</strong><br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fii45tomc8j30dw0b4dgb.jpg" alt=""><br><strong>客户端请求部分文件，但是服务器并不能提供这个范围值。</strong><br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fii45tgczyj30di0b4jse.jpg" alt=""><br><strong>服务器不能满足请求头重指定的要求。</strong><br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fii45t9fuzj30dw0b4t93.jpg" alt=""><br><strong>在实际HTTP服务器中不会实现该状态码</strong><br><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fii45t5bqvj30b40dw0ta.jpg" alt=""><br><strong>请求格式正确但是因为存在语意错误无法响应。</strong><br><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fii45szla3j30dw0b4758.jpg" alt=""><br><strong>当前资源被上锁</strong><br><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fii45ssuddj30dw0b4mxx.jpg" alt=""><br><strong>因为之前的请求失败而导致了本次请求失败</strong><br><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fii45sob45j30dw0b43za.jpg" alt=""><br><strong>在WebDav Advanced Collections 草案中定义</strong><br><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fii45sg74yj30dk0b4wfm.jpg" alt=""><br><strong>客户端应该切换到不同的协议</strong><br><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fii45s8zp7j30dh0b4gn4.jpg" alt=""><br><strong>用户在指定时间内发送的请求过多。</strong><br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fii45s1jgbj30dm0b4jss.jpg" alt=""><br><strong>因为请求中的单个域过大、或者全部域全加起来过大。</strong><br><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fii45rv5zjj30ds0b4wfo.jpg" alt=""><br><strong>在Nginx记录中使用，表示服务器没有向客户端返回信息并且已经关闭了连接</strong><br><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fii45ropewj30dw0b4gm5.jpg" alt=""><br><strong>微软所扩展的一个状态码</strong><br><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fii45ri7x7j30dd0b4abj.jpg" alt=""><br><strong>当没有其他更加确切的信息可以给出时，给出的一个一般性错误信息。</strong><br><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fii45rd75fj30da0b4wff.jpg" alt=""><br><strong>作为网关或者代理工作的服务器尝试执行请求时，从上游服务器接收到无效的响应</strong><br><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fii45r4qr0j30dw0b4mxs.jpg" alt=""><br><strong>服务器当前不可用。</strong><br><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fii45qt3zuj30dw0b40tg.jpg" alt=""><br><strong>请求的透明内容协商导致循环引用</strong><br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fii45qnic4j30da0b40tl.jpg" alt=""><br><strong>服务器无法存储完成请求所必须的内容。</strong><br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fii45qi54qj30de0b43za.jpg" alt=""><br><strong>服务器在处理请求时发现一个无限循环</strong><br><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fii45qbsaoj30b40dwgm6.jpg" alt=""><br><strong>尽管很多服务器使用该协议，但其并没有在任何RFC中说明</strong><br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fii45q4f5qj30df0b4t9r.jpg" alt=""><br><strong>这个状态码没有在任何RFC中说明，但微软公司在用。</strong><br></center>
+<center><br><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fii4a1juo9j30ee0bj3zw.jpg" alt><br><strong>表示服务器已经接收到了请求头，并且客户端应该继续发送请求体。</strong><br><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fii4a0xeytj30dw0b40t4.jpg" alt><br><strong>表示请求方已经要求服务器切换协议，并且服务器已经接受并会进行处理。</strong><br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fii4a0l292j30dk0b4wfc.jpg" alt><br><strong>HTTP 请求成功的标准应答。实际的应答内容由请求使用的方法来决定。</strong><br><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fii4a01i3rj30do0b4gmt.jpg" alt><br><strong>请求已经被接受，并且请求所对应的资源已经被创建。</strong><br><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fii49zt676j30dw0b4q3l.jpg" alt><br><strong>请求已被接受，尚未完成处理，也有可能会被拒绝。</strong><br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fii49zmp71j30dw0b474u.jpg" alt><br><strong>在成功处理请求后服务器并没有返回任何实体内容。</strong><br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fii49zfw3vj30dw0b4aak.jpg" alt><br><strong>依照子请求的数量的不同，消息体包含不同的响应代码。</strong><br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fii49z28hnj30b40dwjs1.jpg" alt><br><strong>表示被请求的资源可以提供多种选项让客户端进行选择</strong><br><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fii49yvwcaj30dw0b4t9b.jpg" alt><br><strong>该请求应当被定向到给定的URI（统一资源定位符）</strong><br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fii49yrg7qj30dl0b40u3.jpg" alt><br><strong>这是一个工业实践和标准相互矛盾的例子。一些Web应用和框架会使用302状态码</strong><br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fii49yl9uuj30dw0b4q3h.jpg" alt><br><strong>对应当前请求的响应可以使用GET方法从另一个URI获取</strong><br><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fii49yc066j30b40dwwfb.jpg" alt><br><strong>表示资源自上次请求以来没有被改变。</strong><br><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fii49y6afmj30dw0b4mxp.jpg" alt><br><strong>（译注：被请求的资源必须通过指定的代理才能被访问） 大多数HTTP客户端不会正确响应这个状态码，主要是出于安全性的原因</strong><br><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fii49y3ty9j30b40dwq3l.jpg" alt><br><strong>在这种情况下，请求会从另外的URI响应但是未来的请求仍会使用原始的URI</strong><br><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fii45xt3cpj30dw0b43zb.jpg" alt><br><strong>因为错误的语法，请求不能完成</strong><br><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fii45xk04fj30df0b43zy.jpg" alt><br><strong>当需要授权，但授权失败或还没有授权时返回的状态码</strong><br><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fii45xd1i2j30dw0b4aav.jpg" alt><br><strong>该状态码是为了将来可能的需求而预留的。这个代码通常不使用，但是其最初的意图是可以被某种电子货币所使用。</strong><br><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fii45x75byj30dr0b4aaw.jpg" alt><br><strong>请求有效，但是服务器拒绝响应它。</strong><br><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fii45wzw3qj30dt0b4q4o.jpg" alt><br><strong>请求的资源不能找到，但是将来也许可用。</strong><br><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fii45wvyv0j30dm0b4aaz.jpg" alt><br><strong>请求某资源时使用的请求方法不能被该资源所支持。</strong><br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fii45wlh8kj30de0b475n.jpg" alt><br><strong>被请求资源能够产生的内容不满足请求头中指定的类型。</strong><br><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fii45w9496j30dr0b4t9z.jpg" alt><br><strong>服务器等待请求超时</strong><br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fii45vuqk7j30dr0b4t9z.jpg" alt><br><strong>因为请求中存在冲突导致请求无法被处理</strong><br><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fii45vcm96j30dw0b4mxq.jpg" alt><br><strong>被请求的资源已不可用，同时后续也不再可用。</strong><br><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fii45uwpztj30dw0b4gma.jpg" alt><br><strong>请求所对应的资源需要指明长度，但请求中并没有包含长度。</strong><br><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fii45ug6rkj30dk0b40tl.jpg" alt><br><strong>其请求数据实体过大，超过服务器处理能力。</strong><br><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fii45u41r2j309h0dw0tq.jpg" alt><br><strong>URI过长，服务器不能处理</strong><br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fii45tomc8j30dw0b4dgb.jpg" alt><br><strong>客户端请求部分文件，但是服务器并不能提供这个范围值。</strong><br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fii45tgczyj30di0b4jse.jpg" alt><br><strong>服务器不能满足请求头重指定的要求。</strong><br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fii45t9fuzj30dw0b4t93.jpg" alt><br><strong>在实际HTTP服务器中不会实现该状态码</strong><br><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fii45t5bqvj30b40dw0ta.jpg" alt><br><strong>请求格式正确但是因为存在语意错误无法响应。</strong><br><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fii45szla3j30dw0b4758.jpg" alt><br><strong>当前资源被上锁</strong><br><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fii45ssuddj30dw0b4mxx.jpg" alt><br><strong>因为之前的请求失败而导致了本次请求失败</strong><br><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fii45sob45j30dw0b43za.jpg" alt><br><strong>在WebDav Advanced Collections 草案中定义</strong><br><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fii45sg74yj30dk0b4wfm.jpg" alt><br><strong>客户端应该切换到不同的协议</strong><br><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fii45s8zp7j30dh0b4gn4.jpg" alt><br><strong>用户在指定时间内发送的请求过多。</strong><br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fii45s1jgbj30dm0b4jss.jpg" alt><br><strong>因为请求中的单个域过大、或者全部域全加起来过大。</strong><br><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fii45rv5zjj30ds0b4wfo.jpg" alt><br><strong>在Nginx记录中使用，表示服务器没有向客户端返回信息并且已经关闭了连接</strong><br><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fii45ropewj30dw0b4gm5.jpg" alt><br><strong>微软所扩展的一个状态码</strong><br><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fii45ri7x7j30dd0b4abj.jpg" alt><br><strong>当没有其他更加确切的信息可以给出时，给出的一个一般性错误信息。</strong><br><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fii45rd75fj30da0b4wff.jpg" alt><br><strong>作为网关或者代理工作的服务器尝试执行请求时，从上游服务器接收到无效的响应</strong><br><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fii45r4qr0j30dw0b4mxs.jpg" alt><br><strong>服务器当前不可用。</strong><br><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fii45qt3zuj30dw0b40tg.jpg" alt><br><strong>请求的透明内容协商导致循环引用</strong><br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fii45qnic4j30da0b40tl.jpg" alt><br><strong>服务器无法存储完成请求所必须的内容。</strong><br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fii45qi54qj30de0b43za.jpg" alt><br><strong>服务器在处理请求时发现一个无限循环</strong><br><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fii45qbsaoj30b40dwgm6.jpg" alt><br><strong>尽管很多服务器使用该协议，但其并没有在任何RFC中说明</strong><br><img src="https://ws4.sinaimg.cn/large/006tKfTcgy1fii45q4f5qj30df0b4t9r.jpg" alt><br><strong>这个状态码没有在任何RFC中说明，但微软公司在用。</strong><br></center>
                       
 
                         
@@ -859,7 +867,7 @@ var _hmt = _hmt || [];
 
               
                 <p class="article-more-link">
-                  <a class="article-more-a" href="/2017/08/13/HTTP%E7%8A%B6%E6%80%81%E7%A0%81%E5%9B%BE%E7%A4%BA/">
+                  <a class="article-more-a" href="/2017/08/13/HTTP状态码图示/">
                     展开全文 >></a>
                 </p>
                 
@@ -888,12 +896,12 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/13/Groovy%E5%85%A5%E9%97%A8-%E5%8F%98%E9%87%8F%E4%B8%8E%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B/">Groovy入门-变量与变量类型</a>
+      <a class="article-title" href="/2017/08/13/Groovy入门-变量与变量类型/">Groovy入门-变量与变量类型</a>
     </h1>
   
 
           
-            <a href="/2017/08/13/Groovy%E5%85%A5%E9%97%A8-%E5%8F%98%E9%87%8F%E4%B8%8E%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B/" class="archive-article-date">
+            <a href="/2017/08/13/Groovy入门-变量与变量类型/" class="archive-article-date">
   	<time datetime="2017-08-13T06:34:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-13</time>
 </a>
               
@@ -920,7 +928,8 @@ var _hmt = _hmt || [];
 <ul>
 <li>标识符必须由字母和数字组成，大小写敏感，标识符的首字符必须是字母。下划线(_)允许出现在标识符中，以字母看待。标识符绝对不允许是 Groovy关键词。<br>声明变量时需要引入变量名称，可以为变量指定初始值，也可以确定变量能被引用的作用域或者作用范围。当在程序中首次使用某个变量时，需要使用Groovy关键<code>def</code>关键字声明，不能在同一个作用域内声明两次相同的变量名。</li>
 </ul>
-<p>示例：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Groovy中对不同类型变量的定义和使用</span><br><span class="line"> * @author strongant</span><br><span class="line"> * Contact me at &lt;a href=&quot;mailto:strongant1994@gmail.com&quot;&gt;strongant1994@gmail.com&lt;/a&gt;</span><br><span class="line"> * @see</span><br><span class="line"> * @since 2017/8/13</span><br><span class="line"> */</span><br><span class="line">class DefineUseVariable &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        // 声明一个值为admin，类型为String的变量</span><br><span class="line">        def name = &#x27;admin&#x27;</span><br><span class="line">        // 声明一个值为10的数字，类型为Integer</span><br><span class="line">        def age = 10</span><br><span class="line">        // 声明一个值为20.0的数字，类型为BigDecimal</span><br><span class="line">        def money = 20.0</span><br><span class="line">        // 声明一个值为true的布尔变量，类型为Boolean</span><br><span class="line">        def isMale = true</span><br><span class="line">        // 再次声明一个值为admin，类型为String的变量，下面代码将运行错误。</span><br><span class="line">        //def name = &quot;Bob&quot;</span><br><span class="line">        // 输出变量的值和类型。</span><br><span class="line">        //注意，在输出的时候，如果要使用&#x27;$&#x27;符号进行输出变量，则字符串必须使用双引号的三双引号的情况下，才可以正常输出变量值。</span><br><span class="line">        // 如果是单引号，则不会输出变量值，原样输出</span><br><span class="line">        println &quot;name is $&#123;name&#125;. I&#x27;m $&#123;age&#125; years old. I hava $&#123;money&#125; dollars.&quot;</span><br><span class="line">        println &quot;name type: $&#123;name.class&#125;&quot;</span><br><span class="line">        println &quot;age type: $&#123;age.class&#125;&quot;</span><br><span class="line">        println &quot;money type: $&#123;money.class&#125;&quot;</span><br><span class="line">        println &quot;isMale type: $&#123;isMale.class&#125;&quot;</span><br><span class="line">        // 声明一个值为10.0的浮点型的变量，类型为Float</span><br><span class="line">        def floatTypeVariable = 10.0F</span><br><span class="line">        println &quot;floatTypeVariable type: $&#123;floatTypeVariable.class&#125;&quot;</span><br><span class="line">        // 声明一个值为10.0的浮点型的变量，类型为Double</span><br><span class="line">        def doubleTypeVariable = 10.0D</span><br><span class="line">        println &quot;doubleTypeVariable type: $&#123;doubleTypeVariable.class&#125;&quot;</span><br><span class="line">        // 声明一个值为10000的长整型的变量，类型为Long</span><br><span class="line">        def longTypeVariable = 10000L</span><br><span class="line">        println &quot;longTypeVariable type: $&#123;longTypeVariable.class&#125;&quot;</span><br><span class="line">        // 声明一个值为10000的长整型的变量，类型为大长整型BigInteger</span><br><span class="line">        def bigIntegerTypeVariable = 10000G</span><br><span class="line">        println &quot;bigIntegerTypeVariable type: $&#123;bigIntegerTypeVariable.class&#125;&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>示例的代码也可以在此地址找到：<a target="_blank" rel="noopener" href="https://gist.github.com/strongant/22c489f5a51f416d1bf3e97d86f031dd">https://gist.github.com/strongant/22c489f5a51f416d1bf3e97d86f031dd</a></p>
+<p>示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Groovy中对不同类型变量的定义和使用</span><br><span class="line"> * @author strongant</span><br><span class="line"> * Contact me at &lt;a href=&quot;mailto:strongant1994@gmail.com&quot;&gt;strongant1994@gmail.com&lt;/a&gt;</span><br><span class="line"> * @see</span><br><span class="line"> * @since 2017/8/13</span><br><span class="line"> */</span><br><span class="line">class DefineUseVariable &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        // 声明一个值为admin，类型为String的变量</span><br><span class="line">        def name = &apos;admin&apos;</span><br><span class="line">        // 声明一个值为10的数字，类型为Integer</span><br><span class="line">        def age = 10</span><br><span class="line">        // 声明一个值为20.0的数字，类型为BigDecimal</span><br><span class="line">        def money = 20.0</span><br><span class="line">        // 声明一个值为true的布尔变量，类型为Boolean</span><br><span class="line">        def isMale = true</span><br><span class="line">        // 再次声明一个值为admin，类型为String的变量，下面代码将运行错误。</span><br><span class="line">        //def name = &quot;Bob&quot;</span><br><span class="line">        // 输出变量的值和类型。</span><br><span class="line">        //注意，在输出的时候，如果要使用&apos;$&apos;符号进行输出变量，则字符串必须使用双引号的三双引号的情况下，才可以正常输出变量值。</span><br><span class="line">        // 如果是单引号，则不会输出变量值，原样输出</span><br><span class="line">        println &quot;name is $&#123;name&#125;. I&apos;m $&#123;age&#125; years old. I hava $&#123;money&#125; dollars.&quot;</span><br><span class="line">        println &quot;name type: $&#123;name.class&#125;&quot;</span><br><span class="line">        println &quot;age type: $&#123;age.class&#125;&quot;</span><br><span class="line">        println &quot;money type: $&#123;money.class&#125;&quot;</span><br><span class="line">        println &quot;isMale type: $&#123;isMale.class&#125;&quot;</span><br><span class="line">        // 声明一个值为10.0的浮点型的变量，类型为Float</span><br><span class="line">        def floatTypeVariable = 10.0F</span><br><span class="line">        println &quot;floatTypeVariable type: $&#123;floatTypeVariable.class&#125;&quot;</span><br><span class="line">        // 声明一个值为10.0的浮点型的变量，类型为Double</span><br><span class="line">        def doubleTypeVariable = 10.0D</span><br><span class="line">        println &quot;doubleTypeVariable type: $&#123;doubleTypeVariable.class&#125;&quot;</span><br><span class="line">        // 声明一个值为10000的长整型的变量，类型为Long</span><br><span class="line">        def longTypeVariable = 10000L</span><br><span class="line">        println &quot;longTypeVariable type: $&#123;longTypeVariable.class&#125;&quot;</span><br><span class="line">        // 声明一个值为10000的长整型的变量，类型为大长整型BigInteger</span><br><span class="line">        def bigIntegerTypeVariable = 10000G</span><br><span class="line">        println &quot;bigIntegerTypeVariable type: $&#123;bigIntegerTypeVariable.class&#125;&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>示例的代码也可以在此地址找到：<a href="https://gist.github.com/strongant/22c489f5a51f416d1bf3e97d86f031dd" target="_blank" rel="noopener">https://gist.github.com/strongant/22c489f5a51f416d1bf3e97d86f031dd</a></p>
 <h3 id="Groovy变量自动转换和强制转换示意图"><a href="#Groovy变量自动转换和强制转换示意图" class="headerlink" title="Groovy变量自动转换和强制转换示意图"></a>Groovy变量自动转换和强制转换示意图</h3><p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fii2v2bh27j31by0y6wl6.jpg" alt="Groovy变量自动转换和强制转换示意图"></p>
 <h3 id="Groovy中关键字"><a href="#Groovy中关键字" class="headerlink" title="Groovy中关键字"></a>Groovy中关键字</h3><p><strong>abstract</strong> <strong>case</strong> <strong>do</strong> <strong>finally</strong> <strong>instanceof</strong> <strong>package</strong> <strong>strictfp</strong> <strong>throws</strong> <strong>with</strong> <strong>any</strong> <strong>catch</strong> <strong>double</strong> <strong>float</strong> <strong>int</strong> <strong>private</strong> <strong>super</strong> <strong>transient</strong> <strong>as</strong> <strong>assert</strong> <strong>char</strong> <strong>class</strong> <strong>else</strong> <strong>enum</strong> <strong>for</strong> <strong>if</strong> <strong>interface</strong> <strong>long</strong> <strong>protected</strong> <strong>public</strong> <strong>switch</strong> <strong>synchronized</strong> <strong>true</strong> <strong>try</strong> <strong>boolean</strong> <strong>continue</strong> <strong>extends</strong> <strong>implements</strong> <strong>native</strong> <strong>return</strong> <strong>this</strong> <strong>void</strong> <strong>break</strong> <strong>def</strong> <strong>false</strong> <strong>import</strong> <strong>new</strong> <strong>short</strong> <strong>threadsafe</strong> <strong>volatile</strong> <strong>byte</strong> <strong>default</strong> <strong>final</strong> <strong>in</strong> <strong>null</strong> <strong>static</strong> <strong>throw</strong> <strong>while</strong></p>
 
@@ -946,7 +955,7 @@ var _hmt = _hmt || [];
 
               
                 <p class="article-more-link">
-                  <a class="article-more-a" href="/2017/08/13/Groovy%E5%85%A5%E9%97%A8-%E5%8F%98%E9%87%8F%E4%B8%8E%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B/">
+                  <a class="article-more-a" href="/2017/08/13/Groovy入门-变量与变量类型/">
                     展开全文 >></a>
                 </p>
                 
@@ -975,12 +984,12 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/13/Groovy%E5%85%A5%E9%97%A8/">Groovy入门-安装</a>
+      <a class="article-title" href="/2017/08/13/Groovy入门/">Groovy入门-安装</a>
     </h1>
   
 
           
-            <a href="/2017/08/13/Groovy%E5%85%A5%E9%97%A8/" class="archive-article-date">
+            <a href="/2017/08/13/Groovy入门/" class="archive-article-date">
   	<time datetime="2017-08-13T03:03:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-13</time>
 </a>
               
@@ -1005,23 +1014,29 @@ var _hmt = _hmt || [];
 <li>可以保护整个Java产业在Java上巨大的投资</li>
 <li>在中小型项目中可以替代Java，在大型Java项目中可以嵌入Groovy应用</li>
 </ul>
-<h2 id="安装，使用官网推荐的安装方法"><a href="#安装，使用官网推荐的安装方法" class="headerlink" title="安装，使用官网推荐的安装方法"></a>安装，使用官网推荐的安装方法</h2><p>首先安装SDKMAN! (一个软件开发工具包管理工具)<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl -s get.sdkman.io | bash</span><br></pre></td></tr></table></figure><br>使其SDKMAN工具生效<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ source &quot;$HOME/.sdkman/bin/sdkman-init.sh&quot;</span><br></pre></td></tr></table></figure></p>
+<h2 id="安装，使用官网推荐的安装方法"><a href="#安装，使用官网推荐的安装方法" class="headerlink" title="安装，使用官网推荐的安装方法"></a>安装，使用官网推荐的安装方法</h2><p>首先安装SDKMAN! (一个软件开发工具包管理工具)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ curl -s get.sdkman.io | bash</span><br></pre></td></tr></table></figure></p>
+<p>使其SDKMAN工具生效<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ source &quot;$HOME/.sdkman/bin/sdkman-init.sh&quot;</span><br></pre></td></tr></table></figure></p>
 <ul>
 <li><p>安装最新版本的Groovy:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sdk install groovy</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sdk install groovy</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>等待一会儿之后，显示安装完毕，此时我们可以使用此命令验证groovy是否安装成功</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ groovy -version</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ groovy -version</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h2 id="安装2"><a href="#安装2" class="headerlink" title="安装2"></a>安装2</h2><ol>
-<li>在官网下载groovy sdk<br>下载地址:<br><a target="_blank" rel="noopener" href="https://akamai.bintray.com/9a/9a20d8868edbbc82a8edd03b6ae6f7dfbe406e42a468f2c44d5285493f679676?__gda__=exp=1466580235~hmac=4c1a4086a45aca9a522aac513d022d04f90eec437163110a69a441bf823143a2&amp;response-content-disposition=attachment%3Bfilename%3D%22apache-groovy-sdk-2.4.7.zip%22&amp;response-content-type=application%2Fx-www-form-urlencoded">https://akamai.bintray.com/9a/9a20d8868edbbc82a8edd03b6ae6f7dfbe406e42a468f2c44d5285493f679676?__gda__=exp=1466580235~hmac=4c1a4086a45aca9a522aac513d022d04f90eec437163110a69a441bf823143a2&amp;response-content-disposition=attachment%3Bfilename%3D%22apache-groovy-sdk-2.4.7.zip%22&amp;response-content-type=application%2Fx-www-form-urlencoded</a></li>
-<li>进行解压：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ unzip apache-groovy-sdk-2.4.7.zip</span><br></pre></td></tr></table></figure></li>
-<li>配置到全局变量或者用户所在的变量环境<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/profile</span><br><span class="line">//添加groovy解压目录所在的位置</span><br><span class="line">//我当前安装目录为：/home/devbwh/groovy-2.4.7，在/etc/profile文件末尾添加一下配置：</span><br><span class="line">export GROOVY_HOME=/home/devbwh/groovy-2.4.7</span><br><span class="line">export PATH=GROOVY_HOME/bin:$PATH</span><br></pre></td></tr></table></figure></li>
-<li>使其生效<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
+<li>在官网下载groovy sdk<br>下载地址:<br><a href="https://akamai.bintray.com/9a/9a20d8868edbbc82a8edd03b6ae6f7dfbe406e42a468f2c44d5285493f679676?__gda__=exp=1466580235~hmac=4c1a4086a45aca9a522aac513d022d04f90eec437163110a69a441bf823143a2&amp;response-content-disposition=attachment%3Bfilename%3D%22apache-groovy-sdk-2.4.7.zip%22&amp;response-content-type=application%2Fx-www-form-urlencoded" target="_blank" rel="noopener">https://akamai.bintray.com/9a/9a20d8868edbbc82a8edd03b6ae6f7dfbe406e42a468f2c44d5285493f679676?__gda__=exp=1466580235~hmac=4c1a4086a45aca9a522aac513d022d04f90eec437163110a69a441bf823143a2&amp;response-content-disposition=attachment%3Bfilename%3D%22apache-groovy-sdk-2.4.7.zip%22&amp;response-content-type=application%2Fx-www-form-urlencoded</a></li>
+<li><p>进行解压：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ unzip apache-groovy-sdk-2.4.7.zip</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置到全局变量或者用户所在的变量环境</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/profile</span><br><span class="line">//添加groovy解压目录所在的位置</span><br><span class="line">//我当前安装目录为：/home/devbwh/groovy-2.4.7，在/etc/profile文件末尾添加一下配置：</span><br><span class="line">export GROOVY_HOME=/home/devbwh/groovy-2.4.7</span><br><span class="line">export PATH=GROOVY_HOME/bin:$PATH</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使其生效</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<h2 id="安装3-Mac安装"><a href="#安装3-Mac安装" class="headerlink" title="安装3(Mac安装)"></a>安装3(Mac安装)</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install groovy</span><br></pre></td></tr></table></figure>
+<h2 id="安装3-Mac安装"><a href="#安装3-Mac安装" class="headerlink" title="安装3(Mac安装)"></a>安装3(Mac安装)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install groovy</span><br></pre></td></tr></table></figure>
 
                       
 
@@ -1045,7 +1060,7 @@ var _hmt = _hmt || [];
 
               
                 <p class="article-more-link">
-                  <a class="article-more-a" href="/2017/08/13/Groovy%E5%85%A5%E9%97%A8/">
+                  <a class="article-more-a" href="/2017/08/13/Groovy入门/">
                     展开全文 >></a>
                 </p>
                 
@@ -1074,12 +1089,12 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/12/%E8%B7%9F%E5%B0%8F%E9%A9%AC%E5%93%A5%E5%AD%A6%E4%B9%A0SpringBoot/">跟小马哥学习SpringBoot</a>
+      <a class="article-title" href="/2017/08/12/跟小马哥学习SpringBoot/">跟小马哥学习SpringBoot</a>
     </h1>
   
 
           
-            <a href="/2017/08/12/%E8%B7%9F%E5%B0%8F%E9%A9%AC%E5%93%A5%E5%AD%A6%E4%B9%A0SpringBoot/" class="archive-article-date">
+            <a href="/2017/08/12/跟小马哥学习SpringBoot/" class="archive-article-date">
   	<time datetime="2017-08-12T06:36:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-12</time>
 </a>
               
@@ -1097,28 +1112,28 @@ var _hmt = _hmt || [];
 </blockquote>
 <p><strong>讲座大纲</strong></p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://segmentfault.com/l/1500000009515571?r=bPp4Li">Java 微服务实践 - Spring Boot 系列（一）初体验</a></li>
-<li><a target="_blank" rel="noopener" href="https://segmentfault.com/l/1500000009659111?r=bPp4Li">Java 微服务实践 - Spring Boot 系列（二） Web篇（上）</a></li>
-<li><a target="_blank" rel="noopener" href="https://segmentfault.com/l/1500000009767025?r=bPp4Li">Java 微服务实践 - Spring Boot 系列（三）Web篇（中）</a></li>
-<li><a target="_blank" rel="noopener" href="https://segmentfault.com/l/1500000009830944?r=bPp4Li">Java 微服务实践 - Spring Boot 系列（四）Web篇（下）</a></li>
-<li><a target="_blank" rel="noopener" href="https://segmentfault.com/l/1500000009844304?r=bPp4Li">Java 微服务实践 - Spring Boot 系列（五）嵌入式Web容器</a></li>
-<li><a target="_blank" rel="noopener" href="https://segmentfault.com/l/1500000009904190?r=bPp4Li">Java 微服务实践 - Spring Boot 系列（六）数据库 JDBC</a></li>
-<li><a target="_blank" rel="noopener" href="https://segmentfault.com/l/1500000009952220?r=bPp4Li">Java 微服务实践 - Spring Boot 系列（七）MyBatis</a></li>
-<li><a target="_blank" rel="noopener" href="https://segmentfault.com/l/1500000009952527?r=bPp4Li">Java 微服务实践 - Spring Boot 系列（八）JPA</a></li>
-<li><a target="_blank" rel="noopener" href="https://segmentfault.com/l/1500000009957330?r=bPp4Li">Java 微服务实践 - Spring Boot 系列（九）NoSQL</a></li>
-<li><a target="_blank" rel="noopener" href="https://segmentfault.com/l/1500000009970812?r=bPp4Li">Java 微服务实践 - Spring Boot 系列（十）缓存</a></li>
-<li><a target="_blank" rel="noopener" href="https://segmentfault.com/l/1500000009971600?r=bPp4Li">Java 微服务实践 - Spring Boot 系列（十一）消息</a></li>
-<li><a target="_blank" rel="noopener" href="https://segmentfault.com/l/1500000009971716?r=bPp4Li">Java 微服务实践 - Spring Boot 系列（十二）验证</a></li>
-<li><a target="_blank" rel="noopener" href="https://segmentfault.com/l/1500000009971764?r=bPp4Li">Java 微服务实践 - Spring Boot 系列（十三）WebSocket</a></li>
-<li><a target="_blank" rel="noopener" href="https://segmentfault.com/l/1500000009978309?r=bPp4Li">Java 微服务实践- Spring Boot 系列（十四）WebService</a></li>
-<li><a target="_blank" rel="noopener" href="https://segmentfault.com/l/1500000009978481?r=bPp4Li">Java 微服务实践 - Spring Boot 系列（十五）安全</a></li>
-<li><a target="_blank" rel="noopener" href="https://segmentfault.com/l/1500000009978585?r=bPp4Li">Java 微服务实践 - Spring Boot 系列（十六）日志</a></li>
-<li><a target="_blank" rel="noopener" href="https://segmentfault.com/l/1500000009978661?r=bPp4Li">Java 微服务实践 - Spring Boot 系列（十七）监管</a></li>
-<li><a target="_blank" rel="noopener" href="https://segmentfault.com/l/1500000009978729?r=bPp4Li">Java 微服务实践 - Spring Boot 系列（十八）配置</a></li>
-<li><a target="_blank" rel="noopener" href="https://segmentfault.com/l/1500000009978826?r=bPp4Li">Java 微服务实践 - Spring Boot 系列（十九）测试</a></li>
-<li><a target="_blank" rel="noopener" href="https://segmentfault.com/l/1500000009978904?r=bPp4Li">Java 微服务实践 - Spring Boot 系列（二十）自定义启动器</a></li>
+<li><a href="https://segmentfault.com/l/1500000009515571?r=bPp4Li" target="_blank" rel="noopener">Java 微服务实践 - Spring Boot 系列（一）初体验</a></li>
+<li><a href="https://segmentfault.com/l/1500000009659111?r=bPp4Li" target="_blank" rel="noopener">Java 微服务实践 - Spring Boot 系列（二） Web篇（上）</a></li>
+<li><a href="https://segmentfault.com/l/1500000009767025?r=bPp4Li" target="_blank" rel="noopener">Java 微服务实践 - Spring Boot 系列（三）Web篇（中）</a></li>
+<li><a href="https://segmentfault.com/l/1500000009830944?r=bPp4Li" target="_blank" rel="noopener">Java 微服务实践 - Spring Boot 系列（四）Web篇（下）</a></li>
+<li><a href="https://segmentfault.com/l/1500000009844304?r=bPp4Li" target="_blank" rel="noopener">Java 微服务实践 - Spring Boot 系列（五）嵌入式Web容器</a></li>
+<li><a href="https://segmentfault.com/l/1500000009904190?r=bPp4Li" target="_blank" rel="noopener">Java 微服务实践 - Spring Boot 系列（六）数据库 JDBC</a></li>
+<li><a href="https://segmentfault.com/l/1500000009952220?r=bPp4Li" target="_blank" rel="noopener">Java 微服务实践 - Spring Boot 系列（七）MyBatis</a></li>
+<li><a href="https://segmentfault.com/l/1500000009952527?r=bPp4Li" target="_blank" rel="noopener">Java 微服务实践 - Spring Boot 系列（八）JPA</a></li>
+<li><a href="https://segmentfault.com/l/1500000009957330?r=bPp4Li" target="_blank" rel="noopener">Java 微服务实践 - Spring Boot 系列（九）NoSQL</a></li>
+<li><a href="https://segmentfault.com/l/1500000009970812?r=bPp4Li" target="_blank" rel="noopener">Java 微服务实践 - Spring Boot 系列（十）缓存</a></li>
+<li><a href="https://segmentfault.com/l/1500000009971600?r=bPp4Li" target="_blank" rel="noopener">Java 微服务实践 - Spring Boot 系列（十一）消息</a></li>
+<li><a href="https://segmentfault.com/l/1500000009971716?r=bPp4Li" target="_blank" rel="noopener">Java 微服务实践 - Spring Boot 系列（十二）验证</a></li>
+<li><a href="https://segmentfault.com/l/1500000009971764?r=bPp4Li" target="_blank" rel="noopener">Java 微服务实践 - Spring Boot 系列（十三）WebSocket</a></li>
+<li><a href="https://segmentfault.com/l/1500000009978309?r=bPp4Li" target="_blank" rel="noopener">Java 微服务实践- Spring Boot 系列（十四）WebService</a></li>
+<li><a href="https://segmentfault.com/l/1500000009978481?r=bPp4Li" target="_blank" rel="noopener">Java 微服务实践 - Spring Boot 系列（十五）安全</a></li>
+<li><a href="https://segmentfault.com/l/1500000009978585?r=bPp4Li" target="_blank" rel="noopener">Java 微服务实践 - Spring Boot 系列（十六）日志</a></li>
+<li><a href="https://segmentfault.com/l/1500000009978661?r=bPp4Li" target="_blank" rel="noopener">Java 微服务实践 - Spring Boot 系列（十七）监管</a></li>
+<li><a href="https://segmentfault.com/l/1500000009978729?r=bPp4Li" target="_blank" rel="noopener">Java 微服务实践 - Spring Boot 系列（十八）配置</a></li>
+<li><a href="https://segmentfault.com/l/1500000009978826?r=bPp4Li" target="_blank" rel="noopener">Java 微服务实践 - Spring Boot 系列（十九）测试</a></li>
+<li><a href="https://segmentfault.com/l/1500000009978904?r=bPp4Li" target="_blank" rel="noopener">Java 微服务实践 - Spring Boot 系列（二十）自定义启动器</a></li>
 </ul>
-<p>原文链接：<a target="_blank" rel="noopener" href="https://segmentfault.com/u/mercyblitz/lives?type=started">https://segmentfault.com/u/mercyblitz/lives?type=started</a><br>本文作者：小马哥</p>
+<p>原文链接：<a href="https://segmentfault.com/u/mercyblitz/lives?type=started" target="_blank" rel="noopener">https://segmentfault.com/u/mercyblitz/lives?type=started</a><br>本文作者：小马哥</p>
 
                       
 
@@ -1131,7 +1146,7 @@ var _hmt = _hmt || [];
 
               
                 <p class="article-more-link">
-                  <a class="article-more-a" href="/2017/08/12/%E8%B7%9F%E5%B0%8F%E9%A9%AC%E5%93%A5%E5%AD%A6%E4%B9%A0SpringBoot/">
+                  <a class="article-more-a" href="/2017/08/12/跟小马哥学习SpringBoot/">
                     展开全文 >></a>
                 </p>
                 
@@ -1154,7 +1169,7 @@ var _hmt = _hmt || [];
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 
@@ -1364,6 +1379,10 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SpringSecurity</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
               </li>
              
@@ -1388,27 +1407,11 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">rxjs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Tools</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OSS，Java,云存储</a>
+                <a href="javascript:void(0)" class="js-tag color5">rxjs</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1436,11 +1439,11 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">生活感悟</a>
+                <a href="javascript:void(0)" class="js-tag color1">Spring官方周报</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spring官方周报</a>
+                <a href="javascript:void(0)" class="js-tag color5">生活感悟</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1464,15 +1467,27 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">DataStructureAndAlgorithm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java,中间件,MyCAT</a>
+                <a href="javascript:void(0)" class="js-tag color3">OSS，Java,云存储</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringSecurity</a>
+                <a href="javascript:void(0)" class="js-tag color5">java,中间件,MyCAT</a>
               </li>
             
             <div class="clearfix"></div>

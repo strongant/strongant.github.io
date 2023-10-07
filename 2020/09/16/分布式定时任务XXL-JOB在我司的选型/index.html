@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <meta name="baidu-site-verification" content="fuAHxSTCv4" />
+  <meta name="baidu-site-verification" content="fuAHxSTCv4">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://baiwenhui.com">
   <title>分布式定时任务XXL-JOB在我司的选型 | strongant的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="任务系统任务 什么时间 什么地点 做什么事  一个简单的任务 cron 早期的 cronV7，1979  在Version 7 Unix里是一个系统服务 只用 root 运行任务 算法简单直接  更多详情请参考: https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Cron 早期的 cron 运行逻辑 读 &#x2F;usr&#x2F;lib&#x2F;crontab 文件 如果有命令要在当前时间执行，就用 root">
+  <meta name="description" content="任务系统任务 什么时间 什么地点 做什么事  一个简单的任务 cron 早期的 cronV7，1979  在Version 7 Unix里是一个系统服务 只用 root 运行任务 算法简单直接  更多详情请参考: https://en.wikipedia.org/wiki/Cron 早期的 cron 运行逻辑 读 /usr/lib/crontab 文件 如果有命令要在当前时间执行，就用 root">
+<meta name="keywords" content="分布式任务调度,xxl-job">
 <meta property="og:type" content="article">
 <meta property="og:title" content="分布式定时任务XXL-JOB在我司的选型">
-<meta property="og:url" content="http://baiwenhui.com/2020/09/16/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1XXL-JOB%E5%9C%A8%E6%88%91%E5%8F%B8%E7%9A%84%E9%80%89%E5%9E%8B/index.html">
+<meta property="og:url" content="http://baiwenhui.com/2020/09/16/分布式定时任务XXL-JOB在我司的选型/index.html">
 <meta property="og:site_name" content="strongant的个人博客">
-<meta property="og:description" content="任务系统任务 什么时间 什么地点 做什么事  一个简单的任务 cron 早期的 cronV7，1979  在Version 7 Unix里是一个系统服务 只用 root 运行任务 算法简单直接  更多详情请参考: https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Cron 早期的 cron 运行逻辑 读 &#x2F;usr&#x2F;lib&#x2F;crontab 文件 如果有命令要在当前时间执行，就用 root">
-<meta property="og:locale">
+<meta property="og:description" content="任务系统任务 什么时间 什么地点 做什么事  一个简单的任务 cron 早期的 cronV7，1979  在Version 7 Unix里是一个系统服务 只用 root 运行任务 算法简单直接  更多详情请参考: https://en.wikipedia.org/wiki/Cron 早期的 cron 运行逻辑 读 /usr/lib/crontab 文件 如果有命令要在当前时间执行，就用 root">
+<meta property="og:locale" content="Chinese">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyeiy1ooj20ya0retab.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyf1m8qnj21ck0kajsc.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyft8mxsj21700hmdgr.jpg">
@@ -30,11 +31,10 @@
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/bc9918a2gy1gimynngodnj21ii0qm43e.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyo6rz8vj21fg0oaqam.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyoojunwj21o00ts7jz.jpg">
-<meta property="article:published_time" content="2020-09-16T15:39:44.000Z">
-<meta property="article:modified_time" content="2023-10-07T15:59:31.607Z">
-<meta property="article:author" content="strongant">
-<meta property="article:tag" content="分布式任务调度,xxl-job">
+<meta property="og:updated_time" content="2023-10-07T15:59:31.607Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="分布式定时任务XXL-JOB在我司的选型">
+<meta name="twitter:description" content="任务系统任务 什么时间 什么地点 做什么事  一个简单的任务 cron 早期的 cronV7，1979  在Version 7 Unix里是一个系统服务 只用 root 运行任务 算法简单直接  更多详情请参考: https://en.wikipedia.org/wiki/Cron 早期的 cron 运行逻辑 读 /usr/lib/crontab 文件 如果有命令要在当前时间执行，就用 root">
 <meta name="twitter:image" content="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyeiy1ooj20ya0retab.jpg">
   
     <link rel="alternative" href="/atom.xml" title="strongant的个人博客" type="application/atom+xml">
@@ -76,8 +76,8 @@ var _hmt = _hmt || [];
 </script>
 
 
-<meta name="generator" content="Hexo 6.0.0"></head>
-
+</head>
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -90,8 +90,10 @@ var _hmt = _hmt || [];
 			<img src="/img/ant.jpeg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">undefined</a></h1>
+		  <h1 class="header-author"><a href="/">strongant</a></h1>
 		</hgroup>
+		
+		<p class="header-subtitle">strongant的个人博客</p>
 		
 
 		<nav class="header-menu">
@@ -99,7 +101,7 @@ var _hmt = _hmt || [];
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+				<li><a href="/tags/随笔/">随笔</a></li>
 	        
 			</ul>
 		</nav>
@@ -158,8 +160,10 @@ var _hmt = _hmt || [];
 				<img src="/img/ant.jpeg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">undefined</h1>
+			  <h1 class="header-author js-header-author">strongant</h1>
 			</hgroup>
+			
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>strongant的个人博客<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -199,7 +203,7 @@ var _hmt = _hmt || [];
 				
 					<li style="width: 50%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
 		        
 				</ul>
 			</nav>
@@ -227,7 +231,7 @@ var _hmt = _hmt || [];
   
 
           
-            <a href="/2020/09/16/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1XXL-JOB%E5%9C%A8%E6%88%91%E5%8F%B8%E7%9A%84%E9%80%89%E5%9E%8B/" class="archive-article-date">
+            <a href="/2020/09/16/分布式定时任务XXL-JOB在我司的选型/" class="archive-article-date">
   	<time datetime="2020-09-16T15:39:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-16</time>
 </a>
               
@@ -244,15 +248,15 @@ var _hmt = _hmt || [];
 <li><strong>什么地点</strong></li>
 <li><strong>做什么事</strong></li>
 </ol>
-<h3 id="一个简单的任务"><a href="#一个简单的任务" class="headerlink" title="一个简单的任务"></a>一个简单的任务</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyeiy1ooj20ya0retab.jpg" alt=""></p>
-<h3 id="cron"><a href="#cron" class="headerlink" title="cron"></a>cron</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyf1m8qnj21ck0kajsc.jpg" alt=""></p>
+<h3 id="一个简单的任务"><a href="#一个简单的任务" class="headerlink" title="一个简单的任务"></a>一个简单的任务</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyeiy1ooj20ya0retab.jpg" alt></p>
+<h3 id="cron"><a href="#cron" class="headerlink" title="cron"></a>cron</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyf1m8qnj21ck0kajsc.jpg" alt></p>
 <h3 id="早期的-cron"><a href="#早期的-cron" class="headerlink" title="早期的 cron"></a>早期的 cron</h3><p>V7，1979</p>
 <ol>
 <li>在Version 7 Unix里是一个系统服务</li>
 <li>只用 root 运行任务</li>
 <li>算法简单直接</li>
 </ol>
-<p>更多详情请参考: <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Cron">https://en.wikipedia.org/wiki/Cron</a></p>
+<p>更多详情请参考: <a href="https://en.wikipedia.org/wiki/Cron" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Cron</a></p>
 <h3 id="早期的-cron-运行逻辑"><a href="#早期的-cron-运行逻辑" class="headerlink" title="早期的 cron 运行逻辑"></a>早期的 cron 运行逻辑</h3><ol>
 <li>读 /usr/lib/crontab 文件</li>
 <li>如果有命令要在当前时间执行，就用 root 用户去执行命令</li>
@@ -286,8 +290,8 @@ var _hmt = _hmt || [];
 <li>缺乏全局时钟(缺乏全局时钟序列控制)</li>
 <li>故障总是会发生</li>
 </ol>
-<h3 id="分布式-cron"><a href="#分布式-cron" class="headerlink" title="分布式 cron"></a>分布式 cron</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyft8mxsj21700hmdgr.jpg" alt=""></p>
-<h3 id="我只是不爱动，不是懒"><a href="#我只是不爱动，不是懒" class="headerlink" title="我只是不爱动，不是懒"></a>我只是不爱动，不是懒</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyg82m1vj20z00koqjv.jpg" alt=""></p>
+<h3 id="分布式-cron"><a href="#分布式-cron" class="headerlink" title="分布式 cron"></a>分布式 cron</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyft8mxsj21700hmdgr.jpg" alt></p>
+<h3 id="我只是不爱动，不是懒"><a href="#我只是不爱动，不是懒" class="headerlink" title="我只是不爱动，不是懒"></a>我只是不爱动，不是懒</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyg82m1vj20z00koqjv.jpg" alt></p>
 <h3 id="分布式系统对任务调度的几点要求"><a href="#分布式系统对任务调度的几点要求" class="headerlink" title="分布式系统对任务调度的几点要求"></a>分布式系统对任务调度的几点要求</h3><p>1、平台：快速开发、业务复用、自维护和扩展；<br>2、HA/集群：避免单点故障，发挥集群优势<br>3、弹性扩缩：适应业务快速发展<br>4、故障处理：Failover、失败告警<br>5、阻塞处理：耗时任务阻塞<br>5、⾼性能：调度和任务解耦，全异步化<br>6、自运维：自助维护、实时监控、快速了解任务进展</p>
 <h3 id="我眼里的“西施”"><a href="#我眼里的“西施”" class="headerlink" title="我眼里的“西施”"></a>我眼里的“西施”</h3><ol>
 <li>可替代 cron</li>
@@ -298,20 +302,20 @@ var _hmt = _hmt || [];
 </ol>
 <h2 id="为什么选择使用-XXL-JOB"><a href="#为什么选择使用-XXL-JOB" class="headerlink" title="为什么选择使用 XXL-JOB"></a>为什么选择使用 XXL-JOB</h2><p>  项目中有这样的需求：需要使用定时器从 A 和 B 系统中同步不同的表中的数据，并且对数据进行一定的加工处理，最后将最终的数据写入到数据仓库DB，需要实现针对不同的数据源进行配置（这块也就是多数据源的支持），任务配置可以根据任务量的大小使用不同的资源。对数据同步的时效性和性能要求非常高，并且这些定时任务可以通过页面配置的方式做到灵活，可控制。</p>
 <p>  通过以上的这些需求，我们对目前业界比较流行的任务调度框架进行了技术选型，通过研究发现，目前使用比较广泛的任务调度框架有 XXL-JOB 和 Elastic-JOB ，因此，参考 XXL-JOB 官方对不同任务调度平台的比对，如下图所示：</p>
-<p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimygpwsirj217s0naafe.jpg" alt="">    </p>
+<p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimygpwsirj217s0naafe.jpg" alt>    </p>
 <p>针对以上对比，我们选择了 XXL-JOB 任务调度框架，因为它相比于其他任务调度框架来说，具有更好的用户体验、有良好的运维支持、任务依赖、任务路由原生支持，通过调研发现，框架自带的任务路由策略已经满足我们的业务场景，并且支持分片任务，当任务延迟较高时，可以利用分片的方案加速任务的处理。</p>
 <h2 id="XXL-JOB-介绍"><a href="#XXL-JOB-介绍" class="headerlink" title="XXL-JOB 介绍"></a>XXL-JOB 介绍</h2><blockquote>
 <p>XXL-JOB是⼀个轻量级分布式任务调度框架。拥有“HA、弹性扩缩、故障处理、阻塞处<br>理、⾼性能、自运维”等特点。<br>其核⼼部分包括：<br>1、调度模块（调度中⼼）：负责管理任务信息，触发任务执⾏，自身不承担业务逻辑；<br>同时提供“日志、报表、告警、GLUE、注册中⼼”等功能；<br>2、执⾏模块（执⾏器）： 负责接收调度中⼼请求，进⾏任务逻辑执⾏、终⽌、日志加载<br>等操作；专注于任务执⾏相关操作；</p>
 </blockquote>
 <h3 id="XXL-JOB-发展"><a href="#XXL-JOB-发展" class="headerlink" title="XXL-JOB 发展"></a>XXL-JOB 发展</h3><p>• 2015年中，着⼿设计XXL-JOB，提交第⼀个Commit<br>• 2015-11月，发布首个Release版本，同期当选为开源中国月度热门项目<br>• 2016-01月，我司展开定制和接⼊，⾄今调度近百万次<br>• 2017-05-03，应邀参加“第62期开源中国源创会”现场分享XXL-JOB<br>• 2017-10月，当选为开源中国首批GVP项目<br>• ……<br>• ⾄今，XXL-JOB登记接⼊公司50+（点评、移动、平安、海尔、优信），<br>社区群8个，群成员约3000 ⼈</p>
-<h3 id="XXL-JOB-架构图"><a href="#XXL-JOB-架构图" class="headerlink" title="XXL-JOB 架构图"></a>XXL-JOB 架构图</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyh8kl4vj219i0m8al6.jpg" alt=""></p>
+<h3 id="XXL-JOB-架构图"><a href="#XXL-JOB-架构图" class="headerlink" title="XXL-JOB 架构图"></a>XXL-JOB 架构图</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyh8kl4vj219i0m8al6.jpg" alt></p>
 <h3 id="XXL-JOB-特性全览"><a href="#XXL-JOB-特性全览" class="headerlink" title="XXL-JOB 特性全览"></a>XXL-JOB 特性全览</h3><p>1、简单<br>2、动态<br>3、调度中心HA（中心式）<br>4、执行器HA（分布式）<br>5、任务Failover<br>6、一致性<br>7、自定义任务参数<br>8、调度线程池<br>9、弹性扩容缩容<br>10、邮件报警<br>11、状态监控<br>12、Rolling执行日志<br>13、GLUE：提供Web IDE<br>14、数据加密<br>15、任务依赖<br>16、推送maven中央仓库<br>17、任务注册<br>18、路由策略<br>19、运行报表<br>20、脚本任务<br>21、阻塞处理策略<br>22、失败处理策略<br>23、分片广播任务<br>24、动态分片<br>25、事件触发</p>
-<h3 id="HA-集群"><a href="#HA-集群" class="headerlink" title="HA/集群"></a>HA/集群</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gin0cq0n2xj21s40ui4hv.jpg" alt=""></p>
-<h3 id="弹性扩缩"><a href="#弹性扩缩" class="headerlink" title="弹性扩缩"></a>弹性扩缩</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gin009ca4mj21nq0siwv3.jpg" alt=""></p>
-<h3 id="执行器路由策略"><a href="#执行器路由策略" class="headerlink" title="执行器路由策略"></a>执行器路由策略</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gin08gqqvgj21dc0nk0zb.jpg" alt=""></p>
-<h3 id="故障转移-amp-忙碌转移"><a href="#故障转移-amp-忙碌转移" class="headerlink" title="故障转移 &amp; 忙碌转移"></a>故障转移 &amp; 忙碌转移</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gin0dtlklbj21ik0p8afd.jpg" alt=""></p>
-<h3 id="分片任务-amp-动态分片"><a href="#分片任务-amp-动态分片" class="headerlink" title="分片任务 &amp; 动态分片"></a>分片任务 &amp; 动态分片</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyn5o76ij215i0p0tmi.jpg" alt=""></p>
-<h3 id="阻塞策略-amp-失败处理策略"><a href="#阻塞策略-amp-失败处理策略" class="headerlink" title="阻塞策略 &amp; 失败处理策略"></a>阻塞策略 &amp; 失败处理策略</h3><p> <img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimynngodnj21ii0qm43e.jpg" alt=""></p>
+<h3 id="HA-集群"><a href="#HA-集群" class="headerlink" title="HA/集群"></a>HA/集群</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gin0cq0n2xj21s40ui4hv.jpg" alt></p>
+<h3 id="弹性扩缩"><a href="#弹性扩缩" class="headerlink" title="弹性扩缩"></a>弹性扩缩</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gin009ca4mj21nq0siwv3.jpg" alt></p>
+<h3 id="执行器路由策略"><a href="#执行器路由策略" class="headerlink" title="执行器路由策略"></a>执行器路由策略</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gin08gqqvgj21dc0nk0zb.jpg" alt></p>
+<h3 id="故障转移-amp-忙碌转移"><a href="#故障转移-amp-忙碌转移" class="headerlink" title="故障转移 &amp; 忙碌转移"></a>故障转移 &amp; 忙碌转移</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gin0dtlklbj21ik0p8afd.jpg" alt></p>
+<h3 id="分片任务-amp-动态分片"><a href="#分片任务-amp-动态分片" class="headerlink" title="分片任务 &amp; 动态分片"></a>分片任务 &amp; 动态分片</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyn5o76ij215i0p0tmi.jpg" alt></p>
+<h3 id="阻塞策略-amp-失败处理策略"><a href="#阻塞策略-amp-失败处理策略" class="headerlink" title="阻塞策略 &amp; 失败处理策略"></a>阻塞策略 &amp; 失败处理策略</h3><p> <img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimynngodnj21ii0qm43e.jpg" alt></p>
 <p>###触发规则</p>
 <ul>
 <li>Cron 表达式<br>如：每日凌晨 2 点，进行“PV 数据计算”的任务</li>
@@ -322,12 +326,12 @@ var _hmt = _hmt || [];
 <p>Log<br>3、GLUE 模式(Shell)：Web IDE、在线开发、版本回溯、实时生效、Rolling Log<br>4、GLUE 模式(Python)<br>5、GLUE 模式(NodeJS)</p>
 <p>（其中“GLUE 模式(NodeJS)”来源于 “icyblazek@github”同学提交的 PR，XXL-JOB 理论上支持任何类型脚本</p>
 <p>语言的任务模式扩展）</p>
-<h3 id="GLUE-模式"><a href="#GLUE-模式" class="headerlink" title="GLUE 模式"></a>GLUE 模式</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyo6rz8vj21fg0oaqam.jpg" alt=""></p>
-<h3 id="执行日志-amp-Rolling-Log"><a href="#执行日志-amp-Rolling-Log" class="headerlink" title="执行日志 &amp; Rolling Log"></a>执行日志 &amp; Rolling Log</h3><p> <img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyoojunwj21o00ts7jz.jpg" alt=""></p>
+<h3 id="GLUE-模式"><a href="#GLUE-模式" class="headerlink" title="GLUE 模式"></a>GLUE 模式</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyo6rz8vj21fg0oaqam.jpg" alt></p>
+<h3 id="执行日志-amp-Rolling-Log"><a href="#执行日志-amp-Rolling-Log" class="headerlink" title="执行日志 &amp; Rolling Log"></a>执行日志 &amp; Rolling Log</h3><p> <img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyoojunwj21o00ts7jz.jpg" alt></p>
 <h2 id="XXL-JOB-搭建"><a href="#XXL-JOB-搭建" class="headerlink" title="XXL-JOB 搭建"></a>XXL-JOB 搭建</h2><p>1、安装 Mysql，初始化 XXL-JOB 底层库表</p>
 <p>• 2、编译部署“调度中心”</p>
 <p>• 3、编译部署“执行器”（参考多个 Sample 项目）</p>
-<p>》》》开发第一个 JobHandler<br>入门文档 （可参考文档 “快速入门”章节：）： <a target="_blank" rel="noopener" href="http://www.xuxueli.com/xxl-job/">http://www.xuxueli.com/xxl-job/</a></p>
+<p>》》》开发第一个 JobHandler<br>入门文档 （可参考文档 “快速入门”章节：）： <a href="http://www.xuxueli.com/xxl-job/" target="_blank" rel="noopener">http://www.xuxueli.com/xxl-job/</a></p>
 
                       
 
@@ -397,7 +401,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://baiwenhui.com/2020/09/16/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1XXL-JOB%E5%9C%A8%E6%88%91%E5%8F%B8%E7%9A%84%E9%80%89%E5%9E%8B/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://baiwenhui.com/2020/09/16/分布式定时任务XXL-JOB在我司的选型/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -412,7 +416,7 @@ var _hmt = _hmt || [];
 <nav id="article-nav">
   
   
-    <a href="/2020/09/14/ELK%E6%97%A5%E5%BF%97%E8%BF%81%E7%A7%BB%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/09/14/ELK日志迁移技术分享/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">ELK日志迁移技术分享</div>
       <i class="icon-circle-right"></i>
     </a>
@@ -656,6 +660,10 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SpringSecurity</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
               </li>
              
@@ -680,27 +688,11 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">rxjs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Tools</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OSS，Java,云存储</a>
+                <a href="javascript:void(0)" class="js-tag color5">rxjs</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -728,11 +720,11 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">生活感悟</a>
+                <a href="javascript:void(0)" class="js-tag color1">Spring官方周报</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spring官方周报</a>
+                <a href="javascript:void(0)" class="js-tag color5">生活感悟</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -756,15 +748,27 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">DataStructureAndAlgorithm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java,中间件,MyCAT</a>
+                <a href="javascript:void(0)" class="js-tag color3">OSS，Java,云存储</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringSecurity</a>
+                <a href="javascript:void(0)" class="js-tag color5">java,中间件,MyCAT</a>
               </li>
             
             <div class="clearfix"></div>

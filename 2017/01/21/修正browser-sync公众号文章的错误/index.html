@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  <meta name="baidu-site-verification" content="fuAHxSTCv4" />
+  <meta name="baidu-site-verification" content="fuAHxSTCv4">
   
   <meta name="renderer" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://baiwenhui.com">
   <title>修正browser-sync公众号文章的错误 | strongant的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="首先说说声对不起，在上一篇的公众号文章：《放弃F5，拥抱browser-sync》中存在几个错误点。链接地址: https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s?__biz&#x3D;MzAxMDgyOTgwOQ&#x3D;&#x3D;&amp;mid&#x3D;2247483709&amp;idx&#x3D;1&amp;sn&#x3D;9939c3029c12ef1f716111cd0c9e9ffc&amp;chksm&#x3D;9b4b2ba3ac3ca2b">
+  <meta name="description" content="首先说说声对不起，在上一篇的公众号文章：《放弃F5，拥抱browser-sync》中存在几个错误点。链接地址: https://mp.weixin.qq.com/s?__biz=MzAxMDgyOTgwOQ==&amp;amp;mid=2247483709&amp;amp;idx=1&amp;amp;sn=9939c3029c12ef1f716111cd0c9e9ffc&amp;amp;chksm=9b4b2ba3ac3ca2b">
 <meta property="og:type" content="article">
 <meta property="og:title" content="修正browser-sync公众号文章的错误">
-<meta property="og:url" content="http://baiwenhui.com/2017/01/21/%E4%BF%AE%E6%AD%A3browser-sync%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E7%9A%84%E9%94%99%E8%AF%AF/index.html">
+<meta property="og:url" content="http://baiwenhui.com/2017/01/21/修正browser-sync公众号文章的错误/index.html">
 <meta property="og:site_name" content="strongant的个人博客">
-<meta property="og:description" content="首先说说声对不起，在上一篇的公众号文章：《放弃F5，拥抱browser-sync》中存在几个错误点。链接地址: https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s?__biz&#x3D;MzAxMDgyOTgwOQ&#x3D;&#x3D;&amp;mid&#x3D;2247483709&amp;idx&#x3D;1&amp;sn&#x3D;9939c3029c12ef1f716111cd0c9e9ffc&amp;chksm&#x3D;9b4b2ba3ac3ca2b">
-<meta property="og:locale">
-<meta property="og:image" content="http://mmbiz.qpic.cn/mmbiz_png/bLPd4tHRLu6MfYBKkZ6Rkk5E2H92YaZN1JO92ub5SEVFEPxCHY8PCRHTLUHXiaghl4p7hRnxT8yySSdl7ZV7epA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1">
-<meta property="article:published_time" content="2017-01-21T14:30:29.000Z">
-<meta property="article:modified_time" content="2023-10-07T15:59:31.607Z">
-<meta property="article:author" content="strongant">
+<meta property="og:description" content="首先说说声对不起，在上一篇的公众号文章：《放弃F5，拥抱browser-sync》中存在几个错误点。链接地址: https://mp.weixin.qq.com/s?__biz=MzAxMDgyOTgwOQ==&amp;amp;mid=2247483709&amp;amp;idx=1&amp;amp;sn=9939c3029c12ef1f716111cd0c9e9ffc&amp;amp;chksm=9b4b2ba3ac3ca2b">
+<meta property="og:locale" content="Chinese">
+<meta property="og:image" content="http://mmbiz.qpic.cn/mmbiz_png/bLPd4tHRLu6MfYBKkZ6Rkk5E2H92YaZN1JO92ub5SEVFEPxCHY8PCRHTLUHXiaghl4p7hRnxT8yySSdl7ZV7epA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:updated_time" content="2023-10-07T15:59:31.607Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://mmbiz.qpic.cn/mmbiz_png/bLPd4tHRLu6MfYBKkZ6Rkk5E2H92YaZN1JO92ub5SEVFEPxCHY8PCRHTLUHXiaghl4p7hRnxT8yySSdl7ZV7epA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1">
+<meta name="twitter:title" content="修正browser-sync公众号文章的错误">
+<meta name="twitter:description" content="首先说说声对不起，在上一篇的公众号文章：《放弃F5，拥抱browser-sync》中存在几个错误点。链接地址: https://mp.weixin.qq.com/s?__biz=MzAxMDgyOTgwOQ==&amp;amp;mid=2247483709&amp;amp;idx=1&amp;amp;sn=9939c3029c12ef1f716111cd0c9e9ffc&amp;amp;chksm=9b4b2ba3ac3ca2b">
+<meta name="twitter:image" content="http://mmbiz.qpic.cn/mmbiz_png/bLPd4tHRLu6MfYBKkZ6Rkk5E2H92YaZN1JO92ub5SEVFEPxCHY8PCRHTLUHXiaghl4p7hRnxT8yySSdl7ZV7epA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
   
     <link rel="alternative" href="/atom.xml" title="strongant的个人博客" type="application/atom+xml">
   
@@ -62,8 +62,8 @@ var _hmt = _hmt || [];
 </script>
 
 
-<meta name="generator" content="Hexo 6.0.0"></head>
-
+</head>
+</html>
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
@@ -76,8 +76,10 @@ var _hmt = _hmt || [];
 			<img src="/img/ant.jpeg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">undefined</a></h1>
+		  <h1 class="header-author"><a href="/">strongant</a></h1>
 		</hgroup>
+		
+		<p class="header-subtitle">strongant的个人博客</p>
 		
 
 		<nav class="header-menu">
@@ -85,7 +87,7 @@ var _hmt = _hmt || [];
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+				<li><a href="/tags/随笔/">随笔</a></li>
 	        
 			</ul>
 		</nav>
@@ -144,8 +146,10 @@ var _hmt = _hmt || [];
 				<img src="/img/ant.jpeg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">undefined</h1>
+			  <h1 class="header-author js-header-author">strongant</h1>
 			</hgroup>
+			
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>strongant的个人博客<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -185,7 +189,7 @@ var _hmt = _hmt || [];
 				
 					<li style="width: 50%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+					<li style="width: 50%"><a href="/tags/随笔/">随笔</a></li>
 		        
 				</ul>
 			</nav>
@@ -213,7 +217,7 @@ var _hmt = _hmt || [];
   
 
           
-            <a href="/2017/01/21/%E4%BF%AE%E6%AD%A3browser-sync%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E7%9A%84%E9%94%99%E8%AF%AF/" class="archive-article-date">
+            <a href="/2017/01/21/修正browser-sync公众号文章的错误/" class="archive-article-date">
   	<time datetime="2017-01-21T14:30:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-21</time>
 </a>
               
@@ -226,15 +230,15 @@ var _hmt = _hmt || [];
         <div class="article-entry" itemprop="articleBody">
           
                     <p>首先说说声对不起，在上一篇的公众号文章：《放弃F5，拥抱browser-sync》中存在几个错误点。链接地址:</p>
-<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzAxMDgyOTgwOQ==&amp;mid=2247483709&amp;idx=1&amp;sn=9939c3029c12ef1f716111cd0c9e9ffc&amp;chksm=9b4b2ba3ac3ca2b5dea5496d6f9d87d7a0218ed85e4f807d4da2374957dd1b64cea234d5074c&amp;mpshare=1&amp;scene=1&amp;srcid=0228DCwqHbO5bJNRzdNcoQaJ&amp;key=1ffbac7579ea006ba638f1c527ceb6fccc5cd60675bb72cb4ac4e1669f8844ac48f5c811613c0700f5b5a5d0758631cddccd09a62852836bbe7ea0a2f3b6519205a05d50a53e595fa3c414a39a8f507f&amp;ascene=0&amp;uin=MTkwMTU1MzgyMw%3D%3D&amp;devicetype=iMac+Macmini7%2C1+OSX+OSX+10.12.3+build(16D32)&amp;version=12020010&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=iTAw5XKKAiEh5rRG8zKg5HPSatL3GYf2%2FVDBxyBOTnbVmCeOf%2FgW%2FmhS5DctS64z">https://mp.weixin.qq.com/s?__biz=MzAxMDgyOTgwOQ==&amp;mid=2247483709&amp;idx=1&amp;sn=9939c3029c12ef1f716111cd0c9e9ffc&amp;chksm=9b4b2ba3ac3ca2b5dea5496d6f9d87d7a0218ed85e4f807d4da2374957dd1b64cea234d5074c&amp;mpshare=1&amp;scene=1&amp;srcid=0228DCwqHbO5bJNRzdNcoQaJ&amp;key=1ffbac7579ea006ba638f1c527ceb6fccc5cd60675bb72cb4ac4e1669f8844ac48f5c811613c0700f5b5a5d0758631cddccd09a62852836bbe7ea0a2f3b6519205a05d50a53e595fa3c414a39a8f507f&amp;ascene=0&amp;uin=MTkwMTU1MzgyMw%3D%3D&amp;devicetype=iMac+Macmini7%2C1+OSX+OSX+10.12.3+build(16D32)&amp;version=12020010&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=iTAw5XKKAiEh5rRG8zKg5HPSatL3GYf2%2FVDBxyBOTnbVmCeOf%2FgW%2FmhS5DctS64z</a></p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzAxMDgyOTgwOQ==&amp;mid=2247483709&amp;idx=1&amp;sn=9939c3029c12ef1f716111cd0c9e9ffc&amp;chksm=9b4b2ba3ac3ca2b5dea5496d6f9d87d7a0218ed85e4f807d4da2374957dd1b64cea234d5074c&amp;mpshare=1&amp;scene=1&amp;srcid=0228DCwqHbO5bJNRzdNcoQaJ&amp;key=1ffbac7579ea006ba638f1c527ceb6fccc5cd60675bb72cb4ac4e1669f8844ac48f5c811613c0700f5b5a5d0758631cddccd09a62852836bbe7ea0a2f3b6519205a05d50a53e595fa3c414a39a8f507f&amp;ascene=0&amp;uin=MTkwMTU1MzgyMw%3D%3D&amp;devicetype=iMac+Macmini7%2C1+OSX+OSX+10.12.3+build(16D32)&amp;version=12020010&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=iTAw5XKKAiEh5rRG8zKg5HPSatL3GYf2%2FVDBxyBOTnbVmCeOf%2FgW%2FmhS5DctS64z" target="_blank" rel="noopener">https://mp.weixin.qq.com/s?__biz=MzAxMDgyOTgwOQ==&amp;mid=2247483709&amp;idx=1&amp;sn=9939c3029c12ef1f716111cd0c9e9ffc&amp;chksm=9b4b2ba3ac3ca2b5dea5496d6f9d87d7a0218ed85e4f807d4da2374957dd1b64cea234d5074c&amp;mpshare=1&amp;scene=1&amp;srcid=0228DCwqHbO5bJNRzdNcoQaJ&amp;key=1ffbac7579ea006ba638f1c527ceb6fccc5cd60675bb72cb4ac4e1669f8844ac48f5c811613c0700f5b5a5d0758631cddccd09a62852836bbe7ea0a2f3b6519205a05d50a53e595fa3c414a39a8f507f&amp;ascene=0&amp;uin=MTkwMTU1MzgyMw%3D%3D&amp;devicetype=iMac+Macmini7%2C1+OSX+OSX+10.12.3+build(16D32)&amp;version=12020010&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=iTAw5XKKAiEh5rRG8zKg5HPSatL3GYf2%2FVDBxyBOTnbVmCeOf%2FgW%2FmhS5DctS64z</a></p>
 <p>几个错误点修改如下：</p>
 <ol>
-<li>文章中的：<br><em>……更重要的是 Browsersync可以同时在PC、平板、手机等设备下进项调试…</em><br>将“进项调试”修改为“进行调试”<br>2.　最后的代码有一个目录错误，因为我的粗心，给大家带来的不变，请见谅！在以后的文章中我会更加小心<br>发表文章，力求保证没有错误！<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">var gulp        = require(&#x27;gulp&#x27;);</span><br><span class="line">var browserSync = require(&#x27;browser-sync&#x27;).create();</span><br><span class="line">var browserify = require(&#x27;gulp-browserify&#x27;);</span><br><span class="line">var sass        = require(&#x27;gulp-sass&#x27;);</span><br><span class="line">var uglify = require(&#x27;gulp-uglify&#x27;);</span><br><span class="line">// Compile sass into CSS &amp; auto-inject into browsers</span><br><span class="line">gulp.task(&#x27;sass&#x27;, function() &#123;</span><br><span class="line">    return gulp.src(&quot;app/scss/*.scss&quot;)</span><br><span class="line">        .pipe(sass())</span><br><span class="line">        .pipe(gulp.dest(&quot;dist/css&quot;))</span><br><span class="line">        .pipe(browserSync.stream());</span><br><span class="line">&#125;);</span><br><span class="line">// process JS files and return the stream.</span><br><span class="line">gulp.task(&#x27;js&#x27;, function () &#123;</span><br><span class="line">    return gulp.src(&#x27;app/js/*.js&#x27;)</span><br><span class="line">        .pipe(browserify())</span><br><span class="line">        .pipe(uglify())</span><br><span class="line">        .pipe(gulp.dest(&#x27;dist/js&#x27;));</span><br><span class="line">&#125;);</span><br><span class="line">// Static Server + watching scss/js/html files</span><br><span class="line">gulp.task(&#x27;serve&#x27;, [&#x27;sass&#x27;,&#x27;js&#x27;], function() &#123;</span><br><span class="line">    browserSync.init(&#123;</span><br><span class="line">        server: &quot;./app&quot;</span><br><span class="line">    &#125;);</span><br><span class="line">    gulp.watch(&quot;app/scss/*.scss&quot;, [&#x27;sass&#x27;]);</span><br><span class="line">        gulp.watch(&quot;app/js/*.js&quot;, [&#x27;js&#x27;]);</span><br><span class="line">    gulp.watch(&quot;app/*.html&quot;).on(&#x27;change&#x27;, browserSync.reload);</span><br><span class="line">&#125;);</span><br><span class="line">gulp.task(&#x27;default&#x27;, [&#x27;serve&#x27;]);</span><br></pre></td></tr></table></figure>
-修改为：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">var gulp        = require(&#x27;gulp&#x27;);</span><br><span class="line">var browserSync = require(&#x27;browser-sync&#x27;).create();</span><br><span class="line">var browserify = require(&#x27;gulp-browserify&#x27;);</span><br><span class="line">var sass        = require(&#x27;gulp-sass&#x27;);</span><br><span class="line">var uglify = require(&#x27;gulp-uglify&#x27;);</span><br><span class="line">// Compile sass into CSS &amp; auto-inject into browsers</span><br><span class="line">gulp.task(&#x27;sass&#x27;, function() &#123;</span><br><span class="line">    return gulp.src(&quot;app/scss/*.scss&quot;)</span><br><span class="line">        .pipe(sass())</span><br><span class="line">        .pipe(gulp.dest(&quot;.app/dist/css&quot;))</span><br><span class="line">        .pipe(browserSync.stream());</span><br><span class="line">&#125;);</span><br><span class="line">// process JS files and return the stream.</span><br><span class="line">gulp.task(&#x27;js&#x27;, function () &#123;</span><br><span class="line">    return gulp.src(&#x27;app/js/*.js&#x27;)</span><br><span class="line">        .pipe(browserify())</span><br><span class="line">        .pipe(uglify())</span><br><span class="line">        .pipe(gulp.dest(&#x27;.app/dist/js&#x27;));</span><br><span class="line">&#125;);</span><br><span class="line">// Static Server + watching scss/js/html files</span><br><span class="line">gulp.task(&#x27;serve&#x27;, [&#x27;sass&#x27;,&#x27;js&#x27;], function() &#123;</span><br><span class="line">    browserSync.init(&#123;</span><br><span class="line">        server: &quot;./app&quot;</span><br><span class="line">    &#125;);</span><br><span class="line">    gulp.watch(&quot;app/scss/*.scss&quot;, [&#x27;sass&#x27;]);</span><br><span class="line">        gulp.watch(&quot;app/js/*.js&quot;, [&#x27;js&#x27;]);</span><br><span class="line">    gulp.watch(&quot;app/*.html&quot;).on(&#x27;change&#x27;, browserSync.reload);</span><br><span class="line">&#125;);</span><br><span class="line">gulp.task(&#x27;default&#x27;, [&#x27;serve&#x27;]);</span><br></pre></td></tr></table></figure>
+<li>文章中的：<br><em>……更重要的是 Browsersync可以同时在PC、平板、手机等设备下进项调试…</em><br>将“进项调试”修改为“进行调试”<br>2.　最后的代码有一个目录错误，因为我的粗心，给大家带来的不变，请见谅！在以后的文章中我会更加小心<br>发表文章，力求保证没有错误！<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">var gulp        = require(&apos;gulp&apos;);</span><br><span class="line">var browserSync = require(&apos;browser-sync&apos;).create();</span><br><span class="line">var browserify = require(&apos;gulp-browserify&apos;);</span><br><span class="line">var sass        = require(&apos;gulp-sass&apos;);</span><br><span class="line">var uglify = require(&apos;gulp-uglify&apos;);</span><br><span class="line">// Compile sass into CSS &amp; auto-inject into browsers</span><br><span class="line">gulp.task(&apos;sass&apos;, function() &#123;</span><br><span class="line">    return gulp.src(&quot;app/scss/*.scss&quot;)</span><br><span class="line">        .pipe(sass())</span><br><span class="line">        .pipe(gulp.dest(&quot;dist/css&quot;))</span><br><span class="line">        .pipe(browserSync.stream());</span><br><span class="line">&#125;);</span><br><span class="line">// process JS files and return the stream.</span><br><span class="line">gulp.task(&apos;js&apos;, function () &#123;</span><br><span class="line">    return gulp.src(&apos;app/js/*.js&apos;)</span><br><span class="line">        .pipe(browserify())</span><br><span class="line">        .pipe(uglify())</span><br><span class="line">        .pipe(gulp.dest(&apos;dist/js&apos;));</span><br><span class="line">&#125;);</span><br><span class="line">// Static Server + watching scss/js/html files</span><br><span class="line">gulp.task(&apos;serve&apos;, [&apos;sass&apos;,&apos;js&apos;], function() &#123;</span><br><span class="line">    browserSync.init(&#123;</span><br><span class="line">        server: &quot;./app&quot;</span><br><span class="line">    &#125;);</span><br><span class="line">    gulp.watch(&quot;app/scss/*.scss&quot;, [&apos;sass&apos;]);</span><br><span class="line">        gulp.watch(&quot;app/js/*.js&quot;, [&apos;js&apos;]);</span><br><span class="line">    gulp.watch(&quot;app/*.html&quot;).on(&apos;change&apos;, browserSync.reload);</span><br><span class="line">&#125;);</span><br><span class="line">gulp.task(&apos;default&apos;, [&apos;serve&apos;]);</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
+<p>修改为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">var gulp        = require(&apos;gulp&apos;);</span><br><span class="line">var browserSync = require(&apos;browser-sync&apos;).create();</span><br><span class="line">var browserify = require(&apos;gulp-browserify&apos;);</span><br><span class="line">var sass        = require(&apos;gulp-sass&apos;);</span><br><span class="line">var uglify = require(&apos;gulp-uglify&apos;);</span><br><span class="line">// Compile sass into CSS &amp; auto-inject into browsers</span><br><span class="line">gulp.task(&apos;sass&apos;, function() &#123;</span><br><span class="line">    return gulp.src(&quot;app/scss/*.scss&quot;)</span><br><span class="line">        .pipe(sass())</span><br><span class="line">        .pipe(gulp.dest(&quot;.app/dist/css&quot;))</span><br><span class="line">        .pipe(browserSync.stream());</span><br><span class="line">&#125;);</span><br><span class="line">// process JS files and return the stream.</span><br><span class="line">gulp.task(&apos;js&apos;, function () &#123;</span><br><span class="line">    return gulp.src(&apos;app/js/*.js&apos;)</span><br><span class="line">        .pipe(browserify())</span><br><span class="line">        .pipe(uglify())</span><br><span class="line">        .pipe(gulp.dest(&apos;.app/dist/js&apos;));</span><br><span class="line">&#125;);</span><br><span class="line">// Static Server + watching scss/js/html files</span><br><span class="line">gulp.task(&apos;serve&apos;, [&apos;sass&apos;,&apos;js&apos;], function() &#123;</span><br><span class="line">    browserSync.init(&#123;</span><br><span class="line">        server: &quot;./app&quot;</span><br><span class="line">    &#125;);</span><br><span class="line">    gulp.watch(&quot;app/scss/*.scss&quot;, [&apos;sass&apos;]);</span><br><span class="line">        gulp.watch(&quot;app/js/*.js&quot;, [&apos;js&apos;]);</span><br><span class="line">    gulp.watch(&quot;app/*.html&quot;).on(&apos;change&apos;, browserSync.reload);</span><br><span class="line">&#125;);</span><br><span class="line">gulp.task(&apos;default&apos;, [&apos;serve&apos;]);</span><br></pre></td></tr></table></figure></p>
 <p>参照对比原文地址：</p>
-<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzAxMDgyOTgwOQ==&amp;mid=2247483709&amp;idx=1&amp;sn=9939c3029c12ef1f716111cd0c9e9ffc&amp;chksm=9b4b2ba3ac3ca2b5dea5496d6f9d87d7a0218ed85e4f807d4da2374957dd1b64cea234d5074c&amp;mpshare=1&amp;scene=1&amp;srcid=0228DCwqHbO5bJNRzdNcoQaJ&amp;key=1ffbac7579ea006ba638f1c527ceb6fccc5cd60675bb72cb4ac4e1669f8844ac48f5c811613c0700f5b5a5d0758631cddccd09a62852836bbe7ea0a2f3b6519205a05d50a53e595fa3c414a39a8f507f&amp;ascene=0&amp;uin=MTkwMTU1MzgyMw%3D%3D&amp;devicetype=iMac+Macmini7%2C1+OSX+OSX+10.12.3+build(16D32)&amp;version=12020010&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=iTAw5XKKAiEh5rRG8zKg5HPSatL3GYf2%2FVDBxyBOTnbVmCeOf%2FgW%2FmhS5DctS64z">https://mp.weixin.qq.com/s?__biz=MzAxMDgyOTgwOQ==&amp;mid=2247483709&amp;idx=1&amp;sn=9939c3029c12ef1f716111cd0c9e9ffc&amp;chksm=9b4b2ba3ac3ca2b5dea5496d6f9d87d7a0218ed85e4f807d4da2374957dd1b64cea234d5074c&amp;mpshare=1&amp;scene=1&amp;srcid=0228DCwqHbO5bJNRzdNcoQaJ&amp;key=1ffbac7579ea006ba638f1c527ceb6fccc5cd60675bb72cb4ac4e1669f8844ac48f5c811613c0700f5b5a5d0758631cddccd09a62852836bbe7ea0a2f3b6519205a05d50a53e595fa3c414a39a8f507f&amp;ascene=0&amp;uin=MTkwMTU1MzgyMw%3D%3D&amp;devicetype=iMac+Macmini7%2C1+OSX+OSX+10.12.3+build(16D32)&amp;version=12020010&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=iTAw5XKKAiEh5rRG8zKg5HPSatL3GYf2%2FVDBxyBOTnbVmCeOf%2FgW%2FmhS5DctS64z</a></p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzAxMDgyOTgwOQ==&amp;mid=2247483709&amp;idx=1&amp;sn=9939c3029c12ef1f716111cd0c9e9ffc&amp;chksm=9b4b2ba3ac3ca2b5dea5496d6f9d87d7a0218ed85e4f807d4da2374957dd1b64cea234d5074c&amp;mpshare=1&amp;scene=1&amp;srcid=0228DCwqHbO5bJNRzdNcoQaJ&amp;key=1ffbac7579ea006ba638f1c527ceb6fccc5cd60675bb72cb4ac4e1669f8844ac48f5c811613c0700f5b5a5d0758631cddccd09a62852836bbe7ea0a2f3b6519205a05d50a53e595fa3c414a39a8f507f&amp;ascene=0&amp;uin=MTkwMTU1MzgyMw%3D%3D&amp;devicetype=iMac+Macmini7%2C1+OSX+OSX+10.12.3+build(16D32)&amp;version=12020010&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=iTAw5XKKAiEh5rRG8zKg5HPSatL3GYf2%2FVDBxyBOTnbVmCeOf%2FgW%2FmhS5DctS64z" target="_blank" rel="noopener">https://mp.weixin.qq.com/s?__biz=MzAxMDgyOTgwOQ==&amp;mid=2247483709&amp;idx=1&amp;sn=9939c3029c12ef1f716111cd0c9e9ffc&amp;chksm=9b4b2ba3ac3ca2b5dea5496d6f9d87d7a0218ed85e4f807d4da2374957dd1b64cea234d5074c&amp;mpshare=1&amp;scene=1&amp;srcid=0228DCwqHbO5bJNRzdNcoQaJ&amp;key=1ffbac7579ea006ba638f1c527ceb6fccc5cd60675bb72cb4ac4e1669f8844ac48f5c811613c0700f5b5a5d0758631cddccd09a62852836bbe7ea0a2f3b6519205a05d50a53e595fa3c414a39a8f507f&amp;ascene=0&amp;uin=MTkwMTU1MzgyMw%3D%3D&amp;devicetype=iMac+Macmini7%2C1+OSX+OSX+10.12.3+build(16D32)&amp;version=12020010&amp;nettype=WIFI&amp;fontScale=100&amp;pass_ticket=iTAw5XKKAiEh5rRG8zKg5HPSatL3GYf2%2FVDBxyBOTnbVmCeOf%2FgW%2FmhS5DctS64z</a></p>
 <p>目前内容已经修改！欢迎反馈，欢迎交流：</p>
 <p><img src="http://mmbiz.qpic.cn/mmbiz_png/bLPd4tHRLu6MfYBKkZ6Rkk5E2H92YaZN1JO92ub5SEVFEPxCHY8PCRHTLUHXiaghl4p7hRnxT8yySSdl7ZV7epA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt="strongant公众号二维码"></p>
 
@@ -295,7 +299,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://baiwenhui.com/2017/01/21/%E4%BF%AE%E6%AD%A3browser-sync%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E7%9A%84%E9%94%99%E8%AF%AF/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://baiwenhui.com/2017/01/21/修正browser-sync公众号文章的错误/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -309,7 +313,7 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2017/01/22/rxjs%E7%BF%BB%E8%AF%91-rxjs%E4%BB%8B%E7%BB%8D/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/01/22/rxjs翻译-rxjs介绍/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -319,7 +323,7 @@ var _hmt = _hmt || [];
     </a>
   
   
-    <a href="/2017/01/19/hexo%E6%90%AD%E5%BB%BA%E6%88%90%E5%8A%9F/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/01/19/hexo搭建成功/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">hexo搭建成功</div>
       <i class="icon-circle-right"></i>
     </a>
@@ -563,6 +567,10 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SpringSecurity</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
               </li>
              
@@ -587,27 +595,11 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">rxjs</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Tools</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OSS，Java,云存储</a>
+                <a href="javascript:void(0)" class="js-tag color5">rxjs</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -635,11 +627,11 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">生活感悟</a>
+                <a href="javascript:void(0)" class="js-tag color1">Spring官方周报</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spring官方周报</a>
+                <a href="javascript:void(0)" class="js-tag color5">生活感悟</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -663,15 +655,27 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">DataStructureAndAlgorithm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java,中间件,MyCAT</a>
+                <a href="javascript:void(0)" class="js-tag color3">OSS，Java,云存储</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SpringSecurity</a>
+                <a href="javascript:void(0)" class="js-tag color5">java,中间件,MyCAT</a>
               </li>
             
             <div class="clearfix"></div>

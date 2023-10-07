@@ -31,7 +31,7 @@
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/bc9918a2gy1gimynngodnj21ii0qm43e.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyo6rz8vj21fg0oaqam.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyoojunwj21o00ts7jz.jpg">
-<meta property="og:updated_time" content="2023-10-07T15:59:31.607Z">
+<meta property="og:updated_time" content="2023-10-07T16:46:39.825Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式定时任务XXL-JOB在我司的选型">
 <meta name="twitter:description" content="任务系统任务 什么时间 什么地点 做什么事  一个简单的任务 cron 早期的 cronV7，1979  在Version 7 Unix里是一个系统服务 只用 root 运行任务 算法简单直接  更多详情请参考: https://en.wikipedia.org/wiki/Cron 早期的 cron 运行逻辑 读 /usr/lib/crontab 文件 如果有命令要在当前时间执行，就用 root">
@@ -316,8 +316,7 @@ var _hmt = _hmt || [];
 <h3 id="故障转移-amp-忙碌转移"><a href="#故障转移-amp-忙碌转移" class="headerlink" title="故障转移 &amp; 忙碌转移"></a>故障转移 &amp; 忙碌转移</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gin0dtlklbj21ik0p8afd.jpg" alt></p>
 <h3 id="分片任务-amp-动态分片"><a href="#分片任务-amp-动态分片" class="headerlink" title="分片任务 &amp; 动态分片"></a>分片任务 &amp; 动态分片</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyn5o76ij215i0p0tmi.jpg" alt></p>
 <h3 id="阻塞策略-amp-失败处理策略"><a href="#阻塞策略-amp-失败处理策略" class="headerlink" title="阻塞策略 &amp; 失败处理策略"></a>阻塞策略 &amp; 失败处理策略</h3><p> <img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimynngodnj21ii0qm43e.jpg" alt></p>
-<p>###触发规则</p>
-<ul>
+<h3 id="触发规则"><a href="#触发规则" class="headerlink" title="触发规则"></a>触发规则</h3><ul>
 <li>Cron 表达式<br>如：每日凌晨 2 点，进行“PV 数据计算”的任务</li>
 <li>任务依赖触发<br>如：父任务“PV 数据计算”执行结束后，触发多业务线的“PV 报表生成”的多个子任务</li>
 <li>事件触发/API 服务<br>如：类 MQ 场景，短信验证码、订单创建等。</li>
@@ -556,11 +555,11 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color3">分布式，CAP</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">分布式，CAP</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -604,19 +603,11 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">http</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">IDEA,Mac快捷键</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">springboot</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">webservices</a>
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -625,6 +616,14 @@ id="busuanzi_value_site_pv"></span>次</span>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Java面试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">springboot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">webservices</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -664,7 +663,7 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
+                <a href="javascript:void(0)" class="js-tag color3">Spring官方周报翻译</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -676,7 +675,7 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Spring官方周报翻译</a>
+                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -696,11 +695,27 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker,镜像,harbor</a>
+                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">OSS，Java,云存储</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">angularjs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker,镜像,harbor</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -716,11 +731,11 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">分布式任务调度,xxl-job</a>
+                <a href="javascript:void(0)" class="js-tag color1">Spring官方周报</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spring官方周报</a>
+                <a href="javascript:void(0)" class="js-tag color1">分布式任务调度,xxl-job</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -740,35 +755,19 @@ id="busuanzi_value_site_pv"></span>次</span>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">DataStructureAndAlgorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java,中间件,MyCAT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">终端</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">showterm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">DataStructureAndAlgorithm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">OSS，Java,云存储</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java,中间件,MyCAT</a>
               </li>
             
             <div class="clearfix"></div>

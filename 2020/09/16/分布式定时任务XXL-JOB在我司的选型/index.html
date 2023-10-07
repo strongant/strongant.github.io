@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="fuAHxSTCv4" />
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://baiwenhui.com">
+  <title>分布式定时任务XXL-JOB在我司的选型 | strongant的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="任务系统任务 什么时间 什么地点 做什么事  一个简单的任务 cron 早期的 cronV7，1979  在Version 7 Unix里是一个系统服务 只用 root 运行任务 算法简单直接  更多详情请参考: https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Cron 早期的 cron 运行逻辑 读 &#x2F;usr&#x2F;lib&#x2F;crontab 文件 如果有命令要在当前时间执行，就用 root">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分布式定时任务XXL-JOB在我司的选型">
+<meta property="og:url" content="http://baiwenhui.com/2020/09/16/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1XXL-JOB%E5%9C%A8%E6%88%91%E5%8F%B8%E7%9A%84%E9%80%89%E5%9E%8B/index.html">
+<meta property="og:site_name" content="strongant的个人博客">
+<meta property="og:description" content="任务系统任务 什么时间 什么地点 做什么事  一个简单的任务 cron 早期的 cronV7，1979  在Version 7 Unix里是一个系统服务 只用 root 运行任务 算法简单直接  更多详情请参考: https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Cron 早期的 cron 运行逻辑 读 &#x2F;usr&#x2F;lib&#x2F;crontab 文件 如果有命令要在当前时间执行，就用 root">
+<meta property="og:locale">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyeiy1ooj20ya0retab.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyf1m8qnj21ck0kajsc.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyft8mxsj21700hmdgr.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyg82m1vj20z00koqjv.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/bc9918a2gy1gimygpwsirj217s0naafe.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyh8kl4vj219i0m8al6.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/bc9918a2gy1gin0cq0n2xj21s40ui4hv.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/bc9918a2gy1gin009ca4mj21nq0siwv3.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/bc9918a2gy1gin08gqqvgj21dc0nk0zb.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/bc9918a2gy1gin0dtlklbj21ik0p8afd.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyn5o76ij215i0p0tmi.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/bc9918a2gy1gimynngodnj21ii0qm43e.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyo6rz8vj21fg0oaqam.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyoojunwj21o00ts7jz.jpg">
+<meta property="article:published_time" content="2020-09-16T15:39:44.000Z">
+<meta property="article:modified_time" content="2023-10-07T15:59:31.607Z">
+<meta property="article:author" content="strongant">
+<meta property="article:tag" content="分布式任务调度,xxl-job">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyeiy1ooj20ya0retab.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="strongant的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" type="text/css" href="/./main.2d7529.css">
+  <style type="text/css">
+  
+    #container.show {
+      background: linear-gradient(200deg,#a0cfe4,#e8c37e);
+    }
+  </style>
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-87429933-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+<script>
+var _hmt = _hmt || [];
+(function() {
+	var hm = document.createElement("script");
+	hm.src = "https://hm.baidu.com/hm.js?86c67d891e2b7fa3f077e18cf34b9435";
+	var s = document.getElementsByTagName("script")[0]; 
+	s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body>
+  <div id="container" q-class="show:isCtnShow">
+    <canvas id="anm-canvas" class="anm-canvas"></canvas>
+    <div class="left-col" q-class="show:isShow">
+      
+<div class="overlay" style="background: #4d4d4d"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img src="/img/ant.jpeg" class="js-avatar">
+		</a>
+		<hgroup>
+		  <h1 class="header-author"><a href="/">undefined</a></h1>
+		</hgroup>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+    		
+    			
+    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
+    			
+            
+    			
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
+    			
+            
+    			
+    			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/strongant" title="github"><i class="icon-github"></i></a>
+		        
+					<a class="weibo" target="_blank" href="http://weibo.com/xiaomayibwh" title="weibo"><i class="icon-weibo"></i></a>
+		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+		        
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/strongant/activities" title="zhihu"><i class="icon-zhihu"></i></a>
+		        
+					<a class="jianshu" target="_blank" href="http://www.jianshu.com/u/30c2d37f8602" title="jianshu"><i class="icon-jianshu"></i></a>
+		        
+					<a class="douban" target="_blank" href="https://www.douban.com/people/strongant/" title="douban"><i class="icon-douban"></i></a>
+		        
+					<a class="google" target="_blank" href="https://plus.google.com/u/0/103479297958011311682" title="google"><i class="icon-google"></i></a>
+		        
+					<a class="twitter" target="_blank" href="https://twitter.com/java_small_ant" title="twitter"><i class="icon-twitter"></i></a>
+		        
+					<a class="linkedin" target="_blank" href="https://www.linkedin.com/in/%E6%96%87%E8%BE%89-%E7%99%BD-820a86a0/" title="linkedin"><i class="icon-linkedin"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
+      
+<nav id="mobile-nav">
+  	<div class="overlay js-overlay" style="background: #4d4d4d"></div>
+	<div class="btnctn js-mobile-btnctn">
+  		<div class="slider-trigger list" q-on="click: openSlider(e)"><i class="icon icon-sort"></i></div>
+	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="/img/ant.jpeg" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author js-header-author">undefined</h1>
+			</hgroup>
+			
+			
+			
+				
+			
+				
+			
+			
+			
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/strongant" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/xiaomayibwh" title="weibo"><i class="icon-weibo"></i></a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss"><i class="icon-rss"></i></a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/strongant/activities" title="zhihu"><i class="icon-zhihu"></i></a>
+			        
+						<a class="jianshu" target="_blank" href="http://www.jianshu.com/u/30c2d37f8602" title="jianshu"><i class="icon-jianshu"></i></a>
+			        
+						<a class="douban" target="_blank" href="https://www.douban.com/people/strongant/" title="douban"><i class="icon-douban"></i></a>
+			        
+						<a class="google" target="_blank" href="https://plus.google.com/u/0/103479297958011311682" title="google"><i class="icon-google"></i></a>
+			        
+						<a class="twitter" target="_blank" href="https://twitter.com/java_small_ant" title="twitter"><i class="icon-twitter"></i></a>
+			        
+						<a class="linkedin" target="_blank" href="https://www.linkedin.com/in/%E6%96%87%E8%BE%89-%E7%99%BD-820a86a0/" title="linkedin"><i class="icon-linkedin"></i></a>
+			        
+				</div>
+			</nav>
+
+			<nav class="header-menu js-header-menu">
+				<ul style="width: 50%">
+				
+				
+					<li style="width: 50%"><a href="/">主页</a></li>
+		        
+					<li style="width: 50%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+		        
+				</ul>
+			</nav>
+		</header>				
+	</div>
+	<div class="mobile-mask" style="display:none" q-show="isShow"></div>
+</nav>
+
+      <div id="wrapper" class="body-wrap">
+        <div class="menu-l">
+          <div class="canvas-wrap">
+            <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
+          </div>
+          <div id="js-content" class="content-ll">
+            <article id="post-分布式定时任务XXL-JOB在我司的选型" class="article article-type-post "
+  itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      分布式定时任务XXL-JOB在我司的选型
+    </h1>
+  
+
+          
+            <a href="/2020/09/16/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1XXL-JOB%E5%9C%A8%E6%88%91%E5%8F%B8%E7%9A%84%E9%80%89%E5%9E%8B/" class="archive-article-date">
+  	<time datetime="2020-09-16T15:39:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-16</time>
+</a>
+              
+                <!-- 目录内容 -->
+                
+                    <!-- 目录内容结束 -->
+      </header>
+      
+
+        <div class="article-entry" itemprop="articleBody">
+          
+                    <h2 id="任务系统"><a href="#任务系统" class="headerlink" title="任务系统"></a>任务系统</h2><h3 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h3><ol>
+<li><strong>什么时间</strong></li>
+<li><strong>什么地点</strong></li>
+<li><strong>做什么事</strong></li>
+</ol>
+<h3 id="一个简单的任务"><a href="#一个简单的任务" class="headerlink" title="一个简单的任务"></a>一个简单的任务</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyeiy1ooj20ya0retab.jpg" alt=""></p>
+<h3 id="cron"><a href="#cron" class="headerlink" title="cron"></a>cron</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyf1m8qnj21ck0kajsc.jpg" alt=""></p>
+<h3 id="早期的-cron"><a href="#早期的-cron" class="headerlink" title="早期的 cron"></a>早期的 cron</h3><p>V7，1979</p>
+<ol>
+<li>在Version 7 Unix里是一个系统服务</li>
+<li>只用 root 运行任务</li>
+<li>算法简单直接</li>
+</ol>
+<p>更多详情请参考: <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Cron">https://en.wikipedia.org/wiki/Cron</a></p>
+<h3 id="早期的-cron-运行逻辑"><a href="#早期的-cron-运行逻辑" class="headerlink" title="早期的 cron 运行逻辑"></a>早期的 cron 运行逻辑</h3><ol>
+<li>读 /usr/lib/crontab 文件</li>
+<li>如果有命令要在当前时间执行，就用 root 用户去执行命令</li>
+<li>Sleep 1 minute</li>
+<li>重新从步骤 1 开始</li>
+</ol>
+<h3 id="支持多用户的-cron"><a href="#支持多用户的-cron" class="headerlink" title="支持多用户的 cron"></a>支持多用户的 cron</h3><p>Unix System V，1983</p>
+<ol>
+<li>启动的时候读取所有用户下的 .crontab 文件</li>
+<li>计算出每个 crontab 文件里需要执行的命令的下一次执行时间</li>
+<li>把这些命令按下一次执行时间排序后放入队列里</li>
+<li>进入主循环<br>① 计算队列里第一个任务的执行时间与当前的时间差<br>② Sleep 直到第一个任务执行时间<br>③ 后台执行任务<br>④ 计算这个任务的下一次执行时间，放回队列，排序</li>
+</ol>
+<h3 id="近代的-cron"><a href="#近代的-cron" class="headerlink" title="近代的 cron"></a>近代的 cron</h3><p>Linux，1991</p>
+<ol>
+<li>Vixie cron(Paul Vixie 1987)</li>
+<li>Version 3 Vixie cron(1993)</li>
+<li>Version 4.1 ISC Cron(2004)</li>
+<li>anacron, dcron, fcron</li>
+</ol>
+<h3 id="cron-的局限性"><a href="#cron-的局限性" class="headerlink" title="cron 的局限性"></a>cron 的局限性</h3><ol>
+<li>单机</li>
+<li>无界面</li>
+<li>功能比较简单</li>
+<li>多机器的情况下任务维护成本较高</li>
+</ol>
+<h2 id="分布式任务系统"><a href="#分布式任务系统" class="headerlink" title="分布式任务系统"></a>分布式任务系统</h2><h3 id="分布式系统的特点"><a href="#分布式系统的特点" class="headerlink" title="分布式系统的特点"></a>分布式系统的特点</h3><ol>
+<li>分布性</li>
+<li>对等性(没有控制系统的主机, 也没有被控制的从机)</li>
+<li>并发性</li>
+<li>缺乏全局时钟(缺乏全局时钟序列控制)</li>
+<li>故障总是会发生</li>
+</ol>
+<h3 id="分布式-cron"><a href="#分布式-cron" class="headerlink" title="分布式 cron"></a>分布式 cron</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyft8mxsj21700hmdgr.jpg" alt=""></p>
+<h3 id="我只是不爱动，不是懒"><a href="#我只是不爱动，不是懒" class="headerlink" title="我只是不爱动，不是懒"></a>我只是不爱动，不是懒</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyg82m1vj20z00koqjv.jpg" alt=""></p>
+<h3 id="分布式系统对任务调度的几点要求"><a href="#分布式系统对任务调度的几点要求" class="headerlink" title="分布式系统对任务调度的几点要求"></a>分布式系统对任务调度的几点要求</h3><p>1、平台：快速开发、业务复用、自维护和扩展；<br>2、HA/集群：避免单点故障，发挥集群优势<br>3、弹性扩缩：适应业务快速发展<br>4、故障处理：Failover、失败告警<br>5、阻塞处理：耗时任务阻塞<br>5、⾼性能：调度和任务解耦，全异步化<br>6、自运维：自助维护、实时监控、快速了解任务进展</p>
+<h3 id="我眼里的“西施”"><a href="#我眼里的“西施”" class="headerlink" title="我眼里的“西施”"></a>我眼里的“西施”</h3><ol>
+<li>可替代 cron</li>
+<li>分布式、高可用</li>
+<li>支持多种任务属性</li>
+<li>易用</li>
+<li>易部署</li>
+</ol>
+<h2 id="为什么选择使用-XXL-JOB"><a href="#为什么选择使用-XXL-JOB" class="headerlink" title="为什么选择使用 XXL-JOB"></a>为什么选择使用 XXL-JOB</h2><p>  项目中有这样的需求：需要使用定时器从 A 和 B 系统中同步不同的表中的数据，并且对数据进行一定的加工处理，最后将最终的数据写入到数据仓库DB，需要实现针对不同的数据源进行配置（这块也就是多数据源的支持），任务配置可以根据任务量的大小使用不同的资源。对数据同步的时效性和性能要求非常高，并且这些定时任务可以通过页面配置的方式做到灵活，可控制。</p>
+<p>  通过以上的这些需求，我们对目前业界比较流行的任务调度框架进行了技术选型，通过研究发现，目前使用比较广泛的任务调度框架有 XXL-JOB 和 Elastic-JOB ，因此，参考 XXL-JOB 官方对不同任务调度平台的比对，如下图所示：</p>
+<p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimygpwsirj217s0naafe.jpg" alt="">    </p>
+<p>针对以上对比，我们选择了 XXL-JOB 任务调度框架，因为它相比于其他任务调度框架来说，具有更好的用户体验、有良好的运维支持、任务依赖、任务路由原生支持，通过调研发现，框架自带的任务路由策略已经满足我们的业务场景，并且支持分片任务，当任务延迟较高时，可以利用分片的方案加速任务的处理。</p>
+<h2 id="XXL-JOB-介绍"><a href="#XXL-JOB-介绍" class="headerlink" title="XXL-JOB 介绍"></a>XXL-JOB 介绍</h2><blockquote>
+<p>XXL-JOB是⼀个轻量级分布式任务调度框架。拥有“HA、弹性扩缩、故障处理、阻塞处<br>理、⾼性能、自运维”等特点。<br>其核⼼部分包括：<br>1、调度模块（调度中⼼）：负责管理任务信息，触发任务执⾏，自身不承担业务逻辑；<br>同时提供“日志、报表、告警、GLUE、注册中⼼”等功能；<br>2、执⾏模块（执⾏器）： 负责接收调度中⼼请求，进⾏任务逻辑执⾏、终⽌、日志加载<br>等操作；专注于任务执⾏相关操作；</p>
+</blockquote>
+<h3 id="XXL-JOB-发展"><a href="#XXL-JOB-发展" class="headerlink" title="XXL-JOB 发展"></a>XXL-JOB 发展</h3><p>• 2015年中，着⼿设计XXL-JOB，提交第⼀个Commit<br>• 2015-11月，发布首个Release版本，同期当选为开源中国月度热门项目<br>• 2016-01月，我司展开定制和接⼊，⾄今调度近百万次<br>• 2017-05-03，应邀参加“第62期开源中国源创会”现场分享XXL-JOB<br>• 2017-10月，当选为开源中国首批GVP项目<br>• ……<br>• ⾄今，XXL-JOB登记接⼊公司50+（点评、移动、平安、海尔、优信），<br>社区群8个，群成员约3000 ⼈</p>
+<h3 id="XXL-JOB-架构图"><a href="#XXL-JOB-架构图" class="headerlink" title="XXL-JOB 架构图"></a>XXL-JOB 架构图</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyh8kl4vj219i0m8al6.jpg" alt=""></p>
+<h3 id="XXL-JOB-特性全览"><a href="#XXL-JOB-特性全览" class="headerlink" title="XXL-JOB 特性全览"></a>XXL-JOB 特性全览</h3><p>1、简单<br>2、动态<br>3、调度中心HA（中心式）<br>4、执行器HA（分布式）<br>5、任务Failover<br>6、一致性<br>7、自定义任务参数<br>8、调度线程池<br>9、弹性扩容缩容<br>10、邮件报警<br>11、状态监控<br>12、Rolling执行日志<br>13、GLUE：提供Web IDE<br>14、数据加密<br>15、任务依赖<br>16、推送maven中央仓库<br>17、任务注册<br>18、路由策略<br>19、运行报表<br>20、脚本任务<br>21、阻塞处理策略<br>22、失败处理策略<br>23、分片广播任务<br>24、动态分片<br>25、事件触发</p>
+<h3 id="HA-集群"><a href="#HA-集群" class="headerlink" title="HA/集群"></a>HA/集群</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gin0cq0n2xj21s40ui4hv.jpg" alt=""></p>
+<h3 id="弹性扩缩"><a href="#弹性扩缩" class="headerlink" title="弹性扩缩"></a>弹性扩缩</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gin009ca4mj21nq0siwv3.jpg" alt=""></p>
+<h3 id="执行器路由策略"><a href="#执行器路由策略" class="headerlink" title="执行器路由策略"></a>执行器路由策略</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gin08gqqvgj21dc0nk0zb.jpg" alt=""></p>
+<h3 id="故障转移-amp-忙碌转移"><a href="#故障转移-amp-忙碌转移" class="headerlink" title="故障转移 &amp; 忙碌转移"></a>故障转移 &amp; 忙碌转移</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gin0dtlklbj21ik0p8afd.jpg" alt=""></p>
+<h3 id="分片任务-amp-动态分片"><a href="#分片任务-amp-动态分片" class="headerlink" title="分片任务 &amp; 动态分片"></a>分片任务 &amp; 动态分片</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyn5o76ij215i0p0tmi.jpg" alt=""></p>
+<h3 id="阻塞策略-amp-失败处理策略"><a href="#阻塞策略-amp-失败处理策略" class="headerlink" title="阻塞策略 &amp; 失败处理策略"></a>阻塞策略 &amp; 失败处理策略</h3><p> <img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimynngodnj21ii0qm43e.jpg" alt=""></p>
+<p>###触发规则</p>
+<ul>
+<li>Cron 表达式<br>如：每日凌晨 2 点，进行“PV 数据计算”的任务</li>
+<li>任务依赖触发<br>如：父任务“PV 数据计算”执行结束后，触发多业务线的“PV 报表生成”的多个子任务</li>
+<li>事件触发/API 服务<br>如：类 MQ 场景，短信验证码、订单创建等。</li>
+</ul>
+<h3 id="任务模式"><a href="#任务模式" class="headerlink" title="任务模式"></a>任务模式</h3><p>1、BEAN 模式：JobHandler、Spring Bean<br>2、GLUE 模式(Java )：Web IDE、在线开发、版本回溯、Java 语言、动态编译（IOC）、实时生效、Rolling</p>
+<p>Log<br>3、GLUE 模式(Shell)：Web IDE、在线开发、版本回溯、实时生效、Rolling Log<br>4、GLUE 模式(Python)<br>5、GLUE 模式(NodeJS)</p>
+<p>（其中“GLUE 模式(NodeJS)”来源于 “icyblazek@github”同学提交的 PR，XXL-JOB 理论上支持任何类型脚本</p>
+<p>语言的任务模式扩展）</p>
+<h3 id="GLUE-模式"><a href="#GLUE-模式" class="headerlink" title="GLUE 模式"></a>GLUE 模式</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyo6rz8vj21fg0oaqam.jpg" alt=""></p>
+<h3 id="执行日志-amp-Rolling-Log"><a href="#执行日志-amp-Rolling-Log" class="headerlink" title="执行日志 &amp; Rolling Log"></a>执行日志 &amp; Rolling Log</h3><p> <img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyoojunwj21o00ts7jz.jpg" alt=""></p>
+<h2 id="XXL-JOB-搭建"><a href="#XXL-JOB-搭建" class="headerlink" title="XXL-JOB 搭建"></a>XXL-JOB 搭建</h2><p>1、安装 Mysql，初始化 XXL-JOB 底层库表</p>
+<p>• 2、编译部署“调度中心”</p>
+<p>• 3、编译部署“执行器”（参考多个 Sample 项目）</p>
+<p>》》》开发第一个 JobHandler<br>入门文档 （可参考文档 “快速入门”章节：）： <a target="_blank" rel="noopener" href="http://www.xuxueli.com/xxl-job/">http://www.xuxueli.com/xxl-job/</a></p>
+
+                      
+
+                        
+    </div>
+    <div class="article-info article-info-index">
+      
+          
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">分布式任务调度,xxl-job</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+            
+
+              
+
+                  
+                    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://baiwenhui.com/2020/09/16/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1XXL-JOB%E5%9C%A8%E6%88%91%E5%8F%B8%E7%9A%84%E9%80%89%E5%9E%8B/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+                      
+                        <div class="clearfix"></div>
+    </div>
+    </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2020/09/14/ELK%E6%97%A5%E5%BF%97%E8%BF%81%E7%A7%BB%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ELK日志迁移技术分享</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+    
+
+      
+
+            
+              
+                <!-- 畅言评论框 start -->
+<div id="SOHUCS" sid="分布式定时任务XXL-JOB在我司的选型" style="padding: 0px 30px 0px 46px;"></div>
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cysHzQGmj'; 
+var conf = 'prod_25363bfe21a9a09909208a01135582ea'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+                  
+                      
+
+                        
+                          <script>
+                            (function () {
+                              var bp = document.createElement('script');
+                              bp.src = '//push.zhanzhang.baidu.com/push.js';
+                              var s = document.getElementsByTagName("script")[0];
+                              s.parentNode.insertBefore(bp, s);
+                            })();
+
+                          </script>
+                          
+
+
+                            
+          </div>
+        </div>
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2023 strongant
+    	</div>
+     <script async
+src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_site_pv">本站总访问量<span
+id="busuanzi_value_site_pv"></span>次</span>
+    <span id="busuanzi_container_page_pv">
+  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+</span>
+您是第<span id="busuanzi_value_site_uv"></span>个小伙伴
+<span><a href="https://beian.miit.gov.cn/" target="_blank">陇ICP备16000358号-1 - 网站信息</a></span>
+<span id="busuanzi_value_page_pv"></span>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true,
+		showTags: false
+	}
+</script>
+
+<script>!function(t){function n(r){if(e[r])return e[r].exports;var o=e[r]={exports:{},id:r,loaded:!1};return t[r].call(o.exports,o,o.exports,n),o.loaded=!0,o.exports}var e={};return n.m=t,n.c=e,n.p="./",n(0)}([function(t,n,e){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}function o(t,n){var e=/\/|index.html/g;return t.replace(e,"")===n.replace(e,"")}function i(){for(var t=document.querySelectorAll(".js-header-menu li a"),n=window.location.pathname,e=0,r=t.length;e<r;e++){var i=t[e];o(n,i.getAttribute("href"))&&(0,d.default)(i,"active")}}function u(t){for(var n=t.offsetLeft,e=t.offsetParent;null!==e;)n+=e.offsetLeft,e=e.offsetParent;return n}function f(t){for(var n=t.offsetTop,e=t.offsetParent;null!==e;)n+=e.offsetTop,e=e.offsetParent;return n}function c(t,n,e,r,o){var i=u(t),c=f(t)-n;if(c-e<=o){var a=t.$newDom;a||(a=t.cloneNode(!0),(0,h.default)(t,a),t.$newDom=a,a.style.position="fixed",a.style.top=(e||c)+"px",a.style.left=i+"px",a.style.zIndex=r||2,a.style.width="100%",a.style.color="#fff"),a.style.visibility="visible",t.style.visibility="hidden"}else{t.style.visibility="visible";var s=t.$newDom;s&&(s.style.visibility="hidden")}}function a(){var t=document.querySelector(".js-overlay"),n=document.querySelector(".js-header-menu");c(t,document.body.scrollTop,-63,2,0),c(n,document.body.scrollTop,1,3,0)}function s(){document.querySelector("#container").addEventListener("scroll",function(t){a()}),window.addEventListener("scroll",function(t){a()}),a()}function l(){x.default.versions.mobile&&window.screen.width<800&&(i(),s())}var p=e(71),d=r(p),v=e(72),y=(r(v),e(84)),h=r(y),b=e(69),x=r(b),m=e(75),g=r(m),w=e(70);l(),(0,w.addLoadEvent)(function(){g.default.init()}),t.exports={}},function(t,n){var e=t.exports="undefined"!=typeof window&&window.Math==Math?window:"undefined"!=typeof self&&self.Math==Math?self:Function("return this")();"number"==typeof __g&&(__g=e)},function(t,n){var e={}.hasOwnProperty;t.exports=function(t,n){return e.call(t,n)}},function(t,n,e){var r=e(49),o=e(15);t.exports=function(t){return r(o(t))}},function(t,n,e){t.exports=!e(8)(function(){return 7!=Object.defineProperty({},"a",{get:function(){return 7}}).a})},function(t,n,e){var r=e(6),o=e(12);t.exports=e(4)?function(t,n,e){return r.f(t,n,o(1,e))}:function(t,n,e){return t[n]=e,t}},function(t,n,e){var r=e(10),o=e(30),i=e(24),u=Object.defineProperty;n.f=e(4)?Object.defineProperty:function(t,n,e){if(r(t),n=i(n,!0),r(e),o)try{return u(t,n,e)}catch(t){}if("get"in e||"set"in e)throw TypeError("Accessors not supported!");return"value"in e&&(t[n]=e.value),t}},function(t,n,e){var r=e(22)("wks"),o=e(13),i=e(1).Symbol,u="function"==typeof i,f=t.exports=function(t){return r[t]||(r[t]=u&&i[t]||(u?i:o)("Symbol."+t))};f.store=r},function(t,n){t.exports=function(t){try{return!!t()}catch(t){return!0}}},function(t,n,e){var r=e(35),o=e(16);t.exports=Object.keys||function(t){return r(t,o)}},function(t,n,e){var r=e(11);t.exports=function(t){if(!r(t))throw TypeError(t+" is not an object!");return t}},function(t,n){t.exports=function(t){return"object"==typeof t?null!==t:"function"==typeof t}},function(t,n){t.exports=function(t,n){return{enumerable:!(1&t),configurable:!(2&t),writable:!(4&t),value:n}}},function(t,n){var e=0,r=Math.random();t.exports=function(t){return"Symbol(".concat(void 0===t?"":t,")_",(++e+r).toString(36))}},function(t,n){var e=t.exports={version:"2.4.0"};"number"==typeof __e&&(__e=e)},function(t,n){t.exports=function(t){if(void 0==t)throw TypeError("Can't call method on  "+t);return t}},function(t,n){t.exports="constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf".split(",")},function(t,n){t.exports={}},function(t,n){t.exports=!0},function(t,n){n.f={}.propertyIsEnumerable},function(t,n,e){var r=e(6).f,o=e(2),i=e(7)("toStringTag");t.exports=function(t,n,e){t&&!o(t=e?t:t.prototype,i)&&r(t,i,{configurable:!0,value:n})}},function(t,n,e){var r=e(22)("keys"),o=e(13);t.exports=function(t){return r[t]||(r[t]=o(t))}},function(t,n,e){var r=e(1),o="__core-js_shared__",i=r[o]||(r[o]={});t.exports=function(t){return i[t]||(i[t]={})}},function(t,n){var e=Math.ceil,r=Math.floor;t.exports=function(t){return isNaN(t=+t)?0:(t>0?r:e)(t)}},function(t,n,e){var r=e(11);t.exports=function(t,n){if(!r(t))return t;var e,o;if(n&&"function"==typeof(e=t.toString)&&!r(o=e.call(t)))return o;if("function"==typeof(e=t.valueOf)&&!r(o=e.call(t)))return o;if(!n&&"function"==typeof(e=t.toString)&&!r(o=e.call(t)))return o;throw TypeError("Can't convert object to primitive value")}},function(t,n,e){var r=e(1),o=e(14),i=e(18),u=e(26),f=e(6).f;t.exports=function(t){var n=o.Symbol||(o.Symbol=i?{}:r.Symbol||{});"_"==t.charAt(0)||t in n||f(n,t,{value:u.f(t)})}},function(t,n,e){n.f=e(7)},function(t,n,e){var r=e(1),o=e(14),i=e(46),u=e(5),f="prototype",c=function(t,n,e){var a,s,l,p=t&c.F,d=t&c.G,v=t&c.S,y=t&c.P,h=t&c.B,b=t&c.W,x=d?o:o[n]||(o[n]={}),m=x[f],g=d?r:v?r[n]:(r[n]||{})[f];d&&(e=n);for(a in e)s=!p&&g&&void 0!==g[a],s&&a in x||(l=s?g[a]:e[a],x[a]=d&&"function"!=typeof g[a]?e[a]:h&&s?i(l,r):b&&g[a]==l?function(t){var n=function(n,e,r){if(this instanceof t){switch(arguments.length){case 0:return new t;case 1:return new t(n);case 2:return new t(n,e)}return new t(n,e,r)}return t.apply(this,arguments)};return n[f]=t[f],n}(l):y&&"function"==typeof l?i(Function.call,l):l,y&&((x.virtual||(x.virtual={}))[a]=l,t&c.R&&m&&!m[a]&&u(m,a,l)))};c.F=1,c.G=2,c.S=4,c.P=8,c.B=16,c.W=32,c.U=64,c.R=128,t.exports=c},function(t,n){var e={}.toString;t.exports=function(t){return e.call(t).slice(8,-1)}},function(t,n,e){var r=e(11),o=e(1).document,i=r(o)&&r(o.createElement);t.exports=function(t){return i?o.createElement(t):{}}},function(t,n,e){t.exports=!e(4)&&!e(8)(function(){return 7!=Object.defineProperty(e(29)("div"),"a",{get:function(){return 7}}).a})},function(t,n,e){"use strict";var r=e(18),o=e(27),i=e(36),u=e(5),f=e(2),c=e(17),a=e(51),s=e(20),l=e(58),p=e(7)("iterator"),d=!([].keys&&"next"in[].keys()),v="@@iterator",y="keys",h="values",b=function(){return this};t.exports=function(t,n,e,x,m,g,w){a(e,n,x);var O,S,_,j=function(t){if(!d&&t in A)return A[t];switch(t){case y:return function(){return new e(this,t)};case h:return function(){return new e(this,t)}}return function(){return new e(this,t)}},P=n+" Iterator",E=m==h,M=!1,A=t.prototype,T=A[p]||A[v]||m&&A[m],L=T||j(m),N=m?E?j("entries"):L:void 0,C="Array"==n?A.entries||T:T;if(C&&(_=l(C.call(new t)),_!==Object.prototype&&(s(_,P,!0),r||f(_,p)||u(_,p,b))),E&&T&&T.name!==h&&(M=!0,L=function(){return T.call(this)}),r&&!w||!d&&!M&&A[p]||u(A,p,L),c[n]=L,c[P]=b,m)if(O={values:E?L:j(h),keys:g?L:j(y),entries:N},w)for(S in O)S in A||i(A,S,O[S]);else o(o.P+o.F*(d||M),n,O);return O}},function(t,n,e){var r=e(10),o=e(55),i=e(16),u=e(21)("IE_PROTO"),f=function(){},c="prototype",a=function(){var t,n=e(29)("iframe"),r=i.length,o="<",u=">";for(n.style.display="none",e(48).appendChild(n),n.src="javascript:",t=n.contentWindow.document,t.open(),t.write(o+"script"+u+"document.F=Object"+o+"/script"+u),t.close(),a=t.F;r--;)delete a[c][i[r]];return a()};t.exports=Object.create||function(t,n){var e;return null!==t?(f[c]=r(t),e=new f,f[c]=null,e[u]=t):e=a(),void 0===n?e:o(e,n)}},function(t,n,e){var r=e(35),o=e(16).concat("length","prototype");n.f=Object.getOwnPropertyNames||function(t){return r(t,o)}},function(t,n){n.f=Object.getOwnPropertySymbols},function(t,n,e){var r=e(2),o=e(3),i=e(45)(!1),u=e(21)("IE_PROTO");t.exports=function(t,n){var e,f=o(t),c=0,a=[];for(e in f)e!=u&&r(f,e)&&a.push(e);for(;n.length>c;)r(f,e=n[c++])&&(~i(a,e)||a.push(e));return a}},function(t,n,e){t.exports=e(5)},function(t,n,e){var r=e(15);t.exports=function(t){return Object(r(t))}},function(t,n,e){t.exports={default:e(41),__esModule:!0}},function(t,n,e){t.exports={default:e(42),__esModule:!0}},function(t,n,e){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}n.__esModule=!0;var o=e(39),i=r(o),u=e(38),f=r(u),c="function"==typeof f.default&&"symbol"==typeof i.default?function(t){return typeof t}:function(t){return t&&"function"==typeof f.default&&t.constructor===f.default&&t!==f.default.prototype?"symbol":typeof t};n.default="function"==typeof f.default&&"symbol"===c(i.default)?function(t){return"undefined"==typeof t?"undefined":c(t)}:function(t){return t&&"function"==typeof f.default&&t.constructor===f.default&&t!==f.default.prototype?"symbol":"undefined"==typeof t?"undefined":c(t)}},function(t,n,e){e(65),e(63),e(66),e(67),t.exports=e(14).Symbol},function(t,n,e){e(64),e(68),t.exports=e(26).f("iterator")},function(t,n){t.exports=function(t){if("function"!=typeof t)throw TypeError(t+" is not a function!");return t}},function(t,n){t.exports=function(){}},function(t,n,e){var r=e(3),o=e(61),i=e(60);t.exports=function(t){return function(n,e,u){var f,c=r(n),a=o(c.length),s=i(u,a);if(t&&e!=e){for(;a>s;)if(f=c[s++],f!=f)return!0}else for(;a>s;s++)if((t||s in c)&&c[s]===e)return t||s||0;return!t&&-1}}},function(t,n,e){var r=e(43);t.exports=function(t,n,e){if(r(t),void 0===n)return t;switch(e){case 1:return function(e){return t.call(n,e)};case 2:return function(e,r){return t.call(n,e,r)};case 3:return function(e,r,o){return t.call(n,e,r,o)}}return function(){return t.apply(n,arguments)}}},function(t,n,e){var r=e(9),o=e(34),i=e(19);t.exports=function(t){var n=r(t),e=o.f;if(e)for(var u,f=e(t),c=i.f,a=0;f.length>a;)c.call(t,u=f[a++])&&n.push(u);return n}},function(t,n,e){t.exports=e(1).document&&document.documentElement},function(t,n,e){var r=e(28);t.exports=Object("z").propertyIsEnumerable(0)?Object:function(t){return"String"==r(t)?t.split(""):Object(t)}},function(t,n,e){var r=e(28);t.exports=Array.isArray||function(t){return"Array"==r(t)}},function(t,n,e){"use strict";var r=e(32),o=e(12),i=e(20),u={};e(5)(u,e(7)("iterator"),function(){return this}),t.exports=function(t,n,e){t.prototype=r(u,{next:o(1,e)}),i(t,n+" Iterator")}},function(t,n){t.exports=function(t,n){return{value:n,done:!!t}}},function(t,n,e){var r=e(9),o=e(3);t.exports=function(t,n){for(var e,i=o(t),u=r(i),f=u.length,c=0;f>c;)if(i[e=u[c++]]===n)return e}},function(t,n,e){var r=e(13)("meta"),o=e(11),i=e(2),u=e(6).f,f=0,c=Object.isExtensible||function(){return!0},a=!e(8)(function(){return c(Object.preventExtensions({}))}),s=function(t){u(t,r,{value:{i:"O"+ ++f,w:{}}})},l=function(t,n){if(!o(t))return"symbol"==typeof t?t:("string"==typeof t?"S":"P")+t;if(!i(t,r)){if(!c(t))return"F";if(!n)return"E";s(t)}return t[r].i},p=function(t,n){if(!i(t,r)){if(!c(t))return!0;if(!n)return!1;s(t)}return t[r].w},d=function(t){return a&&v.NEED&&c(t)&&!i(t,r)&&s(t),t},v=t.exports={KEY:r,NEED:!1,fastKey:l,getWeak:p,onFreeze:d}},function(t,n,e){var r=e(6),o=e(10),i=e(9);t.exports=e(4)?Object.defineProperties:function(t,n){o(t);for(var e,u=i(n),f=u.length,c=0;f>c;)r.f(t,e=u[c++],n[e]);return t}},function(t,n,e){var r=e(19),o=e(12),i=e(3),u=e(24),f=e(2),c=e(30),a=Object.getOwnPropertyDescriptor;n.f=e(4)?a:function(t,n){if(t=i(t),n=u(n,!0),c)try{return a(t,n)}catch(t){}if(f(t,n))return o(!r.f.call(t,n),t[n])}},function(t,n,e){var r=e(3),o=e(33).f,i={}.toString,u="object"==typeof window&&window&&Object.getOwnPropertyNames?Object.getOwnPropertyNames(window):[],f=function(t){try{return o(t)}catch(t){return u.slice()}};t.exports.f=function(t){return u&&"[object Window]"==i.call(t)?f(t):o(r(t))}},function(t,n,e){var r=e(2),o=e(37),i=e(21)("IE_PROTO"),u=Object.prototype;t.exports=Object.getPrototypeOf||function(t){return t=o(t),r(t,i)?t[i]:"function"==typeof t.constructor&&t instanceof t.constructor?t.constructor.prototype:t instanceof Object?u:null}},function(t,n,e){var r=e(23),o=e(15);t.exports=function(t){return function(n,e){var i,u,f=String(o(n)),c=r(e),a=f.length;return c<0||c>=a?t?"":void 0:(i=f.charCodeAt(c),i<55296||i>56319||c+1===a||(u=f.charCodeAt(c+1))<56320||u>57343?t?f.charAt(c):i:t?f.slice(c,c+2):(i-55296<<10)+(u-56320)+65536)}}},function(t,n,e){var r=e(23),o=Math.max,i=Math.min;t.exports=function(t,n){return t=r(t),t<0?o(t+n,0):i(t,n)}},function(t,n,e){var r=e(23),o=Math.min;t.exports=function(t){return t>0?o(r(t),9007199254740991):0}},function(t,n,e){"use strict";var r=e(44),o=e(52),i=e(17),u=e(3);t.exports=e(31)(Array,"Array",function(t,n){this._t=u(t),this._i=0,this._k=n},function(){var t=this._t,n=this._k,e=this._i++;return!t||e>=t.length?(this._t=void 0,o(1)):"keys"==n?o(0,e):"values"==n?o(0,t[e]):o(0,[e,t[e]])},"values"),i.Arguments=i.Array,r("keys"),r("values"),r("entries")},function(t,n){},function(t,n,e){"use strict";var r=e(59)(!0);e(31)(String,"String",function(t){this._t=String(t),this._i=0},function(){var t,n=this._t,e=this._i;return e>=n.length?{value:void 0,done:!0}:(t=r(n,e),this._i+=t.length,{value:t,done:!1})})},function(t,n,e){"use strict";var r=e(1),o=e(2),i=e(4),u=e(27),f=e(36),c=e(54).KEY,a=e(8),s=e(22),l=e(20),p=e(13),d=e(7),v=e(26),y=e(25),h=e(53),b=e(47),x=e(50),m=e(10),g=e(3),w=e(24),O=e(12),S=e(32),_=e(57),j=e(56),P=e(6),E=e(9),M=j.f,A=P.f,T=_.f,L=r.Symbol,N=r.JSON,C=N&&N.stringify,k="prototype",F=d("_hidden"),q=d("toPrimitive"),I={}.propertyIsEnumerable,B=s("symbol-registry"),D=s("symbols"),W=s("op-symbols"),H=Object[k],K="function"==typeof L,R=r.QObject,J=!R||!R[k]||!R[k].findChild,U=i&&a(function(){return 7!=S(A({},"a",{get:function(){return A(this,"a",{value:7}).a}})).a})?function(t,n,e){var r=M(H,n);r&&delete H[n],A(t,n,e),r&&t!==H&&A(H,n,r)}:A,G=function(t){var n=D[t]=S(L[k]);return n._k=t,n},$=K&&"symbol"==typeof L.iterator?function(t){return"symbol"==typeof t}:function(t){return t instanceof L},z=function(t,n,e){return t===H&&z(W,n,e),m(t),n=w(n,!0),m(e),o(D,n)?(e.enumerable?(o(t,F)&&t[F][n]&&(t[F][n]=!1),e=S(e,{enumerable:O(0,!1)})):(o(t,F)||A(t,F,O(1,{})),t[F][n]=!0),U(t,n,e)):A(t,n,e)},Y=function(t,n){m(t);for(var e,r=b(n=g(n)),o=0,i=r.length;i>o;)z(t,e=r[o++],n[e]);return t},Q=function(t,n){return void 0===n?S(t):Y(S(t),n)},X=function(t){var n=I.call(this,t=w(t,!0));return!(this===H&&o(D,t)&&!o(W,t))&&(!(n||!o(this,t)||!o(D,t)||o(this,F)&&this[F][t])||n)},V=function(t,n){if(t=g(t),n=w(n,!0),t!==H||!o(D,n)||o(W,n)){var e=M(t,n);return!e||!o(D,n)||o(t,F)&&t[F][n]||(e.enumerable=!0),e}},Z=function(t){for(var n,e=T(g(t)),r=[],i=0;e.length>i;)o(D,n=e[i++])||n==F||n==c||r.push(n);return r},tt=function(t){for(var n,e=t===H,r=T(e?W:g(t)),i=[],u=0;r.length>u;)!o(D,n=r[u++])||e&&!o(H,n)||i.push(D[n]);return i};K||(L=function(){if(this instanceof L)throw TypeError("Symbol is not a constructor!");var t=p(arguments.length>0?arguments[0]:void 0),n=function(e){this===H&&n.call(W,e),o(this,F)&&o(this[F],t)&&(this[F][t]=!1),U(this,t,O(1,e))};return i&&J&&U(H,t,{configurable:!0,set:n}),G(t)},f(L[k],"toString",function(){return this._k}),j.f=V,P.f=z,e(33).f=_.f=Z,e(19).f=X,e(34).f=tt,i&&!e(18)&&f(H,"propertyIsEnumerable",X,!0),v.f=function(t){return G(d(t))}),u(u.G+u.W+u.F*!K,{Symbol:L});for(var nt="hasInstance,isConcatSpreadable,iterator,match,replace,search,species,split,toPrimitive,toStringTag,unscopables".split(","),et=0;nt.length>et;)d(nt[et++]);for(var nt=E(d.store),et=0;nt.length>et;)y(nt[et++]);u(u.S+u.F*!K,"Symbol",{for:function(t){return o(B,t+="")?B[t]:B[t]=L(t)},keyFor:function(t){if($(t))return h(B,t);throw TypeError(t+" is not a symbol!")},useSetter:function(){J=!0},useSimple:function(){J=!1}}),u(u.S+u.F*!K,"Object",{create:Q,defineProperty:z,defineProperties:Y,getOwnPropertyDescriptor:V,getOwnPropertyNames:Z,getOwnPropertySymbols:tt}),N&&u(u.S+u.F*(!K||a(function(){var t=L();return"[null]"!=C([t])||"{}"!=C({a:t})||"{}"!=C(Object(t))})),"JSON",{stringify:function(t){if(void 0!==t&&!$(t)){for(var n,e,r=[t],o=1;arguments.length>o;)r.push(arguments[o++]);return n=r[1],"function"==typeof n&&(e=n),!e&&x(n)||(n=function(t,n){if(e&&(n=e.call(this,t,n)),!$(n))return n}),r[1]=n,C.apply(N,r)}}}),L[k][q]||e(5)(L[k],q,L[k].valueOf),l(L,"Symbol"),l(Math,"Math",!0),l(r.JSON,"JSON",!0)},function(t,n,e){e(25)("asyncIterator")},function(t,n,e){e(25)("observable")},function(t,n,e){e(62);for(var r=e(1),o=e(5),i=e(17),u=e(7)("toStringTag"),f=["NodeList","DOMTokenList","MediaList","StyleSheetList","CSSRuleList"],c=0;c<5;c++){var a=f[c],s=r[a],l=s&&s.prototype;l&&!l[u]&&o(l,u,a),i[a]=i.Array}},function(t,n){"use strict";var e={versions:function(){var t=window.navigator.userAgent;return{trident:t.indexOf("Trident")>-1,presto:t.indexOf("Presto")>-1,webKit:t.indexOf("AppleWebKit")>-1,gecko:t.indexOf("Gecko")>-1&&t.indexOf("KHTML")==-1,mobile:!!t.match(/AppleWebKit.*Mobile.*/),ios:!!t.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),android:t.indexOf("Android")>-1||t.indexOf("Linux")>-1,iPhone:t.indexOf("iPhone")>-1||t.indexOf("Mac")>-1,iPad:t.indexOf("iPad")>-1,webApp:t.indexOf("Safari")==-1,weixin:t.indexOf("MicroMessenger")==-1}}()};t.exports=e},function(t,n,e){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}var o=e(40),i=r(o),u=function(){function t(t,n,e){return n||e?String.fromCharCode(n||e):o[t]||t}function n(t){return l[t]}var e=/&quot;|&lt;|&gt;|&amp;|&nbsp;|&apos;|&#(\d+);|&#(\d+)/g,r=/['<> "&]/g,o={"&quot;":'"',"&lt;":"<","&gt;":">","&amp;":"&","&nbsp;":" "},f=/\u00a0/g,c=/<br\s*\/?>/gi,a=/\r?\n/g,s=/\s/g,l={};for(var p in o)l[o[p]]=p;return o["&apos;"]="'",l["'"]="&#39;",{encode:function(t){return t?(""+t).replace(r,n).replace(a,"<br/>").replace(s,"&nbsp;"):""},decode:function(n){return n?(""+n).replace(c,"\n").replace(e,t).replace(f," "):""},encodeBase16:function(t){if(!t)return t;t+="";for(var n=[],e=0,r=t.length;r>e;e++)n.push(t.charCodeAt(e).toString(16).toUpperCase());return n.join("")},encodeBase16forJSON:function(t){if(!t)return t;t=t.replace(/[\u4E00-\u9FBF]/gi,function(t){return escape(t).replace("%u","\\u")});for(var n=[],e=0,r=t.length;r>e;e++)n.push(t.charCodeAt(e).toString(16).toUpperCase());return n.join("")},decodeBase16:function(t){if(!t)return t;t+="";for(var n=[],e=0,r=t.length;r>e;e+=2)n.push(String.fromCharCode("0x"+t.slice(e,e+2)));return n.join("")},encodeObject:function(t){if(t instanceof Array)for(var n=0,e=t.length;e>n;n++)t[n]=u.encodeObject(t[n]);else if("object"==("undefined"==typeof t?"undefined":(0,i.default)(t)))for(var r in t)t[r]=u.encodeObject(t[r]);else if("string"==typeof t)return u.encode(t);return t},loadScript:function(t){var n=document.createElement("script");document.getElementsByTagName("body")[0].appendChild(n),n.setAttribute("src",t)},addLoadEvent:function(t){var n=window.onload;"function"!=typeof window.onload?window.onload=t:window.onload=function(){n(),t()}}}}();t.exports=u},function(t,n){function e(t,n){t.classList?t.classList.add(n):t.className+=" "+n}t.exports=e},function(t,n){function e(t,n){if(t.classList)t.classList.remove(n);else{var e=new RegExp("(^|\\b)"+n.split(" ").join("|")+"(\\b|$)","gi");t.className=t.className.replace(e," ")}}t.exports=e},,,function(t,n){"use strict";function e(){var t=document.querySelector("#page-nav");if(t&&!document.querySelector("#page-nav .extend.prev")&&(t.innerHTML='<a class="extend prev disabled" rel="prev">&laquo; Prev</a>'+t.innerHTML),t&&!document.querySelector("#page-nav .extend.next")&&(t.innerHTML=t.innerHTML+'<a class="extend next disabled" rel="next">Next &raquo;</a>'),yiliaConfig&&yiliaConfig.open_in_new){var n=document.querySelectorAll(".article-entry a:not(.article-more-a)");n.forEach(function(t){t.setAttribute("target","_blank")})}var e=document.querySelector("#js-aboutme");e&&0!==e.length&&(e.innerHTML=e.innerText)}t.exports={init:e}},,,,,,,,,function(t,n){function e(t,n){if("string"==typeof n)return t.insertAdjacentHTML("afterend",n);var e=t.nextSibling;return e?t.parentNode.insertBefore(n,e):t.parentNode.appendChild(n)}t.exports=e}])</script><script src="/./main.2d7529.js"></script><script>!function(){var e=function(e){var t=document.createElement("script");document.getElementsByTagName("body")[0].appendChild(t),t.setAttribute("src",e)};e("/slider.885efe.js")}()</script>
+
+
+    
+<div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
+  <div class="tools-nav header-menu">
+    
+    
+      
+      
+      
+    
+      
+      
+      
+    
+      
+      
+      
+    
+    
+
+    <ul style="width: 70%">
+    
+    
+      
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      
+        
+      
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
+      
+        
+      
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      
+        
+    </ul>
+  </div>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">JDK,JAVA,OpenJDK,OracleJDK</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">分布式，CAP</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">elk,elasticsearch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">java,ES,大数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">grails</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">grails mvc</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">groovy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">gorm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">grails, JsonBuilder</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Grails</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hibernate</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">http</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">IDEA,Mac快捷键</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">springboot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">webservices</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">java,java14,java语言</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Java面试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">图床</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">图片</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jdk</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">mac</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">brew</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">SpringSecurity</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">SpringBoot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">翻译</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Spring周报</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Spring官方周报翻译</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">java8</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">sh</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Tools</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">rxjs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">JVM</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">IDEA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">OSS，Java,云存储</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker,镜像,harbor</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">angularjs</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">SpringData</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Elasticsearch</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">electron</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">分布式任务调度,xxl-job</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spring官方周报</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">生活感悟</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">chrome扩展</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">终端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">showterm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">DataStructureAndAlgorithm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java,中间件,MyCAT</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            2、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: true
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="http://www.bysocket.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>泥瓦匠BYSocket</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://blog.didispace.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>程序员DD</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://www.itmuch.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>周立</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://cmsblogs.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>陈明</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://sunliangliang.com/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>孙亮亮</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://wayzo.github.io/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>王宇宙</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://www.cs.usfca.edu/~galles/visualization/Algorithms.html" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>数据结构和算法</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://algo-visualizer.jasonpark.me/#path=backtracking/knight's_tour/basic" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>可视化数据结构算法理解</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://yuba.douyu.com/qincha" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>覃超数据结构和算法加强</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://github.com/EbookFoundation/free-programming-books/blob/master/free-programming-books.md" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>开源编程学习书籍</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://github.com/EbookFoundation/free-programming-books/blob/master/free-programming-books-zh.md" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>开源中文学习书籍</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://webfullstack.me/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>web全栈导航</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="https://www.cs.cmu.edu/~213/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>CMU15213</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://www.cs.cmu.edu/~410/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>CMU15410</a>
+            </li>
+          
+        </ul>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me" q-show="aboutme">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">白文辉 &lt;br/&gt; Java开发工程师，3年相关开发经验，现在就职于好车伯乐(上海优与汽车科技有限公司)。 &lt;br/&gt; 技能 &lt;br/&gt; Java开发 &lt;br/&gt; 略懂groovy，python，NodeJS等 &lt;br/&gt; 工作经历 &lt;br/&gt; 1. 上海优与汽车科技有限公司 Java开发 &lt;br/&gt; 2. 上海浦东软件园信息技术有限公司Java开发 &lt;br/&gt; 3. 兰州中林智能科技有限公司Java开发 &lt;br/&gt; &lt;br/&gt; 链接 &lt;br/&gt; GitHub - https://github.com/strongant/ &lt;br/&gt; 我的博客 - https://strongant.github.io/ &lt;br/&gt; SpringForAll - http://spring4all.com/people/strongant &lt;br/&gt; 联系方式 &lt;br/&gt; 微信 18215361994 &lt;br/&gt; 邮箱 &lt;br/&gt; 18215361994@163.com &lt;br/&gt; bstrongant@gmail.com</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

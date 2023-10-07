@@ -1,0 +1,1339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>strongant的个人博客</title>
+  <subtitle>strongant的个人博客</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://baiwenhui.com/"/>
+  <updated>2023-10-07T15:59:31.607Z</updated>
+  <id>http://baiwenhui.com/</id>
+  
+  <author>
+    <name>strongant</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>分布式定时任务XXL-JOB在我司的选型</title>
+    <link href="http://baiwenhui.com/2020/09/16/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1XXL-JOB%E5%9C%A8%E6%88%91%E5%8F%B8%E7%9A%84%E9%80%89%E5%9E%8B/"/>
+    <id>http://baiwenhui.com/2020/09/16/分布式定时任务XXL-JOB在我司的选型/</id>
+    <published>2020-09-16T15:39:44.000Z</published>
+    <updated>2023-10-07T15:59:31.607Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="任务系统"><a href="#任务系统" class="headerlink" title="任务系统"></a>任务系统</h2><h3 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h3><ol>
+<li><strong>什么时间</strong></li>
+<li><strong>什么地点</strong></li>
+<li><strong>做什么事</strong></li>
+</ol>
+<h3 id="一个简单的任务"><a href="#一个简单的任务" class="headerlink" title="一个简单的任务"></a>一个简单的任务</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyeiy1ooj20ya0retab.jpg" alt=""></p>
+<h3 id="cron"><a href="#cron" class="headerlink" title="cron"></a>cron</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyf1m8qnj21ck0kajsc.jpg" alt=""></p>
+<h3 id="早期的-cron"><a href="#早期的-cron" class="headerlink" title="早期的 cron"></a>早期的 cron</h3><p>V7，1979</p>
+<ol>
+<li>在Version 7 Unix里是一个系统服务</li>
+<li>只用 root 运行任务</li>
+<li>算法简单直接</li>
+</ol>
+<p>更多详情请参考: <a href="https://en.wikipedia.org/wiki/Cron">https://en.wikipedia.org/wiki/Cron</a></p>
+<h3 id="早期的-cron-运行逻辑"><a href="#早期的-cron-运行逻辑" class="headerlink" title="早期的 cron 运行逻辑"></a>早期的 cron 运行逻辑</h3><ol>
+<li>读 /usr/lib/crontab 文件</li>
+<li>如果有命令要在当前时间执行，就用 root 用户去执行命令</li>
+<li>Sleep 1 minute</li>
+<li>重新从步骤 1 开始</li>
+</ol>
+<h3 id="支持多用户的-cron"><a href="#支持多用户的-cron" class="headerlink" title="支持多用户的 cron"></a>支持多用户的 cron</h3><p>Unix System V，1983</p>
+<ol>
+<li>启动的时候读取所有用户下的 .crontab 文件</li>
+<li>计算出每个 crontab 文件里需要执行的命令的下一次执行时间</li>
+<li>把这些命令按下一次执行时间排序后放入队列里</li>
+<li>进入主循环<br>① 计算队列里第一个任务的执行时间与当前的时间差<br>② Sleep 直到第一个任务执行时间<br>③ 后台执行任务<br>④ 计算这个任务的下一次执行时间，放回队列，排序</li>
+</ol>
+<h3 id="近代的-cron"><a href="#近代的-cron" class="headerlink" title="近代的 cron"></a>近代的 cron</h3><p>Linux，1991</p>
+<ol>
+<li>Vixie cron(Paul Vixie 1987)</li>
+<li>Version 3 Vixie cron(1993)</li>
+<li>Version 4.1 ISC Cron(2004)</li>
+<li>anacron, dcron, fcron</li>
+</ol>
+<h3 id="cron-的局限性"><a href="#cron-的局限性" class="headerlink" title="cron 的局限性"></a>cron 的局限性</h3><ol>
+<li>单机</li>
+<li>无界面</li>
+<li>功能比较简单</li>
+<li>多机器的情况下任务维护成本较高</li>
+</ol>
+<h2 id="分布式任务系统"><a href="#分布式任务系统" class="headerlink" title="分布式任务系统"></a>分布式任务系统</h2><h3 id="分布式系统的特点"><a href="#分布式系统的特点" class="headerlink" title="分布式系统的特点"></a>分布式系统的特点</h3><ol>
+<li>分布性</li>
+<li>对等性(没有控制系统的主机, 也没有被控制的从机)</li>
+<li>并发性</li>
+<li>缺乏全局时钟(缺乏全局时钟序列控制)</li>
+<li>故障总是会发生</li>
+</ol>
+<h3 id="分布式-cron"><a href="#分布式-cron" class="headerlink" title="分布式 cron"></a>分布式 cron</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyft8mxsj21700hmdgr.jpg" alt=""></p>
+<h3 id="我只是不爱动，不是懒"><a href="#我只是不爱动，不是懒" class="headerlink" title="我只是不爱动，不是懒"></a>我只是不爱动，不是懒</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyg82m1vj20z00koqjv.jpg" alt=""></p>
+<h3 id="分布式系统对任务调度的几点要求"><a href="#分布式系统对任务调度的几点要求" class="headerlink" title="分布式系统对任务调度的几点要求"></a>分布式系统对任务调度的几点要求</h3><p>1、平台：快速开发、业务复用、自维护和扩展；<br>2、HA/集群：避免单点故障，发挥集群优势<br>3、弹性扩缩：适应业务快速发展<br>4、故障处理：Failover、失败告警<br>5、阻塞处理：耗时任务阻塞<br>5、⾼性能：调度和任务解耦，全异步化<br>6、自运维：自助维护、实时监控、快速了解任务进展</p>
+<h3 id="我眼里的“西施”"><a href="#我眼里的“西施”" class="headerlink" title="我眼里的“西施”"></a>我眼里的“西施”</h3><ol>
+<li>可替代 cron</li>
+<li>分布式、高可用</li>
+<li>支持多种任务属性</li>
+<li>易用</li>
+<li>易部署</li>
+</ol>
+<h2 id="为什么选择使用-XXL-JOB"><a href="#为什么选择使用-XXL-JOB" class="headerlink" title="为什么选择使用 XXL-JOB"></a>为什么选择使用 XXL-JOB</h2><p>  项目中有这样的需求：需要使用定时器从 A 和 B 系统中同步不同的表中的数据，并且对数据进行一定的加工处理，最后将最终的数据写入到数据仓库DB，需要实现针对不同的数据源进行配置（这块也就是多数据源的支持），任务配置可以根据任务量的大小使用不同的资源。对数据同步的时效性和性能要求非常高，并且这些定时任务可以通过页面配置的方式做到灵活，可控制。</p>
+<p>  通过以上的这些需求，我们对目前业界比较流行的任务调度框架进行了技术选型，通过研究发现，目前使用比较广泛的任务调度框架有 XXL-JOB 和 Elastic-JOB ，因此，参考 XXL-JOB 官方对不同任务调度平台的比对，如下图所示：</p>
+<p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimygpwsirj217s0naafe.jpg" alt="">    </p>
+<p>针对以上对比，我们选择了 XXL-JOB 任务调度框架，因为它相比于其他任务调度框架来说，具有更好的用户体验、有良好的运维支持、任务依赖、任务路由原生支持，通过调研发现，框架自带的任务路由策略已经满足我们的业务场景，并且支持分片任务，当任务延迟较高时，可以利用分片的方案加速任务的处理。</p>
+<h2 id="XXL-JOB-介绍"><a href="#XXL-JOB-介绍" class="headerlink" title="XXL-JOB 介绍"></a>XXL-JOB 介绍</h2><blockquote>
+<p>XXL-JOB是⼀个轻量级分布式任务调度框架。拥有“HA、弹性扩缩、故障处理、阻塞处<br>理、⾼性能、自运维”等特点。<br>其核⼼部分包括：<br>1、调度模块（调度中⼼）：负责管理任务信息，触发任务执⾏，自身不承担业务逻辑；<br>同时提供“日志、报表、告警、GLUE、注册中⼼”等功能；<br>2、执⾏模块（执⾏器）： 负责接收调度中⼼请求，进⾏任务逻辑执⾏、终⽌、日志加载<br>等操作；专注于任务执⾏相关操作；</p>
+</blockquote>
+<h3 id="XXL-JOB-发展"><a href="#XXL-JOB-发展" class="headerlink" title="XXL-JOB 发展"></a>XXL-JOB 发展</h3><p>• 2015年中，着⼿设计XXL-JOB，提交第⼀个Commit<br>• 2015-11月，发布首个Release版本，同期当选为开源中国月度热门项目<br>• 2016-01月，我司展开定制和接⼊，⾄今调度近百万次<br>• 2017-05-03，应邀参加“第62期开源中国源创会”现场分享XXL-JOB<br>• 2017-10月，当选为开源中国首批GVP项目<br>• ……<br>• ⾄今，XXL-JOB登记接⼊公司50+（点评、移动、平安、海尔、优信），<br>社区群8个，群成员约3000 ⼈</p>
+<h3 id="XXL-JOB-架构图"><a href="#XXL-JOB-架构图" class="headerlink" title="XXL-JOB 架构图"></a>XXL-JOB 架构图</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyh8kl4vj219i0m8al6.jpg" alt=""></p>
+<h3 id="XXL-JOB-特性全览"><a href="#XXL-JOB-特性全览" class="headerlink" title="XXL-JOB 特性全览"></a>XXL-JOB 特性全览</h3><p>1、简单<br>2、动态<br>3、调度中心HA（中心式）<br>4、执行器HA（分布式）<br>5、任务Failover<br>6、一致性<br>7、自定义任务参数<br>8、调度线程池<br>9、弹性扩容缩容<br>10、邮件报警<br>11、状态监控<br>12、Rolling执行日志<br>13、GLUE：提供Web IDE<br>14、数据加密<br>15、任务依赖<br>16、推送maven中央仓库<br>17、任务注册<br>18、路由策略<br>19、运行报表<br>20、脚本任务<br>21、阻塞处理策略<br>22、失败处理策略<br>23、分片广播任务<br>24、动态分片<br>25、事件触发</p>
+<h3 id="HA-集群"><a href="#HA-集群" class="headerlink" title="HA/集群"></a>HA/集群</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gin0cq0n2xj21s40ui4hv.jpg" alt=""></p>
+<h3 id="弹性扩缩"><a href="#弹性扩缩" class="headerlink" title="弹性扩缩"></a>弹性扩缩</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gin009ca4mj21nq0siwv3.jpg" alt=""></p>
+<h3 id="执行器路由策略"><a href="#执行器路由策略" class="headerlink" title="执行器路由策略"></a>执行器路由策略</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gin08gqqvgj21dc0nk0zb.jpg" alt=""></p>
+<h3 id="故障转移-amp-忙碌转移"><a href="#故障转移-amp-忙碌转移" class="headerlink" title="故障转移 &amp; 忙碌转移"></a>故障转移 &amp; 忙碌转移</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gin0dtlklbj21ik0p8afd.jpg" alt=""></p>
+<h3 id="分片任务-amp-动态分片"><a href="#分片任务-amp-动态分片" class="headerlink" title="分片任务 &amp; 动态分片"></a>分片任务 &amp; 动态分片</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyn5o76ij215i0p0tmi.jpg" alt=""></p>
+<h3 id="阻塞策略-amp-失败处理策略"><a href="#阻塞策略-amp-失败处理策略" class="headerlink" title="阻塞策略 &amp; 失败处理策略"></a>阻塞策略 &amp; 失败处理策略</h3><p> <img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimynngodnj21ii0qm43e.jpg" alt=""></p>
+<p>###触发规则</p>
+<ul>
+<li>Cron 表达式<br>如：每日凌晨 2 点，进行“PV 数据计算”的任务</li>
+<li>任务依赖触发<br>如：父任务“PV 数据计算”执行结束后，触发多业务线的“PV 报表生成”的多个子任务</li>
+<li>事件触发/API 服务<br>如：类 MQ 场景，短信验证码、订单创建等。</li>
+</ul>
+<h3 id="任务模式"><a href="#任务模式" class="headerlink" title="任务模式"></a>任务模式</h3><p>1、BEAN 模式：JobHandler、Spring Bean<br>2、GLUE 模式(Java )：Web IDE、在线开发、版本回溯、Java 语言、动态编译（IOC）、实时生效、Rolling</p>
+<p>Log<br>3、GLUE 模式(Shell)：Web IDE、在线开发、版本回溯、实时生效、Rolling Log<br>4、GLUE 模式(Python)<br>5、GLUE 模式(NodeJS)</p>
+<p>（其中“GLUE 模式(NodeJS)”来源于 “icyblazek@github”同学提交的 PR，XXL-JOB 理论上支持任何类型脚本</p>
+<p>语言的任务模式扩展）</p>
+<h3 id="GLUE-模式"><a href="#GLUE-模式" class="headerlink" title="GLUE 模式"></a>GLUE 模式</h3><p><img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyo6rz8vj21fg0oaqam.jpg" alt=""></p>
+<h3 id="执行日志-amp-Rolling-Log"><a href="#执行日志-amp-Rolling-Log" class="headerlink" title="执行日志 &amp; Rolling Log"></a>执行日志 &amp; Rolling Log</h3><p> <img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gimyoojunwj21o00ts7jz.jpg" alt=""></p>
+<h2 id="XXL-JOB-搭建"><a href="#XXL-JOB-搭建" class="headerlink" title="XXL-JOB 搭建"></a>XXL-JOB 搭建</h2><p>1、安装 Mysql，初始化 XXL-JOB 底层库表</p>
+<p>• 2、编译部署“调度中心”</p>
+<p>• 3、编译部署“执行器”（参考多个 Sample 项目）</p>
+<p>》》》开发第一个 JobHandler<br>入门文档 （可参考文档 “快速入门”章节：）： <a href="http://www.xuxueli.com/xxl-job/">http://www.xuxueli.com/xxl-job/</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;任务系统&quot;&gt;&lt;a href=&quot;#任务系统&quot; class=&quot;headerlink&quot; title=&quot;任务系统&quot;&gt;&lt;/a&gt;任务系统&lt;/h2&gt;&lt;h3 id=&quot;任务&quot;&gt;&lt;a href=&quot;#任务&quot; class=&quot;headerlink&quot; title=&quot;任务&quot;&gt;&lt;/a&gt;任务&lt;/h
+    
+    </summary>
+    
+    
+      <category term="分布式任务调度,xxl-job" scheme="http://baiwenhui.com/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6-xxl-job/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ELK日志迁移技术分享</title>
+    <link href="http://baiwenhui.com/2020/09/14/ELK%E6%97%A5%E5%BF%97%E8%BF%81%E7%A7%BB%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/"/>
+    <id>http://baiwenhui.com/2020/09/14/ELK日志迁移技术分享/</id>
+    <published>2020-09-14T13:03:08.000Z</published>
+    <updated>2023-10-07T15:59:31.590Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="日志处理方案演进"><a href="#日志处理方案演进" class="headerlink" title="日志处理方案演进"></a>日志处理方案演进</h1><h2 id="1-1-什么是日志"><a href="#1-1-什么是日志" class="headerlink" title="1.1 什么是日志"></a>1.1 什么是日志</h2><p>  日志是带时间戳的基于时间序列的机器数据，包括IT系统信息（服务器、网络设备、操作系统、应 用软件）、物联网各种传感器信息。日志反映用户行为，是事实数据，也是系统运维、故障诊断、性能分析的重要来源。对于任何系统，日志都是极其重要的组成部分。</p>
+<h2 id="1-2-日志处理的背景"><a href="#1-2-日志处理的背景" class="headerlink" title="1.2 日志处理的背景"></a>1.2 日志处理的背景</h2><p>  随着大数据时代的来临，系统日志量也呈指数级增加。随着日志格式复杂度的增加、日志规模的扩大以及应用节点的增多，传统的日志量过大分析耗时耗力、效率低下、无法胜任复杂的统计分析等。并且传统的日志分析无法满足实时化分析的业务需求，实时化分析也是当今大数据技术的发展趋势之一。</p>
+<h2 id="1-3-日志处理方案演进"><a href="#1-3-日志处理方案演进" class="headerlink" title="1.3 日志处理方案演进"></a>1.3 日志处理方案演进</h2><p>  业界一般对日志的处理方案演进如下：</p>
+<ul>
+<li><p>日志处理古老版</p>
+<p>日志没有集中式处理，一般情况下手动到服务器上使用 Linux 命令排查日志；日志的唯一作用就是做故障之后的排查；使用数据库存储日志，无法胜任复杂的实时统计分析需求。</p>
+</li>
+<li><p>日志处理离线版</p>
+<p>一般使用 Hadoop 平台实现日志的离线批量处理，缺点便是实时性太差；</p>
+<p>也有使用 Storm 流处理框架、Spark 内存计算框架处理日志， Hadoop/Storm/Spark 都是编程框架，并不是拿来就可以使用的平台。</p>
+</li>
+<li><p>日志处理实时版</p>
+<p>一般使用日志实时搜索引擎分析日志，其作为代表的解决方案主要有 Splunk(Splunk是一个分析计算机系统产生的机器数据，并在广泛的场景中提供数据收集、分析、可视化分布式的数据计算平台。)、ELK、EFK（EFK由ElasticSearch、Fluentd和Kiabana三个开源工具组成。Fluentd也是一个实时开源的数据收集器,）。</p>
+</li>
+</ul>
+<p>优点有什么？</p>
+<ol>
+<li>快速，日志从产生到搜索分析出结果只有数秒延时；</li>
+<li>可以处理大量数据，每天可以处理 TB 级日志量；</li>
+<li>很灵活，可以分析任何的实时日志。</li>
+</ol>
+<p>其中，ELK 在业界最受欢迎，目前我们也使用的是ELK日志处理方案。ELK 是 Elastic 公司出品的开源实时日志处理与分析的解决方案，ELK 分别代表分布式搜索引擎 Elasticsearch、日志采集与解析工具 Logstash、日志可视化分析工具 Kibana，ELK日志处理方案具有配置灵活、集群可线性扩展、日志实时导入、检索性能高效、可视化分析方便等优点，已经成为业界日志处理方案的不二选择。</p>
+<h2 id="ELK-架构解读"><a href="#ELK-架构解读" class="headerlink" title="ELK 架构解读"></a>ELK 架构解读</h2><h2 id="2-1-架构选择"><a href="#2-1-架构选择" class="headerlink" title="2.1 架构选择"></a>2.1 架构选择</h2><p>  完整的日志分析系统主要包括日志采集系统、日志解析系统、日志存储系统和可视化分析系统四部分组成。典型的 ELK 架构图如下所示：</p>
+<p><img src="http://assets.processon.com/chart_image/5ca22e87e4b029f6dae31f31.png" alt=""></p>
+<p>ELK 架构中，由于 Logstash 既作为日志搜集器又作为日志解析器，本身会消耗服务器较多的CPU 和 内存，如果服务器计算资源不够丰富，则会造成服务器性能下降无法正常工作。为了解决Logstash 占用系统资源高的问题，Elastic 公司推出了轻量级的日志采集器 Beats，在数据收集方面取代 Logstash，引入 Beats 后的系统架构如如下：</p>
+<p><img src="http://assets.processon.com/chart_image/5ca2317ee4b035b243be603c.png" alt=""></p>
+<p>Beats 是一系列采集器的总称，对于不同的日志源和日志格式可以使用不同的Beats，截止目前为止，Beats 家族包括以下 7 个成员：</p>
+<ul>
+<li>Filebeat：轻量级的日志采集器，可用于收集文件数据。</li>
+<li>Metricbeat：5.0版本之前名为Topbeat，收集系统、进程和文件系统级别的 CPU 和内存使用情况等数据。</li>
+<li>Packetbeat：收集网络流数据，可以实时监控系统应用和服务，可以将延迟时间、错误、响应时间、SLA性能等信息发送到Logstash或Elasticsearch。</li>
+<li>Winlogbeat：Windows 事件日志</li>
+<li>Heartbeat：运行时间监控。</li>
+<li>Auditbeat: 审计日志数据采集。</li>
+<li>Functionbeat：无需服务器的采集器。</li>
+</ul>
+<p>  目前对于日志规模较大的场景，还需要引入消息队列，Logstash 支持常用的消息队列有 Kafka、RabbitMQ、Redis等。引入消息队列后的架构如下：</p>
+<p><img src="http://assets.processon.com/chart_image/5ca236dee4b034408de95f19.png" alt=""></p>
+<h2 id="2-2-日志采集模块分析"><a href="#2-2-日志采集模块分析" class="headerlink" title="2.2 日志采集模块分析"></a>2.2 日志采集模块分析</h2><p>  日志采集是对日志进行分析的基础，我们对于不同的日志类型可以选择不同类型的 beats。在我们的日常使用中，基本大多数情况以文件类型的日志居多，这里我们就以filebeat 采集文件类型的日志进行探索日志采集的原理。</p>
+<p>  FileBeat 是采用Go 语言由 Elastic 官方开发的轻量级日志采集器，在应用服务器上以代理的形式安装。当这个 FileBeat 进行启动时，它会启动一个 prospector 监控日志路径或者日志文件，每一个日志文件都会有一个对应的 harvester， harvester 按行读取日志内容并转发至后台程序。FileBeat 维护了一个记录文件读取信息的注册文件，记录每个 harvester 最后读取位置的偏移量。日志按行读取以后，转发至 logstash 做解析。</p>
+<h3 id="2-3-日志解析模块分析"><a href="#2-3-日志解析模块分析" class="headerlink" title="2.3 日志解析模块分析"></a>2.3 日志解析模块分析</h3><p>  Logstash是分布式数据收集引擎，在日志处理中担任搬运工的角色，它支持动态的从各种数据源搜集数据，并对数据进行过滤、分析、统一格式等操作，然后输出到用户指定的位置。事件流通过Logstash中的Input、Filter和Output插件处理和转换，Input用于配置日志的输入源，Filter用来解析日志，Output指定日志的输出去向。</p>
+<p>  Grok是Logstash的一个正则解析插件，它能对日志流进行解析，内置了120多种的正则表达式库，对日志解析时需要针对日志格式定义相应的正则表达式。结合Grok提供的便利，总结出按行读取文件格式日志的解析步骤：</p>
+<p>（1）首先对日志进行分析，明确每一个字段的含义，确定日志的切分规则，也就是一条日志切分成哪几个字段，这些字段是以后做日志分析的关键，对原始日志的解读和分析是非常关键的一步。</p>
+<p>（2）根据步骤（1）的切分原则确定提取每一个字段的正则表达式，如果Grok中的正则库满足需求直接使用即可，否则采用自定义模式，两者可以组合使用。</p>
+<p>（3）在Grok Debugger调试工具中调试、验证解析日志的正则表达式是否正确。</p>
+<p>举一个例子，下面是一条半结构化日志：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2017-12-16 00:00:01,570 133382978 [  HandleConsumer.java:445:INFO ]  车辆号牌为空</span><br></pre></td></tr></table></figure>
+<p>对应的Grok表达式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%&#123;TIMESTAMP_ISO8601:time&#125;\s*%&#123;NUMBER:bytes&#125;\s*\[\s*%&#123;JAVAFILE:class&#125;\:%&#123;NUMBER:lineNumber&#125;\s*\:%&#123;LOGLEVEL:level&#125;\s*\]\s*(?&lt;info&gt;([\s\S]*))</span><br></pre></td></tr></table></figure>
+<p>格式化后的日志如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;time&quot;: &quot;2017-12-16 00:00:01,570&quot;,</span><br><span class="line">  &quot;bytes&quot;:&quot;133382978&quot;,</span><br><span class="line">  &quot;class&quot;: &quot;HandleConsumer.java&quot;,</span><br><span class="line">  &quot;lineNumber&quot;: &quot;445&quot;,</span><br><span class="line">  &quot;level&quot;: &quot;INFO&quot;,</span><br><span class="line">  &quot;info&quot;:&quot;车辆号牌为空。&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Grok Debugger调试正则表达式如图4所示：</p>
+<p><img src="http://images.gitbook.cn/f58fff30-fc69-11e7-b269-5929bdce6d95" alt="enter image description here"></p>
+<h3 id="2-4-日志存储模块分析"><a href="#2-4-日志存储模块分析" class="headerlink" title="2.4 日志存储模块分析"></a>2.4 日志存储模块分析</h3><p>  Elasticsearch是存储日志的中央系统，实际项目中，根据需求搭建Elasticsearch集群即可。</p>
+<h3 id="2-5-日志可视化模块分析"><a href="#2-5-日志可视化模块分析" class="headerlink" title="2.5 日志可视化模块分析"></a>2.5 日志可视化模块分析</h3><p>  Kibana是一个开源日志分析及可视化平台，使用它可以对存储在Elasticsearch索引中的数据进行高效的搜索、可视化、分析等各种操作。Kibana的愿景是让海量数据更容易理解，通过浏览器的用户界面可以创建各种高级图表进行数据分析和展示，它的仪表盘功能可以汇总多个单操作图表，并且可以实时显示查询动态。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;日志处理方案演进&quot;&gt;&lt;a href=&quot;#日志处理方案演进&quot; class=&quot;headerlink&quot; title=&quot;日志处理方案演进&quot;&gt;&lt;/a&gt;日志处理方案演进&lt;/h1&gt;&lt;h2 id=&quot;1-1-什么是日志&quot;&gt;&lt;a href=&quot;#1-1-什么是日志&quot; class=&quot;he
+    
+    </summary>
+    
+    
+      <category term="elk,elasticsearch" scheme="http://baiwenhui.com/tags/elk-elasticsearch/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用Docker构建企业级自定义镜像</title>
+    <link href="http://baiwenhui.com/2020/05/19/%E4%BD%BF%E7%94%A8Docker%E6%9E%84%E5%BB%BA%E4%BC%81%E4%B8%9A%E7%BA%A7%E8%87%AA%E5%AE%9A%E4%B9%89%E9%95%9C%E5%83%8F/"/>
+    <id>http://baiwenhui.com/2020/05/19/使用Docker构建企业级自定义镜像/</id>
+    <published>2020-05-19T14:19:40.000Z</published>
+    <updated>2023-10-07T15:59:31.605Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>  临下班前，楼主接到了一个需求，由于基础镜像标准发生变更，需要按照最新的Docker 镜像标准构建自己应用的自定义镜像。目前的标准是这样的：基础架构组只提供所有项目必须接入的3个公共镜像，这3个公共基础镜像包含了：JDK8、Skywalking、Arthas。对于各自业务组的应用如果还需要加入其它镜像，则由各个业务组自己基于基础架构组提供的公共镜像之上，再添加自定义的镜像，结构图如下：</p>
+<p>  <img src="http://ww1.sinaimg.cn/large/bc9918a2gy1gey3efkciuj20pg0ksq4n.jpg" alt="image.png"></p>
+<h2 id="构建步骤"><a href="#构建步骤" class="headerlink" title="构建步骤"></a>构建步骤</h2><h3 id="编写Dockerfile"><a href="#编写Dockerfile" class="headerlink" title="编写Dockerfile"></a>编写Dockerfile</h3><p>  基于最新的规范来看，我们需要编写一个Dockerfile，然后引用基础架构组提供的基础镜像，再加入应用需要的其他镜像。因此最终的 Dockerfile 文件如下：</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> 基础镜像地址</span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> apk add 需要添加的自定义镜像</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h3 id="在Centos7下安装Docker环境"><a href="#在Centos7下安装Docker环境" class="headerlink" title="在Centos7下安装Docker环境"></a>在Centos7下安装Docker环境</h3><h4 id="卸载旧版本"><a href="#卸载旧版本" class="headerlink" title="卸载旧版本"></a>卸载旧版本</h4><p>较旧的 Docker 版本称为 docker 或 docker-engine 。如果已安装这些程序，请卸载它们以及相关的依赖项。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum remove docker \</span><br><span class="line">         docker-client \</span><br><span class="line">         docker-client-latest \</span><br><span class="line">         docker-common \</span><br><span class="line">         docker-latest \</span><br><span class="line">         docker-latest-logrotate \</span><br><span class="line">         docker-logrotate \</span><br><span class="line">         docker-engine</span><br></pre></td></tr></table></figure>
+<h4 id="安装-Docker-Engine-Community"><a href="#安装-Docker-Engine-Community" class="headerlink" title="安装 Docker Engine-Community"></a>安装 Docker Engine-Community</h4><h5 id="使用-Docker-仓库进行安装"><a href="#使用-Docker-仓库进行安装" class="headerlink" title="使用 Docker 仓库进行安装"></a>使用 Docker 仓库进行安装</h5><p>在新主机上首次安装 Docker Engine-Community 之前，需要设置 Docker 仓库。之后，您可以从仓库安装和更新 Docker。</p>
+<p><strong>设置仓库</strong></p>
+<p>安装所需的软件包。yum-utils 提供了 yum-config-manager ，并且 device mapper 存储驱动程序需要 device-mapper-persistent-data 和 lvm2。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install -y yum-utils \</span><br><span class="line"> device-mapper-persistent-data \</span><br><span class="line"> lvm2</span><br></pre></td></tr></table></figure>
+<p>使用以下命令来设置稳定的仓库。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum-config-manager \</span><br><span class="line">  --add-repo \</span><br><span class="line">  https://download.docker.com/linux/centos/docker-ce.repo</span><br></pre></td></tr></table></figure>
+<h5 id="安装-Docker-Engine-Community-1"><a href="#安装-Docker-Engine-Community-1" class="headerlink" title="安装 Docker Engine-Community"></a>安装 Docker Engine-Community</h5><p>安装最新版本的 Docker Engine-Community 和 containerd，或者转到下一步安装特定版本：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install docker-ce docker-ce-cli containerd.io</span><br></pre></td></tr></table></figure>
+<p>如果提示您接受 GPG 密钥，请选是。</p>
+<blockquote>
+<p><strong>有多个 Docker 仓库吗？</strong></p>
+<p>如果启用了多个 Docker 仓库，则在未在 yum install 或 yum update 命令中指定版本的情况下，进行的安装或更新将始终安装最高版本，这可能不适合您的稳定性需求。</p>
+</blockquote>
+<p>Docker 安装完默认未启动。并且已经创建好 docker 用户组，但该用户组下没有用户。</p>
+<p><strong>要安装特定版本的 Docker Engine-Community，请在存储库中列出可用版本，然后选择并安装：</strong></p>
+<p>1、列出并排序您存储库中可用的版本。此示例按版本号（从高到低）对结果进行排序。</p>
+<p>$ <strong>yum list</strong> docker-ce –showduplicates <strong>|</strong> <strong>sort</strong> -r</p>
+<figure class="highlight plaintext"><figcaption><span>3:18.09.1-3.el7           docker-ce-stable</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker-ce.x86_64  3:18.09.0-3.el7           docker-ce-stable</span><br><span class="line">docker-ce.x86_64  18.06.1.ce-3.el7           docker-ce-stable</span><br><span class="line">docker-ce.x86_64  18.06.0.ce-3.el7           docker-ce-stable</span><br></pre></td></tr></table></figure>
+<p>2、通过其完整的软件包名称安装特定版本，该软件包名称是软件包名称（docker-ce）加上版本字符串（第二列），从第一个冒号（:）一直到第一个连字符，并用连字符（-）分隔。例如：docker-ce-18.09.1。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">sudo yum install docker-ce-&lt;VERSION_STRING&gt; docker-ce-cli-&lt;VERSION_STRING&gt; containerd.io</span></span><br></pre></td></tr></table></figure>
+<p>启动 Docker。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">sudo systemctl start docker</span></span><br></pre></td></tr></table></figure>
+<p>通过运行 hello-world 映像来验证是否正确安装了 Docker Engine-Community 。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">sudo docker run hello-world</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>以上安装过程参考自： <code>https://www.runoob.com/docker/centos-docker-install.html</code></p>
+</blockquote>
+<h3 id="开始构建应用自定义镜像"><a href="#开始构建应用自定义镜像" class="headerlink" title="开始构建应用自定义镜像"></a>开始构建应用自定义镜像</h3><h4 id="根据-Dockerfile-文件进行自定义镜像的构建"><a href="#根据-Dockerfile-文件进行自定义镜像的构建" class="headerlink" title="根据 Dockerfile 文件进行自定义镜像的构建"></a>根据 Dockerfile 文件进行自定义镜像的构建</h4><p>  在Dockerfile 文件所在的目录下执行如下命令进行自定义镜像的构建：</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker build -f Dockerfile -t 你的自定义镜像名称 .</span><br></pre></td></tr></table></figure>
+<h4 id="推送到企业私有的镜像harbor之前进行登录"><a href="#推送到企业私有的镜像harbor之前进行登录" class="headerlink" title="推送到企业私有的镜像harbor之前进行登录"></a>推送到企业私有的镜像harbor之前进行登录</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker login 企业私有的harbor地址</span><br><span class="line">输入用户名</span><br><span class="line">输入密码</span><br><span class="line">完成登录</span><br></pre></td></tr></table></figure>
+<h4 id="将构建完成的自定义镜像推送到企业私有的harbor"><a href="#将构建完成的自定义镜像推送到企业私有的harbor" class="headerlink" title="将构建完成的自定义镜像推送到企业私有的harbor"></a>将构建完成的自定义镜像推送到企业私有的harbor</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker push 你的自定义镜像名称</span><br></pre></td></tr></table></figure>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>  通过 1.编写自定义构建镜像的Dockerfile 2.安装Docker环境 3.构建自定义镜像 4.上传自定义镜像到harbor 以上4个步骤，我们便完成了应用自定义镜像的构建，后续我们自己的应用中直接使用自定义镜像即可，这样做的好处就是基于基础的镜像，我们可以随意组合，构建出满足自己应用的镜像，更灵活、镜像分层管理、可扩展。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;  临下班前，楼主接到了一个需求，由于基础镜像标准发生变更，需要按照最新的Docker 镜像标准构建自己应用的自定义镜像。目前的标准是这样的
+    
+    </summary>
+    
+    
+      <category term="docker,镜像,harbor" scheme="http://baiwenhui.com/tags/docker-%E9%95%9C%E5%83%8F-harbor/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>什么？OSS存储你还在用FastDFS？MinIO了解一下！！！</title>
+    <link href="http://baiwenhui.com/2020/05/05/%E4%BB%80%E4%B9%88%EF%BC%9FOSS%E5%AD%98%E5%82%A8%E4%BD%A0%E8%BF%98%E5%9C%A8%E7%94%A8FastDFS%EF%BC%9FMinIO%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8B%EF%BC%81%EF%BC%81%EF%BC%81/"/>
+    <id>http://baiwenhui.com/2020/05/05/什么？OSS存储你还在用FastDFS？MinIO了解一下！！！/</id>
+    <published>2020-05-05T07:13:09.000Z</published>
+    <updated>2023-10-07T15:59:31.604Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="什么是MinIO-？"><a href="#什么是MinIO-？" class="headerlink" title="什么是MinIO ？"></a>什么是MinIO ？</h2><p>根据官方定义：</p>
+<ol>
+<li>MinIO 是在 Apache License v2.0 下发布的对象存储服务器。 它与 Amazon S3 云存储服务兼容。 它最适合存储非结构化数据，如照片，视频，日志文件，备份和容器/ VM 映像。 对象的大小可以从几 KB 到最大 5TB。</li>
+</ol>
+<ol>
+<li>MinIO 服务器足够轻，可以与应用程序堆栈捆绑在一起，类似于 NodeJS，Redis 和 MySQL。</li>
+<li>一种高性能的分布式对象存储服务器，用于大型数据基础设施。它是机器学习和其他大数<br>据工作负载下 Hadoop HDFS 的理想 s3 兼容替代品。</li>
+</ol>
+<h2 id="为什么需要MinIO？"><a href="#为什么需要MinIO？" class="headerlink" title="为什么需要MinIO？"></a>为什么需要MinIO？</h2><ol>
+<li>Minio 有良好的存储机制</li>
+<li>Minio 有很好纠删码的算法与擦除编码算法</li>
+<li>拥有RS code 编码数据恢复原理</li>
+<li>公司做强做大时，数据的拥有重要性，对数据治理与大数据分析做准备。</li>
+<li>搭建自己的一套文件系统服务,对文件数据进行安全保护。</li>
+<li>拥有自己的平台，不限于其他方限制。</li>
+</ol>
+<h2 id="MinIO-和其他OSS存储解决方案各有什么优缺点？"><a href="#MinIO-和其他OSS存储解决方案各有什么优缺点？" class="headerlink" title="MinIO 和其他OSS存储解决方案各有什么优缺点？"></a>MinIO 和其他OSS存储解决方案各有什么优缺点？</h2><p>  这里主要针对Ceph、Minio、FastDFS 热门的存储解决方案进行比较。</p>
+<h3 id="Ceph"><a href="#Ceph" class="headerlink" title="Ceph"></a>Ceph</h3><p>  <strong>优点</strong></p>
+<ul>
+<li>成熟</li>
+<li>红帽继子，ceph创始人已经加入红帽</li>
+<li>国内有所谓的ceph中国社区，私人机构，不活跃，文档有滞后，而且没有更新的迹象。</li>
+<li>从git上提交者来看，中国有几家公司的程序员在提交代码，星辰天合，easystack, 腾讯、阿里基于ceph在做云存储，但是在开源社区中不活跃，阿里一位叫liupan的有参与</li>
+<li>功能强大</li>
+<li>支持数千节点</li>
+<li>支持动态增加节点，自动平衡数据分布。（TODO，需要多长时间，add node时是否可以不间断运行）</li>
+<li>可配置性强，可针对不同场景进行调优</li>
+</ul>
+<p>  <strong>缺点</strong><br>    学习成本高，安装运维复杂。</p>
+<h3 id="Minio"><a href="#Minio" class="headerlink" title="Minio"></a>Minio</h3><p>  <strong>优点</strong></p>
+<ul>
+<li>学习成本低，安装运维简单，开箱即用</li>
+<li>目前minio论坛推广给力，有问必答</li>
+<li>有java客户端、js客户端</li>
+<li>数据保护：分布式Minio采用 纠删码来防范多个节点宕机和位衰减bit rot。分布式Minio至少需要4个硬盘，使用分布式Minio自动引入了纠删码功能。</li>
+<li>一致性：Minio在分布式和单机模式下，所有读写操作都严格遵守read-after-write一致性模型。</li>
+</ul>
+<p>   <strong>缺点</strong></p>
+<ul>
+<li>社区不够成熟，业界参考资料较少</li>
+<li>不支持动态增加节点，minio创始人的设计理念就是动态增加节点太复杂，后续会采用其它方案来支持扩容。<h3 id="FastDFS"><a href="#FastDFS" class="headerlink" title="FastDFS"></a>FastDFS</h3>fastdfs是阿里余庆做的一个个人项目，在一些互联网创业公司中有应用，没有官网，不活跃，6个contributors。</li>
+</ul>
+<h2 id="如何安装使用MinIO？"><a href="#如何安装使用MinIO？" class="headerlink" title="如何安装使用MinIO？"></a>如何安装使用MinIO？</h2><h3 id="基于-Docker-容器使用"><a href="#基于-Docker-容器使用" class="headerlink" title="基于 Docker 容器使用"></a>基于 Docker 容器使用</h3><ul>
+<li>稳定版<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker pull minio/minio</span><br><span class="line">docker run -p 9000:9000 minio/minio server /data</span><br></pre></td></tr></table></figure></li>
+<li>尝鲜版<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker pull minio/minio:edge</span><br><span class="line">docker run -p 9000:9000 minio/minio:edge server /data</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="基于-Mac-Homebrew-使用"><a href="#基于-Mac-Homebrew-使用" class="headerlink" title="基于 Mac Homebrew 使用"></a>基于 Mac Homebrew 使用</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew install minio/stable/minio</span><br><span class="line">minio server /data</span><br></pre></td></tr></table></figure>
+<h3 id="下载二进制文件安装使用"><a href="#下载二进制文件安装使用" class="headerlink" title="下载二进制文件安装使用"></a>下载二进制文件安装使用</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">操作系统</th>
+<th style="text-align:left">CPU架构</th>
+<th style="text-align:left">地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Apple macOS</td>
+<td style="text-align:left">64-bit Intel</td>
+<td style="text-align:left"><a href="https://dl.min.io/server/minio/release/darwin-amd64/minio">https://dl.min.io/server/minio/release/darwin-amd64/minio</a></td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod 755 minio</span><br><span class="line">./minio server /data</span><br></pre></td></tr></table></figure>
+<h3 id="GNU-Linux"><a href="#GNU-Linux" class="headerlink" title="GNU/Linux"></a>GNU/Linux</h3><h4 id="下载二进制文件"><a href="#下载二进制文件" class="headerlink" title="下载二进制文件"></a>下载二进制文件</h4><table>
+<thead>
+<tr>
+<th style="text-align:left">操作系统</th>
+<th style="text-align:left">CPU架构</th>
+<th style="text-align:left">地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">GNU/Linux</td>
+<td style="text-align:left">64-bit Intel</td>
+<td style="text-align:left"><a href="https://dl.min.io/server/minio/release/linux-amd64/minio">https://dl.min.io/server/minio/release/linux-amd64/minio</a></td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod +x minio</span><br><span class="line">./minio server /data</span><br></pre></td></tr></table></figure>
+<h3 id="微软Windows系统"><a href="#微软Windows系统" class="headerlink" title="微软Windows系统"></a>微软Windows系统</h3><h4 id="下载二进制文件-1"><a href="#下载二进制文件-1" class="headerlink" title="下载二进制文件"></a>下载二进制文件</h4><table>
+<thead>
+<tr>
+<th style="text-align:left">操作系统</th>
+<th style="text-align:left">CPU架构</th>
+<th style="text-align:left">地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">微软Windows系统</td>
+<td style="text-align:left">64位</td>
+<td style="text-align:left"><a href="https://dl.min.io/server/minio/release/windows-amd64/minio.exe">https://dl.min.io/server/minio/release/windows-amd64/minio.exe</a></td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minio.exe server D:\Photos</span><br></pre></td></tr></table></figure>
+<h3 id="FreeBSD"><a href="#FreeBSD" class="headerlink" title="FreeBSD"></a>FreeBSD</h3><h4 id="Port"><a href="#Port" class="headerlink" title="Port"></a>Port</h4><p>使用 <a href="https://github.com/freebsd/pkg">pkg</a>进行安装。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pkg install minio</span><br><span class="line">sysrc minio_enable=yes</span><br><span class="line">sysrc minio_disks=/home/user/Photos</span><br><span class="line">service minio start</span><br></pre></td></tr></table></figure>
+<h3 id="使用源码安装"><a href="#使用源码安装" class="headerlink" title="使用源码安装"></a>使用源码安装</h3><p>采用源码安装仅供开发人员和高级用户使用,如果你还没有Golang环境， 请参考 <a href="https://golang.org/doc/install">How to install Golang</a>.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go get -u github.com/minio/minio</span><br></pre></td></tr></table></figure>
+<h2 id="使用MinIO浏览器进行验证"><a href="#使用MinIO浏览器进行验证" class="headerlink" title="使用MinIO浏览器进行验证"></a>使用MinIO浏览器进行验证</h2><p>安装后使用浏览器访问<a href="http://127.0.0.1:9000/">http://127.0.0.1:9000</a>，如果可以访问，则表示minio已经安装成功。</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gehkyhi60yj31330neaan.jpg" alt=""></p>
+<h2 id="使用MinIO客户端-mc进行验证"><a href="#使用MinIO客户端-mc进行验证" class="headerlink" title="使用MinIO客户端 mc进行验证"></a>使用MinIO客户端 <code>mc</code>进行验证</h2><p><code>mc</code> 提供了一些UNIX常用命令的替代品，像ls, cat, cp, mirror, diff这些。 它支持文件系统和亚马逊S3云存储服务。 更多信息请参考 <a href="https://docs.min.io/docs/minio-client-quickstart-guide">mc快速入门</a>  - <a href="https://docs.min.io/docs/minio-client-quickstart-guide">https://docs.min.io/docs/minio-client-quickstart-guide</a> 。</p>
+<h2 id="已经存在的数据"><a href="#已经存在的数据" class="headerlink" title="已经存在的数据"></a>已经存在的数据</h2><p>当在单块磁盘上部署MinIO server,MinIO server允许客户端访问数据目录下已经存在的数据。比如，如果MinIO使用<code>minio server /mnt/data</code>启动，那么所有已经在<code>/mnt/data</code>目录下的数据都可以被客户端访问到。</p>
+<p>上述描述对所有网关后端同样有效。</p>
+<h2 id="了解更多"><a href="#了解更多" class="headerlink" title="了解更多"></a>了解更多</h2><ul>
+<li><a href="https://docs.min.io/docs/minio-erasure-code-quickstart-guide">MinIO纠删码入门</a></li>
+<li><a href="https://docs.min.io/docs/minio-client-quickstart-guide"><code>mc</code>快速入门</a></li>
+<li><a href="https://docs.min.io/docs/aws-cli-with-minio">使用 <code>aws-cli</code></a></li>
+<li><a href="https://docs.min.io/docs/s3cmd-with-minio">使用 <code>s3cmd</code></a></li>
+<li><a href="https://docs.min.io/docs/golang-client-quickstart-guide">使用 <code>minio-go</code> SDK</a></li>
+<li><a href="https://docs.min.io/">MinIO文档</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;什么是MinIO-？&quot;&gt;&lt;a href=&quot;#什么是MinIO-？&quot; class=&quot;headerlink&quot; title=&quot;什么是MinIO ？&quot;&gt;&lt;/a&gt;什么是MinIO ？&lt;/h2&gt;&lt;p&gt;根据官方定义：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;MinIO 是在 Apache L
+    
+    </summary>
+    
+    
+      <category term="OSS，Java,云存储" scheme="http://baiwenhui.com/tags/OSS%EF%BC%8CJava-%E4%BA%91%E5%AD%98%E5%82%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java14带来了许多新功能</title>
+    <link href="http://baiwenhui.com/2020/03/04/Java14%E5%B8%A6%E6%9D%A5%E4%BA%86%E8%AE%B8%E5%A4%9A%E6%96%B0%E5%8A%9F%E8%83%BD/"/>
+    <id>http://baiwenhui.com/2020/03/04/Java14带来了许多新功能/</id>
+    <published>2020-03-04T14:17:47.000Z</published>
+    <updated>2023-10-07T15:59:31.597Z</updated>
+    
+    <content type="html"><![CDATA[<p>Java 14包含比前两个发行版更多的新功能-其中大多数旨在简化编码。</p>
+<p>劳尔·加布里埃尔·乌尔玛（Raoul-Gabriel Urma）</p>
+<p>2020年2月27日</p>
+<blockquote>
+<p><a href="https://app.compendium.com/api/post_attachments/07a7a6fa-9588-4206-aa38-cf507df7a1ed/view">下载本文的PDF</a></p>
+</blockquote>
+<p><a href="https://app.compendium.com/api/post_attachments/07a7a6fa-9588-4206-aa38-cf507df7a1ed/view">https://app.compendium.com/api/post_attachments/07a7a6fa-9588-4206-aa38-cf507df7a1ed/view</a></p>
+<p>Java 14计划于3月17日发布。版本14包含的<a href="https://openjdk.java.net/projects/jdk/14/">JEP</a>（Java增强建议）比Java 12和13的总和还多。那么，对于每天编写和维护代码的Java开发人员来说，最重要的是什么呢？</p>
+<p><a href="https://openjdk.java.net/projects/jdk/14/">https://openjdk.java.net/projects/jdk/14/</a></p>
+<p>在本文中，我研究了以下主要方面：</p>
+<ul>
+<li>改进的 switch 表达式，该表达式最初在Java 12和Java 13中作为预览出现，现在已完全成为Java 14的一部分</li>
+<li>模式匹配<code>instanceof</code>（一种语言功能）</li>
+<li>有用<code>NullPointerException</code>的（JVM功能）</li>
+</ul>
+<p>如果您阅读本文并尝试在代码库中使用其中的某些功能，建议您通过向<a href="mailto:amber-dev@openjdk.java.net">Java团队</a>提供<a href="mailto:amber-dev@openjdk.java.net">反馈来</a>分享您的经验。这样，您就有机会为Java的发展做出贡献。</p>
+<h2 id="switch表达式"><a href="#switch表达式" class="headerlink" title="switch表达式"></a>switch表达式</h2><p>在Java 14中，switch表达式变为永久性的。如果您需要回顾一下什么是switch表达式，那么<a href="https://blogs.oracle.com/javamagazine/new-switch-expressions-in-java-12">在前</a> <a href="https://blogs.oracle.com/javamagazine/inside-java-13s-switch-expressions-and-reimplemented-socket-api">两篇文章</a>中已广泛讨论了它们。</p>
+<p><a href="https://blogs.oracle.com/javamagazine/new-switch-expressions-in-java-12">https://blogs.oracle.com/javamagazine/new-switch-expressions-in-java-12</a></p>
+<p><a href="https://blogs.oracle.com/javamagazine/inside-java-13s-switch-expressions-and-reimplemented-socket-api">https://blogs.oracle.com/javamagazine/inside-java-13s-switch-expressions-and-reimplemented-socket-api</a></p>
+<p>在早期版本中，switch 表达式是“预览”功能。提醒一下，将指定为“预览”版本以收集反馈，并且根据反馈可能会更改甚至删除这些功能。但预计大多数最终将在Java中永久化。</p>
+<p>新的switch表达式的优点包括由于没有中断行为，穷举以及由于表达式和复合形式而易于编写，从而减小了错误的范围。作为一个示例，switch表达式现在可以利用箭头语法，例如在以下示例中：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var log = switch (event) &#123;</span><br><span class="line">    case PLAY -&gt; &quot;User has triggered the play button&quot;;</span><br><span class="line">    case STOP, PAUSE -&gt; &quot;User needs a break&quot;;</span><br><span class="line">    default -&gt; &#123;</span><br><span class="line">        String message = event.toString();</span><br><span class="line">        LocalDateTime now = LocalDateTime.now();</span><br><span class="line">        yield &quot;Unknown event &quot; + message + </span><br><span class="line">              &quot; logged on &quot; + now;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="文本块"><a href="#文本块" class="headerlink" title="文本块"></a>文本块</h2><p>Java 13引入了文本块作为预览功能。文本块使使用多行字符串文字更加容易。此功能将通过Java 14进行第二轮预览，并进行了一些调整。作为编写带有许多字符串连接和转义序列的代码以提供适当的多行文本格式非常普遍。下面的代码显示了HTML格式的示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String html = &quot;&lt;HTML&gt;&quot; +</span><br><span class="line">&quot;\n\t&quot; + &quot;&lt;BODY&gt;&quot; +</span><br><span class="line">&quot;\n\t\t&quot; + &quot;&lt;H1&gt;\&quot;Java 14 is here!\&quot;&lt;/H1&gt;&quot; +</span><br><span class="line">&quot;\n\t&quot; + &quot;&lt;/BODY&gt;&quot; +</span><br><span class="line">&quot;\n&quot; + &quot;&lt;/HTML&gt;&quot;;</span><br></pre></td></tr></table></figure>
+<p>使用文本块，您可以简化此过程并使用界定文本块开头和结尾的三个引号来编写更优雅的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">String html = &quot;&quot;&quot;</span><br><span class="line">&lt;HTML&gt;</span><br><span class="line">  &lt;BODY&gt;</span><br><span class="line">    &lt;H1&gt;&quot;Java 14 is here!&quot;&lt;/H1&gt;</span><br><span class="line">  &lt;/BODY&gt;</span><br><span class="line">&lt;/HTML&gt;&quot;&quot;&quot;;</span><br></pre></td></tr></table></figure>
+<p>与普通字符串文字相比，文本块还提供了更高的表达能力。您可以在较早的<a href="https://blogs.oracle.com/javamagazine/text-blocks-come-to-java">文章中</a>了解有关此内容的更多信息。</p>
+<p><a href="https://blogs.oracle.com/javamagazine/text-blocks-come-to-java">https://blogs.oracle.com/javamagazine/text-blocks-come-to-java</a></p>
+<p>Java 14中添加了两个新的转义序列。首先，您可以使用新的<code>\s</code>转义序列表示单个空格。其次，您可以使用反斜线<code>\</code>来禁止在行尾插入新行字符。当您想分隔很长的行以简化文本块内的可读性时，这很有用。</p>
+<p>例如，当前处理多行字符串的方法是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">String literal = </span><br><span class="line">         &quot;Lorem ipsum dolor sit amet, consectetur adipiscing &quot; +</span><br><span class="line">         &quot;elit, sed do eiusmod tempor incididunt ut labore &quot; +</span><br><span class="line">         &quot;et dolore magna aliqua.&quot;;</span><br></pre></td></tr></table></figure>
+<p>使用<code>\</code>文本块中的转义序列，可以将其表示为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String text = &quot;&quot;&quot;</span><br><span class="line">                Lorem ipsum dolor sit amet, consectetur adipiscing \</span><br><span class="line">                elit, sed do eiusmod tempor incididunt ut labore \</span><br><span class="line">                et dolore magna aliqua.\</span><br><span class="line">                &quot;&quot;&quot;;</span><br></pre></td></tr></table></figure>
+<h2 id="instanceof的模式匹配"><a href="#instanceof的模式匹配" class="headerlink" title="instanceof的模式匹配"></a>instanceof的模式匹配</h2><p>Java 14引入了预览功能，该功能有助于消除对在进行条件<code>instanceof</code>检查之前进行显式强制转换的需求。例如，考虑以下代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if (obj instanceof Group) &#123;</span><br><span class="line">  Group group = (Group) obj;</span><br><span class="line"></span><br><span class="line">  // use group specific methods</span><br><span class="line">  var entries = group.getEntries();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以使用预览功能将其重构为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if (obj instanceof Group group) &#123;</span><br><span class="line">  var entries = group.getEntries();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因为条件检查断言<code>obj</code>是type <code>Group</code>，所以为什么要在第一个代码段中用条件块再次说该<code>obj</code>类型<code>Group</code>？这种需求可能会增加错误的范围。</p>
+<p>较短的语法将删除典型Java程序中的许多强制转换。（A <a href="http://www.cs.williams.edu/FTfJP2011/6-Winther.pdf">研究论文</a>从2011年提出了一个相关的语言特性报告说，所有铸件约24％遵循<code>instanceof</code>的条件语句。）</p>
+<p><a href="http://www.cs.williams.edu/FTfJP2011/6-Winther.pdf">http://www.cs.williams.edu/FTfJP2011/6-Winther.pdf</a></p>
+<p><a href="https://openjdk.java.net/jeps/305">JEP 305</a>涵盖了此更改，并从Joshua Bloch 的<em>Effective Java</em>书中指出了一个示例，该示例通过以下相等方法进行说明：</p>
+<p><a href="https://openjdk.java.net/jeps/305">https://openjdk.java.net/jeps/305</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Override public boolean equals(Object o) &#123; </span><br><span class="line">    return (o instanceof CaseInsensitiveString) &amp;&amp; </span><br><span class="line">            ((CaseInsensitiveString) o).s.equalsIgnoreCase(s); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过删除冗余的显式强制转换为，可以将前面的代码简化为以下形式<code>CaseInsensitiveString</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Override public boolean equals(Object o) &#123; </span><br><span class="line">    return (o instanceof CaseInsensitiveString cis) &amp;&amp;</span><br><span class="line">            cis.s.equalsIgnoreCase(s); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这是一个有趣的预览功能，因为它为更广泛的模式匹配打开了大门。模式匹配的思想是为语言功能提供方便的语法，以便根据某些条件提取对象的成分。<code>instanceof</code>运算符就是这种情况，因为条件是类型检查，并且提取操作正在调用适当的方法或访问特定字段。</p>
+<p>换句话说，此预览功能仅仅是个开始，您可以期待一种语言功能，它可以帮助进一步减少冗长性，从而减少错误的可能性。</p>
+<h2 id="记录"><a href="#记录" class="headerlink" title="记录"></a>记录</h2><p>还有另一种预览语言功能：records。像到目前为止提出的其他想法一样，此功能遵循减少Java冗长并帮助开发人员编写更简洁的代码的趋势。记录集中在某些域类上，这些类仅用于将数据存储在字段中，并且不声明任何自定义行为。</p>
+<p>为了直接解决该问题，请使用一个简单的域类，该类<code>BankTransaction</code>通过三个字段对交易进行建模：日期，金额和描述。声明类时，您需要担心多个组件：</p>
+<ul>
+<li>构造函数</li>
+<li>equals方法</li>
+<li><code>toString()</code></li>
+<li><code>hashCode()</code> 和 <code>equals()</code></li>
+</ul>
+<p>此类组件的代码通常由IDE自动生成，并占用大量空间。这是<code>BankTransaction</code>该类的完整生成的实现：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">public class BankTransaction &#123;</span><br><span class="line">    private final LocalDate date;</span><br><span class="line">    private final double amount;</span><br><span class="line">    private final String description;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public BankTransaction(final LocalDate date, </span><br><span class="line">                           final double amount, </span><br><span class="line">                           final String description) &#123;</span><br><span class="line">        this.date = date;</span><br><span class="line">        this.amount = amount;</span><br><span class="line">        this.description = description;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public LocalDate date() &#123;</span><br><span class="line">        return date;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public double amount() &#123;</span><br><span class="line">        return amount;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String description() &#123;</span><br><span class="line">        return description;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String toString() &#123;</span><br><span class="line">        return &quot;BankTransaction&#123;&quot; +</span><br><span class="line">                &quot;date=&quot; + date +</span><br><span class="line">                &quot;, amount=&quot; + amount +</span><br><span class="line">                &quot;, description=&#x27;&quot; + description + &#x27;\&#x27;&#x27; +</span><br><span class="line">                &#x27;&#125;&#x27;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public boolean equals(Object o) &#123;</span><br><span class="line">        if (this == o) return true;</span><br><span class="line">        if (o == null || getClass() != o.getClass()) return false;</span><br><span class="line">        BankTransaction that = (BankTransaction) o;</span><br><span class="line">        return Double.compare(that.amount, amount) == 0 &amp;&amp;</span><br><span class="line">                date.equals(that.date) &amp;&amp;</span><br><span class="line">                description.equals(that.description);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public int hashCode() &#123;</span><br><span class="line">        return Objects.hash(date, amount, description);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Java的14提供了一种方法来去除冗长，使意图明确指出，所有你想要的是，只有拥有的实现数据聚合在一起的一类<code>equals</code>，<code>hashCode</code>和<code>toString</code>方法。您可以<code>BankTransaction</code>按以下方式重构：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public record BankTransaction(Date date,</span><br><span class="line">                              double amount,</span><br><span class="line">                              String description) &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>有了记录，你“自动”得到的实现<code>equals</code>，<code>hashCode</code>以及<code>toString</code>除了构造函数和getter。</p>
+<p>要尝试该示例，请记住您需要使用预览标志来编译文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javac --enable-preview --release 14 BankTransaction.java</span><br></pre></td></tr></table></figure>
+<p>记录的字段是隐式的<code>final</code>。这意味着您无法重新分配它们。但是请注意，这并不意味着整个记录都是不变的。存储在字段中的对象本身可以是可变的。</p>
+<p>如果您对有关记录的更详细的文章感兴趣，请参阅<a href="https://blogs.oracle.com/javamagazine/records-come-to-java"><em>Java杂志上</em></a> Ben Evans的最新<a href="https://blogs.oracle.com/javamagazine/records-come-to-java">文章</a>。</p>
+<p><a href="https://blogs.oracle.com/javamagazine/records-come-to-java">https://blogs.oracle.com/javamagazine/records-come-to-java</a></p>
+<p>敬请关注。从教育的角度来看，唱片还为下一代Java开发人员提出了有趣的问题。例如，如果您指导初级开发人员，那么什么时候应该在课程中引入记录：在引入OOP和类之前还是之后？</p>
+<h2 id="有用的NullPointerExceptions"><a href="#有用的NullPointerExceptions" class="headerlink" title="有用的NullPointerExceptions"></a>有用的NullPointerExceptions</h2><p>有人说throw <code>NullPointerException</code>应该是Java中新的“ Hello world”，因为您无法逃避它们。除了笑话，它们还导致挫败感，因为当代码在生产环境中运行时，它们经常出现在应用程序日志中，这可能使调试变得困难，因为原始代码不容易获得。例如，考虑以下代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var name = user.getLocation().getCity().getName();</span><br></pre></td></tr></table></figure>
+<p>在Java 14之前，您可能会收到以下错误：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Exception in thread &quot;main&quot; java.lang.NullPointerException</span><br><span class="line">    at NullPointerExample.main(NullPointerExample.java:5)</span><br></pre></td></tr></table></figure>
+<p>不幸的是，如果在第5行，则有一个具有多个方法调用的赋值- <code>getLocation()</code>和- <code>getCity()</code>两者都可能返回null。实际上，变量<code>user</code>也可以为null。因此，目前尚不清楚是什么原因引起的<code>NullPointerException</code>。</p>
+<p>现在，使用Java 14，有一个新的JVM功能，通过它您可以收到更多信息的诊断信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Exception in thread &quot;main&quot; java.lang.NullPointerException: Cannot invoke &quot;Location.getCity()&quot; because the return value of &quot;User.getLocation()&quot; is null</span><br><span class="line">    at NullPointerExample.main(NullPointerExample.java:5)</span><br></pre></td></tr></table></figure>
+<p>该消息现在具有两个明确的组成部分：</p>
+<ul>
+<li><strong>结果：</strong> <code>Location.getCity()</code>无法调用。</li>
+<li><strong>原因：</strong>的返回值为<code>User.getLocation()</code>null。</li>
+</ul>
+<p>仅当您使用以下标志运行Java时，增强型诊断才有效：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-XX:+ShowCodeDetailsInExceptionMessages</span><br></pre></td></tr></table></figure>
+<p>这是一个例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -XX:+ShowCodeDetailsInExceptionMessages NullPointerExample</span><br></pre></td></tr></table></figure>
+<p>在Java的未来版本中，这项功能可能会被默认启用，据报道<a href="https://bugs.openjdk.java.net/browse/JDK-8233014">在这里</a>。</p>
+<p><a href="https://bugs.openjdk.java.net/browse/JDK-8233014">https://bugs.openjdk.java.net/browse/JDK-8233014</a></p>
+<p>此增强功能不仅可用于方法调用，而且还可在可能导致的其他地方使用<code>NullPointerException</code>，包括字段访问，数组访问和赋值。</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>在Java 14中，有新的预览语言功能和更新可帮助开发人员进行日常工作。例如，Java 14引入了<code>instanceof</code>模式匹配，这是减少显式转换的一种方法。而且，Java 14引入了记录，这是一种新的结构，用于简洁地声明仅用于聚合数据的类。此外，<code>NullPointerException</code>消息已通过更好的诊断得到了增强，并且开关表达式现在已成为Java 14的一部分。文本块是一种可帮助您处理多行字符串值的功能，在引入了两个新的转义序列后，将进行另一轮预览。Java操作的一部分技术人员可能会感兴趣的另一项更改是<a href="https://openjdk.java.net/jeps/349">JDK Flight Recorder中的事件流</a>。该选项在<a href="https://blogs.oracle.com/javamagazine/java-flight-recorder-and-jfr-event-streaming-in-java-14">本埃文斯的这篇文章</a>。</p>
+<p><a href="https://openjdk.java.net/jeps/349">https://openjdk.java.net/jeps/349</a></p>
+<p><a href="https://blogs.oracle.com/javamagazine/java-flight-recorder-and-jfr-event-streaming-in-java-14">https://blogs.oracle.com/javamagazine/java-flight-recorder-and-jfr-event-streaming-in-java-14</a></p>
+<p>如您所见，Java 14带来了很多创新。您绝对应该使用一下，并将有关预览功能的反馈发送给Java团队。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Java 14包含比前两个发行版更多的新功能-其中大多数旨在简化编码。&lt;/p&gt;
+&lt;p&gt;劳尔·加布里埃尔·乌尔玛（Raoul-Gabriel Urma）&lt;/p&gt;
+&lt;p&gt;2020年2月27日&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://app.co
+    
+    </summary>
+    
+    
+      <category term="java,java14,java语言" scheme="http://baiwenhui.com/tags/java-java14-java%E8%AF%AD%E8%A8%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>那些年非常火的MyCAT是什么？</title>
+    <link href="http://baiwenhui.com/2020/02/29/%E9%82%A3%E4%BA%9B%E5%B9%B4%E9%9D%9E%E5%B8%B8%E7%81%AB%E7%9A%84MyCAT%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/"/>
+    <id>http://baiwenhui.com/2020/02/29/那些年非常火的MyCAT是什么？/</id>
+    <published>2020-02-29T15:28:09.000Z</published>
+    <updated>2023-10-07T15:59:31.617Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="什么是-MyCAT-？"><a href="#什么是-MyCAT-？" class="headerlink" title="什么是 MyCAT ？"></a>什么是 MyCAT ？</h2><p>根据 MyCAT 官网 - <a href="http://mycat.io/">http://mycat.io/</a> 的描述可以知道， MyCAT 是如下的一个东东：</p>
+<ul>
+<li><p>一个彻底开源的，面向企业应用开发的大数据库集</p>
+</li>
+<li><p>支持事务、ACID、可以替代MySQL的加强版数据库</p>
+</li>
+<li><p>一个可以视为MySQL集群的企业级数据库，用来替代昂贵的Oracle集群</p>
+</li>
+<li><p>一个融合内存缓存技术、NoSQL技术、HDFS大数据的新型SQL Server</p>
+</li>
+<li><p>结合传统数据库和新型分布式数据仓库的新一代企业级数据库产品</p>
+</li>
+<li><p>一个新颖的数据库中间件产品</p>
+</li>
+</ul>
+<p><strong>总结一下就是： MyCAT 是一款数据库中间件，类似于Tomcat 容器或者相关的 Web 中间件。它主要用于解决数据库相关的问题。</strong></p>
+<h2 id="MyCAT-能干什么？为什么要使用它？使用它可以解决什么问题？"><a href="#MyCAT-能干什么？为什么要使用它？使用它可以解决什么问题？" class="headerlink" title="MyCAT 能干什么？为什么要使用它？使用它可以解决什么问题？"></a>MyCAT 能干什么？为什么要使用它？使用它可以解决什么问题？</h2><ul>
+<li><p>用于支持海量数据存储，对海量数据进行分库分表</p>
+</li>
+<li><p>支持分库分表场景下的分布式事务</p>
+</li>
+<li><p>对多个数据源进行统一整合</p>
+</li>
+<li><p>高并发应用场景下，降低请求对单个数据库节点带来的灾难性压力</p>
+</li>
+<li><p>可以通过数据库中间间层面实现数据库读写分离，使其Java程序与数据库访问解耦</p>
+</li>
+</ul>
+<p>具体更多的特性可以参考 <a href="http://mycat.io/">http://mycat.io/</a> 对MyCAT 特性的介绍。总结下来的一般常用的用途有3个，分别如下：</p>
+<ul>
+<li>数据读写分离<br><img src="https://tva1.sinaimg.cn/large/0082zybpgy1gc6855wtn7j30rt0dejru.jpg" alt=""></li>
+<li>数据分片<br><img src="https://tva1.sinaimg.cn/large/0082zybpgy1gc686jnz0ej30oh0bmweu.jpg" alt=""></li>
+<li>多数据源整合<br><img src="https://tva1.sinaimg.cn/large/0082zybpgy1gc687jlxi9j30kp0f0dg5.jpg" alt=""></li>
+</ul>
+<h2 id="MyCAT-是唯一的数据库分库分表的解决方案吗？与其它的数据库中间件有什么区别？"><a href="#MyCAT-是唯一的数据库分库分表的解决方案吗？与其它的数据库中间件有什么区别？" class="headerlink" title="MyCAT 是唯一的数据库分库分表的解决方案吗？与其它的数据库中间件有什么区别？"></a>MyCAT 是唯一的数据库分库分表的解决方案吗？与其它的数据库中间件有什么区别？</h2><p>我们来看如下图，图片来源于网络：</p>
+<p><img src="https://tva1.sinaimg.cn/large/0082zybpgy1gc67evmj2yj30ng0ek0th.jpg" alt=""></p>
+<p>具体介绍如下：</p>
+<ol>
+<li>Cobar 属于阿里 B2B 事业群，始于 2008 年，在阿里服役 3 年多，接管 3000+ 个 MySQL 数据库的 schema,</li>
+</ol>
+<p>集 群日处理在线 SQL 请求 50 亿次以上。由于 Cobar 发 起人的离职， Cobar 停止维护。</p>
+<ol>
+<li>My cat 是开源社区在阿里 cobar 基础上进行二次开发，解决了 cobar 存在的问题，并且加入了许多新</li>
+</ol>
+<p>的功能在其中。青出于蓝而胜于蓝。</p>
+<ol>
+<li>OneProxy 基于 MySQL 官方的 proxy 思想利用 c 进行开发的， OneProxy 是一款商业收费的中间件。舍</li>
+</ol>
+<p>弃了一些功能，专注在性能和稳定性上。</p>
+<ol>
+<li><p>kingshard 由小团队用 go 语言开发，还需要发展，需要不断完善 。</p>
+</li>
+<li><p>Vite ss 是 Youtube 生产在使用 架构很复杂。不支持 MySQL 原生协议，使用需要大量改造成本 。</p>
+</li>
+<li><p>Atlas 是 3 60 团队基于 mysql proxy 改写 ，功能还需完善 ，高并发下不稳定 。</p>
+</li>
+<li><p>MaxScale 是 mariadb MySQL 原作者维护的一个版本 研发的中间件</p>
+</li>
+<li><p>MySQLRout e 是 MySQL 官方 Oracle 公司发布的中间件</p>
+</li>
+</ol>
+<p>除了这些之外，我们去github 搜罗了一下，还有如下的一些数据库中间件：</p>
+<ol>
+<li>Oceanus - 58同城数据库中间件，github star 数 500+；</li>
+<li>SOHU-DBProxy - 是由 搜狐 数据库团队开发维护的一个基于MySQL协议的数据中间层项目。它在MySQL官方推出的MySQL-Proxy 0.8.3版本的基础上， 修改了大量bug，添加了很多功能特性。现在已经在sohu的多个业务线上使用， github star 数 700+；</li>
+<li>Cetus是由C语言开发的关系型数据库MySQL的中间件，主要提供了一个全面的数据库访问代理功能。Cetus连接方式与MySQL基本兼容，应用程序几乎不用修改即可通过Cetus访问数据库，实现了数据库层的水平扩展和高可用。 ， github star 数 1000+；</li>
+<li>Zebra是一个基于JDBC API协议上开发出的高可用、高性能的数据库访问层解决方案，是美团点评内部使用的数据库访问层中间件。github star 数 1500+;</li>
+</ol>
+<h2 id="MyCAT作为分库分表中间件的原理是什么？"><a href="#MyCAT作为分库分表中间件的原理是什么？" class="headerlink" title="MyCAT作为分库分表中间件的原理是什么？"></a>MyCAT作为分库分表中间件的原理是什么？</h2><p>  Mycat收到一条SQL语句时， 首先解析SQL语句涉及的表， 接着查看此表的定义， 如果该表存在分片规则， 则获取SQL语句里分片字段的值， 并匹配分片函数， 得到该SQL语旬对应的分片列表， 然后将SQL语句发送到相应的分片去执行， 最后处理所有分片返回的数据并返回给客户端。 以 select* from Orders where prov=? 语句为例， 查找prov=wuhan, 按照分片函数， wuhan值存放在dnl上， 于是SQL语句被发送到Mysql l , 把DBI上的查询结果返回给用户。<br>  这里使用过阿里巴巴数据源 Druid 的同学不知道有没有发现，在Druid 中有一个叫做 SQLParser 的东东，这个玩意其实就是可以用来对原始的SQL语句，根据SQL语法树，对SQL进行加强改造的一个解析器，如果你们项目中有做过表数据的行权限或者列权限，则用这个Druid 的SQLParser 对所有的SQL 进行拦截改写是一个不错的方案，我之前在做数据权限的时候，参考相关实现时，也发现了MyCAT 中对于SQL的解析和改写也使用的这个，具体可以参考：<a href="https://github.com/MyCATApache/Mycat-Server/blob/f929f96a16852869bc9dc63f4c0f192ee02818e0/src/main/java/io/mycat/statistic/stat/UserSqlHighStat.java">https://github.com/MyCATApache/Mycat-Server/blob/f929f96a16852869bc9dc63f4c0f192ee02818e0/src/main/java/io/mycat/statistic/stat/UserSqlHighStat.java</a></p>
+<h2 id="MyCAT-入门"><a href="#MyCAT-入门" class="headerlink" title="MyCAT 入门"></a>MyCAT 入门</h2><p>  对于一款开箱即用的数据库分库分表中间件来说，MyCAT的入门相对简单，只需要按照官方的入门指导一步步往下走即可。</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>安装之前我们首先准备环境，这里我们以企业中生产使用最多的Centos 7 为示例，进行下面的实操，本次CentOS 7 的内核版本如下：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Linux VM_0_14_centos 3.10.0-862.el7.x86_64</span><br></pre></td></tr></table></figure><br>由于 MyCAT 源码是通过 Java 语言进行开发的，因此在我们使用之前，需要先检查自己的CentOS 7 主机具备不具备Java 环境，使用<code>java -version</code> 进行验证，如果没有安装JDK，则首先需要安装JDK并且配置Java环境变量才阔以，Centos 7 安装Java8 比较容易，只需要如下一行命令即可：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install java-1.8.0-openjdk</span><br></pre></td></tr></table></figure><br>JDK8 安装完毕之后，进行如下验证，没有错误即可：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -version </span><br></pre></td></tr></table></figure><br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">openjdk version &quot;1.8.0_242&quot;</span><br><span class="line">OpenJDK Runtime Environment (build 1.8.0_242-b08)</span><br><span class="line">OpenJDK 64-Bit Server VM (build 25.242-b08, mixed mode)</span><br></pre></td></tr></table></figure><br>接下来我们根据官方的入门指导，下载mycat server 包，下载地址为：<a href="http://dl.mycat.io/">http://dl.mycat.io/</a> , 这里我们实验时使用MyCAT  1.6.7.3 release 版本即可，下载 1.6.7.3 release 安装包到自己主机的 /opt 目录下 , 操作命令如下:<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /opt/ &amp;&amp; wget  /usr/local/ http://dl.mycat.io/1.6.7.3/20190927161129/Mycat-server-1.6.7.3-release-20190927161129-linux.tar.gz</span><br></pre></td></tr></table></figure></p>
+<p>下载完成之后，我们对mycat 安装包进行解压即可，命令如下：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf Mycat-server-1.6.7.3-release-20190927161129-linux.tar.gz</span><br></pre></td></tr></table></figure><br>解压完成之后，我们看到 /opt 目录下有了一个 mycat 目录，我们进入到该目录下，发现它的子目录主要有如下：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── bin</span><br><span class="line">├── catlet</span><br><span class="line">├── conf</span><br><span class="line">├── lib</span><br><span class="line">├── logs</span><br><span class="line">├── tmlogs</span><br><span class="line">└── version.txt</span><br></pre></td></tr></table></figure><br>这里我们进入到conf 目录下，只关注如下的几个配置文件即可,其它的配置文件先不用关心：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">server.xml  定义逻辑库，表、分片节点等内容</span><br><span class="line">schema.xml  定义用户以及系统相关变量，如端口等</span><br></pre></td></tr></table></figure></p>
+<h3 id="修改相关配置"><a href="#修改相关配置" class="headerlink" title="修改相关配置"></a>修改相关配置</h3><p>为了对用户进行区分，此时，我们先修改 server.xml 中的 root 用户为 mycat，当使用 mycat 用户连接时，就代表我们直连的是 mycat，其它的配置不动，具体修改如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"> &lt;!-- 修改之前的 root 用户为 mycat  --&gt;</span><br><span class="line">	&lt;user name=&quot;mycat&quot; defaultAccount=&quot;true&quot;&gt;</span><br><span class="line">		&lt;property name=&quot;password&quot;&gt;123456&lt;/property&gt;</span><br><span class="line">		&lt;property name=&quot;schemas&quot;&gt;TESTDB&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">		&lt;!-- 表级 DML 权限设置 --&gt;</span><br><span class="line">		&lt;!--</span><br><span class="line">		&lt;privileges check=&quot;false&quot;&gt;</span><br><span class="line">			&lt;schema name=&quot;TESTDB&quot; dml=&quot;0110&quot; &gt;</span><br><span class="line">				&lt;table name=&quot;tb01&quot; dml=&quot;0000&quot;&gt;&lt;/table&gt;</span><br><span class="line">				&lt;table name=&quot;tb02&quot; dml=&quot;1111&quot;&gt;&lt;/table&gt;</span><br><span class="line">			&lt;/schema&gt;</span><br><span class="line">		&lt;/privileges&gt;</span><br><span class="line">		 --&gt;</span><br><span class="line">	&lt;/user&gt;</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">&lt;/mycat:server&gt;</span><br></pre></td></tr></table></figure>
+<p>接下来我们修改 schema.xml </p>
+<p>删除 <schema> 标签间的 表信息 dataNode 标签只留一个 dataHost 标签只留一个 writeHost</p>
+<readHost 只留一 对，如下:
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE mycat:schema SYSTEM &quot;schema.dtd&quot;&gt;</span><br><span class="line">&lt;mycat:schema xmlns:mycat=&quot;http://io.mycat/&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;schema name=&quot;TESTDB&quot; checkSQLschema=&quot;false&quot; sqlMaxLimit=&quot;100&quot; dataNode=&quot;dn1&quot; /&gt;</span><br><span class="line">	&lt;dataNode name=&quot;dn1&quot; dataHost=&quot;host1&quot; database=&quot;testdb&quot; /&gt;</span><br><span class="line">	&lt;dataHost name=&quot;host1&quot; maxCon=&quot;1000&quot; minCon=&quot;10&quot; balance=&quot;3&quot;</span><br><span class="line">			  writeType=&quot;0&quot; dbType=&quot;mysql&quot; dbDriver=&quot;native&quot; switchType=&quot;1&quot;  slaveThreshold=&quot;100&quot;&gt;</span><br><span class="line">		&lt;heartbeat&gt;select user()&lt;/heartbeat&gt;</span><br><span class="line">		&lt;!-- can have multi write hosts --&gt;</span><br><span class="line">		&lt;writeHost host=&quot;hostM1&quot; url=&quot;118.25.102.189:3306&quot; user=&quot;mycat&quot;</span><br><span class="line">				   password=&quot;123456&quot;&gt;&lt;/writeHost&gt;</span><br><span class="line">	&lt;/dataHost&gt;</span><br><span class="line">&lt;/mycat:schema&gt;</span><br></pre></td></tr></table></figure>
+
+<p>其中 &lt;writeHost host=”hostM1” 表示 MySQL 的主数据库，等会我们启动 MyCAT 之后进行验证读写否可以正常进行操作。</p>
+<h3 id="启动-MyCAT-前验证数据库远程访问情况"><a href="#启动-MyCAT-前验证数据库远程访问情况" class="headerlink" title="启动 MyCAT 前验证数据库远程访问情况"></a>启动 MyCAT 前验证数据库远程访问情况</h3><p>在验证之前由于我们的主数据库目前并没有创建mycat 这个用户，我们需要登录到 118.25.102.189:3306 数据库实例进行创建用户，脚本如下：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 在 <span class="number">118.25</span><span class="number">.102</span><span class="number">.189</span> 主机上登录 mysql 服务器</span><br><span class="line">mysql <span class="operator">-</span>uroot </span><br><span class="line"># 登录成功后进行创建用户并授权</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">USER</span> <span class="string">&#x27;mycat&#x27;</span>@<span class="string">&#x27;%&#x27;</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;123456&#x27;</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<h3 id="开始登陆验证MyCAT登陆"><a href="#开始登陆验证MyCAT登陆" class="headerlink" title="开始登陆验证MyCAT登陆"></a>开始登陆验证MyCAT登陆</h3><p>在我们配置并创建完毕MyCAT 用户之后，就可以尝试登陆MyCAT 了， 通过以下方式登陆，进行验证，登陆方式如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">完事之后我们开始尝试登陆MyCAT , mycat 默认的端口为 8066</span></span><br><span class="line">mysql -umycat -h118.26.102.189  -p123456 -P8066</span><br></pre></td></tr></table></figure>
+<p>通过上述方式登陆成功后，如下图所示：</p>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcdoqz49h4j30qq0h43yw.jpg" alt=""></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;什么是-MyCAT-？&quot;&gt;&lt;a href=&quot;#什么是-MyCAT-？&quot; class=&quot;headerlink&quot; title=&quot;什么是 MyCAT ？&quot;&gt;&lt;/a&gt;什么是 MyCAT ？&lt;/h2&gt;&lt;p&gt;根据 MyCAT 官网 - &lt;a href=&quot;http://myca
+    
+    </summary>
+    
+    
+      <category term="java,中间件,MyCAT" scheme="http://baiwenhui.com/tags/java-%E4%B8%AD%E9%97%B4%E4%BB%B6-MyCAT/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ES数十亿数据量级的场景下如何优化查询性能</title>
+    <link href="http://baiwenhui.com/2020/02/03/ES%E6%95%B0%E5%8D%81%E4%BA%BF%E6%95%B0%E6%8D%AE%E9%87%8F%E7%BA%A7%E7%9A%84%E5%9C%BA%E6%99%AF%E4%B8%8B%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%E6%9F%A5%E8%AF%A2%E6%80%A7%E8%83%BD/"/>
+    <id>http://baiwenhui.com/2020/02/03/ES数十亿数据量级的场景下如何优化查询性能/</id>
+    <published>2020-02-03T01:57:26.000Z</published>
+    <updated>2023-10-07T15:59:31.591Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="ES-客户端读取数据的流程"><a href="#ES-客户端读取数据的流程" class="headerlink" title="ES 客户端读取数据的流程"></a>ES 客户端读取数据的流程</h2><p>客户端 -&gt; shard -&gt; filesystem cache -&gt; 磁盘文件</p>
+<h2 id="海量数据检索查询性能优化思路"><a href="#海量数据检索查询性能优化思路" class="headerlink" title="海量数据检索查询性能优化思路"></a>海量数据检索查询性能优化思路</h2><p>如果内存足够大， filesystem cache 会缓存，如果查询走filesystem cache 则速度耗时在毫秒级别，如果查询请求走磁盘文件，则最少查询耗时都在秒级别。</p>
+<p>如果整个磁盘上索引数据文件在3台机器上，一共占用了1T的磁盘容量，ES数据量是1T，每台机器的数据量是300G。ES性能最佳情况，你的机器内存至少可以容纳总数据量的一半。</p>
+<p>生产环境试验，最好用ES存储少量的数据，用来搜索的那些索引，内存留给filesystem cache ， 100G。数据量控制在100G以内，相当于查询的数据几乎全部走内存来搜索，性能非常高，几乎搜索结果在1秒以内就可以出结果。</p>
+<p>另外还有注意的一点，就是在ES中真正存储的记录字段都应该是你需要查询的字段，不应该把整条记录中的所有字段都放在ES中，如果全部字段都放到ES中，则会导致你机器的filesystem chche 占据空间很大，很多记录其实查询都要走硬盘文件，这样会导致查询性能会很低。</p>
+<h2 id="数据预热"><a href="#数据预热" class="headerlink" title="数据预热"></a>数据预热</h2><p>后台系统自动搜索一下热数据，提前让数据加载到filesystem cache 中，当客户端查询时，直接从 filesystem cache中找到，性能非常高。</p>
+<h2 id="冷热分离"><a href="#冷热分离" class="headerlink" title="冷热分离"></a>冷热分离</h2><p>类似于MySQL的冷热分离，将大量访问不频繁的数据放到单独的一个索引。将查询频繁的放到一个索引，提高查询的性能。</p>
+<h2 id="模型设计"><a href="#模型设计" class="headerlink" title="模型设计"></a>模型设计</h2><p>写入索引的时候，就将关联的数据直接写入进去，不要在搜索的时候进行join，因为ES中的复杂查询都很耗费性能。</p>
+<h2 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h2><p>分布式的，查100页的10条数据，必须从每个shard，都查询一批数据过来，然后拿过来在内存里面分页，页翻得越深，基本查询性能很差。优化策略：1.不允许深度分页 2.类似于下拉分页的话，可以使用 scroll api 进行查询。它的分页原理，会一次性生成快照，然后通过游标一次一次往下翻，无论翻多少页，性能就是毫秒级的，scroll 智能一页一页往后翻，天然适合微博，往下拉的时候。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;ES-客户端读取数据的流程&quot;&gt;&lt;a href=&quot;#ES-客户端读取数据的流程&quot; class=&quot;headerlink&quot; title=&quot;ES 客户端读取数据的流程&quot;&gt;&lt;/a&gt;ES 客户端读取数据的流程&lt;/h2&gt;&lt;p&gt;客户端 -&amp;gt; shard -&amp;gt; file
+    
+    </summary>
+    
+    
+      <category term="java,ES,大数据" scheme="http://baiwenhui.com/tags/java-ES-%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Oracle JDK 和 OpenJDK 之间的区别</title>
+    <link href="http://baiwenhui.com/2019/02/13/Oracle-JDK-%E5%92%8C-OpenJDK-%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+    <id>http://baiwenhui.com/2019/02/13/Oracle-JDK-和-OpenJDK-之间的区别/</id>
+    <published>2019-02-13T01:38:59.000Z</published>
+    <updated>2023-10-07T15:59:31.600Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a><strong>1.简介</strong></h2><p>在本文中，我们将探讨<a href="https://www.oracle.com/technetwork/java/index.html">Oracle Java Development Kit</a>和<a href="http://openjdk.java.net/">OpenJDK</a>之间的差异。我们先快速浏览一下，然后进行比较。之后，我们将看到其他JDK实现的列表。</p>
+<h2 id="2-Oracle-JDK和Java-SE历史"><a href="#2-Oracle-JDK和Java-SE历史" class="headerlink" title="2. Oracle JDK和Java SE历史"></a>2. Oracle JDK和Java SE历史</h2><p>JDK（Java Development Kit）是Java平台编程中使用的软件开发环境。它包含一个完整的Java运行时环境，即所谓的私有运行时。该名称来自于它包含的工具多于独立的JRE以及开发Java应用程序所需的其他组件。</p>
+<p><strong>Oracle强烈建议使用术语JDK来引用Java SE（标准版）开发工具包</strong>（还有Enterprise Edition和Micro Edition平台）。</p>
+<p>我们来看看Java SE的历史：</p>
+<ul>
+<li><em>JDK Beta - 1995</em></li>
+<li><em>JDK 1.0 - 1996年1月</em></li>
+<li><em>JDK 1.1 - 1997年2月</em></li>
+<li><em>J2SE 1.2 - 1998年12月</em></li>
+<li><em>J2SE 1.3 - 2000年5月</em></li>
+<li><em>J2SE 1.4 - 2002年2月</em></li>
+<li><em>J2SE 5.0 - 2004年9月</em></li>
+<li><em>Java SE 6 - 2006年12月</em></li>
+<li><em>Java SE 7 - 2011年7月</em></li>
+<li><strong>Java SE 8（LTS） - 2014年3月</strong></li>
+<li><em>Java SE 9 - 2017年9月</em></li>
+<li><em>Java SE 10（18。3） - 2018年3月</em></li>
+<li><strong>Java SE 11（18.9 LTS） - 2018年9月</strong></li>
+<li>Java SE 12（19。3） - 2019年3月</li>
+</ul>
+<p>注意：不再支持斜体版本。</p>
+<p>我们可以看到Java SE的主要版本大约每两年发布一次，直到Java SE 7.从Java SE 6开始花了五年时间，之后又花了三年时间升级到Java SE 8。</p>
+<p>自Java SE 10以来，我们可以期待每六个月发布一次新版本。但是，并非所有版本都是长期支持（LTS）版本。由于Oracle的发布计划，LTS产品发布仅每三年发布一次。</p>
+<p>Java SE 11是最新的LTS版本，Java SE 8将在2020年12月之前获得免费的公共更新，用于非商业用途。</p>
+<p>在2010年Oracle收购Sun Microsystems之后，这个开发工具包得到了它的当前名称。在此之前，它的名字是SUN JDK，它是Java编程语言的官方实现。</p>
+<h2 id="3-OpenJDK"><a href="#3-OpenJDK" class="headerlink" title="3. OpenJDK"></a>3. OpenJDK</h2><p>OpenJDK是Java SE 平台版本的免费开源实现。它最初于2007年发布，是Sun Microsystems于2006年开始开发的结果。</p>
+<p>当然，我们应该强调  <strong>OpenJDK是自SE 7版以来Java标准版的官方参考实现</strong>。</p>
+<p>最初，它仅基于JDK 7.但是，<strong>从Java 10开始，Java SE平台的开源参考实现是JDK项目<a href="http://openjdk.java.net/projects/jdk/的责任">http://openjdk.java.net/projects/jdk/的责任</a></strong>。而且，就像Oracle一样，JDK项目也将每六个月发布一次新功能。</p>
+<p>我们应该注意到，在这个长期运行的项目之前，JDK Release Projects发布了一个功能，然后停止了。</p>
+<p>现在让我们看看OpenJDK版本：</p>
+<ul>
+<li><em>OpenJDK 6项目 - 基于JDK 7，但经过修改后提供了Java 6的开源版本</em></li>
+<li><em>OpenJDK 7项目 - 2011年7月28日</em></li>
+<li><em>OpenJDK 7u项目 - 该项目开发Java Development Kit 7的更新</em></li>
+<li><em>OpenJDK 8项目 - 2014年3月18日</em></li>
+<li><em>OpenJDK 8u项目 - 该项目开发Java Development Kit 8的更新</em></li>
+<li><em>OpenJDK 9项目 - 2017年9月21日</em></li>
+<li><em>JDK10项目于2018年3月10日至20日发布</em></li>
+<li><strong>JDK11项目于2018年9月11日至25日发布</strong></li>
+<li>JDK12项目发布 - <a href="http://openjdk.java.net/jeps/3">稳定阶段</a></li>
+</ul>
+<h2 id="4-Oracle-JDK与OpenJDK"><a href="#4-Oracle-JDK与OpenJDK" class="headerlink" title="4. Oracle JDK与OpenJDK"></a>4. Oracle JDK与OpenJDK</h2><p>在本节中，我们将重点介绍Oracle JDK和OpenJDK之间的主要区别。</p>
+<h3 id="4-1-发布时间表"><a href="#4-1-发布时间表" class="headerlink" title="4.1. 发布时间表"></a>4.1. 发布时间表</h3><p>正如我们所提到的，<strong>Oracle将每三年发布一次，</strong>而<strong>OpenJDK将每六个月发布一次</strong>。</p>
+<p>Oracle为其版本提供长期支持。另一方面，OpenJDK仅支持对发布的更改，直到下一个版本发布。</p>
+<h3 id="4-2-许可证"><a href="#4-2-许可证" class="headerlink" title="4.2. 许可证"></a>4.2. 许可证</h3><p><strong>Oracle JDK根据Oracle二进制代码许可协议获得许可</strong>，而<strong>OpenJDK具有GNU通用公共许可证（GNU GPL）版本2，使用了一个修正版本</strong>。</p>
+<p>使用Oracle平台时会产生一些许可影响。如Oracle <a href="https://java.com/en/download/release_notice.jsp">宣布的</a>那样，在没有商业许可的情况下，在2019年1月之后发布的Oracle Java SE 8的公开更新将无法用于商业，商业或生产用途。但是，OpenJDK是完全开源的，可以自由使用。</p>
+<h3 id="4-3-性能"><a href="#4-3-性能" class="headerlink" title="4.3. 性能"></a>4.3. 性能</h3><p>有<strong>两者之间没有真正的技术差别，因为针对Oracle JDK构建过程是基于OpenJDK的的</strong>。</p>
+<p>在性能方面，<strong>Oracle在响应能力和JVM性能方面要好得多</strong>。由于其对企业客户的重要性，它更加关注稳定性。</p>
+<p>相比之下，OpenJDK将更频繁地发布版本。结果，我们可能遇到不稳定的问题。根据<a href="https://www.reddit.com/r/java/comments/6g86p9/openjdk_vs_oraclejdk_which_are_you_using/">社区反馈</a>，我们知道一些OpenJDK用户遇到了性能问题。</p>
+<h3 id="4-4-功能"><a href="#4-4-功能" class="headerlink" title="4.4. 功能"></a>4.4. 功能</h3><p>如果我们比较功能和选项，我们将看到  <strong>Oracle产品具有Flight Recorder，Java Mission Control和Application Class-Data Sharing</strong> <strong>功能</strong>，而<strong>OpenJDK具有Font Renderer功能</strong>。</p>
+<p>此外，<strong>Oracle有更多的垃圾收集选项和更好的渲染器</strong>，我们可以在<a href="https://www.educba.com/oracle-vs-openjdk/">另一个比较中</a>看到。</p>
+<h3 id="4-5-发展与人气"><a href="#4-5-发展与人气" class="headerlink" title="4.5. 发展与人气"></a>4.5. 发展与人气</h3><p><strong>Oracle JDK由Oracle Corporation完全开发，</strong>而<strong>OpenJDK由Oracle，OpenJDK和Java Community开发</strong>。然而，红帽，Azul Systems，IBM，Apple Inc.，SAP AG等顶级公司也积极参与其开发。</p>
+<p>正如我们从前一小节的链接中看到的那样，当涉及到<strong>在其工具中使用Java开发工具包的顶级公司（</strong>例如Android Studio或IntelliJ IDEA）的<strong>流行时</strong>，<strong>Oracle JDK是更**</strong>受欢迎的**。</p>
+<p>另一方面，主要的Linux发行版（Fedora，Ubuntu，Red Hat Enterprise Linux）提供OpenJDK作为默认的Java SE实现。</p>
+<h2 id="5-自Java-11以来的变化"><a href="#5-自Java-11以来的变化" class="headerlink" title="5.自Java 11以来的变化"></a>5.自Java 11以来的变化</h2><p>正如我们在<a href="https://blogs.oracle.com/java-platform-group/oracle-jdk-releases-for-java-11-and-later">Oracle博客文章中</a>看到的那样  ，从Java 11开始有一些重要的变化。</p>
+<p>首先，<strong>Oracle将</strong>使用Oracle JDK作为Oracle产品的一部分，将<strong>开源**</strong>GNU通用公共许可证v2与Classpath Exception（GPLv2 + CPE）<strong>**和商业许可证结合</strong>使用，或者<strong>更改其历史“</strong> <strong>BCL</strong> <strong>”许可证，</strong> 或者服务，或不欢迎开源软件。</p>
+<p>每个许可证都有不同的版本，但这些版本在功能上只与一些装饰和包装差异相同。</p>
+<p>此外，OpenJDK现在提供传统的“商业功能”，如Flight Recorder，Java Mission Control和Application Class-Data Sharing，以及Z Garbage Collector。因此，<strong>Oracle JDK和OpenJDK构建从Java 11开始基本相同</strong>。</p>
+<p>让我们看看主要的区别：</p>
+<ul>
+<li>使用<em>-XX：+ UnlockCommercialFeatures</em>选项时，Oracle的Java 11工具包会发出警告，而在OpenJDK版本中，此选项会导致错误</li>
+<li>Oracle JDK提供了一种配置，可将使用日志数据提供给“高级管理控制台”工具</li>
+<li>Oracle一直要求第三方加密提供程序由已知证书签名，而OpenJDK中的加密框架具有开放加密接口，这意味着可以使用哪些提供程序没有限制</li>
+<li>Oracle JDK 11将继续包括安装程序，品牌和JRE打包，而OpenJDK构建目前可用作<em>zip</em>和<em>tar.gz</em>文件</li>
+<li>该<em>javac的-释放</em>命令行为有所不同了Java 9和Java 10个目标由于一些额外的模块在Oracle的版本存在</li>
+<li><em>java -version</em>和<em>java -fullversion</em>命令的输出将Oracle的构建与OpenJDK构建区分开来</li>
+</ul>
+<h2 id="6-其他JDK实现"><a href="#6-其他JDK实现" class="headerlink" title="6.其他JDK实现"></a>6.其他JDK实现</h2><p>现在让我们快速浏览一下其他活动的Java Development Kit实现。</p>
+<h3 id="6-1-自由开源"><a href="#6-1-自由开源" class="headerlink" title="6.1. 自由开源"></a>6.1. 自由开源</h3><p>按字母顺序列出的以下实现是开源的，可以免费使用：</p>
+<ul>
+<li><a href="https://aws.amazon.com/corretto/">Amazon Corretto</a></li>
+<li>Azul Zulu</li>
+<li>Bck2Brwsr</li>
+<li>CACAO</li>
+<li>Codename One</li>
+<li>DoppioJVM</li>
+<li>Eclipse OpenJ9</li>
+<li>GraalVM CE</li>
+<li>HaikuVM</li>
+<li>HotSpot</li>
+<li>Jamiga</li>
+<li>JamVM</li>
+<li>Jelatine JVM</li>
+<li>Jikes RVM (Jikes Research Virtual Machine)</li>
+<li>JVM.go</li>
+<li>leJOS</li>
+<li>Maxine</li>
+<li>Multi-OS Engine</li>
+<li>RopeVM</li>
+<li>uJVM</li>
+</ul>
+<h3 id="6-2-专有实现"><a href="#6-2-专有实现" class="headerlink" title="6.2. 专有实现"></a>6.2. 专有实现</h3><p>还有受版权保护的实施：</p>
+<ul>
+<li>Azul Zing JVM</li>
+<li>CEE-J</li>
+<li>Excelsior JET</li>
+<li>GraalVM EE</li>
+<li>Imsys AB</li>
+<li>JamaicaVM（aicas）</li>
+<li>JBlend（Aplix）</li>
+<li>MicroJvm（IS2T - 工业智能软件技术）</li>
+<li>OJVM</li>
+<li>PTC Perc</li>
+<li>SAP JVM</li>
+<li>Waratek CloudVM for Java</li>
+</ul>
+<p>与上面列出的<a href="https://en.wikipedia.org/wiki/List_of_Java_virtual_machines#Active">有效实现一起</a>，我们可以看到<a href="https://en.wikipedia.org/wiki/List_of_Java_virtual_machines#Inactive">非有效实现</a>的列表   以及每个实现的简短描述。</p>
+<h2 id="7-结论"><a href="#7-结论" class="headerlink" title="7.结论"></a>7.结论</h2><p>在本文中，我们专注于当今最流行的两个Java开发工具包。</p>
+<p>我们首先描述了它们中的每一个，然后强调了它们之间最显着的差异。然后，我们特别关注自Java 11以来的变化和差异。最后，我们列出了今天可用的其他有效实现。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;1-简介&quot;&gt;&lt;a href=&quot;#1-简介&quot; class=&quot;headerlink&quot; title=&quot;1.简介&quot;&gt;&lt;/a&gt;&lt;strong&gt;1.简介&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;在本文中，我们将探讨&lt;a href=&quot;https://www.oracle.com/tec
+    
+    </summary>
+    
+    
+      <category term="JDK,JAVA,OpenJDK,OracleJDK" scheme="http://baiwenhui.com/tags/JDK-JAVA-OpenJDK-OracleJDK/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CAP 理论</title>
+    <link href="http://baiwenhui.com/2018/07/09/CAP-%E7%90%86%E8%AE%BA/"/>
+    <id>http://baiwenhui.com/2018/07/09/CAP-理论/</id>
+    <published>2018-07-09T15:40:00.000Z</published>
+    <updated>2023-10-07T15:59:31.590Z</updated>
+    
+    <content type="html"><![CDATA[<center><br><img src="https://ws3.sinaimg.cn/large/006tNc79gy1ft41hpg5zoj306s05rwee.jpg" alt=""><br></center>
+
+<blockquote>
+<p>2000年7月，加州大学伯克利分校的Eric Brewer教授在ACM PODC会议上提出CAP猜想。2年后，麻省理工学院的Seth Gilbert和Nancy Lynch从理论上证明了CAP。之后，CAP理论正式成为分布式计算领域的公认定理。</p>
+</blockquote>
+<p>一个分布式系统最多只能同时满足一致性（Consistency）、可用性（Availability）和分区容错性（Partition tolerance）这三项中的两项。</p>
+<p>Consistency 一致性</p>
+<p>一致性指“all nodes see the same data at the same time”，即更新操作成功并返回客户端完成后，所有节点在同一时间的数据完全一致。分布式的一致性</p>
+<p>对于一致性，可以分为从客户端和服务端两个不同的视角。从客户端来看，一致性主要指的是多并发访问时更新过的数据如何获取的问题。从服务端来看，则是更新如何复制分布到整个系统，以保证数据最终一致。一致性是因为有并发读写才有的问题，因此在理解一致性的问题时，一定要注意结合考虑并发读写的场景。</p>
+<p>从客户端角度，多进程并发访问时，更新过的数据在不同进程如何获取的不同策略，决定了不同的一致性。对于关系型数据库，要求更新过的数据能被后续的访问都能看到，这是强一致性。如果能容忍后续的部分或者全部访问不到，则是弱一致性。如果经过一段时间后要求能访问到更新后的数据，则是最终一致性。</p>
+<p>Availability 可用性<br>可用性指“Reads and writes always succeed”，即服务一直可用，而且是正常响应时间。<br>对于一个可用性的分布式系统，每一个非故障的节点必须对每一个请求作出响应。也就是，该系统使用的任何算法必须最终终止。当同时要求分区容忍性时，这是一个很强的定义：即使是严重的网络错误，每个请求必须终止。<br>好的可用性主要是指系统能够很好的为用户服务，不出现用户操作失败或者访问超时等用户体验不好的情况。可用性通常情况下可用性和分布式数据冗余，负载均衡等有着很大的关联。</p>
+<p>Partition Tolerance分区容错性<br>分区容错性指“the system continues to operate despite arbitrary message loss or failure of part of the system”，即分布式系统在遇到某节点或网络分区故障的时候，仍然能够对外提供满足一致性和可用性的服务。<br>分区容错性和扩展性紧密相关。在分布式应用中，可能因为一些分布式的原因导致系统无法正常运转。好的分区容错性要求能够使应用虽然是一个分布式系统，而看上去却好像是在一个可以运转正常的整体。比如现在的分布式系统中有某一个或者几个机器宕掉了，其他剩下的机器还能够正常运转满足系统需求，或者是机器之间有网络异常，将分布式系统分隔未独立的几个部分，各个部分还能维持分布式系统的运作，这样就具有好的分区容错性。</p>
+<p>CA without P：如果不要求P（不允许分区），则C（强一致性）和A（可用性）是可以保证的。但其实分区不是你想不想的问题，而是始终会存在，因此CA的系统更多的是允许分区后各子系统依然保持CA。</p>
+<p>CP without A：如果不要求A（可用），相当于每个请求都需要在Server之间强一致，而P（分区）会导致同步时间无限延长，如此CP也是可以保证的。很多传统的数据库分布式事务都属于这种模式。</p>
+<p>AP wihtout C：要高可用并允许分区，则需放弃一致性。一旦分区发生，节点之间可能会失去联系，为了高可用，每个节点只能用本地数据提供服务，而这样会导致全局数据的不一致性。现在众多的NoSQL都属于此类。</p>
+<p>对于多数大型互联网应用的场景，主机众多、部署分散，而且现在的集群规模越来越大，所以节点故障、网络故障是常态，而且要保证服务可用性达到N个9，即保证P和A，舍弃C（退而求其次保证最终一致性）。虽然某些地方会影响客户体验，但没达到造成用户流程的严重程度。</p>
+<blockquote>
+<p>整理自：<a href="http://www.hollischuang.com/archives/666">http://www.hollischuang.com/archives/666</a></p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;center&gt;&lt;br&gt;&lt;img src=&quot;https://ws3.sinaimg.cn/large/006tNc79gy1ft41hpg5zoj306s05rwee.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;/center&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;2000年7月，加州大学伯
+    
+    </summary>
+    
+      <category term="分布式" scheme="http://baiwenhui.com/categories/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+    
+      <category term="分布式，CAP" scheme="http://baiwenhui.com/tags/%E5%88%86%E5%B8%83%E5%BC%8F%EF%BC%8CCAP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《深入理解Java虚拟机》- Java 内存区域读书笔记</title>
+    <link href="http://baiwenhui.com/2018/04/22/%E3%80%8A%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E3%80%8B-Java-%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    <id>http://baiwenhui.com/2018/04/22/《深入理解Java虚拟机》-Java-内存区域读书笔记/</id>
+    <published>2018-04-22T09:19:00.000Z</published>
+    <updated>2023-10-07T15:59:31.603Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>  对于 Java 程序员来说，在我们平时的编码过程中，并不会手动的去分配内存和回收内存，因为对于内存这块的处理都是依赖于 JVM 的，这样会导致一个问题：就是如果我们对 JVM 的内存管理机制不是特别熟悉的前提下，如果程序在内存这块出现了莫名的问题，此时处理这些问题就是一个灾难，因此，对于 Java 内存区域这块需要我们有一个清晰的认知，这样才可以在出现问题是根据 JVM 内存管理这块有好的解决方案。<br>在我们学习 运行时数据区域之前，我们先概览一下 JVM 的整体架构，这样对于我们下面内容的理解是有很大的帮助的，先将 JVM 整体的架构图展示如下：<br>简版的图如下：<br><img src="http://p67ct12ik.bkt.clouddn.com/jvm-architecture-992x1024.png" alt=""><br>详细点儿的图如下：<br><img src="http://p67ct12ik.bkt.clouddn.com/JVM-Architecture.png" alt=""></p>
+<h2 id="运行时数据区域"><a href="#运行时数据区域" class="headerlink" title="运行时数据区域"></a>运行时数据区域</h2><p>  一般情况下，运行时数据区域主要包含：<strong>程序计数器</strong> 、<strong>Java 虚拟机栈</strong>、<strong>本地方法栈</strong>、<strong>Java 堆</strong>、<strong>方法区</strong>这几个大的部分。对于此结构，通过图的方式进行如下展示：<br><img src="http://on-img.com/chart_image/5ab5164fe4b02cee4ce8d3bd.png" alt=""><br>由图示意可知：其中<strong>Method Area (方法区) </strong>和 <strong>Heap(堆)</strong> 是线程共享的，<strong>VM Stack (虚拟机栈)</strong>、<strong>Native Method Area （本地方法栈)</strong>、<strong>Programmer Computer Register(程序计数器)</strong> 是线程私有的。当我们分析到这边之后，会有一个疑问？为什么 JVM 要将内存划分为线程共享和非线程共享呢？</p>
+<p>  我们可以回顾下 Java 程序执行的流程。Java 源文件 – 字节码文件(使用 Javac 编译为 *.class) – 每个 Java 程序都需要运行在 自己的 JVM 之上，JVM 会找到程序运行的入口，JVM 通过字节码解释器加载字节码运行。程序运行后JVM 如何对内存进行划分呢？其实 JVM 在初始化的时候，会分配好方法区（Method Area） 和 堆（Heap），当 JVM 遇到一个线程的时候，便会为其分配一个<strong>程序计数器(Programmer Register)</strong>、<strong>JVM虚拟机栈（VM Stack）</strong> 和 <strong>本地方法栈(Native Method Stack)</strong>，当线程死亡的时候，<strong>虚拟机栈</strong>、<strong>本地方法栈</strong>、<strong>程序计数器</strong>所占用的内存会被释放掉。通过这里的分析，便可以了解到，JVM 将内存区域分为线程共享和非线程共享两个部分，非线程共享的区域与所属的线程的生命周期相同，而线程共享的区域与 JVM  虚拟机的生命周期相同。这样也可以说明，其实 JVM 大多数的垃圾回收是发生在线程共享的区域（实际上更多位于堆上）。</p>
+<p>  对于运行时数据区域总体的理解，可以参考下图：<br><img src="http://p67ct12ik.bkt.clouddn.com/JVM-runtime-data-area.jpg" alt=""></p>
+<h3 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h3><p>  程序计数器（Program Counter Register）是一块较小的内存空间，可看做是当前线程所执行字节码行号的指示器。Java 虚拟机中多线程的执行原理是通过线程轮流切换并分配执行时间的方式来实现的，一般情况下在单核的处理器中，处理器在某一时刻只能处理一条线程中的指令。为了线程切换后能恢复到上次执行的位置，每个线程需要一个独立的计数器，每个线程之间的计数器是互不影响的。因此计程序计数器区域为“线程私有” 的内存。</p>
+<p>  如果线程执行的是一个 Java 方法，则程序计数器记录的是正在执行的虚拟机字节码指令的地址，如果执行的是 Native 方法，则计数器为Undefined。</p>
+<h3 id="Java-虚拟机栈"><a href="#Java-虚拟机栈" class="headerlink" title="Java 虚拟机栈"></a>Java 虚拟机栈</h3><p>  Java 虚拟机栈和程序计数器一样属于线程私有。虚拟机栈主要描述 Java 执行时的内存模型：每个方法在执行的同时会创建一个栈帧（Stack Frame） 用于存储变量表、操作数栈、动态链接、方法出口等信息。每个方法从调用到执行完成，对应着一个栈帧在虚拟机栈中入栈到出栈的过程。</p>
+<p>  虚拟机栈中的局部变量表存放在编译期间可知的基本数据类型（boolean、byte、char、short、int、float、long、double）、对象引用（reference 类型）和 returnAddress 类型（指向一条字节码指令的地址）。</p>
+<p>  其中 64 位长度的 long 和 double 会占用 2 个局部变量空间，其它的只占用 1 个局部变量空间。一般局部变量所需在帧中分配多大的局部变量空间在程序编译期间完成分配，程序运行期间不会改变局部变量表的大小。</p>
+<p>  Java 虚拟机规范中指出，当线程请求的栈深度大于虚拟机所允许的深度时，会抛出 StackOverflowError 异常。</p>
+<h3 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h3><p>  本地方法栈（Native Method Stack）与虚拟机栈所发挥的作用非常相似，它们之间的区别在于虚拟机栈为虚拟机执行 Java 方法（执行字节码）服务，而 本地方法栈为虚拟机使用的 Native 方法服务。虚拟机规范中没有对本地方法栈做强制的规定，由具体的虚拟机自己实现，Sun HotSpot 虚拟机字节将本地房发展和虚拟机栈合二为一。通虚拟机栈类似，本地房发展也会抛出 StackOverflowError 和 OutOfMemoryError 异常。</p>
+<h3 id="Java-堆"><a href="#Java-堆" class="headerlink" title="Java 堆"></a>Java 堆</h3><p>  Java 堆是Java 虚拟机所管理内存中最大的一块。Java 堆被所有线程共享，此区域的唯一目的便是存放对象的实例。 Java 虚拟机规范规定：所有的对象实例以及数组都要在堆上进行分配，随着 JIT 编译器的发展与<a href="https://zh.wikipedia.org/wiki/%E9%80%83%E9%80%B8%E5%88%86%E6%9E%9" title="内存逃逸">内存逃逸</a>技术的成熟，栈上分配、<a href="">标量替换优化</a>技术使所有对象分配在堆上的结论不是那么“绝对”。</p>
+<p>  Java 堆是垃圾回收的主要区域，可将 Java 堆划分为：新生代和老年代；更细的划分新生代包含 Eden 空间、From Survivor、To Survivor 空间等。</p>
+<p>  Java 虚拟机规范规定，Java 堆可以处于物理机器上不连续的内存空间中。当堆空间无法分配扩展时，将会抛出 OutOfMemoryError 异常。</p>
+<p>  对于堆的加深理解可以参考此图：<br><img src="http://p67ct12ik.bkt.clouddn.com/JVM-Heap.gif" alt=""></p>
+<h3 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h3><p>  方法去（Method Area）和 Java 堆类似，也属于各个线程共享的内存区域，主要用来存放被 JVM 虚拟机加载的类信息、常量、静态变量。即时编译器编译后的代码等数据。方法区又称为非堆。方法区本质上与“永久代”（Permanent Generation）不等价，主要原因是 HotSpot 虚拟机的设计团队把 GC 分代收集扩展到了方法区，换句话说就是使用永久代实现了方法区。在 JDK1.7 的 HotSpot中，由于永久代区域是一个类的静态区域，主要存储类的加载信息，常量池，方法代码等内容，默认大小只有 4 m，如果在常量池中大量的比如使用 String.intern() 方法会直接导致发生 <code>java.lang.OutOfMemoryError: PermGen space</code>，所以在 jdk7 的版本中，字符串常量池已经从 Perm 区移动到 Java Heap 区域了。主要是原因是：Perm 区域太小，在 Java 8 中已经取消了永久代进而代替的是元区域（Meta Space）。根据 Java 虚拟机规范规定，当方法区无法满足内存分配需求时，会产生 OutOfMemoryError 异常，也称为 OOM 。</p>
+<h3 id="运行时常量池"><a href="#运行时常量池" class="headerlink" title="运行时常量池"></a>运行时常量池</h3><p>  运行时常量池（Runtime Constant Pool） 属于方法区的一部分。Class 文件中除了有类的版本、字段、方法、接口等描述信息外，还有一项便是常量池（Runtime Constant Pool），常量池主要作用为：存放编译期间生成的各种字面量和符号引用，这些内容将在 Java 类被加载后进入方法区的运行时常量池中存放。运行时常量另外一个重要特征便是具备动态性，具体的案例便是使用 String 的 intern 方法，不要求常量只在类编译期间才能产生，在运行期间也可以将新的常量放入池中。运行时常量池属于方法区的一部分，当常量池无法进行内存分配时，也会抛出 OutOfMemoryError 异常。</p>
+<h3 id="直接内存"><a href="#直接内存" class="headerlink" title="直接内存"></a>直接内存</h3><p>  直接内存（Direct Memory） 不是虚拟机运行时数据区域的一部分，也不是 Java 虚拟机规范中定义的内存区域。这部分的内存也会被频繁使用，当内存分配空间不足时，也会抛出 OutOfMemoryError 异常。对于直接内存使用的典型案例便是，在 JDK 1.4 之后，新加入了 NIO（New Input/Output） 类，其核心原理是基于通道 （Channel） 与 缓冲区 （Buffer） 的 I/O 方式，可以通过 Native 函数库直接分配堆外内存，然后通过存储在 Java 堆中的 DirectByteBuffer 对象作为内存的引用进行操作。 这样的优点就是在一些场景中提高性能，避免了 Java 堆和 Native 来回赋值数据的开销。<br>  本地内存的分配不会受到 JVM 堆大小的限制，但是会受到系统本身内存大小的限制，当系统本身内存空间不够用时，也会出现 OutOfMemory 异常。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h2&gt;&lt;p&gt;  对于 Java 程序员来说，在我们平时的编码过程中，并不会手动的去分配内存和回收内存，因为对于内存这块的处理都是依赖于 JVM 的，这样
+    
+    </summary>
+    
+      <category term="java" scheme="http://baiwenhui.com/categories/java/"/>
+    
+    
+      <category term="jvm" scheme="http://baiwenhui.com/tags/jvm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《深入理解Java虚拟机》-走近 Java 读书笔记</title>
+    <link href="http://baiwenhui.com/2018/03/26/%E3%80%8A%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E3%80%8B-%E8%B5%B0%E8%BF%91-Java-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    <id>http://baiwenhui.com/2018/03/26/《深入理解Java虚拟机》-走近-Java-读书笔记/</id>
+    <published>2018-03-26T14:48:00.000Z</published>
+    <updated>2023-10-07T15:59:31.604Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="走进Java"><a href="#走进Java" class="headerlink" title="走进Java"></a>走进Java</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><h4 id="Java-的优点"><a href="#Java-的优点" class="headerlink" title="Java 的优点"></a>Java 的优点</h4><ul>
+<li>结构严谨</li>
+<li>平台无关性，一次编写到处运行</li>
+<li>提供安全的内存管理和访问机制，避免大部分的内存泄漏和指针越界</li>
+<li>热点代码检测和运行时编译优化，使得 Java 应用随运行时间的增加而获得更高的性能</li>
+<li>具有一套完善的应用程序接口，丰富的第三方库</li>
+</ul>
+<h4 id="Java-技术体系"><a href="#Java-技术体系" class="headerlink" title="Java 技术体系"></a>Java 技术体系</h4><ul>
+<li>Java 程序设计语言</li>
+<li>各种硬件平台上的 Java 虚拟机 </li>
+<li>Java API 类库</li>
+<li>Class 文件格式</li>
+<li>来自商业机构和开源的第三方 Java 类库</li>
+</ul>
+<h5 id="JDK组成"><a href="#JDK组成" class="headerlink" title="JDK组成"></a>JDK组成</h5><p>Java 程序设计语言 + Java 虚拟机 + Java API 类库</p>
+<h5 id="JRE-组成"><a href="#JRE-组成" class="headerlink" title="JRE 组成"></a>JRE 组成</h5><p>Java SE API 子集 + Java 虚拟机</p>
+<h5 id="Java-技术体系所包含的内容"><a href="#Java-技术体系所包含的内容" class="headerlink" title="Java 技术体系所包含的内容"></a>Java 技术体系所包含的内容</h5><p><img src="http://p67ct12ik.bkt.clouddn.com/jvm%E6%8A%80%E6%9C%AF%E4%BD%93%E7%B3%BB.png" alt=" Java 技术体系所包含的内容"></p>
+<h5 id="Java-体系划分的-4-个平台"><a href="#Java-体系划分的-4-个平台" class="headerlink" title="Java  体系划分的 4 个平台"></a>Java  体系划分的 4 个平台</h5><ul>
+<li>Java Card</li>
+<li>Java ME</li>
+<li>Java SE</li>
+<li>Java EE</li>
+</ul>
+<h4 id="Java-发展史"><a href="#Java-发展史" class="headerlink" title="Java 发展史"></a>Java 发展史</h4><p><img src="http://p67ct12ik.bkt.clouddn.com/java_timeline.png" alt=""></p>
+<ul>
+<li>JDK 1.0: Java虚拟机、Applet、AWT等；</li>
+<li>JDK 1.1：JAR文件格式、JDBC、JavaBeans、RMI、内部类、反射；</li>
+<li>JDK 1.2：拆分为J2SE/J2EE/J2ME、内置JIT编译器、一系列Collections集合类；</li>
+<li>JDK 1.3：JNDI服务、使用CORBA IIOP实现RMI通信协议、Java 2D改进；</li>
+<li>JDK 1.4：正则表达式、异常链、NIO、日志类、XML解析器和XSLT转换器；</li>
+<li>JDK 1.5：自动装箱、泛型、动态注解、枚举、可变参数、遍历循环、改进了Java内存模型、提供了java.util.concurrent并发包；</li>
+<li>JDK 1.6：提供动态语言支持、提供编译API和微型HTTP服务器API、虚拟机优化（锁与同步、垃圾收集、类加载等）；</li>
+<li>JDK 1.7：G1收集器、加强对Java语言的调用支持、升级类加载架构；</li>
+<li>JDK 1.8：Lambda表达式等；</li>
+</ul>
+<h4 id="Java-虚拟机发展史"><a href="#Java-虚拟机发展史" class="headerlink" title="Java 虚拟机发展史"></a>Java 虚拟机发展史</h4><p><img src="http://on-img.com/chart_image/5ab90628e4b0a248b0e637d5.png" alt=""></p>
+<h4 id="展望-Java-技术的未来"><a href="#展望-Java-技术的未来" class="headerlink" title="展望 Java 技术的未来"></a>展望 Java 技术的未来</h4><ul>
+<li>模块化</li>
+<li>混合语言</li>
+<li>多核并行</li>
+<li>进一步丰富的语法</li>
+<li>64 位虚拟机</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;走进Java&quot;&gt;&lt;a href=&quot;#走进Java&quot; class=&quot;headerlink&quot; title=&quot;走进Java&quot;&gt;&lt;/a&gt;走进Java&lt;/h2&gt;&lt;h3 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;
+    
+    </summary>
+    
+      <category term="JVM" scheme="http://baiwenhui.com/categories/JVM/"/>
+    
+    
+      <category term="JVM" scheme="http://baiwenhui.com/tags/JVM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Grails中神奇的HibernateCriteriaBuilder</title>
+    <link href="http://baiwenhui.com/2018/01/28/Grails%E4%B8%AD%E7%A5%9E%E5%A5%87%E7%9A%84HibernateCriteriaBuilder/"/>
+    <id>http://baiwenhui.com/2018/01/28/Grails中神奇的HibernateCriteriaBuilder/</id>
+    <published>2018-01-28T02:13:00.000Z</published>
+    <updated>2023-10-07T15:59:31.594Z</updated>
+    
+    <content type="html"><![CDATA[<p>Grails 中 HibernateCriteriaBuilder 用于动态为类构建一些常用的查询方法。</p>
+<p>通过 metaClass 绑定方法，也就是 groovy 的 MOP 特性进行动态绑定方法。</p>
+<p>HibernateCriteriaBuilder 派生于  AbstractHibernateCriteriaBuilder，AbstractHibernateCriteriaBuilder派生于GroovyObjectSupport。</p>
+<p>其中 GroovyObjectSupport 实现了 GroovyObject 接口。</p>
+<p>其中动态支持分页列表的实现在AbstractHibernateCriteriaBuilder中的invokeMethod有详细的说明。平时我们使用的时候只需要 键入 find 然后就会根据当前类的属性进行自动补全，你是要查询一条还是要查询多条记录，至于它的转化操作也定义在此，如图：</p>
+<p><img src="/images/pasted-0.png" alt="upload successful"></p>
+<p>grails.properties   = params 绑定属性存在恶意风险，比如用户会伪造一些属性，从而导致类的一些属性修改被自动注入，影响到数据库中对应的表的具体记录。</p>
+<p>具体的类图：</p>
+<p><img src="/images/pasted-1.png" alt="upload successful"></p>
+<p>其中常用的方法接口定义在此：org.grails.orm.hibernate.IHibernateTemplate</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Grails 中 HibernateCriteriaBuilder 用于动态为类构建一些常用的查询方法。&lt;/p&gt;
+&lt;p&gt;通过 metaClass 绑定方法，也就是 groovy 的 MOP 特性进行动态绑定方法。&lt;/p&gt;
+&lt;p&gt;HibernateCriteriaBuilde
+    
+    </summary>
+    
+      <category term="Grails" scheme="http://baiwenhui.com/categories/Grails/"/>
+    
+    
+      <category term="Grails" scheme="http://baiwenhui.com/tags/Grails/"/>
+    
+      <category term="Hibernate" scheme="http://baiwenhui.com/tags/Hibernate/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Grails-MVC示意图</title>
+    <link href="http://baiwenhui.com/2018/01/08/Grails-%E6%9E%B6%E6%9E%84%E7%A4%BA%E6%84%8F%E5%9B%BE/"/>
+    <id>http://baiwenhui.com/2018/01/08/Grails-架构示意图/</id>
+    <published>2018-01-08T14:21:00.000Z</published>
+    <updated>2023-10-07T15:59:31.592Z</updated>
+    
+    <content type="html"><![CDATA[<p>  使用 Grails 开发也有大半年了，现在对 Grails MVC 架构做个图示，加深理解记忆。Grails 使用 Spring MVC Web 应用程序作为底层框架来实现Web 应用程序基于模型-视图-控制器(MVC)模式。它包括三个核心的部分：控制器，Grails 域模型和Grails Servlet 页面。下面的图主要总结下这三个部分之间的关系。</p>
+<p>  <img src="http://on-img.com/chart_image/5a538029e4b010a6e7099870.png" alt="Grails MVC 示意图"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;  使用 Grails 开发也有大半年了，现在对 Grails MVC 架构做个图示，加深理解记忆。Grails 使用 Spring MVC Web 应用程序作为底层框架来实现Web 应用程序基于模型-视图-控制器(MVC)模式。它包括三个核心的部分：控制器，Grails 
+    
+    </summary>
+    
+    
+      <category term="grails" scheme="http://baiwenhui.com/tags/grails/"/>
+    
+      <category term="grails mvc" scheme="http://baiwenhui.com/tags/grails-mvc/"/>
+    
+      <category term="groovy" scheme="http://baiwenhui.com/tags/groovy/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring Security哈希认证记住我例子</title>
+    <link href="http://baiwenhui.com/2017/11/17/Spring-Security%E5%93%88%E5%B8%8C%E8%AE%A4%E8%AF%81%E8%AE%B0%E4%BD%8F%E6%88%91%E4%BE%8B%E5%AD%90/"/>
+    <id>http://baiwenhui.com/2017/11/17/Spring-Security哈希认证记住我例子/</id>
+    <published>2017-11-16T16:19:00.000Z</published>
+    <updated>2023-10-07T15:59:31.600Z</updated>
+    
+    <content type="html"><![CDATA[<p>在本教程中，我们将演示如何使用Spring Security 创建通过哈希认证记住我的应用程序。请记住，身份验证是一项功能，它允许网站在会话之间记住用户的身份。Spring Security提供了两种记住我的实现。一种使用哈希来保存基于cookie的令牌的安全性，我们将在本教程中解决这个问题。第二种是使用数据库或其他永久存储机制来存储生成的令牌。</p>
+<h2 id="基于哈希令牌的方法记住我"><a href="#基于哈希令牌的方法记住我" class="headerlink" title="基于哈希令牌的方法记住我"></a>基于哈希令牌的方法记住我</h2><p>当用户启用记住我的身份验证时，会创建一个cookie并在后续登录时传递。这种方法使用散列来实现一个有用的记住我策略。该cookie的组成如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">base64(username + &quot;:&quot; + expirationTime + &quot;:&quot; +</span><br><span class="line">md5Hex(username + &quot;:&quot; + expirationTime + &quot;:&quot; password + &quot;:&quot; + key))</span><br><span class="line"></span><br><span class="line">username:          As identifiable to the UserDetailsService</span><br><span class="line">password:          That matches the one in the retrieved UserDetails</span><br><span class="line">expirationTime:    The date and time when the remember-me token expires, expressed in milliseconds</span><br><span class="line">key:               A private key to prevent modification of the remember-me token</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>注意：</strong>记住我的记号只对指定的<code>expirationTime</code>和有效的<code>username</code>，<code>password</code>并且<code>key</code>不会改变。<strong>警告：</strong>这是一个潜在的安全问题。当记住我的令牌被恶意的用户代理捕获时，这个用户代理能够使用令牌直到它到期。如果需要更好的安全性，你应该使用这种<code>persistent remember-me token</code>方法。</p>
+</blockquote>
+<h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><p>我们先看看项目结构。</p>
+<p><img src="https://memorynotfound.com/wp-content/uploads/spring-security-remember-me-hashing-project-structure.png" alt="Spring Security记住我哈希认证的例子的项目结构"></p>
+<h2 id="Maven的依赖"><a href="#Maven的依赖" class="headerlink" title="Maven的依赖"></a>Maven的依赖</h2><p>我们使用Apache Maven来管理我们的项目依赖关系。确保以下依赖存在类路径中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;</span><br><span class="line">         xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">         xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0</span><br><span class="line">                             http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;</span><br><span class="line">    &lt;groupId&gt;com.memorynotfound.spring.security&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;hashing-remember-me&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.0.0-SNAPSHOT&lt;/version&gt;</span><br><span class="line">    &lt;url&gt;https://memorynotfound.com&lt;/url&gt;</span><br><span class="line">    &lt;name&gt;Spring Security - $&#123;project.artifactId&#125;&lt;/name&gt;</span><br><span class="line"></span><br><span class="line">    &lt;parent&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;1.5.8.RELEASE&lt;/version&gt;</span><br><span class="line">    &lt;/parent&gt;</span><br><span class="line"></span><br><span class="line">    &lt;properties&gt;</span><br><span class="line">        &lt;java.version&gt;1.8&lt;/java.version&gt;</span><br><span class="line">        &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;</span><br><span class="line">    &lt;/properties&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dependencies&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-boot-starter-security&lt;/artifactId&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;/artifactId&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.thymeleaf.extras&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;thymeleaf-extras-springsecurity4&lt;/artifactId&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!-- bootstrap and jquery --&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.webjars&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;bootstrap&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;3.3.7&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.webjars&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;jquery&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;3.2.1&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">        &lt;!-- testing --&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;</span><br><span class="line">            &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.springframework.security&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-security-test&lt;/artifactId&gt;</span><br><span class="line">            &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">    &lt;/dependencies&gt;</span><br><span class="line"></span><br><span class="line">    &lt;build&gt;</span><br><span class="line">        &lt;plugins&gt;</span><br><span class="line">            &lt;plugin&gt;</span><br><span class="line">                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">            &lt;/plugin&gt;</span><br><span class="line">        &lt;/plugins&gt;</span><br><span class="line">    &lt;/build&gt;</span><br><span class="line"></span><br><span class="line">&lt;/project&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="Spring-Security记住我哈希认证配置"><a href="#Spring-Security记住我哈希认证配置" class="headerlink" title="Spring Security记住我哈希认证配置"></a>Spring Security记住我哈希认证配置</h2><p>要想使记住我散列认证配置可用，我们需要在Spring中注册。在下一节中，我们将演示Java和XML配置。</p>
+<h6 id="SPRING-JAVA配置"><a href="#SPRING-JAVA配置" class="headerlink" title="SPRING JAVA配置"></a>SPRING JAVA配置</h6><p>在这里，我们正使用Java代码的方式配置记住我身份认证的配置。通过扩展我们的Spring配置类<code>WebSecurityConfigurerAdapter</code>，我们可以简单地配置记住我的身份验证<code>configure(HttpSecurity http)</code>方法。我们需要配置一个安全和唯一的密钥。这个密钥通常是一个强大而独特的密码。我们可以随意配置“记住我”cookie名称并设置令牌有效期。默认为2周。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">package com.memorynotfound.spring.security.config;</span><br><span class="line"></span><br><span class="line">import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;</span><br><span class="line">import org.springframework.security.config.annotation.web.builders.HttpSecurity;</span><br><span class="line">import org.springframework.security.config.annotation.web.builders.WebSecurity;</span><br><span class="line">import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;</span><br><span class="line">import org.springframework.security.web.util.matcher.AntPathRequestMatcher;</span><br><span class="line"></span><br><span class="line">// 使用注解方式配置SpringSecurity记住我配置时，开启此注解</span><br><span class="line">@EnableWebSecurity</span><br><span class="line">public class SecurityConfig extends WebSecurityConfigurerAdapter &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void configure(WebSecurity web) throws Exception &#123;</span><br><span class="line">        web.ignoring()</span><br><span class="line">                .antMatchers(</span><br><span class="line">                        &quot;/js/**&quot;,</span><br><span class="line">                        &quot;/css/**&quot;,</span><br><span class="line">                        &quot;/img/**&quot;,</span><br><span class="line">                        &quot;/webjars/**&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void configure(HttpSecurity http) throws Exception &#123;</span><br><span class="line">        http</span><br><span class="line">                .authorizeRequests()</span><br><span class="line">                    .anyRequest().authenticated()</span><br><span class="line">                .and()</span><br><span class="line">                    .formLogin()</span><br><span class="line">                        .loginPage(&quot;/login&quot;)</span><br><span class="line">                            .permitAll()</span><br><span class="line">                .and()</span><br><span class="line">                    .logout()</span><br><span class="line">                        .invalidateHttpSession(true)</span><br><span class="line">                        .clearAuthentication(true)</span><br><span class="line">                        .logoutRequestMatcher(new AntPathRequestMatcher(&quot;/logout&quot;))</span><br><span class="line">                        .logoutSuccessUrl(&quot;/login?logout&quot;)</span><br><span class="line">                            .permitAll()</span><br><span class="line">                .and()</span><br><span class="line">                    .rememberMe()</span><br><span class="line">                        .key(&quot;unique-and-secret&quot;)</span><br><span class="line">                        .rememberMeCookieName(&quot;remember-me-cookie-name&quot;)</span><br><span class="line">                        .tokenValiditySeconds(24 * 60 * 60);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void configure(AuthenticationManagerBuilder auth) throws Exception &#123;</span><br><span class="line">        auth.inMemoryAuthentication().withUser(&quot;user&quot;).password(&quot;password&quot;).roles(&quot;USER&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="SPRING-XML配置"><a href="#SPRING-XML配置" class="headerlink" title="SPRING XML配置"></a>SPRING XML配置</h6><p>该文件<code>spring-security-config.xml</code>位于<code>src/main/resources/</code>文件夹中，是等效的Spring XML配置文件。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;beans:beans xmlns=&quot;http://www.springframework.org/schema/security&quot;</span><br><span class="line">             xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">             xmlns:beans=&quot;http://www.springframework.org/schema/beans&quot;</span><br><span class="line">             xsi:schemaLocation=&quot;http://www.springframework.org/schema/security</span><br><span class="line">                                 http://www.springframework.org/schema/security/spring-security.xsd</span><br><span class="line">                                 http://www.springframework.org/schema/beans</span><br><span class="line">                                 http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;http&gt;</span><br><span class="line">        &lt;intercept-url pattern=&quot;/login&quot; access=&quot;permitAll()&quot;/&gt;</span><br><span class="line">        &lt;intercept-url pattern=&quot;/js/**&quot; access=&quot;permitAll()&quot;/&gt;</span><br><span class="line">        &lt;intercept-url pattern=&quot;/css/**&quot; access=&quot;permitAll()&quot;/&gt;</span><br><span class="line">        &lt;intercept-url pattern=&quot;/img/**&quot; access=&quot;permitAll()&quot;/&gt;</span><br><span class="line">        &lt;intercept-url pattern=&quot;/webjars/**&quot; access=&quot;permitAll()&quot;/&gt;</span><br><span class="line">        &lt;intercept-url pattern=&quot;/**&quot; access=&quot;isAuthenticated()&quot;/&gt;</span><br><span class="line">        &lt;!--Spring Security 4.0以后默认开启宽展请求伪造保护，这里配置禁用，不安全的操作。--&gt;</span><br><span class="line">         &lt;csrf disabled=&quot;true&quot;/&gt;</span><br><span class="line"></span><br><span class="line">        &lt;form-login </span><br><span class="line">                login-page=&quot;/login&quot;/&gt;</span><br><span class="line">        &lt;logout</span><br><span class="line">                invalidate-session=&quot;true&quot;</span><br><span class="line">                logout-url=&quot;/logout&quot;</span><br><span class="line">                logout-success-url=&quot;/login?logout&quot;/&gt;</span><br><span class="line">        &lt;remember-me</span><br><span class="line">                key=&quot;unique-and-secret&quot;</span><br><span class="line">                remember-me-cookie=&quot;remember-me-cookie-name&quot;</span><br><span class="line">                token-validity-seconds=&quot;86400&quot;/&gt;</span><br><span class="line">    &lt;/http&gt;</span><br><span class="line"></span><br><span class="line">    &lt;authentication-manager&gt;</span><br><span class="line">        &lt;authentication-provider&gt;</span><br><span class="line">            &lt;user-service&gt;</span><br><span class="line">                &lt;user name=&quot;user&quot;</span><br><span class="line">                      password=&quot;password&quot;</span><br><span class="line">                      authorities=&quot;ROLE_USER&quot; /&gt;</span><br><span class="line">            &lt;/user-service&gt;</span><br><span class="line">        &lt;/authentication-provider&gt;</span><br><span class="line">    &lt;/authentication-manager&gt;</span><br><span class="line"></span><br><span class="line">&lt;/beans:beans&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="创建控制器"><a href="#创建控制器" class="headerlink" title="创建控制器"></a>创建控制器</h2><p>我们创建了一些简单的导航控制器</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">package com.memorynotfound.spring.security.web;</span><br><span class="line"></span><br><span class="line">import org.springframework.stereotype.Controller;</span><br><span class="line">import org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line"></span><br><span class="line">@Controller</span><br><span class="line">public class HomeController &#123;</span><br><span class="line"></span><br><span class="line">    @GetMapping(&quot;/&quot;)</span><br><span class="line">    public String greeting()&#123;</span><br><span class="line">        return &quot;index&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @GetMapping(&quot;/login&quot;)</span><br><span class="line">    public String login() &#123;</span><br><span class="line">        return &quot;login&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="启动Spring"><a href="#启动Spring" class="headerlink" title="启动Spring"></a>启动Spring</h2><p>我们使用Spring Boot来启动我们的应用程序。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">package com.memorynotfound.spring.security;</span><br><span class="line"></span><br><span class="line">import org.springframework.boot.SpringApplication;</span><br><span class="line">import org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"></span><br><span class="line">@SpringBootApplication</span><br><span class="line">// uncomment if you want to use Spring Security XML Configuration</span><br><span class="line">// 当使用xml的方式配置时，开启此注解注释掉Java代码方式的配置</span><br><span class="line">// @ImportResource(&quot;classpath:spring-security-config.xml&quot;)</span><br><span class="line">public class Run &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SpringApplication.run(Run.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Thymeleaf模板"><a href="#Thymeleaf模板" class="headerlink" title="Thymeleaf模板"></a>Thymeleaf模板</h2><p>我们用Thymeleaf来创建我们的视图。这些模板使用<code>bootstrap</code>和<code>jquery</code>，它们从<code>org.webjars</code>中加载。</p>
+<h3 id="创建登录页面"><a href="#创建登录页面" class="headerlink" title="创建登录页面"></a>创建登录页面</h3><p>该<code>login.html</code>页面位于该<code>src/main/resources/templates</code>文件夹中。在表单中我们创建了一个<code>remember-me</code>复选框。当用户启用记住我的身份验证时，cookie会传递给浏览器，该浏览器将以指定的时间到期。当用户在会话之间访问页面时，Spring Security会使用基于记住我的token自动认证。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html xmlns:th=&quot;http://www.thymeleaf.org&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;utf-8&quot;/&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;/&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; th:href=&quot;@&#123;/webjars/bootstrap/3.3.7/css/bootstrap.min.css&#125;&quot;/&gt;</span><br><span class="line">    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; th:href=&quot;@&#123;/css/main.css&#125;&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;title&gt;Login&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div class=&quot;container&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;row&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;col-md-4 col-md-offset-4&quot;&gt;</span><br><span class="line">            &lt;div class=&quot;panel panel-default&quot;&gt;</span><br><span class="line">                &lt;div class=&quot;panel-body&quot;&gt;</span><br><span class="line">                    &lt;div class=&quot;text-center&quot;&gt;</span><br><span class="line">                        &lt;h3&gt;&lt;i class=&quot;glyphicon glyphicon-lock&quot; style=&quot;font-size:2em;&quot;&gt;&lt;/i&gt;&lt;/h3&gt;</span><br><span class="line">                        &lt;h2 class=&quot;text-center&quot;&gt;Login&lt;/h2&gt;</span><br><span class="line">                        &lt;div class=&quot;panel-body&quot;&gt;</span><br><span class="line"></span><br><span class="line">                            &lt;div th:if=&quot;$&#123;param.error&#125;&quot;&gt;</span><br><span class="line">                                &lt;div class=&quot;alert alert-danger&quot;&gt;</span><br><span class="line">                                    Invalid username or password.</span><br><span class="line">                                &lt;/div&gt;</span><br><span class="line">                            &lt;/div&gt;</span><br><span class="line">                            &lt;div th:if=&quot;$&#123;param.logout&#125;&quot;&gt;</span><br><span class="line">                                &lt;div class=&quot;alert alert-info&quot;&gt;</span><br><span class="line">                                    You have been logged out.</span><br><span class="line">                                &lt;/div&gt;</span><br><span class="line">                            &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">                            &lt;form th:action=&quot;@&#123;/login&#125;&quot; method=&quot;post&quot;&gt;</span><br><span class="line">                                &lt;div class=&quot;form-group&quot;&gt;</span><br><span class="line">                                    &lt;div class=&quot;input-group&quot;&gt;</span><br><span class="line">                                        &lt;span class=&quot;input-group-addon&quot;&gt;@&lt;/span&gt;</span><br><span class="line">                                        &lt;input id=&quot;username&quot;</span><br><span class="line">                                               name=&quot;username&quot;</span><br><span class="line">                                               autofocus=&quot;autofocus&quot;</span><br><span class="line">                                               class=&quot;form-control&quot;</span><br><span class="line">                                               placeholder=&quot;Username&quot;/&gt;</span><br><span class="line">                                    &lt;/div&gt;</span><br><span class="line">                                &lt;/div&gt;</span><br><span class="line">                                &lt;div class=&quot;form-group&quot;&gt;</span><br><span class="line">                                    &lt;div class=&quot;input-group&quot;&gt;</span><br><span class="line">                                        &lt;span class=&quot;input-group-addon&quot;&gt;</span><br><span class="line">                                            &lt;i class=&quot;glyphicon glyphicon-lock&quot;&gt;&lt;/i&gt;</span><br><span class="line">                                        &lt;/span&gt;</span><br><span class="line">                                        &lt;input id=&quot;password&quot;</span><br><span class="line">                                               name=&quot;password&quot;</span><br><span class="line">                                               class=&quot;form-control&quot;</span><br><span class="line">                                               placeholder=&quot;Password&quot;</span><br><span class="line">                                               type=&quot;password&quot;/&gt;</span><br><span class="line">                                    &lt;/div&gt;</span><br><span class="line">                                &lt;/div&gt;</span><br><span class="line">                                &lt;div class=&quot;form-group&quot;&gt;</span><br><span class="line">                                    &lt;label&gt;</span><br><span class="line">                                        &lt;input id=&quot;remember-me&quot;</span><br><span class="line">                                               name=&quot;remember-me&quot;</span><br><span class="line">                                               type=&quot;checkbox&quot;/&gt; Remember me</span><br><span class="line">                                    &lt;/label&gt;</span><br><span class="line">                                &lt;/div&gt;</span><br><span class="line">                                &lt;div class=&quot;form-group&quot;&gt;</span><br><span class="line">                                    &lt;button type=&quot;submit&quot; class=&quot;btn btn-success btn-block&quot;&gt;Login&lt;/button&gt;</span><br><span class="line">                                &lt;/div&gt;</span><br><span class="line">                            &lt;/form&gt;</span><br><span class="line"></span><br><span class="line">                        &lt;/div&gt;</span><br><span class="line">                    &lt;/div&gt;</span><br><span class="line">                &lt;/div&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type=&quot;text/javascript&quot; th:src=&quot;@&#123;/webjars/jquery/3.2.1/jquery.min.js/&#125;&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot; th:src=&quot;@&#123;/webjars/bootstrap/3.3.7/js/bootstrap.min.js&#125;&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="创建一个安全的页面"><a href="#创建一个安全的页面" class="headerlink" title="创建一个安全的页面"></a>创建一个安全的页面</h3><p>该<code>index.html</code>页面位于<code>src/main/resources/templates</code>目录中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html xmlns:th=&quot;http://www.thymeleaf.org&quot;</span><br><span class="line">      xmlns:sec=&quot;http://www.w3.org/1999/xhtml&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;utf-8&quot;/&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;/&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; th:href=&quot;@&#123;/webjars/bootstrap/3.3.7/css/bootstrap.min.css&#125;&quot;/&gt;</span><br><span class="line">    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; th:href=&quot;@&#123;/css/main.css&#125;&quot;/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;title&gt;Registration&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;div class=&quot;container&quot;&gt;</span><br><span class="line">    &lt;h1&gt;Spring Security Remember Me Hashing Configuration Example&lt;/h1&gt;</span><br><span class="line"></span><br><span class="line">    &lt;div sec:authorize=&quot;isRememberMe()&quot;&gt;</span><br><span class="line">        The user: &lt;span sec:authentication=&quot;name&quot;&gt;&lt;/span&gt; is logged in by &quot;Remember Me Cookies&quot;.</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;div sec:authorize=&quot;isFullyAuthenticated()&quot;&gt;</span><br><span class="line">        The user: &lt;span sec:authentication=&quot;name&quot;&gt;&lt;/span&gt; is logged in by &quot;Username / Password&quot;.</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;footer&gt;</span><br><span class="line">    &lt;div class=&quot;container&quot;&gt;</span><br><span class="line">        &lt;p&gt;</span><br><span class="line">            &amp;copy; Memorynotfound.com</span><br><span class="line">            &lt;span sec:authorize=&quot;isAuthenticated()&quot; style=&quot;display: inline-block;&quot;&gt;</span><br><span class="line">                    | Logged user: &lt;span sec:authentication=&quot;name&quot;&gt;&lt;/span&gt; |</span><br><span class="line">                    Roles: &lt;span sec:authentication=&quot;principal.authorities&quot;&gt;&lt;/span&gt; |</span><br><span class="line">                    &lt;a th:href=&quot;@&#123;/logout&#125;&quot;&gt;Sign Out&lt;/a&gt;</span><br><span class="line">            &lt;/span&gt;</span><br><span class="line">        &lt;/p&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/footer&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type=&quot;text/javascript&quot; th:src=&quot;@&#123;/webjars/jquery/3.2.1/jquery.min.js/&#125;&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot; th:src=&quot;@&#123;/webjars/bootstrap/3.3.7/js/bootstrap.min.js&#125;&quot;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h2><p>访问<code>http://localhost:8080</code>和页面被重定向到<code>http://localhost:8080/login</code>。</p>
+<p><img src="https://memorynotfound.com/wp-content/uploads/spring-security-remember-me-hashing-form-login.png" alt="Spring Security哈希认证的记住我"></p>
+<p>当<em>用户</em>和<em>密码</em>填写正确后，页面被重定向到<code>http://localhost:8080/</code>。</p>
+<p><img src="https://memorynotfound.com/wp-content/uploads/spring-security-remember-me-hashing-login-success.png" alt="img"></p>
+<p>当检查我们的应用程序的cookie时，我们可以看到Spring创建了我们之前配置的<code>remember-me-cookie-name</code>cookie。</p>
+<p><img src="https://memorynotfound.com/wp-content/uploads/spring-security-remember-me-hashing-cookies.png" alt="img"></p>
+<p>当您删除<code>JSESSIONID</code>Cookie并刷新页面时，当”remember-me“Cookie未过期时，您将自动登录。</p>
+<p><img src="https://memorynotfound.com/wp-content/uploads/spring-security-remember-me-hashing-remove-app-cookie.png" alt="img"></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://docs.spring.io/spring-security/site/docs/current/reference/htmlsingle/#remember-me-hash-token">Spring Security Remember Me Documentation</a></li>
+<li><a href="https://docs.spring.io/spring-security/site/docs/current/apidocs/org/springframework/security/config/annotation/web/configuration/WebSecurityConfigurerAdapter.html">WebSecurityConfigurerAdapter JavaDoc</a></li>
+<li><a href="https://docs.spring.io/spring-security/site/docs/current/apidocs/org/springframework/security/config/annotation/web/configurers/RememberMeConfigurer.html">RememberMeConfigurer JavaDoc</a></li>
+</ul>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>下载它 - <a href="https://memorynotfound.com/wp-content/uploads/spring-security-remember-me-hashing-authentication-configuration-example.zip">spring-security-remember-me-hashing-authentication-configuration-example</a></p>
+<blockquote>
+<p>原文链接：<a href="https://memorynotfound.com/spring-security-remember-hashing-authentication-example/">https://memorynotfound.com/spring-security-remember-hashing-authentication-example/</a></p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在本教程中，我们将演示如何使用Spring Security 创建通过哈希认证记住我的应用程序。请记住，身份验证是一项功能，它允许网站在会话之间记住用户的身份。Spring Security提供了两种记住我的实现。一种使用哈希来保存基于cookie的令牌的安全性，我们将在本
+    
+    </summary>
+    
+      <category term="SpringSecurity" scheme="http://baiwenhui.com/categories/SpringSecurity/"/>
+    
+    
+      <category term="SpringSecurity" scheme="http://baiwenhui.com/tags/SpringSecurity/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一行命令导入项目到IDEA</title>
+    <link href="http://baiwenhui.com/2017/11/12/%E4%B8%80%E8%A1%8C%E5%91%BD%E4%BB%A4%E5%AF%BC%E5%85%A5%E9%A1%B9%E7%9B%AE%E5%88%B0IDEA/"/>
+    <id>http://baiwenhui.com/2017/11/12/一行命令导入项目到IDEA/</id>
+    <published>2017-11-12T05:11:00.000Z</published>
+    <updated>2023-10-07T15:59:31.604Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="如何使用一行命令打开一个zip文件并导入项目到IDEA"><a href="#如何使用一行命令打开一个zip文件并导入项目到IDEA" class="headerlink" title="如何使用一行命令打开一个zip文件并导入项目到IDEA"></a>如何使用一行命令打开一个zip文件并导入项目到IDEA</h2><h3 id="方法如下"><a href="#方法如下" class="headerlink" title="方法如下"></a>方法如下</h3><p>首先你得有我上次分享的那个idea打开项目的shell脚本。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line"></span><br><span class="line"># check for where the latest version of IDEA is installed</span><br><span class="line">IDEA=`ls -1d /Applications/IntelliJ\ * | tail -n1`</span><br><span class="line">wd=`pwd`</span><br><span class="line"></span><br><span class="line"># were we given a directory?</span><br><span class="line">if [ -d &quot;$1&quot; ]; then</span><br><span class="line">#  echo &quot;checking for things in the working dir given&quot;</span><br><span class="line">  wd=`ls -1d &quot;$1&quot; | head -n1`</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"># were we given a file?</span><br><span class="line">if [ -f &quot;$1&quot; ]; then</span><br><span class="line">#  echo &quot;opening &#x27;$1&#x27;&quot;</span><br><span class="line">  open -a &quot;$IDEA&quot; &quot;$1&quot;</span><br><span class="line">else</span><br><span class="line">    # let&#x27;s check for stuff in our working directory.</span><br><span class="line">    pushd $wd &gt; /dev/null</span><br><span class="line"></span><br><span class="line">    # does our working dir have an .idea directory?</span><br><span class="line">    if [ -d &quot;.idea&quot; ]; then</span><br><span class="line">#      echo &quot;opening via the .idea dir&quot;</span><br><span class="line">      open -a &quot;$IDEA&quot; .</span><br><span class="line"></span><br><span class="line">    # is there an IDEA project file?</span><br><span class="line">    elif [ -f *.ipr ]; then</span><br><span class="line">#      echo &quot;opening via the project file&quot;</span><br><span class="line">      open -a &quot;$IDEA&quot; `ls -1d *.ipr | head -n1`</span><br><span class="line"></span><br><span class="line">    # Is there a pom.xml?</span><br><span class="line">    elif [ -f pom.xml ]; then</span><br><span class="line">#      echo &quot;importing from pom&quot;</span><br><span class="line">      open -a &quot;$IDEA&quot; &quot;pom.xml&quot;</span><br><span class="line"></span><br><span class="line">    # can&#x27;t do anything smart; just open IDEA</span><br><span class="line">    else</span><br><span class="line">#      echo &#x27;cbf&#x27;</span><br><span class="line">      open &quot;$IDEA&quot;</span><br><span class="line">    fi</span><br><span class="line"></span><br><span class="line">    popd &gt; /dev/null</span><br><span class="line">fi</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>然后使用如下脚本即可：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">fullFileName=$1</span><br><span class="line"></span><br><span class="line">suffix=$&#123;fullFileName#*.&#125;</span><br><span class="line"></span><br><span class="line">if [ &quot;$suffix&quot; != &quot;zip&quot; ];then</span><br><span class="line">  echo &quot;Must be a valid zip file&quot;</span><br><span class="line">else</span><br><span class="line">  filename=$&#123;fullFileName%.*&#125;</span><br><span class="line">  echo &quot;filename: $filename&quot;</span><br><span class="line">  echo &quot;now unzip $1 and use idea $1&quot;</span><br><span class="line">  unzip $1 &amp;&amp; idea $filename</span><br><span class="line">fi</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>将此脚本另存为uao.sh ， 放在合适的位置，然后建立一个软链，这里我把它放在此处<code>/usr/local/bin/uao.sh</code>，建立一个软链接<code>ln -sf /usr/local/bin/uao.sh /usr/local/bin/uao</code>。以后如果要将zip文件解压，打开idea，导入项目到idea这三个操作，直接使用这个脚本一行命令一步即可完成。赶快试试吧！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;如何使用一行命令打开一个zip文件并导入项目到IDEA&quot;&gt;&lt;a href=&quot;#如何使用一行命令打开一个zip文件并导入项目到IDEA&quot; class=&quot;headerlink&quot; title=&quot;如何使用一行命令打开一个zip文件并导入项目到IDEA&quot;&gt;&lt;/a&gt;如何使用一
+    
+    </summary>
+    
+      <category term="工具" scheme="http://baiwenhui.com/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="IDEA" scheme="http://baiwenhui.com/tags/IDEA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用淘宝镜像加速electron的下载</title>
+    <link href="http://baiwenhui.com/2017/10/29/%E4%BD%BF%E7%94%A8%E6%B7%98%E5%AE%9D%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9Felectron%E7%9A%84%E4%B8%8B%E8%BD%BD/"/>
+    <id>http://baiwenhui.com/2017/10/29/使用淘宝镜像加速electron的下载/</id>
+    <published>2017-10-29T15:07:00.000Z</published>
+    <updated>2023-10-07T15:59:31.606Z</updated>
+    
+    <content type="html"><![CDATA[<p>目前github开源的electron库被好多桌面端应用广泛使用，有时候我们安装这类应用时特别慢，原因就是卡在了下载electron压缩包这个阶段，速度奇慢。为了不浪费我们宝贵的时间，使用下面的脚本可以帮助你分分钟下载成功electron，感谢淘宝npm镜像。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> ELECTRON_MIRROR=<span class="string">&quot;https://npm.taobao.org/mirrors/electron/&quot;</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;目前github开源的electron库被好多桌面端应用广泛使用，有时候我们安装这类应用时特别慢，原因就是卡在了下载electron压缩包这个阶段，速度奇慢。为了不浪费我们宝贵的时间，使用下面的脚本可以帮助你分分钟下载成功electron，感谢淘宝npm镜像。&lt;/p&gt;
+&lt;f
+    
+    </summary>
+    
+    
+      <category term="electron" scheme="http://baiwenhui.com/tags/electron/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>groovy中的each坑小记</title>
+    <link href="http://baiwenhui.com/2017/10/26/groovy%E4%B8%AD%E7%9A%84each%E5%9D%91%E5%B0%8F%E8%AE%B0/"/>
+    <id>http://baiwenhui.com/2017/10/26/groovy中的each坑小记/</id>
+    <published>2017-10-26T07:29:00.000Z</published>
+    <updated>2023-10-07T15:59:31.602Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><code>Java</code>编程中，如果要跳出<code>for</code>循环，直接使用<code>break</code>即可。但是在<code>groovy</code>的<code>each</code>方法中，如果使用<code>break</code>，则程序在运行时就会报如下错误：<code>the break statement is only allowed inside loops or switches。</code></p>
+<h3 id="如何跳出each循环呢？"><a href="#如何跳出each循环呢？" class="headerlink" title="如何跳出each循环呢？"></a>如何跳出each循环呢？</h3><p>  <code>groovy</code>的<code>each</code>方法是一个闭包操作，如果想跳出循环，则可以使用<code>return true</code>。 但是存在一个问题：就是这里的<code>return true</code>并不完全等价于<code>java</code> <code>for</code>循环中的<code>break</code>操作。它更像是<code>java</code> <code>for</code>循环中的<code>continue</code>操作，跳出当前循环，继续下一次循环。至于这里的原因，有待研究。</p>
+<h3 id="诡异的产生"><a href="#诡异的产生" class="headerlink" title="诡异的产生"></a>诡异的产生</h3><p>  当使用“==”操作符号进行比较时，<code>return true</code>等价于<code>java</code> <code>for</code>循环中的<code>continue</code>，但如果是“&gt;=” 操作符的话，等价于<code>java</code> <code>for</code>循环中的<code>break</code>操作。测试代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">def a = [1, 2, 3, 4]</span><br><span class="line"></span><br><span class="line">println &quot;each loop break use groovy&quot;</span><br><span class="line"></span><br><span class="line">a.each &#123;</span><br><span class="line">    // groovy each 循环中的return true类似于java for循环中的continue</span><br><span class="line">    // 当遍历的元素等于2时，跳过当前元素，继续执行, 如果写&gt;= 时，的确也等价于break</span><br><span class="line">    if (it &gt;= 2) return true // break</span><br><span class="line">    println it  // do the stuff that you wanted to before break</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">println &quot;for loop break use java&quot;</span><br><span class="line"></span><br><span class="line">for (int i = 0; i &lt; a.size(); i++) &#123;</span><br><span class="line">    if (a[i] == 2) &#123;</span><br><span class="line">        // java for 循环中的break直接跳出当前循环</span><br><span class="line">        // 当遍历的元素等于2时，直接跳出循环</span><br><span class="line">        break</span><br><span class="line">    &#125;</span><br><span class="line">    println a[i]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这便是<code>groovy</code>中的<code>each</code>闭包方法的诡异之处，奇怪的是，如果你对集合元素使用<code>find</code>方法遍历，当比较操作符是“==”时，并不会发生以上的问题，测试代码如下：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def a = [1, 2, 3, 4, 5, 6, 7]</span><br><span class="line"></span><br><span class="line">a.find &#123;</span><br><span class="line">    if (it == 3) return true // break 此时的break等价于java for循环中的break</span><br><span class="line">    println it  </span><br><span class="line">    return false // 继续循环</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h3><p>  当对遍历的元素进行迭代，并且在迭代的过程中需要跳出当前循环的，推荐使用<code>groovy</code>的<code>find</code>方法或者使用<code>java</code>的<code>for</code>循环，不要使用<code>groovy</code>的<code>each</code>方法，这样就可以保证流程控制没有错误。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;&lt;code&gt;Java&lt;/code&gt;编程中，如果要跳出&lt;code&gt;for&lt;/code&gt;循环，直接使用&lt;code&gt;break&lt;/code&gt;即可。
+    
+    </summary>
+    
+    
+      <category term="groovy" scheme="http://baiwenhui.com/tags/groovy/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mac下使用jenvs安装Java9</title>
+    <link href="http://baiwenhui.com/2017/10/23/Mac%E4%B8%8B%E4%BD%BF%E7%94%A8jenvs%E5%AE%89%E8%A3%85Java9/"/>
+    <id>http://baiwenhui.com/2017/10/23/Mac下使用jenvs安装Java9/</id>
+    <published>2017-10-23T08:36:00.000Z</published>
+    <updated>2023-10-07T15:59:31.599Z</updated>
+    
+    <content type="html"><![CDATA[<p>JDK9已经距离现在发布了好一段时间了，如果你还没有尝试一下，建议安装体验体验！一般情况下，我们的PC上基本都会安装多个版本的JDK，此时我们为了多个JDK版本的切换，这里，强烈推荐使用<a href="https://github.com/gcuisinier/jenv">jenvs</a>,关于具体使用请参考作者的详细介绍。这里不多做介绍。</p>
+<p>已经安装了jenvs的同学，则跳过上面的内容，直接看下面内容–如何将JDK9添加到jenvs的管理中。</p>
+<p>1.<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk9-downloads-3848520.html">下载JDK9</a></p>
+<p>2.安装完毕后，只需要打开终端做如下操作即可（jdk9安装完毕后，默认在mac系统的/Library/Java/JavaVirtualMachines/）：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jenv add /Library/Java/JavaVirtualMachines/jdk-9.0.1.jdk/Contents/Home</span><br></pre></td></tr></table></figure></p>
+<p>3.以上操作执行完毕后，会得到如下提示：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">oracle64-9.0.1 added</span><br><span class="line">9.0.1 added</span><br><span class="line">9.0 added</span><br></pre></td></tr></table></figure></p>
+<p>4.切换Java9<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jenv shell 9.0.1</span><br></pre></td></tr></table></figure><br>5.此时我们便可以使用jenv进行切换，尝试使用java9的新特性了！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;JDK9已经距离现在发布了好一段时间了，如果你还没有尝试一下，建议安装体验体验！一般情况下，我们的PC上基本都会安装多个版本的JDK，此时我们为了多个JDK版本的切换，这里，强烈推荐使用&lt;a href=&quot;https://github.com/gcuisinier/jenv&quot;
+    
+    </summary>
+    
+      <category term="java" scheme="http://baiwenhui.com/categories/java/"/>
+    
+    
+      <category term="java" scheme="http://baiwenhui.com/tags/java/"/>
+    
+      <category term="jdk" scheme="http://baiwenhui.com/tags/jdk/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>阿里巴巴Java开发规约的IDEA插件使用</title>
+    <link href="http://baiwenhui.com/2017/10/16/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4Java%E5%BC%80%E5%8F%91%E8%A7%84%E7%BA%A6%E7%9A%84IDEA%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8/"/>
+    <id>http://baiwenhui.com/2017/10/16/阿里巴巴Java开发规约的IDEA插件使用/</id>
+    <published>2017-10-16T01:21:00.000Z</published>
+    <updated>2023-10-07T15:59:31.618Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>作者：不想当码农的程序员</p>
+<p>原文：<a href="http://www.jianshu.com/p/2f271e6d675c编辑：Moon">http://www.jianshu.com/p/2f271e6d675c编辑：Moon</a></p>
+</blockquote>
+<p>就在10月15日上午9：00，阿里巴巴在杭州云栖大会《研发效能峰会》上，正式发布《阿里巴巴Java开发手册》扫描插件，该插件在扫描代码后，将不符合《手册》的代码按 <code>Blocker</code>/ <code>Critical</code>/ <code>Major</code>三个等级显示在下方，甚至在IDEA上，还基于Inspection机制提供了实时检测功能，编写代码的同时也能快速发现问题所在。对于历史代码，部分规则实现了批量一键修复的功能。</p>
+<p>Git地址为：<a href="https://github.com/alibaba/p3c">https://github.com/alibaba/p3c</a></p>
+<h1 id="IDea的安装方式："><a href="#IDea的安装方式：" class="headerlink" title="IDea的安装方式："></a>IDea的安装方式：</h1><p>IDEA版的插件发布到了IDEA官方仓库中(最低支持版本14.1.7，JDK1.7+)，只需打开</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Settings &gt;&gt; Plugins &gt;&gt; Browse repositories </span><br></pre></td></tr></table></figure>
+<p>输入 Alibaba 搜索一下便可以看到对应插件了，点击安装等待安装完成。</p>
+<p>如图:</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fkjwg4vasij30qf0nqq4t.jpg" alt=""></p>
+<p>这里写图片描述</p>
+<h1 id="Eclipse的安装方式："><a href="#Eclipse的安装方式：" class="headerlink" title="Eclipse的安装方式："></a>Eclipse的安装方式：</h1><p>Eclipse版插件支持4.2（Juno，JDK1.8+）及以上版本，提供Update Site，通过</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Help &gt;&gt; Install New Software</span><br></pre></td></tr></table></figure>
+<p>然后输入 <code>https://p3c.alibaba.com/plugin/eclipse/update</code>即可看到安装列表，安装即可。</p>
+<p>插件的更新，可以通过 <code>Help&gt;&gt;CheckforUdates</code> 进行新版本检测。</p>
+<h1 id="怎么用"><a href="#怎么用" class="headerlink" title="怎么用"></a>怎么用</h1><p>呵呵 右键，，看图 –</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fkju0ntjhtj30lz0i3wgp.jpg" alt=""></p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fkju13tgw5j30yg0hoaco.jpg" alt=""></p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fkju1kc4h3j30jg0segpw.jpg" alt=""></p>
+<h2 id="还有自动提示的效果"><a href="#还有自动提示的效果" class="headerlink" title="还有自动提示的效果"></a>还有自动提示的效果</h2><p><img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" alt="img"></p>
+<p>可以说是非常棒了</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fkjwh9h5qxj30yg0p0djz.jpg" alt=""></p>
+<h2 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a><strong>推荐阅读</strong></h2><ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzAxODcyNjEzNQ==&amp;mid=2247484377&amp;idx=1&amp;sn=1ad98afc78d5cc11a07410e9cf0a3c9c&amp;chksm=9bd0ae41aca72757e4599d71717ed817a77b4e9a10c2b40f54793f1d5b0a95fd144bb48ae21e&amp;scene=21#wechat_redirect">程序员你为什么这么累【续】：如何应对需求变更</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzAxODcyNjEzNQ==&amp;mid=2247484376&amp;idx=1&amp;sn=957c161c2a390347ba53c26f118475f1&amp;chksm=9bd0ae40aca72756a7ade252454a8658d082b331a191d980c24a7f40ce82eab0dbee020fb5b2&amp;scene=21#wechat_redirect">Spring4All社区正式招募Spring Guides翻译小分队~</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzAxODcyNjEzNQ==&amp;mid=2247484375&amp;idx=1&amp;sn=ac19066f568d57e27ac319a5e5ddbed4&amp;chksm=9bd0ae4faca72759f9c4af93cb083f68aceb4c9fee7388f42a41acd9e8d93e5a60a1e7c91f4f&amp;scene=21#wechat_redirect">海外IT工程师工作福利揭秘</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzAxODcyNjEzNQ==&amp;mid=2247484272&amp;idx=1&amp;sn=a2f30419fc8e2c1cce86c79e0c44b264&amp;chksm=9bd0aee8aca727fe3c78c9f9d2178f4b7e85bf0890d066fd9607091dcc36d8d8dbf647a3a379&amp;scene=21#wechat_redirect">一个不可思议的MySQL慢查分析与解决</a></li>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzAxODcyNjEzNQ==&amp;mid=2247484291&amp;idx=1&amp;sn=0794ce828d667fa5be8dc3494886282d&amp;chksm=9bd0ae1baca7270d1089a923f45e70408673a9efb3f8753fb3b3014ec097302bcf52251601fa&amp;scene=21#wechat_redirect">都在说微服务，那么微服务的反模式和陷阱是什么</a></li>
+</ul>
+<p>长按指纹</p>
+<p>一键关注</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fkjwge7mvqj307607674v.jpg" alt=""></p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fkjwgjluxlj304603saa9.jpg" alt=""></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;作者：不想当码农的程序员&lt;/p&gt;
+&lt;p&gt;原文：&lt;a href=&quot;http://www.jianshu.com/p/2f271e6d675c编辑：Moon&quot;&gt;http://www.jianshu.com/p/2f271e6d675c编辑：Moon&lt;/
+    
+    </summary>
+    
+      <category term="工具" scheme="http://baiwenhui.com/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="工具" scheme="http://baiwenhui.com/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring官方周报20171003</title>
+    <link href="http://baiwenhui.com/2017/10/09/Spring%E5%AE%98%E6%96%B9%E5%91%A8%E6%8A%A520171003/"/>
+    <id>http://baiwenhui.com/2017/10/09/Spring官方周报20171003/</id>
+    <published>2017-10-09T12:41:00.000Z</published>
+    <updated>2023-10-07T15:59:31.601Z</updated>
+    
+    <content type="html"><![CDATA[<p>@strongant &amp; @chenzhijun &amp; @maskwang 翻译</p>
+<p>欢迎收看新一期 《Spring 周报》！周报包含了上周的很多内容，可以了解非常多的干货。现在 Spring Framework 5.0 已推出！Spring Framework 5.0 同时也带来了许多发行版本，在本文中你会知道有哪些版本。另外，本周我(Josh Long)和其他来自Pivotal和Spring的团队成员，都会出席JavaOne大会，希望您能来我们的展位找我们或者和我们一起参与讨论。</p>
+<p><a href="https://spring.io/blog/2017/09/28/pivotal-and-spring-team-at-javaone-2017">https://spring.io/blog/2017/09/28/pivotal-and-spring-team-at-javaone-2017</a></p>
+<p align="center"><br><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fkc00pqg10j305k05kq3e.jpg"/><br></p>
+
+<p>以下是关于周报的内容：</p>
+<ol>
+<li>上周，我研究了一下怎么使用 Spring Framwork5 来构建基于 websocket 的响应式应用:</li>
+</ol>
+<p><a href="https://spring.io/blog/2017/09/27/spring-tips-reactive-websockets-with-spring-framework-5">https://spring.io/blog/2017/09/27/spring-tips-reactive-websockets-with-spring-framework-5</a></p>
+<p align="center"><br><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fkc0herzdzj305k05k74s.jpg"/><br></p>
+
+<ol>
+<li>Spring AMQP 和 Spring Integration 开发组领导 Gary Russell 宣布发布 Spring AMQP 2.0.RC2:</li>
+</ol>
+<p><a href="https://spring.io/blog/2017/09/27/spring-amqp-2-0-release-candidate-2-available">https://spring.io/blog/2017/09/27/spring-amqp-2-0-release-candidate-2-available</a></p>
+<p align="center"><br><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fkc0jn30a3j305k05kjrw.jpg"/><br></p>
+
+<ol>
+<li>经过一段长的时间，Spring Framework 5.0.GA现在终于发布了！新版本集成了 Reactor 项目，包括响应式 web 运行时环境，Kotlin 扩展，以及全面基于 Java EE 7 和 Java 8。<br>新的发行版包含了太多的新东西,如果想要知道更多的消息，查看版本说明，然后查看更新内容:</li>
+</ol>
+<p><a href="https://spring.io/blog/2017/09/28/spring-framework-5-0-goes-ga">https://spring.io/blog/2017/09/28/spring-framework-5-0-goes-ga</a></p>
+<p><a href="https://github.com/spring-projects/spring-framework/wiki/What&#39;s-New-in-the-Spring-Framework#whats-new-in-spring-framework-5x">https://github.com/spring-projects/spring-framework/wiki/What&#39;s-New-in-the-Spring-Framework#whats-new-in-spring-framework-5x</a></p>
+<p align="center"><br><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fkc0o5oof9j305k05kjru.jpg"/><br></p>
+
+<p align="center"><br><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fkc0ou0r54j305k05kq3i.jpg"/><br></p>
+
+
+<ol>
+<li>Spring Reactor 团队成员 Simon Baslé 宣布发布 Spring 和 Reactor 集成的新版本Reactor Bismuth。这个版本为 Spring Framework 5.0 奠定了基础，它自己本身也包含了非常多的功能:</li>
+</ol>
+<p><a href="https://spring.io/blog/2017/09/28/reactor-bismuth-is-out">https://spring.io/blog/2017/09/28/reactor-bismuth-is-out</a></p>
+<p align="center"><br><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fkc0qrajmyj305k05kmxn.jpg"/><br></p>
+
+<ol>
+<li>Spring Framework 5.0 版本更新了一些其他的项目，其中包括发布了 Spring Data Kay。自从 Spring Data 于2009年成立以来，这是 Spring Data 更新的最大版本！该新版本以 Spring Framework 5.0 ，Java 8 和 Java EE 7 作为基准。它包括一个改进的仓储(repository) API（完整支持<code>Optional&lt;T&gt;</code>），支持响应式数据访问（Cassandra，Couchbase，MongoDB和Redis），新发布版本新增 Spring Data Geode，使用非空注解并且优化了运行时检查空注解，通过 Kotlin 构造方法，支持 Kotlin 的 null安全和不可变数据类，支持兼容 Java 9，如果想了解更多请看 Spring Data Kay 文档:</li>
+</ol>
+<p><a href="https://spring.io/blog/2017/10/02/spring-data-release-train-kay-goes-ga">https://spring.io/blog/2017/10/02/spring-data-release-train-kay-goes-ga</a></p>
+<p align="center"><br><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fkc0vydg97j305k05kjrv.jpg"/><br></p>
+
+<ol>
+<li>Spring 消息中间件团队成员 Artem Bilan 宣布发布 Spring for Apache Kafka 2.0.GA。新版本包括支持 <code>Apache Kafka</code>，支持事务，消息头匹配，Apache Kafka 的<code>Streams</code> 支持，新的 <code>KafkaAdmin</code>，增加 <code>@KafkaListener</code> 和 <code>Consumer</code> 错误处理和群组支持的方案。它还支持使用 <code>@EmbeddedKafka</code> 进行测试:</li>
+</ol>
+<p><a href="https://spring.io/blog/2017/10/02/spring-for-apache-kafka-2-0-ga-available">https://spring.io/blog/2017/10/02/spring-for-apache-kafka-2-0-ga-available</a></p>
+<p align="center"><br><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fkc0xqsg4fj305k05kt96.jpg"/><br></p>
+
+<ol>
+<li>Spring Cloud 团队成员 Ryan Baxter 宣布发布 Spring Cloud Dalston SR4。新版本更新了 <code>Spring Cloud Contract</code>，<code>Spring Cloud Config</code>，<code>Spring Cloud Commons</code>，<code>Spring Cloud Netflix</code>和<code>Spring Cloud Sleuth</code>:</li>
+</ol>
+<p><a href="https://spring.io/blog/2017/10/03/spring-cloud-dalston-sr4-is-now-available">https://spring.io/blog/2017/10/03/spring-cloud-dalston-sr4-is-now-available</a></p>
+<p align="center"><br><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fkc0z0ocylj305k05kwez.jpg"/><br></p>
+
+<ol>
+<li>Spring REST Docs 开发领导者 Andy Wilkinson 宣布发布 Spring REST Docs 1.2.2.RELEASE 。这个维护版本包括一些错误修复和文档的改进，推荐大家升级:</li>
+</ol>
+<p><a href="https://spring.io/blog/2017/09/28/spring-rest-docs-1-2-2-release">https://spring.io/blog/2017/09/28/spring-rest-docs-1-2-2-release</a></p>
+<p align="center"><br><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fkc0zzayaoj305k05kmxn.jpg"/><br></p>
+
+<ol>
+<li>查看 Spring Framework 5 的全新的通过构造方法实现注解的实现:</li>
+</ol>
+<p><a href="https://github.com/spring-projects/spring-framework/commit/23497a7ece7aac1591187b46f4b601d2f48764e0">https://github.com/spring-projects/spring-framework/commit/23497a7ece7aac1591187b46f4b601d2f48764e0</a></p>
+<p align="center"><br><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fkc10ykgvnj305k05k0t8.jpg"/><br></p>
+
+<ol>
+<li>德语访谈中 Andreas Falk 提到的 Spring Framework 5.0 和 Spring Security 5.0 中的新功能:</li>
+</ol>
+<p><a href="https://jaxenter.de/spring-security-interview-falk-62685">https://jaxenter.de/spring-security-interview-falk-62685</a></p>
+<p align="center"><br><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fkc12codw3j305k05k0t7.jpg"/><br></p>
+
+<ol>
+<li>由 Zoltan Altfatter 发表的这篇文章介绍了如何在 Spring Integration 流程中引入一个新的JMS消息来启动 Spring Batch 作业:</li>
+</ol>
+<p><a href="http://blog.mimacom.com/blog/2017/09/29/trigger-a-spring-batch-job-with-a-jms-message/">http://blog.mimacom.com/blog/2017/09/29/trigger-a-spring-batch-job-with-a-jms-message/</a></p>
+<p align="center"><br><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fkc13cs9r1j305k05kq3g.jpg"/><br></p>
+
+<ol>
+<li>Rohit Kelapure: 为什么 Pivotal 公司的 Cloud Foundry 是运行 Spring Boot 应用程序的最佳选择？</li>
+</ol>
+<p><a href="https://twitter.com/rkela/status/914924780373073920">https://twitter.com/rkela/status/914924780373073920</a></p>
+<p align="center"><br><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fkc146vnlvj305k05kaah.jpg"/><br></p>
+
+<ol>
+<li>在这篇文章中，Cristina Negrean 介绍了如何使用 Spring Cloud Data Flow 进行实时分析：</li>
+</ol>
+<p><a href="https://cristinanegrean.github.io/2017/10/01/spring-cloud-dataflow-for-real-time-analytics-with-twitter-api">https://cristinanegrean.github.io/2017/10/01/spring-cloud-dataflow-for-real-time-analytics-with-twitter-api</a></p>
+<p align="center"><br><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fkc157vcrij305k05kgm6.jpg"/><br></p>
+
+<ol>
+<li>Gabriela Motroc 在 JAXEnter 网上发布了一篇关于 Spring Framework 5 的新文章。非常多的功能都在文章包含了:</li>
+</ol>
+<p><a href="https://jaxenter.com/spring-framework-5-0-137677.html">https://jaxenter.com/spring-framework-5-0-137677.html</a></p>
+<p align="center"><br><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fkc16p331kj305k05kwew.jpg"/><br></p>
+
+<ol>
+<li>Aboullaite Mohammed：使用 Elasticsearch 和 Kibana 和 Spring Boot 集合来监控一些指标:</li>
+</ol>
+<p><a href="https://aboullaite.me/spring-boot-elastic-kibana/">https://aboullaite.me/spring-boot-elastic-kibana/</a></p>
+<p align="center"><br><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fkc17rvltdj305k05kmxl.jpg"/><br></p>
+
+<ol>
+<li>Ordina JWorks：使用 Spring Cloud 来对微服务进行安全防护:</li>
+</ol>
+<p><a href="https://ordina-jworks.github.io/microservices/2017/09/26/Secure-your-architecture-part1.html">https://ordina-jworks.github.io/microservices/2017/09/26/Secure-your-architecture-part1.html</a></p>
+<p align="center"><br><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fkc18inbctj305k05kaak.jpg"/><br></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;@strongant &amp;amp; @chenzhijun &amp;amp; @maskwang 翻译&lt;/p&gt;
+&lt;p&gt;欢迎收看新一期 《Spring 周报》！周报包含了上周的很多内容，可以了解非常多的干货。现在 Spring Framework 5.0 已推出！Spring Fra
+    
+    </summary>
+    
+      <category term="Spring" scheme="http://baiwenhui.com/categories/Spring/"/>
+    
+    
+      <category term="Spring官方周报翻译" scheme="http://baiwenhui.com/tags/Spring%E5%AE%98%E6%96%B9%E5%91%A8%E6%8A%A5%E7%BF%BB%E8%AF%91/"/>
+    
+  </entry>
+  
+</feed>

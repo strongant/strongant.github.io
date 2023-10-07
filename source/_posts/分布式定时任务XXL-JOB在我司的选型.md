@@ -185,8 +185,6 @@ Linux，1991
 
  ![](http://ww1.sinaimg.cn/large/bc9918a2gy1gimynngodnj21ii0qm43e.jpg)
 
-
-
 ### 触发规则
 
 * Cron 表达式

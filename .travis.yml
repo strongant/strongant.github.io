@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-- 7.1.0
+- 16.20.2
 branches:
   only:
   - hexo
